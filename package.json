@@ -1,0 +1,50 @@
+{
+  "name": "@nolva/nolva-components",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev",
+    "build": "rimraf ./dist && tspc -p ./tsconfig.build.json && swc ./dist -d .",
+    "prettier": "prettier --check ./.storybook ./src",
+    "prettier:fix": "prettier --write ./.storybook ./src",
+    "eslint": "eslint ./.storybook ./src",
+    "eslint:fix": "eslint --fix ./.storybook ./src"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "devDependencies": {
+    "@rheactor/eslint-config-rheactor": "github:rheactor/eslint-config-rheactor",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-interactions": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/test": "^8.6.12",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.11.18",
+    "@types/react-dom": "^19.1.2",
+    "@types/react": "^19.1.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.24.0",
+    "rimraf": "^6.0.1",
+    "storybook": "^8.6.12",
+    "ts-patch": "^3.3.0",
+    "typescript-transform-paths": "^3.5.5",
+    "typescript": "^5.8.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vite": "^6.2.5"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.3",
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "react": "^19.1.0",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^4.1.3"
+  }
+}

@@ -1,0 +1,1 @@
+import{jsx as t}from"react/jsx-runtime";export function PrintContainer({children:n}){return t("div",{className:"not-print:flex justify-center-safe items-center-safe not-print:min-h-screen not-print:bg-slate-200 not-print:p-8 flex-col gap-y-8",children:n})}

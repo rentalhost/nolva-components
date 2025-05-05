@@ -12,15 +12,13 @@ export default {
   },
   typescript: {
     reactDocgen: "react-docgen-typescript",
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      shouldRemoveUndefinedFromOptional: true,
-    },
   },
   viteFinal: (config) => {
     config.plugins?.push(
       reactDocgenTypescript({
         EXPERIMENTAL_useProjectService: true,
+        shouldExtractLiteralValuesFromEnum: true,
+        shouldExtractValuesFromUnion: true,
       }),
     );
 

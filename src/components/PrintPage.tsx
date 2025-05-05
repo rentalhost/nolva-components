@@ -38,14 +38,14 @@ interface Props {
   footer?: ReactNode;
 
   /**
-   * Enables or disables the overflow warning.
+   * Controls the overflow behavior of the page content.
    *
-   * When page content overflows the vertical size limit, a visual identifier
-   * shows which part of the content will be forcibly sent to the next page.
+   * - "allowed": Content is allowed to overflow without any warning or visual indicator.
+   * - "warning": Displays a visual warning when content overflows the vertical size limit, highlighting the overflowing area.
    *
-   * The default is `true`.
+   * The default is `warning`.
    */
-  overflowWarning?: boolean;
+  overflowMode?: "allowed" | "warning";
 
   /**
    * Shortens the page if its content doesn't occupy the full height.
@@ -92,7 +92,7 @@ export function PrintPage({
   margin = "1cm",
   header,
   footer,
-  overflowWarning = true,
+  overflowMode = "warning",
   shorten = false,
   children,
 }: Props) {
@@ -146,15 +146,22 @@ export function PrintPage({
         dangerouslySetInnerHTML={style}
       />
 
-      {Boolean(overflowWarning) && (
+      {overflowMode === "warning" && (
         <div className="top-(--height) absolute inset-x-0 bottom-0 animate-pulse bg-red-200 bg-blend-overlay print:hidden" />
       )}
 
-      <div className="absolute inset-x-0 top-0 empty:hidden">{header}</div>
+      <div className="absolute inset-x-0 top-0 empty:hidden print:fixed">
+        {header}
+      </div>
 
       <div className="relative">{children}</div>
 
-      <div className="top-(--height) absolute inset-x-0 -translate-y-full empty:hidden">
+      <div
+        className={twMerge(
+          "top-(--height) absolute inset-x-0 -translate-y-full empty:hidden print:fixed",
+          overflowMode === "allowed" && "top-auto bottom-0 -translate-y-0",
+        )}
+      >
         {footer}
       </div>
     </div>

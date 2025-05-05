@@ -65,7 +65,7 @@ export const MultiplePages: StoryObj<typeof PrintPage> = {
   },
 };
 
-export const AutomaticHeightPage: StoryObj<typeof PrintPage> = {
+export const ShortenPage: StoryObj<typeof PrintPage> = {
   render: (args) => (
     <>
       <PrintPage {...args} />
@@ -79,7 +79,7 @@ export const AutomaticHeightPage: StoryObj<typeof PrintPage> = {
   },
 };
 
-export const TooLargePage: StoryObj<typeof PrintPage> = {
+export const OverflowModeWarningPage: StoryObj<typeof PrintPage> = {
   args: {
     size: "CustomSize" as ComponentProps<typeof PrintPage>["size"],
     header: (
@@ -118,6 +118,55 @@ export const TooLargePage: StoryObj<typeof PrintPage> = {
           the next page. The blinking animation is part of the component when it
           detects overflow.
         </p>
+      </div>
+    ),
+  },
+};
+
+export const OverflowModeAllowedPage: StoryObj<typeof PrintPage> = {
+  args: {
+    overflowMode: "allowed",
+    size: "CustomSize" as ComponentProps<typeof PrintPage>["size"],
+    header: (
+      <div className="flex h-8 items-center justify-start bg-blue-200/50 px-4">
+        Header
+      </div>
+    ),
+    footer: (
+      <div className="flex h-8 items-center justify-end bg-green-200/50 px-4">
+        Footer
+      </div>
+    ),
+    margin: "2.5rem 1rem",
+    children: (
+      <div className="leading-7.25">
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
+
+        <p>OK</p>
       </div>
     ),
   },

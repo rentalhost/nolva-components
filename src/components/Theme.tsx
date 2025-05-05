@@ -7,6 +7,11 @@ interface Props extends PropsWithChildren {
    * The variant of the theme.
    */
   variant: Variant;
+
+  /**
+   * The content.
+   */
+  children: ReactNode;
 }
 
 type Variant =

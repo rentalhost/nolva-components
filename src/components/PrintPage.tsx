@@ -57,7 +57,7 @@ interface Props {
   /**
    * The content of the page.
    */
-  children?: ReactNode;
+  children: ReactNode;
 }
 
 type Size = keyof typeof sizes;

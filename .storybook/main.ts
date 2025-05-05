@@ -10,9 +10,6 @@ export default {
     name: "@storybook/react-vite",
     options: {},
   },
-  typescript: {
-    reactDocgen: "react-docgen-typescript",
-  },
   viteFinal: (config) => {
     config.plugins?.push(
       reactDocgenTypescript({

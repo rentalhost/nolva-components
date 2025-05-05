@@ -16,14 +16,6 @@ export default {
       </PrintContainer>
     ),
   ],
-  args: {
-    size: "A4",
-    orientation: "portrait",
-    margin: "1cm",
-    header: undefined,
-    footer: undefined,
-    overflowWarning: true,
-  },
   argTypes: {
     size: {
       control: {
@@ -39,11 +31,6 @@ export default {
         CustomSize2: { width: "5cm", height: "auto" },
       },
     },
-    margin: { control: { type: "text" } },
-    header: { control: { disable: true } },
-    footer: { control: { disable: true } },
-    overflowWarning: {},
-    children: {},
   },
 } satisfies Meta<typeof PrintPage>;
 

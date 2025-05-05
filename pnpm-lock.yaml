@@ -27,6 +27,9 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
     devDependencies:
+      '@joshwooding/vite-plugin-react-docgen-typescript':
+        specifier: ^0.6.0
+        version: 0.6.0(typescript@5.8.3)(vite@6.3.5(jiti@2.4.2)(lightningcss@1.29.2))
       '@rheactor/eslint-config-rheactor':
         specifier: github:rheactor/eslint-config-rheactor
         version: https://codeload.github.com/rheactor/eslint-config-rheactor/tar.gz/14b40999b38ea60ad48a93fc2c55c6a152446ded(@typescript-eslint/eslint-plugin@8.32.0(@typescript-eslint/parser@8.32.0(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(@typescript-eslint/parser@8.32.0(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(jiti@2.4.2)(vitest@3.1.1)
@@ -407,6 +410,15 @@ packages:
 
   '@joshwooding/vite-plugin-react-docgen-typescript@0.5.0':
     resolution: {integrity: sha512-qYDdL7fPwLRI+bJNurVcis+tNgJmvWjH4YTBGXTA8xMuxFrnAz6E5o35iyzyKbq5J5Lr8mJGfrR5GXl+WGwhgQ==}
+    peerDependencies:
+      typescript: '>= 4.3.x'
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  '@joshwooding/vite-plugin-react-docgen-typescript@0.6.0':
+    resolution: {integrity: sha512-dPo6SE4dm8UKcgGg4LsV9iw6f5HkIeJwzMA2M2Lb+mhl5vxesbDvb3ENTzNTkGnOxS6PqJig2pfXdtYaW3S9fg==}
     peerDependencies:
       typescript: '>= 4.3.x'
       vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
@@ -4027,6 +4039,15 @@ snapshots:
     dependencies:
       glob: 10.4.5
       magic-string: 0.27.0
+      react-docgen-typescript: 2.2.2(typescript@5.8.3)
+      vite: 6.3.5(jiti@2.4.2)(lightningcss@1.29.2)
+    optionalDependencies:
+      typescript: 5.8.3
+
+  '@joshwooding/vite-plugin-react-docgen-typescript@0.6.0(typescript@5.8.3)(vite@6.3.5(jiti@2.4.2)(lightningcss@1.29.2))':
+    dependencies:
+      glob: 10.4.5
+      magic-string: 0.30.17
       react-docgen-typescript: 2.2.2(typescript@5.8.3)
       vite: 6.3.5(jiti@2.4.2)(lightningcss@1.29.2)
     optionalDependencies:

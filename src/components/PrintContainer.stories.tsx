@@ -7,9 +7,6 @@ export default {
   component: PrintContainer,
   title: "Components/Print/PrintContainer",
   parameters: { layout: "fullscreen" },
-  argTypes: {
-    children: {},
-  },
 } satisfies Meta<typeof PrintContainer>;
 
 export const SimpleContainer: StoryObj<typeof PrintContainer> = {

@@ -7,10 +7,6 @@ import { Theme, variants } from "@/components/Theme";
 export default {
   component: Theme,
   title: "Components/Theme/Theme",
-  argTypes: {
-    variant: {},
-    children: {},
-  },
 } satisfies Meta<typeof Theme>;
 
 export const Example: StoryObj<typeof Theme> = {

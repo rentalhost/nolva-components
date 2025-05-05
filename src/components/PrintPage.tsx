@@ -1,4 +1,5 @@
 import { useId, useMemo } from "react";
+import { twMerge } from "tailwind-merge";
 
 import type { CSSProperties, ReactNode } from "react";
 
@@ -47,6 +48,13 @@ interface Props {
   overflowWarning?: boolean;
 
   /**
+   * Shortens the page if its content doesn't occupy the full height.
+   *
+   * The default is `false`.
+   */
+  shorten?: boolean;
+
+  /**
    * The content of the page.
    */
   children?: ReactNode;
@@ -85,6 +93,7 @@ export function PrintPage({
   header,
   footer,
   overflowWarning = true,
+  shorten = false,
   children,
 }: Props) {
   const id = useId();
@@ -119,7 +128,10 @@ export function PrintPage({
 
   return (
     <div
-      className="w-(--width) min-h-(--height) p-(--margin) not-print:rounded-sm not-print:shadow-md not-print:shadow-gray-600/10 not-print:bg-white not-print:outline not-print:outline-gray-600/25 not-print:overflow-hidden relative break-after-page box-decoration-clone [page:var(--id)] [zoom:var(--zoom)]"
+      className={twMerge(
+        "w-(--width) min-h-(--height) p-(--margin) not-print:rounded-sm not-print:shadow-md not-print:shadow-gray-600/10 not-print:bg-white not-print:outline not-print:outline-gray-600/25 not-print:overflow-hidden relative break-after-page box-decoration-clone [page:var(--id)] [zoom:var(--zoom)]",
+        shorten && "min-h-auto",
+      )}
       style={
         {
           "--id": id,

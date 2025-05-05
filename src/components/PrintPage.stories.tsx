@@ -66,35 +66,16 @@ export const MultiplePages: StoryObj<typeof PrintPage> = {
 };
 
 export const AutomaticHeightPage: StoryObj<typeof PrintPage> = {
+  render: (args) => (
+    <>
+      <PrintPage {...args} />
+
+      <PrintPage {...args} />
+    </>
+  ),
   args: {
-    size: "CustomSize2" as ComponentProps<typeof PrintPage>["size"],
-    children: (
-      <div className="text-center">
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-
-        <p>Thermal print.</p>
-      </div>
-    ),
+    shorten: true,
+    children: <p>Example.</p>,
   },
 };
 

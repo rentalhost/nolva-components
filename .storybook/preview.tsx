@@ -13,9 +13,4 @@ export default {
       },
     },
   },
-  argTypes: {
-    children: {
-      control: { disable: true },
-    },
-  },
 } satisfies Preview;

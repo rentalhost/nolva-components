@@ -39,10 +39,6 @@ export default {
         CustomSize2: { width: "5cm", height: "auto" },
       },
     },
-    orientation: {
-      control: { type: "radio" },
-      options: ["portrait", "landscape"],
-    },
     margin: { control: { type: "text" } },
     header: { control: { disable: true } },
     footer: { control: { disable: true } },

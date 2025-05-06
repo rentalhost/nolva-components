@@ -2,11 +2,10 @@ import { twMerge } from "tailwind-merge";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Theme, variants } from "@/components/Theme";
+import { Theme, variants } from "@/components/Theme/Theme";
 
 export default {
   component: Theme,
-  title: "Components/Theme/Theme",
 } satisfies Meta<typeof Theme>;
 
 export const Example: StoryObj<typeof Theme> = {
@@ -32,4 +31,12 @@ export const Example: StoryObj<typeof Theme> = {
       </div>
     ),
   },
+};
+
+export const NoThemeExample: StoryObj<typeof Theme> = {
+  render: () => (
+    <div className="text-theme-800 bg-theme-200 border-theme-600/25 shadow-theme-800/10 hover:bg-theme-300 active:bg-theme-400 inline-block w-full cursor-pointer select-none rounded border p-5 text-center shadow transition">
+      example
+    </div>
+  ),
 };

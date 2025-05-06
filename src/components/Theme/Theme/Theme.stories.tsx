@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Theme, variants } from "@/components/Theme/Theme";
+import { Theme, variants } from "@/components/Theme/Theme/Theme";
 
 export default {
   component: Theme,

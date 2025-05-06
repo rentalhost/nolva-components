@@ -1,3 +1,3 @@
-export { PrintPage } from "@/components/PrintPage";
-export { PrintContainer } from "@/components/PrintContainer";
-export { Theme } from "@/components/Theme/Theme";
+export { PrintPage } from "@/components/Print/PrintPage/PrintPage";
+export { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
+export { Theme } from "@/components/Theme/Theme/Theme";

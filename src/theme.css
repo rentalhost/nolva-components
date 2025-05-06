@@ -1,7 +1,12 @@
-@theme inline {
-  --color-theme-light: var(--theme-light, white);
-  --color-theme-dark: var(--theme-dark, black);
+@custom-variant link (&:where(a));
 
+@custom-variant disabled (&[disabled]);
+
+@custom-variant theme-solid (&:where([data-theme="solid"]));
+@custom-variant theme-outline (&:where([data-theme="outline"]));
+@custom-variant theme-transparent (&:where([data-theme="transparent"]));
+
+@theme inline {
   --color-theme-50: var(--theme-50, var(--color-neutral-50));
   --color-theme-100: var(--theme-100, var(--color-neutral-100));
   --color-theme-200: var(--theme-200, var(--color-neutral-200));

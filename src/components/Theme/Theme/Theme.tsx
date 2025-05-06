@@ -6,7 +6,7 @@ interface Props extends PropsWithChildren {
   /**
    * The variant of the theme.
    */
-  variant: Variant;
+  variant: Variant | (string & {});
 
   /**
    * The content.
@@ -14,7 +14,7 @@ interface Props extends PropsWithChildren {
   children: ReactNode;
 }
 
-type Variant =
+export type Variant =
   | VariantSemantic
   | "amber"
   | "blue"
@@ -85,16 +85,24 @@ function hasClassName(props: unknown): props is { className: string } {
   return props !== null && typeof props === "object" && "className" in props;
 }
 
+function isBuildInVariant(variant: string): variant is Variant {
+  return variant in variants;
+}
+
 /**
  * A utility component to change the color of any element based on a variant as theme.
  */
 export function Theme({ variant, children }: Props) {
   return Children.map(children, (child) => {
     if (isValidElement(child)) {
+      const variantClassName = isBuildInVariant(variant)
+        ? variants[variant]
+        : `theme-${variant}`;
+
       return cloneElement(child as JSX.Element, {
         className: hasClassName(child.props)
-          ? `${child.props.className} ${variants[variant]}`
-          : variants[variant],
+          ? `${child.props.className} ${variantClassName}`
+          : variantClassName,
       });
     }
 

@@ -8,3 +8,47 @@
     font-family: "Nunito Sans", sans-serif;
   }
 }
+
+@layer utilities {
+  .theme-brand-blue {
+    --theme-50: #f0f7ff;
+    --theme-100: #dfeeff;
+    --theme-200: #b9defe;
+    --theme-300: #7bc5fe;
+    --theme-400: #34a7fc;
+    --theme-500: #0a8ded;
+    --theme-600: #006dcb;
+    --theme-700: #005aaa;
+    --theme-800: #054b87;
+    --theme-900: #0a3e70;
+    --theme-950: #07274a;
+  }
+
+  .theme-brand-green {
+    --theme-50: #f1faeb;
+    --theme-100: #dff4d3;
+    --theme-200: #c3e9ad;
+    --theme-300: #9dda7c;
+    --theme-400: #7ac853;
+    --theme-500: #5bad35;
+    --theme-600: #448a26;
+    --theme-700: #356a21;
+    --theme-800: #2e5420;
+    --theme-900: #29481f;
+    --theme-950: #12270c;
+  }
+
+  .theme-brand-yellow {
+    --theme-50: #fefce8;
+    --theme-100: #fef9c3;
+    --theme-200: #fdee8b;
+    --theme-300: #fbd930;
+    --theme-400: #f8c917;
+    --theme-500: #e8b00a;
+    --theme-600: #c88706;
+    --theme-700: #a06108;
+    --theme-800: #844c0f;
+    --theme-900: #703e13;
+    --theme-950: #412007;
+  }
+}

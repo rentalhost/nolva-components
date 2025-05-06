@@ -1,9 +1,27 @@
+import { allModes } from "@storybook/modes";
+
 import "@storybook/preview.css";
 
 import type { Preview } from "@storybook/react";
 
 export default {
   parameters: {
+    viewport: {
+      viewports: {
+        mobile: {
+          name: "Mobile",
+          styles: { width: "320px", height: "640px" },
+        },
+        tablet: {
+          name: "Tablet",
+          styles: { width: "768px", height: "1024px" },
+        },
+        desktop: {
+          name: "Desktop",
+          styles: { width: "1600px", height: "1200px" },
+        },
+      },
+    },
     controls: {
       expanded: true,
       disableSaveFromUI: true,
@@ -14,6 +32,9 @@ export default {
         cellAmount: 4,
         opacity: 0.1,
       },
+    },
+    chromatic: {
+      modes: allModes,
     },
   },
   argTypesEnhancers: [

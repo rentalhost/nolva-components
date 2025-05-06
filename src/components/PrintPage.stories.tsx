@@ -40,7 +40,7 @@ export const SinglePage: StoryObj<typeof PrintPage> = {
   args: {
     children: (
       <>
-        <h1>Hello world!</h1>
+        <h1 className="text-3xl font-semibold">Hello world!</h1>
 
         <p>Lorem ipsum dolor sit.</p>
       </>

@@ -14,7 +14,7 @@ interface Props extends PropsWithChildren {
  */
 export function PrintContainer({ children }: Props) {
   return (
-    <div className="not-print:flex justify-center-safe items-center-safe not-print:min-h-screen not-print:bg-slate-200 not-print:p-8 flex-col gap-y-8">
+    <div className="not-print:flex justify-center-safe items-center-safe not-print:min-h-screen not-print:bg-slate-200 not-print:p-8 not-print:w-fit not-print:min-w-full flex-col gap-y-8">
       {children}
     </div>
   );

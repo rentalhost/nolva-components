@@ -4,7 +4,11 @@ import type { StorybookConfig } from "@storybook/react-vite";
 
 export default {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
-  addons: ["@storybook/addon-essentials", "@storybook/addon-interactions"],
+  addons: [
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@chromatic-com/storybook",
+  ],
   docs: { autodocs: true },
   framework: {
     name: "@storybook/react-vite",

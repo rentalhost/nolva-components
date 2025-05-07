@@ -139,6 +139,13 @@ export const LinkDisabledExample: StoryObj<typeof Button> = {
   },
 };
 
+export const AsChildFallbackExample: StoryObj<typeof Button> = {
+  args: {
+    asChild: true,
+    children: "Example",
+  },
+};
+
 function BrandBlueButton(args: ComponentProps<typeof Button>) {
   return (
     <Theme variant="brand-blue">

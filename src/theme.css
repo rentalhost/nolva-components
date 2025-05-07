@@ -1,6 +1,4 @@
-@custom-variant link (&:where(a));
-
-@custom-variant disabled (&[disabled]);
+@custom-variant disabled (&:is([disabled], :disabled));
 
 @custom-variant theme-solid (&:where([data-theme="solid"]));
 @custom-variant theme-outline (&:where([data-theme="outline"]));

@@ -1,3 +1,5 @@
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
@@ -136,6 +138,36 @@ export const LinkDisabledExample: StoryObj<typeof Button> = {
     children: <a href="#">Link</a>,
     fill: "outline",
     disabled: true,
+  },
+};
+
+export const IconExample: StoryObj<typeof Button> = {
+  args: {
+    children: <FaMagnifyingGlass />,
+  },
+};
+
+export const IconTextExample: StoryObj<typeof Button> = {
+  args: {
+    children: (
+      <>
+        <FaMagnifyingGlass />
+
+        <span>Example</span>
+      </>
+    ),
+  },
+};
+
+export const IconTextReverseExample: StoryObj<typeof Button> = {
+  args: {
+    children: (
+      <>
+        <span>Example</span>
+
+        <FaMagnifyingGlass />
+      </>
+    ),
   },
 };
 

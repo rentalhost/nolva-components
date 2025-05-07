@@ -37,7 +37,8 @@ export function Button({
   children,
 }: Props) {
   const buttonClassName = twMerge(
-    "inline-block bg-theme-600 text-theme-50 p-3 px-5 border border-theme-700 transition rounded select-none cursor-pointer",
+    "inline-flex gap-x-2 items-center justify-center",
+    "bg-theme-600 text-theme-50 p-2 px-4 border border-theme-700 transition rounded select-none cursor-pointer",
     "theme-outline:bg-theme-50 theme-outline:border-theme-200 theme-outline:text-theme-900",
     "theme-transparent:bg-transparent theme-transparent:border-transparent theme-transparent:text-theme-900 theme-transparent:not-disabled:shadow-none theme-transparent:hover:bg-theme-50",
     "theme-solid:hover:brightness-115 theme-solid:active:brightness-90",
@@ -45,6 +46,7 @@ export function Button({
     "theme-transparent:active:brightness-97",
     "disabled:bg-theme-50 disabled:text-theme-200 disabled:border-theme-50 disabled:pointer-events-none",
     "not-disabled:shadow theme-transparent:disabled:bg-transparent theme-transparent:disabled:border-transparent",
+    "[&>svg]:min-h-lh",
     className,
   );
 

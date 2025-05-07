@@ -1,6 +1,4 @@
-import reactDocgenTypescript from "@joshwooding/vite-plugin-react-docgen-typescript";
-
-import type { StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/nextjs";
 
 export default {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
@@ -11,18 +9,20 @@ export default {
   ],
   docs: { autodocs: true },
   framework: {
-    name: "@storybook/react-vite",
-    options: {},
+    name: "@storybook/nextjs",
+    options: {
+      builder: {
+        useSWC: true,
+      },
+    },
   },
-  viteFinal: (config) => {
-    config.plugins?.push(
-      reactDocgenTypescript({
-        EXPERIMENTAL_useProjectService: true,
-        shouldExtractLiteralValuesFromEnum: true,
-        shouldExtractValuesFromUnion: true,
-      }),
-    );
-
-    return config;
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldExtractValuesFromUnion: true,
+      shouldRemoveUndefinedFromOptional: true,
+    },
   },
+  staticDirs: ["../public"],
 } satisfies StorybookConfig;

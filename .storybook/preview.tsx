@@ -1,6 +1,6 @@
-import { allModes } from "@storybook/modes";
-
 import "@storybook/preview.css";
+
+import { allModes } from "@storybook/modes";
 
 import type { Preview } from "@storybook/react";
 
@@ -18,7 +18,7 @@ export default {
         },
         desktop: {
           name: "Desktop",
-          styles: { width: "1600px", height: "1200px" },
+          styles: { width: "1400px", height: "1024px" },
         },
       },
     },

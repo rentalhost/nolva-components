@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { FlipCard } from "@/components/Surface/Flip/FlipCard";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: FlipCard,

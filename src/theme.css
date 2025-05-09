@@ -4,7 +4,11 @@
 @custom-variant theme-outline (&:where([data-theme="outline"]));
 @custom-variant theme-transparent (&:where([data-theme="transparent"]));
 
-@custom-variant stuck (&[data-stuck]);
+@custom-variant stuck (&[data-stuck], &:has([data-forcing-overlay]));
+
+body:has([data-overlay]) {
+  @apply overflow-hidden;
+}
 
 @theme inline {
   --color-theme-50: var(--theme-50, var(--color-neutral-50));

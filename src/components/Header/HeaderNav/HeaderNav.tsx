@@ -1,10 +1,13 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaXmark } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
-import type { PropsWithChildren, ReactNode } from "react";
+import { promisePortal } from "@/services/PortalService";
+
+import type { Resolve } from "@/services/PortalService";
+import type { PropsWithChildren, ReactElement, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
@@ -28,29 +31,49 @@ interface Props extends PropsWithChildren {
    *
    * Defaults to `<FaBars />`.
    */
-  openerIcon?: ReactNode;
+  icon?: ReactNode;
 
   /**
-   * The class name of the menu button.
+   * The class name of the icon element.
    */
-  openerIconClassName?: string;
+  iconClassName?: string;
 
   /**
-   * Called when the menu button is clicked.
+   * The icon to use for close the menu button.
+   *
+   * Defaults to `<FaXmark />`.
    */
-  onOpenerIconClick(this: void): void;
+  closedIcon?: ReactNode;
+
+  /**
+   * The class name of the icon element when the menu is closed.
+   */
+  closedIconClassName?: string;
+
+  /**
+   * The children of the opener icon.
+   *
+   * @param closeHandler A function to close the menu.
+   */
+  openedModalContent(this: void, closeHandler: () => void): ReactElement;
 }
 
 export function HeaderNav({
   navClassName,
   listClassName,
   children,
-  openerIcon = <FaBars />,
-  openerIconClassName,
-  onOpenerIconClick,
+  icon = <FaBars />,
+  iconClassName,
+  closedIcon = <FaXmark />,
+  closedIconClassName,
+  openedModalContent,
 }: Props) {
   const navRef = useRef<HTMLDivElement>(null);
+
   const [mobileMode, setMobileMode] = useState(false);
+  const [opened, setOpened] = useState(false);
+
+  const portalResolver = useRef<Resolve<void>>(null);
 
   useLayoutEffect(() => {
     function resizeObserver() {
@@ -59,6 +82,7 @@ export function HeaderNav({
 
     addEventListener("resize", resizeObserver);
     addEventListener("transitionend", resizeObserver);
+
     resizeObserver();
 
     return () => {
@@ -70,6 +94,7 @@ export function HeaderNav({
   return (
     <nav
       ref={navRef}
+      data-forcing-overlay={opened || undefined}
       className={twMerge("overflow-hidden text-nowrap", navClassName)}
     >
       <ul
@@ -86,11 +111,30 @@ export function HeaderNav({
         className={twMerge(
           "rounded-full border border-theme-200 p-2 hover:border-theme-300 active:border-theme-400 transition bg-theme-200/50 active:bg-theme-300/50 select-none cursor-pointer",
           !mobileMode && "sm:hidden",
-          openerIconClassName,
+          iconClassName,
+          opened && closedIconClassName,
         )}
-        onClick={onOpenerIconClick}
+        onClick={() => {
+          setOpened((state) => {
+            if (state) {
+              portalResolver.current?.();
+              portalResolver.current = null;
+            } else {
+              // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+              void promisePortal<void>((resolver) => {
+                portalResolver.current = resolver;
+
+                return openedModalContent(resolver);
+              }).then(() => {
+                setOpened(false);
+              });
+            }
+
+            return !state;
+          });
+        }}
       >
-        {openerIcon}
+        {opened ? closedIcon : icon}
       </div>
     </nav>
   );

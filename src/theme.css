@@ -4,6 +4,8 @@
 @custom-variant theme-outline (&:where([data-theme="outline"]));
 @custom-variant theme-transparent (&:where([data-theme="transparent"]));
 
+@custom-variant stuck (&[data-stuck]);
+
 @theme inline {
   --color-theme-50: var(--theme-50, var(--color-neutral-50));
   --color-theme-100: var(--theme-100, var(--color-neutral-100));

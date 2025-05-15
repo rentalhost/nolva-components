@@ -22,21 +22,27 @@ interface Props extends PropsWithChildren {
   /**
    * Effect to apply.
    *
-   * Defaults to `zoomIn`.
+   * Defaults to none (respects `fadeEffect`).
    */
-  effect:
-    | "fade"
-    | "fadeDown"
-    | "fadeLeft"
-    | "fadeRight"
-    | "fadeUp"
+  effect?:
+    | "slideDown"
+    | "slideLeft"
+    | "slideRight"
+    | "slideUp"
     | "zoomIn"
     | "zoomOut";
 
   /**
+   * Whether to apply the fade effect.
+   *
+   * Defaults to `true`.
+   */
+  fadeEffect?: boolean;
+
+  /**
    * Animation duration.
    *
-   * Defaults to `400` (1 second).
+   * Defaults to `400` (0.4s).
    */
   duration?: number;
 
@@ -68,17 +74,17 @@ interface Props extends PropsWithChildren {
 }
 
 const effects: Record<NonNullable<Props["effect"]>, string> = {
-  fade: "",
-  fadeDown: "not-data-animated:-translate-y-1/2",
-  fadeLeft: "not-data-animated:-translate-x-1/2",
-  fadeRight: "not-data-animated:translate-x-1/2",
-  fadeUp: "not-data-animated:translate-y-1/2",
+  slideDown: "not-data-animated:-translate-y-1/2",
+  slideLeft: "not-data-animated:-translate-x-1/2",
+  slideRight: "not-data-animated:translate-x-1/2",
+  slideUp: "not-data-animated:translate-y-1/2",
   zoomIn: "not-data-animated:scale-50",
   zoomOut: "not-data-animated:scale-125",
 } as const;
 
 export function Animate({
   effect,
+  fadeEffect = true,
   duration = 400,
   easing = "ease-out",
   once = false,
@@ -117,8 +123,8 @@ export function Animate({
     ref,
     className: twMerge(
       "transition duration-(--animate-duration) ease-(--animate-easing)",
-      "not-data-animated:opacity-0",
-      effects[effect],
+      fadeEffect && "not-data-animated:opacity-0",
+      effect === undefined ? undefined : effects[effect],
       (element.props as ComponentProps<"div">).className,
     ),
     style: {

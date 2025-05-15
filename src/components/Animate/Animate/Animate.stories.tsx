@@ -47,6 +47,5 @@ export const Example: StoryObj<typeof Animate> = {
     children: (
       <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>
     ),
-    effect: "fade",
   },
 };

@@ -34,13 +34,6 @@ interface Props extends PropsWithChildren {
     | "zoomOut";
 
   /**
-   * Whether to apply the fade effect.
-   *
-   * Defaults to `true`.
-   */
-  fadeEffect?: boolean;
-
-  /**
    * Animation duration.
    *
    * Defaults to `400` (0.4s).
@@ -85,7 +78,6 @@ const effects: Record<NonNullable<Props["effect"]>, string> = {
 
 export function Animate({
   effect,
-  fadeEffect = true,
   duration = 400,
   easing = "ease-out",
   always = false,
@@ -130,8 +122,7 @@ export function Animate({
   return cloneElement(element, {
     ref,
     className: twMerge(
-      "transition duration-(--animate-duration) ease-(--animate-easing)",
-      fadeEffect && "not-data-animated:opacity-0",
+      "transition duration-(--animate-duration) ease-(--animate-easing) not-data-animated:opacity-0",
       effect === undefined ? undefined : effects[effect],
       elementProps.className,
     ),

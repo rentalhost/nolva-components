@@ -14,6 +14,10 @@ export function inViewport(element: HTMLElement, threshold: number): boolean {
   const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = element;
   const { scrollY, scrollX, innerHeight, innerWidth } = window;
 
+  if (offsetTop < scrollY || offsetLeft < scrollX) {
+    return true;
+  }
+
   const offsetBottom = offsetTop + offsetHeight;
   const offsetRight = offsetLeft + offsetWidth;
 

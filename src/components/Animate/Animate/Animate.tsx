@@ -13,7 +13,6 @@ import { twMerge } from "tailwind-merge";
 import type {
   ComponentProps,
   CSSProperties,
-  JSX,
   PropsWithChildren,
   ReactNode,
 } from "react";
@@ -54,11 +53,11 @@ interface Props extends PropsWithChildren {
   easing?: "ease-in-out" | "ease-in" | "ease-out" | "ease" | "linear";
 
   /**
-   * Whether to apply the animation only once.
+   * Whether to apply the animation always.
    *
    * Defaults to `false`.
    */
-  once?: boolean;
+  always?: boolean;
 
   /**
    * Animation threshold.
@@ -87,7 +86,7 @@ export function Animate({
   fadeEffect = true,
   duration = 400,
   easing = "ease-out",
-  once = false,
+  always = false,
   threshold = 0.1,
   children,
 }: Props) {
@@ -100,7 +99,7 @@ export function Animate({
       ([entry]) => {
         setVisible(entry!.isIntersecting);
 
-        if (once && entry!.isIntersecting) {
+        if (!always && entry!.isIntersecting) {
           observer.disconnect();
         }
       },
@@ -112,25 +111,27 @@ export function Animate({
     return () => {
       observer.disconnect();
     };
-  }, [once, threshold]);
+  }, [always, threshold]);
 
   const element = useMemo(
     () => (isValidElement(children) ? children : <div>{children}</div>),
     [children],
   );
 
-  return cloneElement(element as JSX.Element, {
+  const elementProps = element.props as ComponentProps<"div">;
+
+  return cloneElement(element, {
     ref,
     className: twMerge(
       "transition duration-(--animate-duration) ease-(--animate-easing)",
       fadeEffect && "not-data-animated:opacity-0",
       effect === undefined ? undefined : effects[effect],
-      (element.props as ComponentProps<"div">).className,
+      elementProps.className,
     ),
     style: {
       "--animate-duration": `${duration}ms`,
       "--animate-easing": easing,
-      ...(element.props as ComponentProps<"div">).style,
+      ...elementProps.style,
     } as CSSProperties,
     "data-animated": visible || undefined,
   });

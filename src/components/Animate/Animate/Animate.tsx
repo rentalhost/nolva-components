@@ -10,6 +10,8 @@ import {
 } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { inViewport } from "@/services/WindowService";
+
 import type {
   ComponentProps,
   CSSProperties,
@@ -90,27 +92,32 @@ export function Animate({
   threshold = 0.1,
   children,
 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   const [visible, setVisible] = useState(false);
 
   useLayoutEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry!.isIntersecting);
+    function scrollObserver() {
+      const isVisible = inViewport(ref.current!, threshold);
 
-        if (!always && entry!.isIntersecting) {
-          observer.disconnect();
-        }
-      },
-      { threshold },
-    );
+      setVisible(isVisible);
 
-    observer.observe(ref.current!);
+      if (!always && isVisible) {
+        unload();
+      }
+    }
 
-    return () => {
-      observer.disconnect();
-    };
+    addEventListener("scroll", scrollObserver);
+    addEventListener("resize", scrollObserver);
+
+    scrollObserver();
+
+    function unload() {
+      removeEventListener("scroll", scrollObserver);
+      removeEventListener("resize", scrollObserver);
+    }
+
+    return unload;
   }, [always, threshold]);
 
   const element = useMemo(

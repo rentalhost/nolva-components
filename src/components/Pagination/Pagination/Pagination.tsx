@@ -27,6 +27,11 @@ interface Props {
   visibleCount?: number;
 
   /**
+   * The number of additional active elements after the current page (not inclusive).
+   */
+  spread?: number;
+
+  /**
    * The query string to append to the URL.
    *
    * Defaults to `undefined` (no query string).
@@ -74,6 +79,7 @@ interface PageProps {
   page: number;
   queryString?: string;
   isCurrent?: boolean;
+  isSpread?: boolean;
   isDisabled?: boolean;
   className?: string;
   children: ReactNode;
@@ -84,6 +90,7 @@ function PaginationPage({
   page,
   queryString,
   isCurrent,
+  isSpread,
   isDisabled,
   children,
   className,
@@ -96,10 +103,11 @@ function PaginationPage({
           ? undefined
           : appendQueryString(queryString, String(page))
       }
-      data-active={isCurrent === true ? true : undefined}
+      data-active={isCurrent === true || isSpread === true ? true : undefined}
+      data-active-spread={isSpread === true ? true : undefined}
       data-disabled={isDisabled === true ? true : undefined}
       className={twMerge(
-        "bg-theme-50 flex aspect-square items-center justify-center rounded-full hover:bg-theme-100 active:brightness-90 transition cursor-pointer select-none data-active:bg-theme-200 hover:data-active:bg-theme-300 w-8 data-active:font-bold data-disabled:pointer-events-none data-disabled:opacity-25",
+        "bg-theme-100 flex aspect-square items-center justify-center rounded-full hover:bg-theme-200 active:brightness-90 transition cursor-pointer select-none data-active:bg-theme-300 hover:data-active:bg-theme-400 w-8 data-active:font-bold data-disabled:pointer-events-none data-disabled:opacity-25",
         className,
       )}
       onClick={() => {
@@ -115,6 +123,7 @@ export function Pagination({
   current,
   total,
   visibleCount,
+  spread,
   queryString,
   className,
   pageClassName,
@@ -136,7 +145,7 @@ export function Pagination({
   return (
     <div
       className={twMerge(
-        "flex items-center justify-center gap-x-2 empty:hidden",
+        "flex flex-wrap items-center justify-center gap-2 empty:hidden",
         className,
       )}
     >
@@ -166,6 +175,11 @@ export function Pagination({
             key={page}
             page={page}
             isCurrent={page === currentClamped}
+            isSpread={
+              spread !== undefined &&
+              page >= currentClamped + 1 &&
+              page <= currentClamped + spread
+            }
             {...pageProps}
           >
             {page}

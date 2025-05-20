@@ -26,6 +26,15 @@ export const NoFirstLastExample: StoryObj<typeof Pagination> = {
   },
 };
 
+export const SpreadExample: StoryObj<typeof Pagination> = {
+  args: {
+    current: 8,
+    total: 12,
+    visibleCount: 9,
+    spread: 3,
+  },
+};
+
 export const ForceRenderExample: StoryObj<typeof Pagination> = {
   args: {
     current: 1,

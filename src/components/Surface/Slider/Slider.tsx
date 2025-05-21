@@ -521,6 +521,14 @@ export function Slider({
     [moveIndexRef, canSwipe, visibleItems],
   );
 
+  const canPaginate = useMemo(
+    () =>
+      paginationCompressed
+        ? paginationTotal > 1
+        : sliderItems.length > visibleItems,
+    [paginationCompressed, paginationTotal, sliderItems.length, visibleItems],
+  );
+
   if (sliderItems.length === 0) {
     return null;
   }
@@ -596,37 +604,39 @@ export function Slider({
         />
       </div>
 
-      <div
-        className={twMerge(
-          pagination === false && "hidden",
-          pagination === "overlay" && "absolute inset-x-0 bottom-2",
-          paginationClassName,
-        )}
-      >
-        <Pagination
-          current={
-            paginationCompressed
-              ? Math.ceil((index + 1) / visibleItems)
-              : index + 1
-          }
-          total={paginationTotal}
-          visibleCount={paginationLimit}
-          spread={paginationCompressed ? undefined : visibleItems - 1}
-          pageClassName="text-[size:0] w-2.5"
-          firstLast={false}
-          previousNext={false}
-          onClick={(page) => {
-            setIndex(
+      {canPaginate && (
+        <div
+          className={twMerge(
+            pagination === false && "hidden",
+            pagination === "overlay" && "absolute inset-x-0 bottom-2",
+            paginationClassName,
+          )}
+        >
+          <Pagination
+            current={
               paginationCompressed
-                ? Math.min(
-                    (page - 1) * visibleItems,
-                    sliderItems.length - visibleItems,
-                  )
-                : page - 1,
-            );
-          }}
-        />
-      </div>
+                ? Math.ceil((index + 1) / visibleItems)
+                : index + 1
+            }
+            total={paginationTotal}
+            visibleCount={paginationLimit}
+            spread={paginationCompressed ? undefined : visibleItems - 1}
+            pageClassName="text-[size:0] w-2.5"
+            firstLast={false}
+            previousNext={false}
+            onClick={(page) => {
+              setIndex(
+                paginationCompressed
+                  ? Math.min(
+                      (page - 1) * visibleItems,
+                      sliderItems.length - visibleItems,
+                    )
+                  : page - 1,
+              );
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

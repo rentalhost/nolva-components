@@ -33,9 +33,25 @@ export const EmptyExample: StoryObj<typeof Slider> = {};
 
 export const FlipCardsExample: StoryObj<typeof Slider> = {
   args: {
-    items: 5,
+    items: { xs: 2, sm: 5 },
     paginationCompressed: false,
     children: range(1, 10).map((number) => (
+      <FlipCard
+        key={number}
+        contentFront={
+          <div className="rounded bg-black p-16 text-white">Front {number}</div>
+        }
+        contentBack={<div className="rounded bg-white p-8">Back</div>}
+      />
+    )),
+  },
+};
+
+export const FlipCardsExample2: StoryObj<typeof Slider> = {
+  args: {
+    items: { xs: 2, sm: 5 },
+    paginationCompressed: false,
+    children: range(1, 3).map((number) => (
       <FlipCard
         key={number}
         contentFront={

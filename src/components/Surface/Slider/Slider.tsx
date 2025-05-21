@@ -16,11 +16,13 @@ import { Pagination } from "@/components/Pagination/Pagination/Pagination";
 import { range } from "@/services/ArrayService";
 import { Timer } from "@/services/classes/Timer";
 import { useImmediateRef } from "@/services/hooks/useImmediateRef";
+import { clamp } from "@/services/NumberService";
 import { normalizeBreakpoints } from "@/services/ResponsiveService";
 
 import type { Breakpoints } from "@/services/ResponsiveService";
 import type {
   CSSProperties,
+  PointerEvent,
   PropsWithChildren,
   ReactElement,
   ReactNode,
@@ -74,6 +76,13 @@ interface Props extends PropsWithChildren {
    * Defaults to `true`.
    */
   centered?: boolean;
+
+  /**
+   * Enable swipe support.
+   *
+   * Defaults to `true`.
+   */
+  swipe?: boolean;
 
   /**
    * Container class name.
@@ -226,6 +235,7 @@ export function Slider({
   infinity = true,
   stretch = true,
   centered = true,
+  swipe = true,
   className,
   arrowsIcon = <FaAngleLeft />,
   arrowsStepMode = "sequential",
@@ -241,6 +251,9 @@ export function Slider({
   const [ready, setReady] = useState(false);
 
   const [index, setIndex] = useState(0);
+
+  const [swipingOffset, setSwipingOffset] = useState<number | null>(null);
+  const [swipingDelta, setSwipingDelta] = useState(0);
 
   const sliderItems = useMemo(
     () =>
@@ -285,7 +298,7 @@ export function Slider({
         : [
             ...sliderItems,
             range(0, Math.max(0, styleColsMax - sliderItems.length)).map(
-              (key) => <div key={key} />,
+              (key) => <div key={`${key}-after`} />,
             ),
           ],
     [arrowNeeded, stretch, infinity, sliderItems, styleColsMax],
@@ -294,9 +307,13 @@ export function Slider({
   const sliderInfinityItems = useMemo(
     () =>
       infinity
-        ? [...sliderItemsFilled, ...sliderItemsFilled.slice(0, styleColsMax)]
+        ? [
+            ...sliderItemsFilled.slice(-visibleItems),
+            ...sliderItemsFilled,
+            ...sliderItemsFilled.slice(0, visibleItems * 2 - 1),
+          ]
         : sliderItemsFilled,
-    [infinity, sliderItemsFilled, styleColsMax],
+    [infinity, sliderItemsFilled, visibleItems],
   );
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -435,16 +452,74 @@ export function Slider({
 
   const timerRef = useRef<Timer | null>(null);
 
+  const swipingXRef = useRef<number | null>(null);
+
   useEffect(() => {
     timerRef.current?.stop();
     timerRef.current = new Timer(() => {
-      moveIndexRef.current(1);
+      if (swipingXRef.current !== null) {
+        moveIndexRef.current(1);
+      }
     }, duration);
 
     return () => {
       timerRef.current?.stop();
     };
-  }, [duration, moveIndexRef]);
+  }, [duration, moveIndexRef, swipingXRef]);
+
+  const canSwipe = useMemo(
+    () => swipe && sliderItems.length > visibleItems,
+    [sliderItems.length, swipe, visibleItems],
+  );
+
+  const pointerStart = useCallback(
+    (ev: PointerEvent<HTMLDivElement>) => {
+      if (canSwipe) {
+        setSwipingOffset(ev.clientX);
+      }
+    },
+    [canSwipe],
+  );
+
+  const pointerMove = useCallback(
+    (ev: PointerEvent<HTMLDivElement>) => {
+      if (canSwipe && swipingOffset !== null) {
+        setSwipingDelta(
+          clamp(
+            swipingOffset - ev.clientX,
+            -ev.currentTarget.offsetWidth,
+            ev.currentTarget.offsetWidth,
+          ),
+        );
+
+        ev.currentTarget.setPointerCapture(ev.pointerId);
+      }
+    },
+    [canSwipe, swipingOffset],
+  );
+
+  const pointerEnd = useCallback(
+    (ev: PointerEvent<HTMLDivElement>) => {
+      if (canSwipe) {
+        const currentTarget = ev.currentTarget;
+
+        setSwipingOffset(null);
+
+        requestAnimationFrame(() => {
+          setSwipingDelta((state) => {
+            moveIndexRef.current(
+              Math.round(state / (currentTarget.offsetWidth / visibleItems)),
+            );
+
+            return 0;
+          });
+        });
+
+        currentTarget.releasePointerCapture(ev.pointerId);
+      }
+    },
+    [moveIndexRef, canSwipe, visibleItems],
+  );
 
   if (sliderItems.length === 0) {
     return null;
@@ -453,7 +528,7 @@ export function Slider({
   return (
     <div
       className={twMerge(
-        "relative flex flex-col gap-y-2",
+        "relative flex flex-col gap-y-2 select-none",
         !ready && "hidden",
         className,
       )}
@@ -485,17 +560,22 @@ export function Slider({
               "[--cols:var(--cols-xs)] sm:[--cols:var(--cols-sm)] md:[--cols:var(--cols-md)] lg:[--cols:var(--cols-lg)] xl:[--cols:var(--cols-xl)] 2xl:[--cols:var(--cols-2xl)]",
               "[--gap:var(--gap-xs)] sm:[--gap:var(--gap-sm)] md:[--gap:var(--gap-md)] lg:[--gap:var(--gap-lg)] xl:[--gap:var(--gap-xl)] 2xl:[--gap:var(--gap-2xl)]",
               "[--gap-width:calc(1rem*var(--gap))] [--width:calc((100%-(var(--gap-width))*(var(--cols)-1))/var(--cols))]",
-              "-translate-x-[calc(var(--index)*(var(--width)+var(--gap-width)))]",
-              transition && "transition-[translate]",
+              "-translate-x-[calc(var(--index)*(var(--width)+var(--gap-width))+var(--swipe)*1px)]",
+              transition && swipingOffset === null && "transition-[translate]",
             )}
             style={
               {
                 ...styleCols,
                 ...styleGaps,
-                "--index": compensateIndex + index,
+                "--index": compensateIndex + index + visibleItems,
+                "--swipe": swipingDelta,
               } as CSSProperties
             }
             onTransitionEnd={realignIndex}
+            onPointerDown={pointerStart}
+            onPointerMove={pointerMove}
+            onPointerUp={pointerEnd}
+            onPointerCancel={pointerEnd}
           >
             {sliderInfinityItems.map((item, key) => (
               // eslint-disable-next-line react/no-array-index-key

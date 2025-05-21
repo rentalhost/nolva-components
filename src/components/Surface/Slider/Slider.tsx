@@ -386,18 +386,20 @@ export function Slider({
   const moveIndexRef = useImmediateRef(moveIndex);
 
   const realignIndex = useCallback(() => {
-    setIndex((state) => {
-      if (state >= sliderItems.length) {
-        setTransition(false);
+    setTransition(false);
 
-        requestAnimationFrame(() => {
-          setTransition(true);
-        });
+    requestAnimationFrame(() => {
+      setIndex((state) => {
+        if (state >= sliderItems.length) {
+          return state - sliderItems.length;
+        }
 
-        return state - sliderItems.length;
-      }
+        return state;
+      });
 
-      return state;
+      requestAnimationFrame(() => {
+        setTransition(true);
+      });
     });
   }, [sliderItems.length]);
 

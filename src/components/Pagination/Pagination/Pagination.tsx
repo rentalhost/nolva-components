@@ -1,7 +1,8 @@
+import { useMemo } from "react";
 import { FaAngleLeft, FaAnglesLeft } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
-import { paginate } from "@/services/ArrayService";
+import { circularRange, paginate } from "@/services/ArrayService";
 import { noop } from "@/services/FunctionService";
 import { clamp } from "@/services/NumberService";
 import { appendQueryString } from "@/services/UrlService";
@@ -107,7 +108,7 @@ function PaginationPage({
       data-active-spread={isSpread === true ? true : undefined}
       data-disabled={isDisabled === true ? true : undefined}
       className={twMerge(
-        "bg-theme-100 flex aspect-square items-center justify-center rounded-full hover:bg-theme-200 active:brightness-90 transition cursor-pointer select-none data-active:bg-theme-300 hover:data-active:bg-theme-400 w-8 data-active:font-bold data-disabled:pointer-events-none data-disabled:opacity-25",
+        "bg-theme-100 border border-theme-200 flex aspect-square items-center justify-center rounded-full hover:bg-theme-200 hover:border-theme-300 active:brightness-90 transition cursor-pointer select-none data-active:bg-theme-300 data-active:border-theme-400 hover:data-active:bg-theme-400 hover:data-active:border-theme-500 w-8 data-active:font-bold data-disabled:pointer-events-none data-disabled:opacity-25",
         className,
       )}
       onClick={() => {
@@ -142,6 +143,16 @@ export function Pagination({
     onClick,
   };
 
+  const pages = useMemo(
+    () => paginate(currentClamped, total, visibleCount),
+    [currentClamped, total, visibleCount],
+  );
+
+  const pagesSpread = useMemo(
+    () => circularRange(1, total, currentClamped, spread ?? 0),
+    [currentClamped, total, spread],
+  );
+
   return (
     <div
       className={twMerge(
@@ -170,16 +181,12 @@ export function Pagination({
       )}
 
       {(forceRender || total > 1) &&
-        paginate(currentClamped, total, visibleCount).map((page) => (
+        pages.map((page) => (
           <PaginationPage
             key={page}
             page={page}
             isCurrent={page === currentClamped}
-            isSpread={
-              spread !== undefined &&
-              page >= currentClamped + 1 &&
-              page <= currentClamped + spread
-            }
+            isSpread={pagesSpread.includes(page)}
             {...pageProps}
           >
             {page}

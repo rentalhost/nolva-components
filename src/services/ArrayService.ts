@@ -2,6 +2,19 @@ export function range(start: number, end: number) {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
+export function circularRange(
+  start: number,
+  end: number,
+  from: number,
+  spread: number,
+): number[] {
+  const size = end - start + 1;
+  const idx = (((from - start) % size) + size) % size;
+  const first = (idx + 1) % size;
+
+  return Array.from({ length: spread }, (_, i) => start + ((first + i) % size));
+}
+
 export function paginate(
   current: number,
   total: number,

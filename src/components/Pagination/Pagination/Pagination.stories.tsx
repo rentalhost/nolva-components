@@ -35,6 +35,14 @@ export const SpreadExample: StoryObj<typeof Pagination> = {
   },
 };
 
+export const SpreadCyclicExample: StoryObj<typeof Pagination> = {
+  args: {
+    current: 9,
+    total: 10,
+    spread: 3,
+  },
+};
+
 export const ForceRenderExample: StoryObj<typeof Pagination> = {
   args: {
     current: 1,

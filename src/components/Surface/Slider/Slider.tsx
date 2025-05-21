@@ -358,10 +358,13 @@ export function Slider({
         return;
       }
 
-      const indexNew =
+      const indexNew = clamp(
         arrowsStepMode === "sequential"
           ? index + delta
-          : index + visibleItems * delta;
+          : index + visibleItems * delta,
+        infinity ? Number.MIN_SAFE_INTEGER : 0,
+        infinity ? Number.MAX_SAFE_INTEGER : sliderItems.length - visibleItems,
+      );
 
       if (indexNew < 0) {
         setTransition(false);
@@ -442,12 +445,12 @@ export function Slider({
 
   const timerRef = useRef<Timer | null>(null);
 
-  const swipingXRef = useRef<number | null>(null);
+  const swipingOffsetRef = useImmediateRef(swipingOffset);
 
   useEffect(() => {
     timerRef.current?.stop();
     timerRef.current = new Timer(() => {
-      if (swipingXRef.current === null) {
+      if (swipingOffsetRef.current === null) {
         moveIndexRef.current(1);
       }
     }, duration);
@@ -455,7 +458,7 @@ export function Slider({
     return () => {
       timerRef.current?.stop();
     };
-  }, [duration, moveIndexRef, swipingXRef]);
+  }, [duration, moveIndexRef, swipingOffsetRef]);
 
   const canSwipe = useMemo(() => swipe && isOverflow, [isOverflow, swipe]);
 
@@ -544,7 +547,13 @@ export function Slider({
           }}
         />
 
-        <div className="bg-theme-300 flex-auto overflow-x-hidden">
+        <div
+          className="flex-auto overflow-x-hidden"
+          onPointerDown={pointerStart}
+          onPointerMove={pointerMove}
+          onPointerUp={pointerEnd}
+          onPointerCancel={pointerEnd}
+        >
           <div
             ref={sliderItemsRef}
             className={twMerge(
@@ -552,23 +561,19 @@ export function Slider({
               "[--cols:var(--cols-xs)] sm:[--cols:var(--cols-sm)] md:[--cols:var(--cols-md)] lg:[--cols:var(--cols-lg)] xl:[--cols:var(--cols-xl)] 2xl:[--cols:var(--cols-2xl)]",
               "[--gap:var(--gap-xs)] sm:[--gap:var(--gap-sm)] md:[--gap:var(--gap-md)] lg:[--gap:var(--gap-lg)] xl:[--gap:var(--gap-xl)] 2xl:[--gap:var(--gap-2xl)]",
               "[--gap-width:calc(1rem*var(--gap))] [--width:calc((100%-(var(--gap-width))*(var(--cols)-1))/var(--cols))]",
-              "-translate-x-[calc(var(--index)*(var(--width)+var(--gap-width))+var(--swipe)*1px)]",
+              "-translate-x-[calc((var(--index)+var(--index-align))*(var(--width)+var(--gap-width))+var(--swipe)*1px)]",
               transition && swipingOffset === null && "transition-[translate]",
             )}
             style={
               {
                 ...styleCols,
                 ...styleGaps,
-                "--index":
-                  compensateIndex + index + (isOverflow ? visibleItems : 0),
+                "--index": compensateIndex + index,
+                "--index-align": isOverflow ? visibleItems : 0,
                 "--swipe": swipingDelta,
               } as CSSProperties
             }
             onTransitionEnd={realignIndex}
-            onPointerDown={pointerStart}
-            onPointerMove={pointerMove}
-            onPointerUp={pointerEnd}
-            onPointerCancel={pointerEnd}
           >
             {sliderInfinityItems.map((item, key) => (
               // eslint-disable-next-line react/no-array-index-key

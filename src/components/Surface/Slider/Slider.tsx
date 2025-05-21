@@ -605,7 +605,9 @@ export function Slider({
           <Pagination
             current={
               paginationCompressed
-                ? Math.ceil((index + 1) / visibleItems)
+                ? index === sliderItems.length - visibleItems
+                  ? paginationTotal
+                  : Math.ceil((index + 1) / visibleItems)
                 : index + 1
             }
             total={paginationTotal}

@@ -279,41 +279,24 @@ export function Slider({
     [gap],
   );
 
-  const styleColsMax = useMemo(
-    () => Math.max(...Object.values(styleCols)),
-    [styleCols],
-  );
-
   const [visibleItems, setVisibleItems] = useState(1);
 
-  const arrowNeeded = useMemo(
+  const isOverflow = useMemo(
     () => sliderItems.length > visibleItems,
     [sliderItems.length, visibleItems],
   );
 
-  const sliderItemsFilled = useMemo(
-    () =>
-      infinity && (stretch || arrowNeeded)
-        ? sliderItems
-        : [
-            ...sliderItems,
-            range(0, Math.max(0, styleColsMax - sliderItems.length)).map(
-              (key) => <div key={`${key}-after`} />,
-            ),
-          ],
-    [arrowNeeded, stretch, infinity, sliderItems, styleColsMax],
-  );
-
   const sliderInfinityItems = useMemo(
-    () =>
-      infinity
-        ? [
-            ...sliderItemsFilled.slice(-visibleItems),
-            ...sliderItemsFilled,
-            ...sliderItemsFilled.slice(0, visibleItems * 2 - 1),
-          ]
-        : sliderItemsFilled,
-    [infinity, sliderItemsFilled, visibleItems],
+    () => [
+      ...(isOverflow ? sliderItems.slice(-visibleItems) : []),
+      ...sliderItems,
+      ...(isOverflow
+        ? sliderItems.slice(0, visibleItems * 2 - 1)
+        : range(0, visibleItems * 2 - 1).map((key) => (
+            <div key={`${key}-after`} />
+          ))),
+    ],
+    [isOverflow, sliderItems, visibleItems],
   );
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -371,7 +354,7 @@ export function Slider({
 
   const moveIndex = useCallback(
     (delta: number) => {
-      if (sliderItems.length <= visibleItems) {
+      if (!isOverflow) {
         return;
       }
 
@@ -397,7 +380,14 @@ export function Slider({
         setIndex(indexNew);
       }
     },
-    [arrowsStepMode, index, infinity, sliderItems.length, visibleItems],
+    [
+      arrowsStepMode,
+      index,
+      infinity,
+      isOverflow,
+      sliderItems.length,
+      visibleItems,
+    ],
   );
 
   const moveIndexRef = useImmediateRef(moveIndex);
@@ -422,12 +412,12 @@ export function Slider({
 
   const arrowPlacementFinal = useMemo(
     () =>
-      arrowNeeded
+      isOverflow
         ? hasArrowSpace || arrowsPlacement !== "external"
           ? arrowsPlacement
           : arrowsPlacementFallback
         : "disabled",
-    [arrowNeeded, arrowsPlacement, arrowsPlacementFallback, hasArrowSpace],
+    [isOverflow, arrowsPlacement, arrowsPlacementFallback, hasArrowSpace],
   );
 
   const compensateIndex = useMemo(
@@ -445,10 +435,10 @@ export function Slider({
   );
 
   useEffect(() => {
-    if (!arrowNeeded) {
+    if (!isOverflow) {
       setIndex(0);
     }
-  }, [arrowNeeded]);
+  }, [isOverflow]);
 
   const timerRef = useRef<Timer | null>(null);
 
@@ -457,7 +447,7 @@ export function Slider({
   useEffect(() => {
     timerRef.current?.stop();
     timerRef.current = new Timer(() => {
-      if (swipingXRef.current !== null) {
+      if (swipingXRef.current === null) {
         moveIndexRef.current(1);
       }
     }, duration);
@@ -467,10 +457,7 @@ export function Slider({
     };
   }, [duration, moveIndexRef, swipingXRef]);
 
-  const canSwipe = useMemo(
-    () => swipe && sliderItems.length > visibleItems,
-    [sliderItems.length, swipe, visibleItems],
-  );
+  const canSwipe = useMemo(() => swipe && isOverflow, [isOverflow, swipe]);
 
   const pointerStart = useCallback(
     (ev: PointerEvent<HTMLDivElement>) => {
@@ -522,11 +509,8 @@ export function Slider({
   );
 
   const canPaginate = useMemo(
-    () =>
-      paginationCompressed
-        ? paginationTotal > 1
-        : sliderItems.length > visibleItems,
-    [paginationCompressed, paginationTotal, sliderItems.length, visibleItems],
+    () => (paginationCompressed ? paginationTotal > 1 : isOverflow),
+    [isOverflow, paginationCompressed, paginationTotal],
   );
 
   if (sliderItems.length === 0) {
@@ -575,7 +559,8 @@ export function Slider({
               {
                 ...styleCols,
                 ...styleGaps,
-                "--index": compensateIndex + index + visibleItems,
+                "--index":
+                  compensateIndex + index + (isOverflow ? visibleItems : 0),
                 "--swipe": swipingDelta,
               } as CSSProperties
             }

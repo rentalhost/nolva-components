@@ -111,6 +111,14 @@ export const StretchOffFullExample: StoryObj<typeof Slider> = {
   },
 };
 
+export const StretchOffFullExample2: StoryObj<typeof Slider> = {
+  args: {
+    children: cards,
+    items: 5,
+    stretch: false,
+  },
+};
+
 export const ClassNameExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,

@@ -54,7 +54,7 @@ export function FlipCard({
           "--flip-angle": flipTo === "left" ? "-180deg" : "180deg",
         } as CSSProperties
       }
-      onTouchStart={() => {
+      onClick={() => {
         setFlip((state) => !state);
       }}
       onMouseLeave={() => {

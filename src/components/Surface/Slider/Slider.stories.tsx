@@ -1,6 +1,6 @@
 import { FaLeftLong } from "react-icons/fa6";
 
-import { Container } from "@/components/Surface/Container/Container";
+import { Container } from "@/components/Primitive/Container/Container";
 import { FlipCard } from "@/components/Surface/Flip/FlipCard";
 import { Slider } from "@/components/Surface/Slider/Slider";
 import { range } from "@/services/ArrayService";

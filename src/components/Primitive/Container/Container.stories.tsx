@@ -1,4 +1,4 @@
-import { Container } from "@/components/Surface/Container/Container";
+import { Container } from "@/components/Primitive/Container/Container";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import { Container } from "@/components/Surface/Container/Container";
+import { Container } from "@/components/Primitive/Container/Container";
 
 import type { ComponentProps } from "react";
 

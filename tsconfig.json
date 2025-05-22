@@ -26,7 +26,8 @@
     "useDefineForClassFields": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@storybook/*": ["./.storybook/*"]
+      "@storybook/*": ["./.storybook/*"],
+      "@assets/*": ["./public/assets/*"]
     },
     "plugins": [
       { "transform": "typescript-transform-paths", "afterDeclarations": true }

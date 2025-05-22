@@ -1,4 +1,4 @@
-import { Section } from "@/components/Surface/Section/Section";
+import { Section } from "@/components/Primitive/Section/Section";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

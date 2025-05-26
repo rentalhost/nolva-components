@@ -8,6 +8,7 @@
       "compress": {
         "defaults": true,
         "arguments": true,
+        "directives": false,
         "passes": 3
       }
     },

@@ -1,0 +1,1 @@
+import{jsx as e,jsxs as r}from"react/jsx-runtime";import{twMerge as n}from"tailwind-merge";export function Hero({backgroundContent:s,backgroundClassName:t,children:i}){return r("section",{className:"relative",children:[e("div",{role:"presentation",className:n("absolute inset-0 pointer-events-none select-none",t),children:s}),e("div",{className:"relative",children:i})]})}

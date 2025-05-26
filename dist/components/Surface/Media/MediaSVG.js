@@ -1,0 +1,1 @@
+import{jsx as t}from"react/jsx-runtime";import e from"next/image";import{twMerge as i}from"tailwind-merge";export const allowedExtensions=["svg"];export function MediaSVG({src:r,alt:o,className:m}){return t(e,{src:r,alt:o,width:0,height:0,unoptimized:!0,className:i("w-full",m)})}

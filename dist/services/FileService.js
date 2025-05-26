@@ -1,0 +1,1 @@
+export function getExtension(e){return(e.split(".").pop()??"").toLocaleLowerCase()}

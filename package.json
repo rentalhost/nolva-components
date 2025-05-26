@@ -17,6 +17,9 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./theme.css": {
+      "default": "./src/theme.css"
     }
   },
   "devDependencies": {
@@ -34,6 +37,7 @@
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react": "^4.5.0",
+    "barrelsby": "^2.8.1",
     "chromatic": "^12.0.0",
     "eslint": "^9.27.0",
     "next": "^15.3.2",

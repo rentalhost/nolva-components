@@ -1,0 +1,129 @@
+import { SliderArrow } from "./SliderArrow";
+import type { Breakpoints } from "../../../services/ResponsiveService";
+import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
+type ArrowAdvance = "batch" | "sequential";
+interface Props extends PropsWithChildren {
+    /**
+     * Autoplay duration in milliseconds.
+     *
+     * Defaults to `5000`.
+     */
+    duration?: number;
+    /**
+     * Number of items per slide.
+     * Supports breakpoints object.
+     *
+     * Defaults to `1`.
+     */
+    items?: Breakpoints | number;
+    /**
+     * Gap between items, based on `rem`.
+     * Supports breakpoints object.
+     *
+     * Defaults to `0.5`.
+     */
+    gap?: Breakpoints | number;
+    /**
+     * Enable infinite loop.
+     *
+     * Defaults to `true`.
+     */
+    infinity?: boolean;
+    /**
+     * Stretch items to fill the container when there is less items than needed.
+     *
+     * Defaults to `true`.
+     */
+    stretch?: boolean;
+    /**
+     * Center items when there is less items than needed.
+     * Works only when `fill` is `false`.
+     *
+     * Defaults to `true`.
+     */
+    centered?: boolean;
+    /**
+     * Enable swipe support.
+     *
+     * Defaults to `true`.
+     */
+    swipe?: boolean;
+    /**
+     * Container class name.
+     */
+    className?: string;
+    /**
+     * Arrows icon.
+     *
+     * Defaults to `<FaAngleLeft />`.
+     */
+    arrowsIcon?: ReactNode;
+    /**
+     * Arrows advance mode.
+     *
+     * - `single` - Advance one item at a time.
+     * - `visible` - Advance all visible items at a time.
+     *
+     * Defaults to `single`.
+     */
+    arrowsStepMode?: ArrowAdvance;
+    /**
+     * Arrows class name applied to each arrow.
+     */
+    arrowsClassName?: string;
+    /**
+     * Arrows placement.
+     *
+     * - `disabled` - Arrows are disabled.
+     * - `external` - Arrows are placed outside the container.
+     * - `internal` - Arrows are placed inside the container.
+     * - `overlay` - Arrows are placed on top of the container, overlaying items.
+     *
+     * Defaults to `overlay`.
+     */
+    arrowsPlacement?: ComponentProps<typeof SliderArrow>["placement"];
+    /**
+     * Arrows placement fallback.
+     *
+     * It occurs when `arrowsPlacement` is `external` and there is not enough space to place the arrows on window.
+     *
+     * - `disabled` - Arrows are disabled.
+     * - `internal` - Arrows are placed inside the container.
+     * - `overlay` - Arrows are placed on top of the container, overlaying items.
+     *
+     * Defaults to `overlay`.
+     */
+    arrowsPlacementFallback?: Exclude<ComponentProps<typeof SliderArrow>["placement"], "external">;
+    /**
+     * Pagination placement.
+     *
+     * - `after` - Pagination is placed after the container.
+     * - `overlay` - Pagination is placed on bottom of the container, overlaying items.
+     * - `false` - Pagination is disabled.
+     *
+     * Defaults to `after`.
+     */
+    pagination?: "after" | "overlay" | false;
+    /**
+     * Pagination class name.
+     */
+    paginationClassName?: string;
+    /**
+     * Pagination compressed mode.
+     *
+     * When enabled, each pagination item page represents the slider items based on visible items count.
+     *
+     * Defaults to `true`.
+     */
+    paginationCompressed?: boolean;
+    /**
+     * Pagination visible item pages count.
+     */
+    paginationLimit?: number;
+    /**
+     * Container children.
+     */
+    children?: ReactNode;
+}
+export declare function Slider({ duration, items, gap, infinity, stretch, centered, swipe, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element | null;
+export {};

@@ -1,0 +1,1 @@
+export function appendQueryString(e,r){let n=new URL(window.location.href);return n.searchParams.set(e,r),n.href}

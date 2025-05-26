@@ -1,0 +1,1 @@
+import{jsx as m}from"react/jsx-runtime";import{twMerge as r}from"tailwind-merge";export function Section({noMargin:e=!1,className:t,children:i}){return m("section",{className:r(!e&&"my-16 max-md:my-8",t),children:i})}

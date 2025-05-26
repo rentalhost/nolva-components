@@ -1,0 +1,1 @@
+export function range(r,n){return Array.from({length:n-r+1},(n,e)=>r+e)}export function circularRange(r,n,e,t){let o=n-r+1,a=(((e-r)%o+o)%o+1)%o;return Array.from({length:t},(n,e)=>r+(a+e)%o)}export function paginate(r,n,e){if(void 0===e||n<=e)return range(1,n);let t=r-Math.floor(e/2),o=t+e-1;return t<1&&(t=1,o=e),o>n&&(o=n,t=n-e+1),range(t,o)}

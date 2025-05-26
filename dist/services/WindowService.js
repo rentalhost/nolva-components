@@ -1,0 +1,1 @@
+function t(t,n,r,e){return Math.max(0,Math.min(n,e)-Math.max(t,r))}export function inViewport(n,r){let{offsetTop:e,offsetLeft:i,offsetWidth:a,offsetHeight:o}=n,{scrollY:u,scrollX:f,innerHeight:h,innerWidth:m}=window;if(e<u||i<f)return!0;let w=t(e,e+o,u,u+h),x=t(i,i+a,f,f+m);return 0!==w&&0!==x&&x*w/(a*o)>=r}

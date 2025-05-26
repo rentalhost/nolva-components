@@ -1,0 +1,1 @@
+import{jsx as e}from"react/jsx-runtime";import t from"next/image";export const allowedExtensions=["jpg","png","webp"];export function MediaImage({src:r,width:o,height:a,alt:i,className:n}){return e(t,{src:r,width:o,height:a,alt:i,className:n})}

@@ -30,6 +30,7 @@ interface Props extends PropsWithChildren {
 
 export function Header({ sticky = false, className, children }: Props) {
   const headerRef = useRef<HTMLDivElement>(null);
+
   const [isSticky, setIsSticky] = useState(false);
 
   useLayoutEffect(() => {
@@ -37,18 +38,18 @@ export function Header({ sticky = false, className, children }: Props) {
       return;
     }
 
-    const header = headerRef.current!;
-    const headerObserver = new IntersectionObserver(
-      ([entry]) => {
-        setIsSticky(!entry!.isIntersecting);
-      },
-      { threshold: [1] },
-    );
+    function scrollObserver() {
+      setIsSticky(document.scrollingElement!.scrollTop > 0);
+    }
 
-    headerObserver.observe(header);
+    addEventListener("scroll", scrollObserver);
+    addEventListener("resize", scrollObserver);
+
+    scrollObserver();
 
     return () => {
-      headerObserver.disconnect();
+      removeEventListener("scroll", scrollObserver);
+      removeEventListener("resize", scrollObserver);
     };
   }, [sticky]);
 
@@ -58,7 +59,7 @@ export function Header({ sticky = false, className, children }: Props) {
       data-stuck={isSticky || undefined}
       className={twMerge(
         "flex bg-theme-50 inset-x-0",
-        sticky && "sticky -top-[1px] mt-[1px] z-20",
+        sticky && "sticky top-0 z-20",
         className,
       )}
     >

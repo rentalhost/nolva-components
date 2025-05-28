@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
-
 import { Theme, variants } from "@/components/Theme/Theme/Theme";
+
+import type { ReactNode } from "react";
 
 interface Props {
   children(this: void, variant: string): ReactNode;

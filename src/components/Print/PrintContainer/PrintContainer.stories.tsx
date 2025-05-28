@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
 import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: PrintContainer,

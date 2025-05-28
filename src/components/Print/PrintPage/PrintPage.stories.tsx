@@ -1,12 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import type { ComponentProps } from "react";
-
 import { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
 import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
 
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ComponentProps } from "react";
+
 export default {
   component: PrintPage,
-  subcomponents: { PrintContainer },
   parameters: { layout: "fullscreen" },
   decorators: [
     (Story) => (

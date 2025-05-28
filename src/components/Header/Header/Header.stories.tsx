@@ -60,16 +60,43 @@ function HeaderContainerFixture() {
   );
 }
 
-export const Example: StoryObj<typeof Header> = {
-  render: (args) => (
+function defaultRender(
+  args: Parameters<NonNullable<StoryObj<typeof Header>["render"]>>[0],
+) {
+  return (
     <>
       <Header {...args} />
 
-      <div className="h-screen bg-blue-100">Example</div>
+      <div className="h-[200vh] bg-blue-100 p-4">
+        <div className="h-32 w-32 outline">Example</div>
+      </div>
     </>
-  ),
+  );
+}
+
+export const StaticExample: StoryObj<typeof Header> = {
+  render: defaultRender,
   args: {
-    sticky: true,
+    className:
+      "border-b border-theme-300 shadow-xs/5 min-h-12 stuck:min-h-10 transition-all group stuck:text-sm",
+    children: <HeaderContainerFixture />,
+  },
+};
+
+export const StickyExample: StoryObj<typeof Header> = {
+  render: defaultRender,
+  args: {
+    position: "sticky",
+    className:
+      "border-b border-theme-300 shadow-xs/5 min-h-12 stuck:min-h-10 transition-all group stuck:text-sm",
+    children: <HeaderContainerFixture />,
+  },
+};
+
+export const FixedExample: StoryObj<typeof Header> = {
+  render: defaultRender,
+  args: {
+    position: "fixed",
     className:
       "border-b border-theme-300 shadow-xs/5 min-h-12 stuck:min-h-10 transition-all group stuck:text-sm",
     children: <HeaderContainerFixture />,

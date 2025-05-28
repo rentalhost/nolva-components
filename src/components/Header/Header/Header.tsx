@@ -3,6 +3,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { listenScroll } from "@/services/EventService";
+
 import type { PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
@@ -38,19 +40,11 @@ export function Header({ sticky = false, className, children }: Props) {
       return;
     }
 
-    function scrollObserver() {
+    const { unload } = listenScroll(() => {
       setIsSticky(document.scrollingElement!.scrollTop > 0);
-    }
+    });
 
-    addEventListener("scroll", scrollObserver);
-    addEventListener("resize", scrollObserver);
-
-    scrollObserver();
-
-    return () => {
-      removeEventListener("scroll", scrollObserver);
-      removeEventListener("resize", scrollObserver);
-    };
+    return unload;
   }, [sticky]);
 
   return (

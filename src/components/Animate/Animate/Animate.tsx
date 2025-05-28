@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { listenScroll } from "@/services/EventService";
 import { inViewport } from "@/services/WindowService";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
@@ -81,7 +82,7 @@ export function Animate({
   const [visible, setVisible] = useState(false);
 
   useLayoutEffect(() => {
-    function scrollObserver() {
+    const { unload } = listenScroll(() => {
       const isVisible =
         isHTMLElement(ref.current?.firstElementChild) &&
         inViewport(ref.current.firstElementChild, threshold);
@@ -91,17 +92,7 @@ export function Animate({
       if (!always && isVisible) {
         unload();
       }
-    }
-
-    addEventListener("scroll", scrollObserver);
-    addEventListener("resize", scrollObserver);
-
-    scrollObserver();
-
-    function unload() {
-      removeEventListener("scroll", scrollObserver);
-      removeEventListener("resize", scrollObserver);
-    }
+    });
 
     return unload;
   }, [always, threshold]);

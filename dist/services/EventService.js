@@ -1,1 +1,1 @@
-export function listenScroll(e){return addEventListener("scroll",e),addEventListener("resize",e),e(),{unload:()=>{removeEventListener("scroll",e),removeEventListener("resize",e)}}}
+export function listenScroll(e){function n(){e(r)}function r(){removeEventListener("scroll",n),removeEventListener("resize",n)}return addEventListener("scroll",n),addEventListener("resize",n),n(),{unload:()=>{removeEventListener("scroll",n),removeEventListener("resize",n)}}}

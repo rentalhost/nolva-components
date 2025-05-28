@@ -82,10 +82,9 @@ export function Animate({
   const [visible, setVisible] = useState(false);
 
   useLayoutEffect(() => {
-    const { unload } = listenScroll(() => {
-      const isVisible =
-        isHTMLElement(ref.current?.firstElementChild) &&
-        inViewport(ref.current.firstElementChild, threshold);
+    const { unload: listenUnload } = listenScroll((unload) => {
+      const child = ref.current?.firstElementChild;
+      const isVisible = isHTMLElement(child) && inViewport(child, threshold);
 
       setVisible(isVisible);
 
@@ -94,7 +93,7 @@ export function Animate({
       }
     });
 
-    return unload;
+    return listenUnload;
   }, [always, threshold]);
 
   return (

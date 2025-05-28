@@ -8,7 +8,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: Header,
-  subcomponents: { HeaderContainer, HeaderNav },
   parameters: { layout: "fullscreen" },
 } satisfies Meta<typeof Header>;
 

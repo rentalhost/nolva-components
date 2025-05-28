@@ -57,7 +57,7 @@ export function Header({ sticky = false, className, children }: Props) {
       ref={headerRef}
       data-stuck={isSticky || undefined}
       className={twMerge(
-        "flex items-center justify-center bg-theme-50 inset-x-0",
+        "flex bg-theme-50 inset-x-0",
         sticky && "sticky -top-[1px] mt-[1px] z-20",
         className,
       )}

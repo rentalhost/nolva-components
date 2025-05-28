@@ -10,10 +10,7 @@ export function HeaderContainer({
 }: ComponentProps<typeof Container>) {
   return (
     <Container
-      className={twMerge(
-        "flex items-center justify-between gap-x-4",
-        className,
-      )}
+      className={twMerge("flex justify-between gap-x-4", className)}
       {...props}
     />
   );

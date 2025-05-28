@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
@@ -91,16 +91,21 @@ export function HeaderNav({
     };
   }, []);
 
+  const iconVisible = useMemo(() => mobileMode || opened, [mobileMode, opened]);
+
   return (
     <nav
       ref={navRef}
       data-forcing-overlay={opened || undefined}
-      className={twMerge("overflow-hidden text-nowrap", navClassName)}
+      className={twMerge(
+        "overflow-hidden text-nowrap relative flex",
+        navClassName,
+      )}
     >
       <ul
         className={twMerge(
-          "flex items-center justify-between gap-x-6 max-sm:hidden",
-          mobileMode && "hidden",
+          "flex items-center justify-between gap-x-6 flex-nowrap transition",
+          iconVisible && "opacity-0 pointer-events-none",
           listClassName,
         )}
       >
@@ -109,8 +114,8 @@ export function HeaderNav({
 
       <div
         className={twMerge(
-          "rounded-full border border-theme-200 p-2 hover:border-theme-300 active:border-theme-400 transition bg-theme-200/50 active:bg-theme-300/50 select-none cursor-pointer",
-          !mobileMode && "sm:hidden",
+          "transition select-none absolute right-0 inset-y-0 flex items-center justify-center",
+          !iconVisible && "opacity-0 pointer-events-none",
           iconClassName,
           opened && closedIconClassName,
         )}
@@ -134,7 +139,9 @@ export function HeaderNav({
           });
         }}
       >
-        {opened ? closedIcon : icon}
+        <div className="border-theme-200 bg-theme-200/50 active:bg-theme-300/50 hover:border-theme-300 active:border-theme-400 cursor-pointer rounded-full border p-2 transition">
+          {opened ? closedIcon : icon}
+        </div>
       </div>
     </nav>
   );

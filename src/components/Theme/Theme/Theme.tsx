@@ -1,6 +1,6 @@
-import { Children, cloneElement, isValidElement } from "react";
+import { twMerge } from "tailwind-merge";
 
-import type { JSX, PropsWithChildren, ReactNode } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
@@ -81,10 +81,6 @@ export const variants = {
   warning: "theme-orange",
 } as Readonly<Record<Variant, `theme-${string}`>>;
 
-function hasClassName(props: unknown): props is { className: string } {
-  return props !== null && typeof props === "object" && "className" in props;
-}
-
 function isBuildInVariant(variant: string): variant is Variant {
   return variant in variants;
 }
@@ -93,19 +89,14 @@ function isBuildInVariant(variant: string): variant is Variant {
  * A utility component to change the color of any element based on a variant as theme.
  */
 export function Theme({ variant, children }: Props) {
-  return Children.map(children, (child) => {
-    if (isValidElement(child)) {
-      const variantClassName = isBuildInVariant(variant)
-        ? variants[variant]
-        : `theme-${variant}`;
-
-      return cloneElement(child as JSX.Element, {
-        className: hasClassName(child.props)
-          ? `${child.props.className} ${variantClassName}`
-          : variantClassName,
-      });
-    }
-
-    return child as Awaited<ReactNode>;
-  });
+  return (
+    <div
+      className={twMerge(
+        "contents",
+        isBuildInVariant(variant) ? variants[variant] : `theme-${variant}`,
+      )}
+    >
+      {children}
+    </div>
+  );
 }

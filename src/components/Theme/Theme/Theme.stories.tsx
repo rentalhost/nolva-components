@@ -1,12 +1,16 @@
 import { twMerge } from "tailwind-merge";
 
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Theme, variants } from "@/components/Theme/Theme/Theme";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: Theme,
 } satisfies Meta<typeof Theme>;
+
+function PseudoElement() {
+  return <div className="bg-theme-50">Example</div>;
+}
 
 export const Example: StoryObj<typeof Theme> = {
   args: {
@@ -39,4 +43,11 @@ export const NoThemeExample: StoryObj<typeof Theme> = {
       example
     </div>
   ),
+};
+
+export const PseudoElementExample: StoryObj<typeof Theme> = {
+  args: {
+    variant: "green",
+    children: <PseudoElement />,
+  },
 };

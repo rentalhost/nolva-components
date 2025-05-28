@@ -15,5 +15,5 @@ export declare const variants: Readonly<Record<Variant, `theme-${string}`>>;
 /**
  * A utility component to change the color of any element based on a variant as theme.
  */
-export declare function Theme({ variant, children }: Props): (string | number | bigint | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | import("react").FunctionComponentElement<any>)[] | null | undefined;
+export declare function Theme({ variant, children }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

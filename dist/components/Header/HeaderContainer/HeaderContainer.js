@@ -1,1 +1,1 @@
-import{jsx as e}from"react/jsx-runtime";import{twMerge as r}from"tailwind-merge";import{Container as t}from"../../Primitive/Container/Container.js";export function HeaderContainer({className:i,...n}){return e(t,{className:r("flex items-center justify-between gap-x-4",i),...n})}
+import{jsx as e}from"react/jsx-runtime";import{twMerge as r}from"tailwind-merge";import{Container as t}from"../../Primitive/Container/Container.js";export function HeaderContainer({className:i,...n}){return e(t,{className:r("flex justify-between gap-x-4",i),...n})}

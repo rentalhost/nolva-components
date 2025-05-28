@@ -35,5 +35,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Animate({ effect, duration, easing, always, threshold, children, }: Props): import("react").FunctionComponentElement<any>;
+export declare function Animate({ effect, duration, easing, always, threshold, children, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

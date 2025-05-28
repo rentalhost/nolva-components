@@ -1,23 +1,11 @@
 "use client";
 
-import {
-  cloneElement,
-  isValidElement,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { inViewport } from "@/services/WindowService";
 
-import type {
-  ComponentProps,
-  CSSProperties,
-  PropsWithChildren,
-  ReactNode,
-} from "react";
+import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
@@ -68,13 +56,17 @@ interface Props extends PropsWithChildren {
 }
 
 const effects: Record<NonNullable<Props["effect"]>, string> = {
-  slideDown: "not-data-animated:-translate-y-1/2",
-  slideLeft: "not-data-animated:-translate-x-1/2",
-  slideRight: "not-data-animated:translate-x-1/2",
-  slideUp: "not-data-animated:translate-y-1/2",
-  zoomIn: "not-data-animated:scale-50",
-  zoomOut: "not-data-animated:scale-125",
+  slideDown: "not-data-animated:*:-translate-y-1/2",
+  slideLeft: "not-data-animated:*:-translate-x-1/2",
+  slideRight: "not-data-animated:*:translate-x-1/2",
+  slideUp: "not-data-animated:*:translate-y-1/2",
+  zoomIn: "not-data-animated:*:scale-50",
+  zoomOut: "not-data-animated:*:scale-125",
 } as const;
+
+function isHTMLElement(node: unknown): node is HTMLElement {
+  return node instanceof HTMLElement;
+}
 
 export function Animate({
   effect,
@@ -84,13 +76,15 @@ export function Animate({
   threshold = 0.1,
   children,
 }: Props) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const [visible, setVisible] = useState(false);
 
   useLayoutEffect(() => {
     function scrollObserver() {
-      const isVisible = inViewport(ref.current!, threshold);
+      const isVisible =
+        isHTMLElement(ref.current?.firstElementChild) &&
+        inViewport(ref.current.firstElementChild, threshold);
 
       setVisible(isVisible);
 
@@ -112,25 +106,22 @@ export function Animate({
     return unload;
   }, [always, threshold]);
 
-  const element = useMemo(
-    () => (isValidElement(children) ? children : <div>{children}</div>),
-    [children],
+  return (
+    <div
+      ref={ref}
+      data-animated={visible || undefined}
+      className={twMerge(
+        "contents *:transition *:duration-(--animate-duration) *:ease-(--animate-easing) not-data-animated:*:opacity-0",
+        effect === undefined ? undefined : effects[effect],
+      )}
+      style={
+        {
+          "--animate-duration": `${duration}ms`,
+          "--animate-easing": easing,
+        } as CSSProperties
+      }
+    >
+      {children}
+    </div>
   );
-
-  const elementProps = element.props as ComponentProps<"div">;
-
-  return cloneElement(element, {
-    ref,
-    className: twMerge(
-      "transition duration-(--animate-duration) ease-(--animate-easing) not-data-animated:opacity-0",
-      effect === undefined ? undefined : effects[effect],
-      elementProps.className,
-    ),
-    style: {
-      "--animate-duration": `${duration}ms`,
-      "--animate-easing": easing,
-      ...elementProps.style,
-    } as CSSProperties,
-    "data-animated": visible || undefined,
-  });
 }

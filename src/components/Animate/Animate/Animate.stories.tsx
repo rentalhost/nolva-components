@@ -41,6 +41,10 @@ function exampleRender(args: ComponentProps<typeof Animate>) {
   );
 }
 
+function PseudoComponent() {
+  return <div>Example</div>;
+}
+
 export const Example: StoryObj<typeof Animate> = {
   render: exampleRender,
   args: {
@@ -49,5 +53,13 @@ export const Example: StoryObj<typeof Animate> = {
     children: (
       <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>
     ),
+  },
+};
+
+export const SubComponentExample: StoryObj<typeof Animate> = {
+  args: {
+    always: true,
+    effect: "slideDown",
+    children: <PseudoComponent />,
   },
 };

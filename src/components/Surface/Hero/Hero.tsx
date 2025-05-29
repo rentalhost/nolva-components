@@ -4,14 +4,14 @@ import type { PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
+   * The class name of the hero.
+   */
+  className?: string;
+
+  /**
    * The content of the background.
    */
   backgroundContent: ReactNode;
-
-  /**
-   * The class name of the background.
-   */
-  backgroundClassName?: string;
 
   /**
    * The content of the hero.
@@ -19,19 +19,12 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Hero({
-  backgroundContent,
-  backgroundClassName,
-  children,
-}: Props) {
+export function Hero({ className, backgroundContent, children }: Props) {
   return (
-    <section className="relative">
+    <section className={twMerge("relative", className)}>
       <div
         role="presentation"
-        className={twMerge(
-          "absolute inset-0 pointer-events-none select-none",
-          backgroundClassName,
-        )}
+        className="pointer-events-none absolute inset-0 select-none"
       >
         {backgroundContent}
       </div>

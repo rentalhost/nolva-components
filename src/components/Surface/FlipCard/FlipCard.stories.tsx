@@ -1,4 +1,4 @@
-import { FlipCard } from "@/components/Surface/Flip/FlipCard";
+import { FlipCard } from "@/components/Surface/FlipCard/FlipCard";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

@@ -24,7 +24,12 @@ interface Props {
   /**
    * The quality of the image.
    */
-  quality?: number
+  quality?: number;
+
+  /**
+   * Use unoptimized image mode.
+   */
+  unoptimized?: boolean;
 
   /**
    * The class name of the image.
@@ -34,7 +39,15 @@ interface Props {
 
 export const allowedExtensions = ["jpg", "png", "webp"] as const;
 
-export function MediaImage({ src, width, height, alt, quality,className }: Props) {
+export function MediaImage({
+  src,
+  width,
+  height,
+  alt,
+  quality,
+  unoptimized,
+  className,
+}: Props) {
   return (
     <Image
       src={src}
@@ -42,6 +55,7 @@ export function MediaImage({ src, width, height, alt, quality,className }: Props
       height={height}
       alt={alt}
       quality={quality}
+      unoptimized={unoptimized}
       className={className}
     />
   );

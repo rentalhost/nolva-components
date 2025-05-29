@@ -1,1 +1,1 @@
-import{jsx as t}from"react/jsx-runtime";import e from"next/image";export const allowedExtensions=["jpg","png","webp"];export function MediaImage({src:r,width:a,height:i,alt:o,quality:n,className:s}){return t(e,{src:r,width:a,height:i,alt:o,quality:n,className:s})}
+import{jsx as t}from"react/jsx-runtime";import e from"next/image";export const allowedExtensions=["jpg","png","webp"];export function MediaImage({src:i,width:o,height:r,alt:a,quality:n,unoptimized:m,className:s}){return t(e,{src:i,width:o,height:r,alt:a,quality:n,unoptimized:m,className:s})}

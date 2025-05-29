@@ -469,7 +469,7 @@ export function Slider({
         timerRef.current?.stop();
       }}
     >
-      <div className="bg-theme-100 relative flex">
+      <div className="relative flex">
         <SliderArrow
           ref={arrowRef}
           icon={arrowsIcon}

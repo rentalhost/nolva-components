@@ -12,4 +12,5 @@ export { FlipCard } from "@/components/Surface/Flip/FlipCard";
 export { Hero } from "@/components/Surface/Hero/Hero";
 export { Media } from "@/components/Surface/Media/Media";
 export { Slider } from "@/components/Surface/Slider/Slider";
+export { Accordion } from "@/components/Surface/Accordion/Accordion";
 export { Theme } from "@/components/Theme/Theme/Theme";

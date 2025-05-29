@@ -13,14 +13,29 @@ interface Props extends PropsWithChildren {
   className?: string;
 
   /**
+   * The class name of the header.
+   */
+  headerClassName?: string;
+
+  /**
    * The title of the accordion.
    */
   title: ReactNode;
 
   /**
+   * The kind of the title.
+   */
+  titleKind?: "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+  /**
    * The class name of the title.
    */
   titleClassName?: string;
+
+  /**
+   * The class name of the icon.
+   */
+  iconClassName?: string;
 
   /**
    * Whether the accordion is opened initially.
@@ -33,18 +48,21 @@ interface Props extends PropsWithChildren {
   children: ReactNode;
 
   /**
-   * The class name of the children.
+   * The class name of the body (children).
    */
-  childrenClassName?: string;
+  bodyClassName?: string;
 }
 
 export function Accordion({
   className,
+  headerClassName,
   title,
+  titleKind: TitleKind = "div",
   titleClassName,
+  iconClassName,
   opened = false,
+  bodyClassName,
   children,
-  childrenClassName,
 }: Props) {
   const [stateOpened, setStateOpened] = useState(opened);
 
@@ -56,19 +74,20 @@ export function Accordion({
       <div
         className={twMerge(
           "text-theme-600 bg-theme-50 active:bg-theme-200 hover:brightness-97 grid cursor-pointer select-none grid-cols-[1fr_auto] items-center rounded-lg p-4 px-6 text-lg font-semibold transition",
-          titleClassName,
+          headerClassName,
         )}
         onClick={() => {
           setStateOpened(!stateOpened);
         }}
       >
-        <h2 className="select-text">{title}</h2>
+        <TitleKind className={titleClassName}>{title}</TitleKind>
 
         <FaAngleDown
           size={24}
           className={twMerge(
             "flex cursor-pointer items-center transition pointer-events-none",
             stateOpened && "rotate-180",
+            iconClassName,
           )}
         />
       </div>
@@ -77,7 +96,7 @@ export function Accordion({
         <div
           className={twMerge(
             "starting:opacity-0 starting:-translate-y-1/4 text-theme-500 transition-all border-t-theme-300 mx-6 border-t py-4",
-            childrenClassName,
+            bodyClassName,
           )}
         >
           {children}

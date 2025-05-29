@@ -22,6 +22,11 @@ interface Props {
   alt: string;
 
   /**
+   * The quality of the image.
+   */
+  quality?: number
+
+  /**
    * The class name of the image.
    */
   className?: string;
@@ -29,13 +34,14 @@ interface Props {
 
 export const allowedExtensions = ["jpg", "png", "webp"] as const;
 
-export function MediaImage({ src, width, height, alt, className }: Props) {
+export function MediaImage({ src, width, height, alt, quality,className }: Props) {
   return (
     <Image
       src={src}
       width={width}
       height={height}
       alt={alt}
+      quality={quality}
       className={className}
     />
   );

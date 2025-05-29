@@ -8,6 +8,11 @@ import type { CSSProperties, ReactNode } from "react";
 
 interface Props {
   /**
+   * The container class name.
+   */
+  className?: string;
+
+  /**
    * The direction-to of the flip.
    *
    * Defaults to `right`.
@@ -38,6 +43,7 @@ interface Props {
 }
 
 export function FlipCard({
+  className,
   flipTo = "right",
   axis = "horizontal",
   contentFront,
@@ -48,7 +54,10 @@ export function FlipCard({
 
   return (
     <div
-      className="perspective-distant size-full group overflow-hidden"
+      className={twMerge(
+        "perspective-distant size-full group overflow-hidden",
+        className,
+      )}
       style={
         {
           "--flip-angle": flipTo === "left" ? "-180deg" : "180deg",

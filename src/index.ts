@@ -1,4 +1,5 @@
 export { Animate } from "@/components/Animate/Animate/Animate";
+export { InputSearch } from "@/components/Generic/InputSearch/InputSearch";
 export { Header } from "@/components/Header/Header/Header";
 export { HeaderContainer } from "@/components/Header/HeaderContainer/HeaderContainer";
 export { HeaderNav } from "@/components/Header/HeaderNav/HeaderNav";

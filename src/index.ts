@@ -10,6 +10,7 @@ export { Section } from "@/components/Primitive/Section/Section";
 export { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
 export { PrintPage } from "@/components/Print/PrintPage/PrintPage";
 export { Accordion } from "@/components/Surface/Accordion/Accordion";
+export { Counter } from "@/components/Surface/Counter/Counter";
 export { FlipCard } from "@/components/Surface/FlipCard/FlipCard";
 export { Hero } from "@/components/Surface/Hero/Hero";
 export { Media } from "@/components/Surface/Media/Media";

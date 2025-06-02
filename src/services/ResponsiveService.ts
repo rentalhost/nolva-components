@@ -49,8 +49,8 @@ export function normalizeBreakpoints(
     breakpoints === undefined
       ? { xs: 0 }
       : typeof breakpoints === "number"
-      ? { xs: breakpoints }
-      : breakpoints,
+        ? { xs: breakpoints }
+        : breakpoints,
     defaultValue,
     maxValue,
   );

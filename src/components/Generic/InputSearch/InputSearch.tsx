@@ -92,7 +92,7 @@ export function InputSearch({
         name={inputName}
         defaultValue={inputDefaultValue}
         className={twMerge(
-          "flex-auto pl-9 focus:outline-none py-1.5",
+          "w-full pl-9 focus:outline-none py-1.5",
           inputClassName,
         )}
         placeholder={inputPlaceholder}

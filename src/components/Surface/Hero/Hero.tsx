@@ -1,8 +1,15 @@
 import { twMerge } from "tailwind-merge";
 
+import { Section } from "@/components/Primitive/Section/Section";
+
 import type { PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
+  /**
+   * The id of the hero.
+   */
+  id?: string;
+
   /**
    * The class name of the hero.
    */
@@ -19,9 +26,9 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Hero({ className, backgroundContent, children }: Props) {
+export function Hero({ id, className, backgroundContent, children }: Props) {
   return (
-    <section className={twMerge("relative", className)}>
+    <Section marginY={0} id={id} className={twMerge("relative", className)}>
       <div
         role="presentation"
         className="pointer-events-none absolute inset-0 select-none"
@@ -30,6 +37,6 @@ export function Hero({ className, backgroundContent, children }: Props) {
       </div>
 
       <div className="relative">{children}</div>
-    </section>
+    </Section>
   );
 }

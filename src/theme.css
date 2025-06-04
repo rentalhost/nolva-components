@@ -13,7 +13,7 @@ body:has([data-overlay]) {
 @theme {
   --container-container: var(--container-7xl);
 
-  --breakpoint-mobile: var(--breakpoint-md);
+  --breakpoint-mobile: 48rem;
 }
 
 @theme inline {

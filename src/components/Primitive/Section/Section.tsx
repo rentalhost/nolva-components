@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import type { PropsWithChildren, ReactNode } from "react";
+import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
@@ -8,7 +8,7 @@ interface Props extends PropsWithChildren {
    *
    * By default, the container has a margin of 4rem and mobile margin of 2rem.
    */
-  noMargin?: boolean;
+  margin?: number;
 
   /**
    * Container class name.
@@ -21,9 +21,15 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Section({ noMargin = false, className, children }: Props) {
+export function Section({ margin = 16, className, children }: Props) {
   return (
-    <section className={twMerge(!noMargin && "my-16 max-md:my-8", className)}>
+    <section
+      className={twMerge(
+        "my-[--spacing(var(--margin))] max-md:my-[--spacing(var(--margin)/2)]",
+        className,
+      )}
+      style={{ "--margin": margin } as CSSProperties}
+    >
       {children}
     </section>
   );

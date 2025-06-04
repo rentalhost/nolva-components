@@ -35,6 +35,6 @@ export const NoMarginExample: StoryObj<typeof Section> = {
   args: {
     children: "Example",
     className: "outline",
-    noMargin: true,
+    margin: 0,
   },
 };

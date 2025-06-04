@@ -9,11 +9,11 @@ interface Props extends PropsWithChildren {
   id?: string;
 
   /**
-   * Determines if the container has no margin.
+   * Container vertical margin.
    *
-   * By default, the container has a margin of 4rem and mobile margin of 2rem.
+   * Default to `16` (4rem).
    */
-  margin?: number;
+  marginY?: number;
 
   /**
    * Container class name.
@@ -26,15 +26,15 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Section({ id, margin = 16, className, children }: Props) {
+export function Section({ id, marginY = 16, className, children }: Props) {
   return (
     <section
       id={id}
       className={twMerge(
-        "my-[--spacing(var(--margin))] max-md:my-[--spacing(var(--margin)/2)]",
+        "my-[--spacing(var(--margin-y))] max-md:my-[--spacing(var(--margin-y)/2)]",
         className,
       )}
-      style={{ "--margin": margin } as CSSProperties}
+      style={{ "--margin-y": marginY } as CSSProperties}
     >
       {children}
     </section>

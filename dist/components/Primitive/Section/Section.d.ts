@@ -5,11 +5,11 @@ interface Props extends PropsWithChildren {
      */
     id?: string;
     /**
-     * Determines if the container has no margin.
+     * Container vertical margin.
      *
-     * By default, the container has a margin of 4rem and mobile margin of 2rem.
+     * Default to `16` (4rem).
      */
-    margin?: number;
+    marginY?: number;
     /**
      * Container class name.
      */
@@ -19,5 +19,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Section({ id, margin, className, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Section({ id, marginY, className, children }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

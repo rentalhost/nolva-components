@@ -10,6 +10,12 @@ body:has([data-overlay]) {
   @apply overflow-hidden;
 }
 
+@theme {
+  --container-container: var(--container-7xl);
+
+  --breakpoint-mobile: var(--breakpoint-md);
+}
+
 @theme inline {
   --color-theme-50: var(--theme-50, var(--color-neutral-50));
   --color-theme-100: var(--theme-100, var(--color-neutral-100));
@@ -22,8 +28,6 @@ body:has([data-overlay]) {
   --color-theme-800: var(--theme-800, var(--color-neutral-800));
   --color-theme-900: var(--theme-900, var(--color-neutral-900));
   --color-theme-950: var(--theme-950, var(--color-neutral-950));
-
-  --container-container: var(--container-7xl);
 }
 
 @layer utilities {

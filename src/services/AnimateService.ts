@@ -10,7 +10,7 @@ const easings = {
   "ease-in-out": (input: number) =>
     input < 0.5 ? 2 * input * input : 1 - 2 * (1 - input) * (1 - input),
   ease: (input: number) => input * input * (3 - 2 * input),
-} as const satisfies Record<string, EasingFunction>;
+} satisfies Readonly<Record<string, EasingFunction>>;
 
 export type Easing = EasingFunction | keyof typeof easings;
 

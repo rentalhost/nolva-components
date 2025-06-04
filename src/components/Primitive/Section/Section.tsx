@@ -31,7 +31,7 @@ export function Section({ id, marginY = 16, className, children }: Props) {
     <section
       id={id}
       className={twMerge(
-        "my-[--spacing(var(--margin-y))] max-md:my-[--spacing(var(--margin-y)/2)]",
+        "my-[--spacing(var(--margin-y))] max-mobile:my-[--spacing(var(--margin-y)/2)]",
         className,
       )}
       style={{ "--margin-y": marginY } as CSSProperties}

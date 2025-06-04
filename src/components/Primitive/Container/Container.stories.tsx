@@ -11,3 +11,10 @@ export const Example: StoryObj<typeof Container> = {
     children: "Example",
   },
 };
+
+export const NoPaddingExample: StoryObj<typeof Container> = {
+  args: {
+    children: "Example",
+    paddingX: 0,
+  },
+};

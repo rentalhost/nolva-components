@@ -1,14 +1,14 @@
 import { twMerge } from "tailwind-merge";
 
-import type { PropsWithChildren, ReactNode } from "react";
+import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
-   * Determines if the container has no padding.
+   * Determines the horizontal padding of the container.
    *
-   * By default, the container has a padding of 1rem.
+   * Defaults to `4` (1rem).
    */
-  noPadding?: boolean;
+  paddingX?: number;
 
   /**
    * Determines if the container is fluid.
@@ -29,7 +29,7 @@ interface Props extends PropsWithChildren {
 }
 
 export function Container({
-  noPadding = false,
+  paddingX = 4,
   fluid = false,
   className,
   children,
@@ -37,11 +37,11 @@ export function Container({
   return (
     <div
       className={twMerge(
-        "w-full",
+        "w-full px-[--spacing(var(--padding-x))]",
         !fluid && "mx-auto max-w-container",
-        !noPadding && "px-4",
         className,
       )}
+      style={{ "--padding-x": paddingX } as CSSProperties}
     >
       {children}
     </div>

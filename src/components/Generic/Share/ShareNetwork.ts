@@ -29,7 +29,7 @@ export const networks = {
     FaXTwitter,
     "bg-neutral-950",
     ({ title, url }) =>
-      `https://x.com/intent/tweet${generateQueryString({ text: `${title}\n\n`, url })}`,
+      `https://x.com/intent/tweet${generateQueryString({ text: title === "" ? undefined : `${title}\n\n`, url })}`,
   ),
   facebook: new ShareNetwork(
     "Facebook",

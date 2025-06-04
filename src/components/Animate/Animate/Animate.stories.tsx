@@ -58,7 +58,6 @@ export const Example: StoryObj<typeof Animate> = {
 
 export const SubComponentExample: StoryObj<typeof Animate> = {
   args: {
-    always: true,
     effect: "slideDown",
     children: <PseudoComponent />,
   },

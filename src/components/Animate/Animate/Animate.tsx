@@ -89,7 +89,9 @@ export function Animate({
       setVisible(isVisible);
 
       if (!always && isVisible) {
-        unload();
+        requestIdleCallback(() => {
+          unload();
+        });
       }
     });
 

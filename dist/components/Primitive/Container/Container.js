@@ -1,1 +1,1 @@
-import{jsx as r}from"react/jsx-runtime";import{twMerge as t}from"tailwind-merge";export function Container({noPadding:e=!1,fluid:i=!1,className:m,children:a}){return r("div",{className:t("w-full",!i&&"mx-auto max-w-7xl",!e&&"px-4",m),children:a})}
+import{jsx as r}from"react/jsx-runtime";import{twMerge as t}from"tailwind-merge";export function Container({noPadding:e=!1,fluid:i=!1,className:n,children:a}){return r("div",{className:t("w-full",!i&&"mx-auto max-w-container",!e&&"px-4",n),children:a})}

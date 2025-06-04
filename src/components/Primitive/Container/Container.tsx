@@ -38,7 +38,7 @@ export function Container({
     <div
       className={twMerge(
         "w-full",
-        !fluid && "mx-auto max-w-7xl",
+        !fluid && "mx-auto max-w-container",
         !noPadding && "px-4",
         className,
       )}

@@ -1,1 +1,1 @@
-import{jsx as m}from"react/jsx-runtime";import{twMerge as r}from"tailwind-merge";export function Section({noMargin:e=!1,className:t,children:i}){return m("section",{className:r(!e&&"my-16 max-md:my-8",t),children:i})}
+import{jsx as r}from"react/jsx-runtime";import{twMerge as i}from"tailwind-merge";export function Section({id:m,margin:a=16,className:n,children:e}){return r("section",{id:m,className:i("my-[--spacing(var(--margin))] max-md:my-[--spacing(var(--margin)/2)]",n),style:{"--margin":a},children:e})}

@@ -4,6 +4,11 @@ import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
+   * Container id to be used as anchor.
+   */
+  id?: string;
+
+  /**
    * Determines if the container has no margin.
    *
    * By default, the container has a margin of 4rem and mobile margin of 2rem.
@@ -21,9 +26,10 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Section({ margin = 16, className, children }: Props) {
+export function Section({ id, margin = 16, className, children }: Props) {
   return (
     <section
+      id={id}
       className={twMerge(
         "my-[--spacing(var(--margin))] max-md:my-[--spacing(var(--margin)/2)]",
         className,

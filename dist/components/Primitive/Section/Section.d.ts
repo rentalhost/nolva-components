@@ -1,11 +1,15 @@
 import type { PropsWithChildren, ReactNode } from "react";
 interface Props extends PropsWithChildren {
     /**
+     * Container id to be used as anchor.
+     */
+    id?: string;
+    /**
      * Determines if the container has no margin.
      *
      * By default, the container has a margin of 4rem and mobile margin of 2rem.
      */
-    noMargin?: boolean;
+    margin?: number;
     /**
      * Container class name.
      */
@@ -15,5 +19,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Section({ noMargin, className, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Section({ id, margin, className, children }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

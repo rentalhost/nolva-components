@@ -1,9 +1,10 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
+import { useImmediateRef } from "@/services/hooks/useImmediateRef";
 import { promisePortal } from "@/services/PortalService";
 
 import type { Resolve } from "@/services/PortalService";
@@ -75,8 +76,35 @@ export function HeaderNav({
 
   const portalResolver = useRef<Resolve<void>>(null);
 
+  const close = useCallback(() => {
+    setOpened((state) => {
+      if (state) {
+        portalResolver.current?.();
+        portalResolver.current = null;
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+        void promisePortal<void>((resolver) => {
+          portalResolver.current = resolver;
+
+          return openedModalContent(resolver);
+        }).then(() => {
+          setOpened(false);
+        });
+      }
+
+      return !state;
+    });
+  }, [openedModalContent]);
+
+  const closeRef = useImmediateRef(close);
+  const openedRef = useImmediateRef(opened);
+
   useLayoutEffect(() => {
-    function resizeObserver() {
+    function resizeObserver(ev?: Event) {
+      if (ev?.type === "resize" && openedRef.current) {
+        closeRef.current();
+      }
+
       setMobileMode(navRef.current!.scrollWidth > navRef.current!.clientWidth);
     }
 
@@ -89,7 +117,7 @@ export function HeaderNav({
       removeEventListener("resize", resizeObserver);
       removeEventListener("transitionend", resizeObserver);
     };
-  }, []);
+  }, [closeRef, openedRef]);
 
   const iconVisible = useMemo(() => mobileMode || opened, [mobileMode, opened]);
 
@@ -120,23 +148,7 @@ export function HeaderNav({
           opened && closedIconClassName,
         )}
         onClick={() => {
-          setOpened((state) => {
-            if (state) {
-              portalResolver.current?.();
-              portalResolver.current = null;
-            } else {
-              // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-              void promisePortal<void>((resolver) => {
-                portalResolver.current = resolver;
-
-                return openedModalContent(resolver);
-              }).then(() => {
-                setOpened(false);
-              });
-            }
-
-            return !state;
-          });
+          close();
         }}
       >
         <div className="border-theme-200 bg-theme-200/50 active:bg-theme-300/50 hover:border-theme-300 active:border-theme-400 cursor-pointer rounded-full border p-2 transition">

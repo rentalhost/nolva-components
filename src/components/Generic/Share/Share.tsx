@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
 import { ShareIcon } from "@/components/Generic/Share/ShareNetworkIcon";
 import { listenWindowEvent } from "@/services/EventService";
-import { listenMutation } from "@/services/MutationObserverService";
+import { listenMutationObserver } from "@/services/MutationService";
 import { getSimplifiedUrl } from "@/services/UrlService";
 
 import type { ShareNetworkName } from "@/components/Generic/Share/ShareNetwork";
@@ -68,7 +68,7 @@ export function Share({
       return;
     }
 
-    return listenMutation(
+    return listenMutationObserver(
       document.querySelector("title"),
       { childList: true },
       () => {

@@ -1,1 +1,0 @@
-export function listenMutation(e,n,t,o=!0){let i=new MutationObserver(t);return o&&t([],i),e instanceof Node&&i.observe(e,n),()=>{e instanceof Node&&i.disconnect()}}

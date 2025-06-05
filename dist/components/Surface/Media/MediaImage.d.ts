@@ -4,14 +4,6 @@ interface Props {
      */
     src: string;
     /**
-     * The width of the image.
-     */
-    width: number;
-    /**
-     * The height of the image.
-     */
-    height: number;
-    /**
      * The alt text of the image.
      */
     alt: string;
@@ -29,5 +21,5 @@ interface Props {
     className?: string;
 }
 export declare const allowedExtensions: readonly ["jpg", "png", "webp"];
-export declare function MediaImage({ src, width, height, alt, quality, unoptimized, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function MediaImage({ src, alt, quality, unoptimized, className, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

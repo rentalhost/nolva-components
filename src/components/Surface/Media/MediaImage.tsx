@@ -1,20 +1,16 @@
+"use client";
+
 import Image from "next/image";
+import { useLayoutEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
+
+import { listenResizeObserver } from "@/services/MutationService";
 
 interface Props {
   /**
    * The source of the image.
    */
   src: string;
-
-  /**
-   * The width of the image.
-   */
-  width: number;
-
-  /**
-   * The height of the image.
-   */
-  height: number;
 
   /**
    * The alt text of the image.
@@ -39,24 +35,43 @@ interface Props {
 
 export const allowedExtensions = ["jpg", "png", "webp"] as const;
 
+const emptySrc =
+  "data:image/webp;base64,UklGRhYAAABXRUJQVlA4TAoAAAAvAAAAAEX/I/of";
+
 export function MediaImage({
   src,
-  width,
-  height,
   alt,
   quality,
   unoptimized,
   className,
 }: Props) {
+  const ref = useRef<HTMLImageElement>(null);
+
+  const [width, setWidth] = useState(0);
+
+  useLayoutEffect(
+    () =>
+      listenResizeObserver(
+        ref.current,
+        {},
+        () => {
+          setWidth((state) => Math.max(ref.current!.clientWidth, state));
+        },
+        false,
+      ),
+    [],
+  );
+
   return (
     <Image
-      src={src}
+      ref={ref}
+      src={width === 0 ? emptySrc : src}
       width={width}
-      height={height}
+      height={0}
       alt={alt}
       quality={quality}
       unoptimized={unoptimized}
-      className={className}
+      className={twMerge("w-full", className)}
     />
   );
 }

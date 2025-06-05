@@ -1,6 +1,7 @@
 export { Animate } from "./components/Animate/Animate/Animate";
 export { InputSearch } from "./components/Generic/InputSearch/InputSearch";
 export { Share } from "./components/Generic/Share/Share";
+export { TextClamp } from "./components/Generic/TextClamp/TextClamp";
 export { Header } from "./components/Header/Header/Header";
 export { HeaderContainer } from "./components/Header/HeaderContainer/HeaderContainer";
 export { HeaderNav } from "./components/Header/HeaderNav/HeaderNav";

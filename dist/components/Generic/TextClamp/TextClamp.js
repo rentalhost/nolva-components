@@ -1,0 +1,1 @@
+import{jsx as e}from"react/jsx-runtime";import{twMerge as i}from"tailwind-merge";export function TextClamp({lines:r,children:t,className:l}){return e("div",{className:i("line-clamp-(--lines)",l),style:{"--lines":r},children:t})}

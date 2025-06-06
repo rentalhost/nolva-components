@@ -175,3 +175,11 @@ export const PaginationLimitExample: StoryObj<typeof Slider> = {
     paginationLimit: 3,
   },
 };
+
+export const IssueExample1: StoryObj<typeof Slider> = {
+  args: {
+    children: cards.slice(0, 6),
+    items: { xs: 1, md: 2, lg: 3 },
+    arrowsStepMode: "batch",
+  },
+};

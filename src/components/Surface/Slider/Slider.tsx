@@ -216,7 +216,9 @@ export function Slider({
       const deltaAdvance = arrowsStepMode === "sequential" ? 1 : visibleCount;
       const deltaFinal = delta * deltaAdvance;
 
-      swiper!.slideToLoop((index + itemsCount + deltaFinal) % itemsCount);
+      const indexNew = (index + itemsCount + deltaFinal) % itemsCount;
+
+      swiper!.slideTo(indexNew);
     },
     [arrowsStepMode, index, itemsCount, swiper, visibleCount],
   );
@@ -330,7 +332,7 @@ export function Slider({
             firstLast={false}
             previousNext={false}
             onClick={(page) => {
-              swiper!.slideToLoop(
+              swiper!.slideTo(
                 paginationCompressed ? (page - 1) * visibleCount : page - 1,
               );
             }}

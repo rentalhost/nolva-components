@@ -262,7 +262,7 @@ export function Slider({
 
         <Swiper
           onSwiper={setSwiper}
-          loop={infinity}
+          loop={infinity && isOverflow}
           autoplay={
             duration === 0
               ? false
@@ -282,6 +282,7 @@ export function Slider({
               setVisibleCount(slidesPerView);
             }
           }}
+          className="flex-1"
         >
           {Children.map(children, (child, childIndex) => (
             <SwiperSlide

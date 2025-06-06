@@ -30,9 +30,9 @@ export function SliderArrow({
       ref={ref}
       data-disabled={isDisabled === true ? true : undefined}
       className={twMerge(
-        "flex items-center -translate-x-full transition starting:opacity-0",
+        "flex items-center -translate-x-full transition starting:opacity-0 transform-3d",
         "data-disabled:pointer-events-none data-disabled:opacity-25",
-        rotate ? "rotate-180 right-0 translate-x-full" : "left-0",
+        rotate ? "right-0 translate-x-full" : "left-0",
         placement === "external"
           ? "h-full w-fit absolute z-10"
           : "translate-x-0",
@@ -44,6 +44,7 @@ export function SliderArrow({
       <div
         className={twMerge(
           "bg-theme-400 hover:bg-theme-500 cursor-pointer rounded-full p-2 transition active:brightness-90 text-white",
+          rotate && "rotate-y-180",
           className,
         )}
         onClick={onClick}

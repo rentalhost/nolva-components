@@ -1,7 +1,7 @@
 import { SliderArrow } from "./SliderArrow";
+import type { ArrowAdvance } from "./SliderArrow";
 import type { Breakpoints } from "../../../services/ResponsiveService";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
-type ArrowAdvance = "batch" | "sequential";
 interface Props extends PropsWithChildren {
     /**
      * Autoplay duration in milliseconds.
@@ -42,12 +42,6 @@ interface Props extends PropsWithChildren {
      * Defaults to `true`.
      */
     centered?: boolean;
-    /**
-     * Enable swipe support.
-     *
-     * Defaults to `true`.
-     */
-    swipe?: boolean;
     /**
      * Container class name.
      */
@@ -125,5 +119,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Slider({ duration, items, gap, infinity, stretch, centered, swipe, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element | null;
+export declare function Slider({ duration, items, gap, infinity, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

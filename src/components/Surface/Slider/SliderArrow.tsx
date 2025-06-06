@@ -2,6 +2,8 @@ import { twMerge } from "tailwind-merge";
 
 import type { ReactNode } from "react";
 
+export type ArrowAdvance = "batch" | "sequential";
+
 type ArrowPlacement = "disabled" | "external" | "internal" | "overlay";
 
 interface Props {
@@ -28,7 +30,7 @@ export function SliderArrow({
       ref={ref}
       data-disabled={isDisabled === true ? true : undefined}
       className={twMerge(
-        "flex items-center -translate-x-full px-2 transition starting:opacity-0",
+        "flex items-center -translate-x-full transition starting:opacity-0",
         "data-disabled:pointer-events-none data-disabled:opacity-25",
         rotate ? "rotate-180 right-0 translate-x-full" : "left-0",
         placement === "external"

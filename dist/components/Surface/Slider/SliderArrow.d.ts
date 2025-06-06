@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+export type ArrowAdvance = "batch" | "sequential";
 type ArrowPlacement = "disabled" | "external" | "internal" | "overlay";
 interface Props {
     ref?: React.RefObject<HTMLDivElement | null>;

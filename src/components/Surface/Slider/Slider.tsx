@@ -2,7 +2,6 @@
 
 import {
   Children,
-  Fragment,
   useCallback,
   useEffect,
   useMemo,
@@ -10,26 +9,19 @@ import {
   useState,
 } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
+import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { twMerge } from "tailwind-merge";
 
 import { Pagination } from "@/components/Pagination/Pagination/Pagination";
 import { SliderArrow } from "@/components/Surface/Slider/SliderArrow";
-import { range } from "@/services/ArrayService";
-import { Timer } from "@/services/classes/Timer";
-import { useImmediateRef } from "@/services/hooks/useImmediateRef";
-import { clamp } from "@/services/NumberService";
-import { normalizeBreakpoints } from "@/services/ResponsiveService";
+import { listenWindowEvent } from "@/services/EventService";
+import { normalizeBreakpoints } from "@/services/SwiperService";
 
+import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
 import type { Breakpoints } from "@/services/ResponsiveService";
-import type {
-  ComponentProps,
-  CSSProperties,
-  PointerEvent,
-  PropsWithChildren,
-  ReactNode,
-} from "react";
-
-type ArrowAdvance = "batch" | "sequential";
+import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
+import type { SwiperClass } from "swiper/react";
 
 interface Props extends PropsWithChildren {
   /**
@@ -76,13 +68,6 @@ interface Props extends PropsWithChildren {
    * Defaults to `true`.
    */
   centered?: boolean;
-
-  /**
-   * Enable swipe support.
-   *
-   * Defaults to `true`.
-   */
-  swipe?: boolean;
 
   /**
    * Container class name.
@@ -182,7 +167,6 @@ export function Slider({
   infinity = true,
   stretch = true,
   centered = true,
-  swipe = true,
   className,
   arrowsIcon = <FaAngleLeft />,
   arrowsStepMode = "sequential",
@@ -195,158 +179,27 @@ export function Slider({
   paginationLimit,
   children = [],
 }: Props) {
-  const [index, setIndex] = useState(0);
-
-  const [swipingOffset, setSwipingOffset] = useState<number | null>(null);
-  const [swipingDelta, setSwipingDelta] = useState(0);
-
-  const sliderItems = useMemo(() => Children.toArray(children), [children]);
-
-  const styleCols = useMemo(
-    () =>
-      normalizeBreakpoints(
-        "--cols-",
-        items,
-        1,
-        stretch ? sliderItems.length : Number.MAX_VALUE,
-      ),
-    [stretch, items, sliderItems.length],
-  );
-
-  const styleGaps = useMemo(
-    () => normalizeBreakpoints("--gap-", gap, 0),
-    [gap],
-  );
-
-  const [visibleItems, setVisibleItems] = useState(1);
-
-  const isOverflow = useMemo(
-    () => sliderItems.length > visibleItems,
-    [sliderItems.length, visibleItems],
-  );
-
-  const sliderInfinityItems = useMemo(
-    () => [
-      ...(infinity && isOverflow ? sliderItems.slice(-visibleItems) : []),
-      ...sliderItems,
-      ...(infinity && isOverflow
-        ? sliderItems.slice(0, visibleItems * 2 - 1)
-        : range(0, visibleItems * 2 - 1).map((key) => (
-            <div key={`${key}-after`} />
-          ))),
-    ],
-    [infinity, isOverflow, sliderItems, visibleItems],
-  );
-
-  const sliderRef = useRef<HTMLDivElement>(null);
-
-  const sliderItemsRef = useRef<HTMLDivElement>(null);
-
+  const containerRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
+
+  const [index, setIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(Number.MAX_SAFE_INTEGER);
+
+  const itemsCount = useMemo(() => Children.count(children), [children]);
+
+  const breakpoints = useMemo(
+    () => normalizeBreakpoints(itemsCount, items, gap, stretch),
+    [gap, items, itemsCount, stretch],
+  );
+
+  const [swiper, setSwiper] = useState<SwiperClass>();
 
   const [hasArrowSpace, setHasArrowSpace] = useState(false);
 
-  useEffect(() => {
-    const sliderObserver = new ResizeObserver(([entry]) => {
-      const target = entry!.target as HTMLElement;
-      const targetCols = target.computedStyleMap().get("--cols") as Record<
-        number,
-        number
-      >;
-
-      setVisibleItems(Number(targetCols[0]!));
-    });
-
-    if (sliderItemsRef.current !== null) {
-      sliderObserver.observe(sliderItemsRef.current);
-    }
-
-    function resizeObserver() {
-      const arrowWidth = arrowRef.current?.offsetWidth ?? 0;
-
-      setHasArrowSpace(
-        sliderRef.current === null
-          ? false
-          : sliderRef.current.offsetWidth + 2 * arrowWidth <=
-              document.body.offsetWidth - 40,
-      );
-    }
-
-    addEventListener("resize", resizeObserver);
-
-    requestAnimationFrame(() => {
-      resizeObserver();
-    });
-
-    return () => {
-      sliderObserver.disconnect();
-
-      removeEventListener("resize", resizeObserver);
-    };
-  }, []);
-
-  const [transition, setTransition] = useState(true);
-
-  const moveIndex = useCallback(
-    (delta: number) => {
-      if (!isOverflow) {
-        return;
-      }
-
-      const indexNew = clamp(
-        arrowsStepMode === "sequential"
-          ? index + delta
-          : index + visibleItems * delta,
-        infinity ? Number.MIN_SAFE_INTEGER : 0,
-        infinity ? Number.MAX_SAFE_INTEGER : sliderItems.length - visibleItems,
-      );
-
-      if (indexNew < 0) {
-        setTransition(false);
-        setIndex(sliderItems.length);
-
-        requestAnimationFrame(() => {
-          setTransition(true);
-          setIndex(sliderItems.length + indexNew);
-        });
-      } else if (
-        !infinity &&
-        indexNew >= sliderItems.length - (visibleItems - 1)
-      ) {
-        setIndex(0);
-      } else {
-        setIndex(indexNew);
-      }
-    },
-    [
-      arrowsStepMode,
-      index,
-      infinity,
-      isOverflow,
-      sliderItems.length,
-      visibleItems,
-    ],
+  const isOverflow = useMemo(
+    () => itemsCount > visibleCount,
+    [itemsCount, visibleCount],
   );
-
-  const moveIndexRef = useImmediateRef(moveIndex);
-
-  const realignIndex = useCallback(() => {
-    setTransition(false);
-
-    requestAnimationFrame(() => {
-      setIndex((state) => {
-        if (state >= sliderItems.length) {
-          return state - sliderItems.length;
-        }
-
-        return state;
-      });
-
-      requestAnimationFrame(() => {
-        setTransition(true);
-      });
-    });
-  }, [sliderItems.length]);
 
   const arrowPlacementFinal = useMemo(
     () =>
@@ -358,118 +211,44 @@ export function Slider({
     [isOverflow, arrowsPlacement, arrowsPlacementFallback, hasArrowSpace],
   );
 
-  const compensateIndex = useMemo(
-    () =>
-      centered ? -Math.max(0, (visibleItems - sliderItems.length) / 2) : 0,
-    [centered, sliderItems.length, visibleItems],
+  const arrowClick = useCallback(
+    (delta: number) => {
+      const deltaAdvance = arrowsStepMode === "sequential" ? 1 : visibleCount;
+      const deltaFinal = delta * deltaAdvance;
+
+      swiper!.slideToLoop((index + itemsCount + deltaFinal) % itemsCount);
+    },
+    [arrowsStepMode, index, itemsCount, swiper, visibleCount],
   );
 
   const paginationTotal = useMemo(
     () =>
-      paginationCompressed
-        ? Math.ceil(sliderItems.length / visibleItems)
-        : sliderItems.length,
-    [paginationCompressed, sliderItems.length, visibleItems],
+      paginationCompressed ? Math.ceil(itemsCount / visibleCount) : itemsCount,
+    [itemsCount, paginationCompressed, visibleCount],
   );
 
-  useEffect(() => {
-    if (!isOverflow) {
-      setIndex(0);
-    }
-  }, [isOverflow]);
-
-  const timerRef = useRef<Timer | null>(null);
-
-  const swipingOffsetRef = useImmediateRef(swipingOffset);
-
-  useEffect(() => {
-    timerRef.current?.stop();
-    timerRef.current = new Timer(() => {
-      if (swipingOffsetRef.current === null) {
-        moveIndexRef.current(1);
-      }
-    }, duration);
-
-    return () => {
-      timerRef.current?.stop();
-    };
-  }, [duration, moveIndexRef, swipingOffsetRef]);
-
-  const canSwipe = useMemo(() => swipe && isOverflow, [isOverflow, swipe]);
-
-  const pointerStart = useCallback(
-    (ev: PointerEvent<HTMLDivElement>) => {
-      if (canSwipe) {
-        setSwipingOffset(ev.clientX);
-      }
-    },
-    [canSwipe],
-  );
-
-  const pointerMove = useCallback(
-    (ev: PointerEvent<HTMLDivElement>) => {
-      if (canSwipe && swipingOffset !== null) {
-        setSwipingDelta(
-          clamp(
-            swipingOffset - ev.clientX,
-            -ev.currentTarget.offsetWidth,
-            ev.currentTarget.offsetWidth,
-          ),
-        );
-
-        ev.currentTarget.setPointerCapture(ev.pointerId);
-      }
-    },
-    [canSwipe, swipingOffset],
-  );
-
-  const pointerEnd = useCallback(
-    (ev: PointerEvent<HTMLDivElement>) => {
-      if (canSwipe) {
-        const currentTarget = ev.currentTarget;
-
-        setSwipingOffset(null);
-
-        requestAnimationFrame(() => {
-          setSwipingDelta((state) => {
-            moveIndexRef.current(
-              Math.round(state / (currentTarget.offsetWidth / visibleItems)),
-            );
-
-            return 0;
-          });
-        });
-
-        currentTarget.releasePointerCapture(ev.pointerId);
-      }
-    },
-    [moveIndexRef, canSwipe, visibleItems],
-  );
-
-  const canPaginate = useMemo(
+  const paginationEnabled = useMemo(
     () => (paginationCompressed ? paginationTotal > 1 : isOverflow),
     [isOverflow, paginationCompressed, paginationTotal],
   );
 
-  if (sliderItems.length === 0) {
-    return null;
-  }
+  useEffect(
+    () =>
+      listenWindowEvent("resize", () => {
+        if (containerRef.current !== null && arrowRef.current !== null) {
+          setHasArrowSpace(
+            containerRef.current.offsetWidth +
+              3 * arrowRef.current.offsetWidth <=
+              document.body.offsetWidth,
+          );
+        }
+      }),
+    [],
+  );
 
   return (
-    <div
-      className={twMerge(
-        "relative flex flex-col gap-y-2 select-none",
-        className,
-      )}
-      ref={sliderRef}
-      onMouseLeave={() => {
-        timerRef.current?.start();
-      }}
-      onMouseEnter={() => {
-        timerRef.current?.stop();
-      }}
-    >
-      <div className="relative flex">
+    <div className={twMerge("relative", className)}>
+      <div ref={containerRef} className="relative flex">
         <SliderArrow
           ref={arrowRef}
           icon={arrowsIcon}
@@ -477,89 +256,81 @@ export function Slider({
           placement={arrowPlacementFinal}
           isDisabled={!infinity && index === 0}
           onClick={() => {
-            moveIndex(-1);
+            arrowClick(-1);
           }}
         />
 
-        <div
-          className="flex-auto touch-none overflow-x-hidden"
-          onPointerDown={pointerStart}
-          onPointerMove={pointerMove}
-          onPointerUp={pointerEnd}
-          onPointerCancel={pointerEnd}
-        >
-          <div
-            ref={sliderItemsRef}
-            className={twMerge(
-              "grid w-full auto-cols-(--width) grid-flow-col gap-x-[calc(1rem*var(--gap))]",
-              "[--cols:var(--cols-xs)] sm:[--cols:var(--cols-sm)] md:[--cols:var(--cols-md)] lg:[--cols:var(--cols-lg)] xl:[--cols:var(--cols-xl)] 2xl:[--cols:var(--cols-2xl)]",
-              "[--gap:var(--gap-xs)] sm:[--gap:var(--gap-sm)] md:[--gap:var(--gap-md)] lg:[--gap:var(--gap-lg)] xl:[--gap:var(--gap-xl)] 2xl:[--gap:var(--gap-2xl)]",
-              "[--gap-width:calc(1rem*var(--gap))] [--width:calc((100%-(var(--gap-width))*(var(--cols)-1))/var(--cols))]",
-              "-translate-x-[calc(var(--index)*(var(--width)+var(--gap-width))+var(--swipe)*1px)]",
-              transition && swipingOffset === null && "transition-[translate]",
-            )}
-            style={
-              {
-                ...styleCols,
-                ...styleGaps,
-                "--index":
-                  compensateIndex +
-                  index +
-                  (infinity && isOverflow ? visibleItems : 0),
-                "--swipe": swipingDelta,
-              } as CSSProperties
+        <Swiper
+          onSwiper={setSwiper}
+          loop={infinity}
+          autoplay={
+            duration === 0
+              ? false
+              : { delay: duration, pauseOnMouseEnter: true }
+          }
+          breakpoints={breakpoints}
+          modules={[Autoplay, FreeMode, Keyboard]}
+          centerInsufficientSlides={centered}
+          freeMode={{ enabled: true, sticky: true }}
+          keyboard={{ enabled: true, onlyInViewport: true }}
+          loopAddBlankSlides={false}
+          onSlideChange={({ realIndex }) => {
+            setIndex(realIndex);
+          }}
+          onResize={({ params: { slidesPerView } }) => {
+            if (typeof slidesPerView === "number") {
+              setVisibleCount(slidesPerView);
             }
-            onTransitionEnd={realignIndex}
-          >
-            {sliderInfinityItems.map((item, key) => (
+          }}
+        >
+          {Children.map(children, (child, childIndex) => (
+            <SwiperSlide
               // eslint-disable-next-line react/no-array-index-key
-              <Fragment key={key}>{item}</Fragment>
-            ))}
-          </div>
-        </div>
+              key={childIndex}
+            >
+              {child}
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
         <SliderArrow
+          rotate
           icon={arrowsIcon}
           className={arrowsClassName}
           placement={arrowPlacementFinal}
-          rotate
-          isDisabled={!infinity && index === sliderItems.length - visibleItems}
+          isDisabled={!infinity && index === 0}
           onClick={() => {
-            moveIndex(1);
+            arrowClick(1);
           }}
         />
       </div>
 
-      {canPaginate && (
+      {paginationEnabled && (
         <div
           className={twMerge(
+            "z-10",
             pagination === false && "hidden",
-            pagination === "overlay" && "absolute inset-x-0 bottom-2",
+            pagination === "overlay" && "absolute inset-x-0 bottom-0",
             paginationClassName,
           )}
         >
           <Pagination
             current={
               paginationCompressed
-                ? index === sliderItems.length - visibleItems
+                ? index === itemsCount - visibleCount
                   ? paginationTotal
-                  : Math.ceil((index + 1) / visibleItems)
+                  : Math.ceil((index + 1) / visibleCount)
                 : index + 1
             }
             total={paginationTotal}
             visibleCount={paginationLimit}
-            spread={paginationCompressed ? undefined : visibleItems - 1}
+            spread={paginationCompressed ? undefined : visibleCount - 1}
             pageClassName="text-[size:0] w-2.5"
             firstLast={false}
             previousNext={false}
             onClick={(page) => {
-              setIndex(
-                paginationCompressed
-                  ? Math.min(
-                      (page - 1) * visibleItems,
-                      sliderItems.length - visibleItems,
-                    )
-                  : page - 1,
+              swiper!.slideToLoop(
+                paginationCompressed ? (page - 1) * visibleCount : page - 1,
               );
             }}
           />

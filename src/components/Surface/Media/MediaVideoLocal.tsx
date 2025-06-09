@@ -11,7 +11,7 @@ interface Props {
   /**
    * The source of the poster image.
    */
-  posterSrc?: string;
+  posterSrc?: string | { src: string };
 
   /**
    * Determine if this video will autoplay in background mode.
@@ -43,7 +43,7 @@ export function MediaVideoLocal({
   return (
     <video
       playsInline
-      poster={posterSrc}
+      poster={typeof posterSrc === "object" ? posterSrc.src : posterSrc}
       controls={!background}
       controlsList={protect ? "nodownload" : undefined}
       autoPlay={background}

@@ -6,7 +6,9 @@ interface Props {
     /**
      * The source of the poster image.
      */
-    posterSrc?: string;
+    posterSrc?: string | {
+        src: string;
+    };
     /**
      * Determine if this video will autoplay in background mode.
      *

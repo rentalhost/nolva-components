@@ -1,4 +1,8 @@
 import { Media } from "@/components/Surface/Media/Media";
+import ExampleSvg from "@assets/storybook.svg";
+import ExampleImage from "@assets/storybook.webp";
+import ExampleVideoLocal from "@assets/video-example-1.webm";
+import ExampleVideoLocalPoster from "@assets/video-example-1.webp";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -9,8 +13,6 @@ export default {
 export const ImageExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/storybook.webp",
-    width: 256,
-    height: 51,
     alt: "Storybook",
   },
 };
@@ -36,6 +38,27 @@ export const VideoLocalBackgroundExample: StoryObj<typeof Media> = {
     src: "/assets/video-example-1.webm",
     className: "rounded max-w-64 outline shadow-md",
     background: true,
+  },
+};
+
+export const StaticImageExample: StoryObj<typeof Media> = {
+  args: {
+    src: ExampleImage,
+    alt: "Storybook",
+  },
+};
+
+export const StaticSvgExample: StoryObj<typeof Media> = {
+  args: {
+    src: ExampleSvg,
+    alt: "Storybook",
+  },
+};
+
+export const StaticVideoLocalExample: StoryObj<typeof Media> = {
+  args: {
+    src: ExampleVideoLocal,
+    posterSrc: ExampleVideoLocalPoster,
   },
 };
 

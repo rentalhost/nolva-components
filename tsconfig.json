@@ -34,7 +34,7 @@
     ]
   },
   "include": [
-    "css.d.ts",
+    "references.d.ts",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx",
     "**/*.ts",

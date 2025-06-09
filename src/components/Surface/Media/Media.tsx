@@ -14,30 +14,43 @@ import { getExtension } from "@/services/FileService";
 
 import type { ComponentProps } from "react";
 
-type ImageProps = ComponentProps<typeof MediaImage> & {
+type ImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
   src: `${string}.${(typeof imageAllowedExtensions)[number]}` | (string & {});
 };
 
-type SVGProps = ComponentProps<typeof MediaSVG> & {
+type StaticImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
+  src: { src: string };
+};
+
+type SVGProps = Omit<ComponentProps<typeof MediaSVG>, "src"> & {
   src: `${string}.${(typeof svgAllowedExtensions)[number]}` | (string & {});
 };
 
-type VideoLocalProps = ComponentProps<typeof MediaVideoLocal> & {
+type VideoLocalProps = Omit<ComponentProps<typeof MediaVideoLocal>, "src"> & {
   src:
     | `${string}.${(typeof videoLocalAllowedExtensions)[number]}`
     | (string & {});
 };
 
-type Props = ImageProps | SVGProps | VideoLocalProps;
+type Props = ImageProps | StaticImageProps | SVGProps | VideoLocalProps;
+
+function isStaticImage(props: Props): props is StaticImageProps {
+  return typeof props.src === "object" && "src" in props.src;
+}
 
 function isExtension<ThenProps extends Props>(
   props: Props,
   extensions: readonly string[],
 ): props is ThenProps {
-  return extensions.includes(getExtension(props.src));
+  return extensions.includes(getExtension(props.src as string));
 }
 
 export function Media(props: Props) {
+  if (isStaticImage(props)) {
+    // eslint-disable-next-line react/destructuring-assignment
+    return <Media {...props} src={props.src.src} />;
+  }
+
   if (isExtension<ImageProps>(props, imageAllowedExtensions)) {
     return <MediaImage {...props} />;
   }

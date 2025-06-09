@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { listenScroll } from "@/services/EventService";
@@ -81,7 +81,7 @@ export function Animate({
 
   const [visible, setVisible] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const { unload: listenUnload } = listenScroll((unload) => {
       const child = ref.current?.firstElementChild;
       const isVisible = isHTMLElement(child) && inViewport(child, threshold);

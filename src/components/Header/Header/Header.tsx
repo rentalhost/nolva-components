@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { listenScroll } from "@/services/EventService";
@@ -38,7 +38,7 @@ export function Header({ position = "static", className, children }: Props) {
 
   const [isSticky, setIsSticky] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (position === "static" || position === "absolute") {
       return;
     }

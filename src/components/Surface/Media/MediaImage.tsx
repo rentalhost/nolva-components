@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { listenResizeObserver } from "@/services/MutationService";
@@ -49,7 +49,7 @@ export function MediaImage({
 
   const [width, setWidth] = useState(0);
 
-  useLayoutEffect(
+  useEffect(
     () =>
       listenResizeObserver(
         ref.current,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
@@ -99,7 +99,7 @@ export function HeaderNav({
   const closeRef = useImmediateRef(close);
   const openedRef = useImmediateRef(opened);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     function resizeObserver(ev?: Event) {
       if (ev?.type === "resize" && openedRef.current) {
         closeRef.current();

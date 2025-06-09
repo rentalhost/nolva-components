@@ -284,7 +284,7 @@ export function Slider({
               setVisibleCount(slidesPerView);
             }
           }}
-          className="flex-1"
+          className={twMerge("flex-1", !swiper && "hidden")}
         >
           {Children.map(children, (child, childIndex) => (
             <SwiperSlide

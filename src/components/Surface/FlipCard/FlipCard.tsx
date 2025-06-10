@@ -97,7 +97,7 @@ export function FlipCard({
 
       <div
         className={twMerge(
-          "text-theme-800 not-pointer-coarse:hidden bg-theme-200/75 absolute bottom-1 right-1 rounded-full p-1 transition group-active:scale-90",
+          "text-theme-800 not-pointer-coarse:hidden bg-theme-200/75 absolute bottom-1 right-1 rounded-full p-1 transition group-active:scale-90 pointer-events-none",
           touchIconClassName,
         )}
       >

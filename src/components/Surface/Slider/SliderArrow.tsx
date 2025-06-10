@@ -37,7 +37,7 @@ export function SliderArrow({
           ? "h-full w-fit absolute z-10"
           : "translate-x-0",
         (placement === "overlay" || placement === "disabled") &&
-          "h-full absolute z-10",
+          "absolute z-10 h-fit top-1/2 -translate-y-1/2",
         placement === "disabled" && "opacity-0 data-disabled:opacity-0",
       )}
     >

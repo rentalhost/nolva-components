@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { animate } from "@/services/AnimateService";
 
 import type { Easing } from "@/services/AnimateService";
+import type { CSSProperties } from "react";
 
 interface Props {
   /**
@@ -62,25 +63,13 @@ export function Counter({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
-  const [currentValue, setCurrentValue] = useState(
-    toFixedFlooring(from, decimals),
-  );
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const delta = to - from;
-
     const observer = new IntersectionObserver(([entry]) => {
       if (entry!.isIntersecting) {
         unload();
-        animate(
-          duration,
-          (progress) => {
-            const result = from + delta * progress;
-
-            setCurrentValue(toFixedFlooring(result, decimals));
-          },
-          easing,
-        );
+        animate(duration, setProgress, easing);
       }
     });
 
@@ -91,11 +80,15 @@ export function Counter({
     observer.observe(ref.current!);
 
     return unload;
-  }, [decimals, duration, easing, from, to]);
+  }, [duration, easing]);
 
   return (
-    <div ref={ref} className={className}>
-      {currentValue}
+    <div
+      ref={ref}
+      className={className}
+      style={{ "--progress": progress } as CSSProperties}
+    >
+      {toFixedFlooring(from + (to - from) * progress, decimals)}
     </div>
   );
 }

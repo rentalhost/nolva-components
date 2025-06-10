@@ -36,11 +36,17 @@ interface Props {
    */
   contentBack: ReactNode;
 
+  heightController?: "back" | "front";
+
   /**
    * The class name of the touch icon.
    */
   touchIconClassName?: string;
 }
+
+const baseClassName =
+  "flex h-full items-center justify-center [backface-visibility:hidden]";
+const absoluteClassName = "absolute inset-0";
 
 export function FlipCard({
   className,
@@ -48,6 +54,7 @@ export function FlipCard({
   axis = "horizontal",
   contentFront,
   contentBack,
+  heightController = "front",
   touchIconClassName,
 }: Props) {
   const [flip, setFlip] = useState(false);
@@ -81,13 +88,21 @@ export function FlipCard({
             "[transform:rotateX(var(--flip-angle))]",
         )}
       >
-        <div className="flex h-full items-center justify-center [backface-visibility:hidden]">
+        <div
+          className={
+            heightController === "front"
+              ? baseClassName
+              : twMerge(baseClassName, absoluteClassName)
+          }
+        >
           {contentFront}
         </div>
 
         <div
           className={twMerge(
-            "absolute inset-0 flex h-full items-center justify-center [backface-visibility:hidden] [transform:rotateY(var(--flip-angle))]",
+            baseClassName,
+            heightController === "front" && absoluteClassName,
+            "[transform:rotateY(var(--flip-angle))]",
             axis === "vertical" && "[transform:rotateX(var(--flip-angle))]",
           )}
         >

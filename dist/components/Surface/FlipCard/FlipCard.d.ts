@@ -24,10 +24,11 @@ interface Props {
      * The content of the back of the flip card.
      */
     contentBack: ReactNode;
+    heightController?: "back" | "front";
     /**
      * The class name of the touch icon.
      */
     touchIconClassName?: string;
 }
-export declare function FlipCard({ className, flipTo, axis, contentFront, contentBack, touchIconClassName, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function FlipCard({ className, flipTo, axis, contentFront, contentBack, heightController, touchIconClassName, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

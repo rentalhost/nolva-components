@@ -60,3 +60,28 @@ export const AxisVerticalExample: StoryObj<typeof FlipCard> = {
     ),
   },
 };
+
+export const HeightControllerBackExample: StoryObj<typeof FlipCard> = {
+  render: (args) => (
+    <div className="w-32 bg-slate-200">
+      <FlipCard {...args} />
+    </div>
+  ),
+  args: {
+    axis: "vertical",
+    heightController: "back",
+    contentFront: (
+      <div className="size-full flex items-center justify-center rounded bg-black text-white">
+        Front Front Front Front Front Front Front Front Front Front Front Front
+        Front Front Front Front Front Front Front Front Front Front Front Front
+        Front Front Front Front Front Front Front Front Front Front Front Front
+      </div>
+    ),
+    contentBack: (
+      <div className="size-full flex items-center justify-center rounded bg-white">
+        Back Back Back Back Back Back Back Back Back Back Back Back Back Back
+        Back Back Back Back Back Back Back Back Back Back Back Back Back Back
+      </div>
+    ),
+  },
+};

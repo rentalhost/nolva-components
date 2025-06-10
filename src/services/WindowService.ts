@@ -10,19 +10,32 @@ function getVisibleDimension(
   );
 }
 
+function getOffset(
+  element: Element | null,
+  kind: "offsetLeft" | "offsetTop",
+): number {
+  return element instanceof HTMLElement
+    ? element[kind] + getOffset(element.offsetParent, kind)
+    : 0;
+}
+
 export function inViewport(element: HTMLElement, threshold: number): boolean {
-  const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = element;
-  const { scrollY, scrollX, innerHeight, innerWidth } = window;
+  const offsetTop = getOffset(element, "offsetTop");
+  const offsetLeft = getOffset(element, "offsetLeft");
+
+  const { scrollY, scrollX } = window;
 
   if (offsetTop < scrollY || offsetLeft < scrollX) {
     return true;
   }
 
+  const { offsetWidth, offsetHeight } = element;
+
   const offsetBottom = offsetTop + offsetHeight;
   const offsetRight = offsetLeft + offsetWidth;
 
-  const viewBottom = scrollY + innerHeight;
-  const viewRight = scrollX + innerWidth;
+  const viewBottom = scrollY + window.innerHeight;
+  const viewRight = scrollX + window.innerWidth;
 
   const visibleHeight = getVisibleDimension(
     offsetTop,

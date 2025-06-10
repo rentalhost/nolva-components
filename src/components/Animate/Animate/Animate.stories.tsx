@@ -1,4 +1,5 @@
 import { Animate } from "@/components/Animate/Animate/Animate";
+import { range } from "@/services/ArrayService";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
@@ -59,6 +60,24 @@ export const Example: StoryObj<typeof Animate> = {
 export const SubComponentExample: StoryObj<typeof Animate> = {
   args: {
     effect: "slideDown",
+    children: <PseudoComponent />,
+  },
+};
+
+export const Issue1RelativeIssue: StoryObj<typeof Animate> = {
+  render(props) {
+    return (
+      <div className="grid gap-y-16">
+        {range(0, 20).map((key) => (
+          <div className="relative" key={key}>
+            <Animate {...props} />
+          </div>
+        ))}
+      </div>
+    );
+  },
+  args: {
+    effect: "slideRight",
     children: <PseudoComponent />,
   },
 };

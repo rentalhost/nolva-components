@@ -58,8 +58,8 @@ interface Props extends PropsWithChildren {
 
 const effects: Record<NonNullable<Props["effect"]>, string> = {
   slideDown: "not-data-animated:*:-translate-y-1/2",
-  slideLeft: "not-data-animated:*:-translate-x-1/2",
-  slideRight: "not-data-animated:*:translate-x-1/2",
+  slideLeft: "not-data-animated:*:translate-x-1/2",
+  slideRight: "not-data-animated:*:-translate-x-1/2",
   slideUp: "not-data-animated:*:translate-y-1/2",
   zoomIn: "not-data-animated:*:scale-50",
   zoomOut: "not-data-animated:*:scale-125",

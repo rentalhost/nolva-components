@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { PropsWithChildren } from "react";
 
 interface Props extends PropsWithChildren {
@@ -13,6 +13,11 @@ interface Props extends PropsWithChildren {
    * Whether the label is required.
    */
   required?: boolean;
+
+  /**
+   * The size of the label.
+   */
+  size?: 3 | 4 | 6 | 8 | 9 | 12;
 
   /**
    * The class name of the title.
@@ -38,13 +43,18 @@ interface Props extends PropsWithChildren {
 export function Label({
   title,
   required = false,
+  size = 12,
   titleClassName,
   className,
   children,
   childrenClassName,
 }: Props) {
   return (
-    <label data-component="Label" className={twMerge("grid gap-1", className)}>
+    <label
+      data-component="Label"
+      className={twMerge("grid gap-1 col-span-(--size)", className)}
+      style={{ "--size": size } as CSSProperties}
+    >
       <span
         className={twMerge(
           "text-sm font-semibold",

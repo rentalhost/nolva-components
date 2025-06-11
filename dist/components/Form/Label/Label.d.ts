@@ -10,6 +10,10 @@ interface Props extends PropsWithChildren {
      */
     required?: boolean;
     /**
+     * The size of the label.
+     */
+    size?: 3 | 4 | 6 | 8 | 9 | 12;
+    /**
      * The class name of the title.
      */
     titleClassName?: string;
@@ -26,5 +30,5 @@ interface Props extends PropsWithChildren {
      */
     childrenClassName?: string;
 }
-export declare function Label({ title, required, titleClassName, className, children, childrenClassName, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Label({ title, required, size, titleClassName, className, children, childrenClassName, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

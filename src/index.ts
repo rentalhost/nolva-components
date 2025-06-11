@@ -2,6 +2,7 @@ export { Animate } from "@/components/Animate/Animate/Animate";
 export { Button } from "@/components/Form/Button/Button";
 export { Input } from "@/components/Form/Input/Input";
 export { Label } from "@/components/Form/Label/Label";
+export { Textarea } from "@/components/Form/Textarea/Textarea";
 export { InputSearch } from "@/components/Generic/InputSearch/InputSearch";
 export { Share } from "@/components/Generic/Share/Share";
 export { TextClamp } from "@/components/Generic/TextClamp/TextClamp";

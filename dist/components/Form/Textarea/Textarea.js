@@ -1,0 +1,1 @@
+import{jsx as t}from"react/jsx-runtime";import{twMerge as r}from"tailwind-merge";import{inputClassName as e}from"../Input/Input.js";export function Textarea({className:a,...m}){return t("textarea",{"data-component":"Textarea",className:r(e,a),...m})}

@@ -37,6 +37,7 @@ export function Input({ type = "text", className, ...props }: Props) {
   return (
     <input
       type={type}
+      data-component="Input"
       className={twMerge(inputClassName, className)}
       {...props}
     />

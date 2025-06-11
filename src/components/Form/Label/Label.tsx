@@ -44,7 +44,7 @@ export function Label({
   childrenClassName,
 }: Props) {
   return (
-    <label className={twMerge("grid gap-1", className)}>
+    <label data-component="Label" className={twMerge("grid gap-1", className)}>
       <span
         className={twMerge(
           "text-sm font-semibold",

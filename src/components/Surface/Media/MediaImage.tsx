@@ -71,6 +71,7 @@ export function MediaImage({
       alt={alt}
       quality={quality}
       unoptimized={unoptimized}
+      data-component="MediaImage"
       className={twMerge("w-full", className)}
     />
   );

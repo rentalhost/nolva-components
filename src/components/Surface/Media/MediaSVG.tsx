@@ -28,6 +28,7 @@ export function MediaSVG({ src, alt, className }: Props) {
       width={0}
       height={0}
       unoptimized
+      data-component="MediaSVG"
       className={twMerge("w-full", className)}
     />
   );

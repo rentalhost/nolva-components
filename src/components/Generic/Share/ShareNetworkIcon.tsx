@@ -10,13 +10,14 @@ interface Props {
   className?: string;
 }
 
-export function ShareIcon({ network, title, url, className }: Props) {
+export function ShareNetworkIcon({ network, title, url, className }: Props) {
   const NetworkIcon = network.icon;
 
   return (
     <Link
       target="_blank"
       href={network.url({ title, url })}
+      data-component="ShareNetworkIcon"
       data-network={network.name.toLowerCase()}
       className={twMerge(
         "rounded-sm p-1.5 transition hover:scale-105",

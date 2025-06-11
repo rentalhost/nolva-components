@@ -128,6 +128,7 @@ export function PrintPage({
 
   return (
     <div
+      data-component="PrintPage"
       className={twMerge(
         "w-(--width) min-h-(--height) p-(--margin) not-print:rounded-sm not-print:shadow-md not-print:shadow-gray-600/10 not-print:bg-white not-print:outline not-print:outline-gray-600/25 not-print:overflow-hidden relative break-after-page box-decoration-clone [page:var(--id)] [zoom:var(--zoom)]",
         shorten && "min-h-auto",

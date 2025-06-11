@@ -91,6 +91,7 @@ function isBuildInVariant(variant: string): variant is Variant {
 export function Theme({ variant, children }: Props) {
   return (
     <div
+      data-component="Theme"
       className={twMerge(
         "contents",
         isBuildInVariant(variant) ? variants[variant] : `theme-${variant}`,

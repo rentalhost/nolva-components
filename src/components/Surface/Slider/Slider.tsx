@@ -249,7 +249,7 @@ export function Slider({
   );
 
   return (
-    <div className={twMerge("relative", className)}>
+    <div data-component="Slider" className={twMerge("relative", className)}>
       <div ref={containerRef} className="relative flex">
         <SliderArrow
           ref={arrowRef}

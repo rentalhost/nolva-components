@@ -28,7 +28,12 @@ interface Props extends PropsWithChildren {
 
 export function Hero({ id, className, backgroundContent, children }: Props) {
   return (
-    <Section marginY={0} id={id} className={twMerge("relative", className)}>
+    <Section
+      marginY={0}
+      id={id}
+      data-component="Hero"
+      className={twMerge("relative", className)}
+    >
       <div
         role="presentation"
         className="pointer-events-none absolute inset-0 select-none"

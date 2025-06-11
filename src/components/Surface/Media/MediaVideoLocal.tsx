@@ -50,6 +50,7 @@ export function MediaVideoLocal({
       muted={background}
       loop={background}
       preload={posterSrc === undefined ? "metadata" : "none"}
+      data-component="MediaVideoLocal"
       className={twMerge("w-full aspect-video", className)}
     >
       <source src={src} type={`video/${getExtension(src)}`} />

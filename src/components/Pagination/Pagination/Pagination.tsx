@@ -2,12 +2,12 @@ import { useMemo } from "react";
 import { FaAngleLeft, FaAnglesLeft } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
+import { PaginationPage } from "@/components/Pagination/Pagination/PaginationPage";
 import { circularRange, paginate } from "@/services/ArrayService";
 import { noop } from "@/services/FunctionService";
 import { clamp } from "@/services/NumberService";
-import { appendQueryString } from "@/services/UrlService";
 
-import type { ReactNode } from "react";
+import type { ComponentProps } from "react";
 
 interface Props {
   /**
@@ -76,50 +76,6 @@ interface Props {
   onClick?(this: void, page: number): void;
 }
 
-interface PageProps {
-  page: number;
-  queryString?: string;
-  isCurrent?: boolean;
-  isSpread?: boolean;
-  isDisabled?: boolean;
-  className?: string;
-  children: ReactNode;
-  onClick(this: void, page: number): void;
-}
-
-function PaginationPage({
-  page,
-  queryString,
-  isCurrent,
-  isSpread,
-  isDisabled,
-  children,
-  className,
-  onClick,
-}: PageProps) {
-  return (
-    <a
-      href={
-        queryString === undefined
-          ? undefined
-          : appendQueryString(queryString, String(page))
-      }
-      data-active={isCurrent === true || isSpread === true ? true : undefined}
-      data-active-spread={isSpread === true ? true : undefined}
-      data-disabled={isDisabled === true ? true : undefined}
-      className={twMerge(
-        "bg-theme-100 border border-theme-200 flex aspect-square items-center justify-center rounded-full hover:bg-theme-200 hover:border-theme-300 active:brightness-90 transition cursor-pointer select-none data-active:bg-theme-300 data-active:border-theme-400 hover:data-active:bg-theme-400 hover:data-active:border-theme-500 w-8 data-active:font-bold data-disabled:pointer-events-none data-disabled:opacity-25",
-        className,
-      )}
-      onClick={() => {
-        onClick(page);
-      }}
-    >
-      {children}
-    </a>
-  );
-}
-
 export function Pagination({
   current,
   total,
@@ -137,7 +93,10 @@ export function Pagination({
 
   const currentClamped = clamp(current, 1, total);
 
-  const pageProps: Pick<PageProps, "className" | "onClick" | "queryString"> = {
+  const pageProps: Pick<
+    ComponentProps<typeof PaginationPage>,
+    "className" | "onClick" | "queryString"
+  > = {
     queryString,
     className: pageClassName,
     onClick,
@@ -155,6 +114,7 @@ export function Pagination({
 
   return (
     <div
+      data-component="Pagination"
       className={twMerge(
         "flex flex-wrap items-center justify-center gap-2 empty:hidden",
         className,

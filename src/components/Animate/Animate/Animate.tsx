@@ -101,6 +101,7 @@ export function Animate({
   return (
     <div
       ref={ref}
+      data-component="Animate"
       data-animated={visible || undefined}
       className={twMerge(
         "contents *:transition *:duration-(--animate-duration) *:ease-(--animate-easing) not-data-animated:*:opacity-0",

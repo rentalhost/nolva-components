@@ -12,6 +12,7 @@ export function HeaderContainer({
     <Container
       className={twMerge("flex justify-between gap-x-4", className)}
       {...props}
+      data-component="HeaderContainer"
     />
   );
 }

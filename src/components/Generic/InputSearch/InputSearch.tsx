@@ -73,6 +73,7 @@ export function InputSearch({
     <form
       action={formAction}
       method={formMethod}
+      data-component="InputSearch"
       className={twMerge(
         "border-theme-100 has-focus:border-theme-300 group relative flex rounded border transition bg-white",
         className,

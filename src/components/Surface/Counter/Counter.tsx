@@ -85,6 +85,7 @@ export function Counter({
   return (
     <div
       ref={ref}
+      data-component="Counter"
       className={className}
       style={{ "--progress": progress } as CSSProperties}
     >

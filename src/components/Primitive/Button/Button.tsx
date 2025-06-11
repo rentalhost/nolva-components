@@ -62,6 +62,7 @@ export function Button({
     <button
       type="button"
       disabled={disabled}
+      data-component="Button"
       data-theme={fill}
       className={buttonClassName}
     >

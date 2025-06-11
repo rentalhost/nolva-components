@@ -53,6 +53,7 @@ export function Header({ position = "static", className, children }: Props) {
   return (
     <header
       ref={headerRef}
+      data-component="Header"
       data-stuck={isSticky || undefined}
       className={twMerge(
         "flex bg-theme-50 inset-x-0 top-0 z-20",

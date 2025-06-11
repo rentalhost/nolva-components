@@ -36,6 +36,7 @@ export function Container({
 }: Props) {
   return (
     <div
+      data-component="Container"
       className={twMerge(
         "w-full px-[--spacing(var(--padding-x))]",
         !fluid && "mx-auto max-w-container",

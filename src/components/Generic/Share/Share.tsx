@@ -5,7 +5,7 @@ import { FaShareFromSquare } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
 import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
-import { ShareIcon } from "@/components/Generic/Share/ShareNetworkIcon";
+import { ShareNetworkIcon } from "@/components/Generic/Share/ShareNetworkIcon";
 import { listenWindowEvent } from "@/services/EventService";
 import { listenMutationObserver } from "@/services/MutationService";
 import { getSimplifiedUrl } from "@/services/UrlService";
@@ -89,6 +89,7 @@ export function Share({
 
   return (
     <div
+      data-component="Share"
       className={twMerge(
         "bg-theme-100 text-theme-500 flex h-12 justify-between rounded p-2 shadow",
         className,
@@ -102,7 +103,7 @@ export function Share({
 
       <div className="flex gap-2 text-white">
         {networks.map((network) => (
-          <ShareIcon
+          <ShareNetworkIcon
             key={network}
             network={allNetworks[network]}
             title={documentTitle}

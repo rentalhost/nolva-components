@@ -28,6 +28,7 @@ export function SliderArrow({
   return (
     <div
       ref={ref}
+      data-component="SliderArrow"
       data-disabled={isDisabled === true ? true : undefined}
       className={twMerge(
         "flex items-center -translate-x-full transition starting:opacity-0 transform-3d",

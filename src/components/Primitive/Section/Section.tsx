@@ -30,6 +30,7 @@ export function Section({ id, marginY = 16, className, children }: Props) {
   return (
     <section
       id={id}
+      data-component="Section"
       className={twMerge(
         "my-[--spacing(var(--margin-y))] max-mobile:my-[--spacing(var(--margin-y)/2)]",
         className,

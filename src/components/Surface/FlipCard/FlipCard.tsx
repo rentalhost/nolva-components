@@ -61,6 +61,7 @@ export function FlipCard({
 
   return (
     <div
+      data-component="FlipCard"
       className={twMerge(
         "perspective-distant size-full group overflow-hidden",
         className,

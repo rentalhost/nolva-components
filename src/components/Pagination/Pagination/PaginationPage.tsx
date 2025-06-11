@@ -1,0 +1,50 @@
+import { twMerge } from "tailwind-merge";
+
+import { appendQueryString } from "@/services/UrlService";
+
+import type { ReactNode } from "react";
+
+interface Props {
+  page: number;
+  queryString?: string;
+  isCurrent?: boolean;
+  isSpread?: boolean;
+  isDisabled?: boolean;
+  className?: string;
+  children: ReactNode;
+  onClick(this: void, page: number): void;
+}
+
+export function PaginationPage({
+  page,
+  queryString,
+  isCurrent,
+  isSpread,
+  isDisabled,
+  children,
+  className,
+  onClick,
+}: Props) {
+  return (
+    <a
+      href={
+        queryString === undefined
+          ? undefined
+          : appendQueryString(queryString, String(page))
+      }
+      data-component="PaginationPage"
+      data-active={isCurrent === true || isSpread === true ? true : undefined}
+      data-active-spread={isSpread === true ? true : undefined}
+      data-disabled={isDisabled === true ? true : undefined}
+      className={twMerge(
+        "bg-theme-100 border border-theme-200 flex aspect-square items-center justify-center rounded-full hover:bg-theme-200 hover:border-theme-300 active:brightness-90 transition cursor-pointer select-none data-active:bg-theme-300 data-active:border-theme-400 hover:data-active:bg-theme-400 hover:data-active:border-theme-500 w-8 data-active:font-bold data-disabled:pointer-events-none data-disabled:opacity-25",
+        className,
+      )}
+      onClick={() => {
+        onClick(page);
+      }}
+    >
+      {children}
+    </a>
+  );
+}

@@ -22,6 +22,7 @@ interface Props extends PropsWithChildren {
 export function TextClamp({ lines, children, className }: Props) {
   return (
     <div
+      data-component="TextClamp"
       className={twMerge("line-clamp-(--lines)", className)}
       style={{ "--lines": lines } as CSSProperties}
     >

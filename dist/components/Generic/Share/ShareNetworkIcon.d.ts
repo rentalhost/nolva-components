@@ -5,5 +5,5 @@ interface Props {
     url: string;
     className?: string;
 }
-export declare function ShareIcon({ network, title, url, className }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function ShareNetworkIcon({ network, title, url, className }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

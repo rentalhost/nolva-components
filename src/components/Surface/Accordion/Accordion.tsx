@@ -68,6 +68,7 @@ export function Accordion({
 
   return (
     <div
+      data-component="Accordion"
       data-opened={stateOpened || undefined}
       className={twMerge("bg-theme-50 flex flex-col rounded-lg", className)}
     >

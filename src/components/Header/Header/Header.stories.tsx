@@ -26,10 +26,7 @@ function HeaderContainerFixture() {
       <HeaderNav
         // eslint-disable-next-line react/no-unstable-nested-components
         openedModalContent={(closeHandler) => (
-          <div
-            data-overlay
-            className="bg-theme-950/75 starting:opacity-0 fixed inset-0 z-10 flex items-center justify-center text-white backdrop-blur-md transition"
-          >
+          <div className="bg-theme-950/75 starting:opacity-0 fixed inset-0 z-10 flex items-center justify-center text-white backdrop-blur-md transition">
             <div
               onClick={closeHandler}
               className="cursor-pointer hover:underline"

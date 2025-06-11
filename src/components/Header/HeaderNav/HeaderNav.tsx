@@ -86,7 +86,11 @@ export function HeaderNav({
         void promisePortal<void>((resolver) => {
           portalResolver.current = resolver;
 
-          return openedModalContent(resolver);
+          return (
+            <div className="contents" data-overlay>
+              {openedModalContent(resolver)}
+            </div>
+          );
         }).then(() => {
           setOpened(false);
         });

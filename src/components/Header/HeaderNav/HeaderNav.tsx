@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { twMerge } from "tailwind-merge";
 
+import { listenWindowEvent } from "@/services/EventService";
 import { useImmediateRef } from "@/services/hooks/useImmediateRef";
 import { promisePortal } from "@/services/PortalService";
 
@@ -117,9 +118,25 @@ export function HeaderNav({
 
     resizeObserver();
 
+    const unloadClick = listenWindowEvent(
+      "click",
+      (ev) => {
+        if (
+          ev.target instanceof Element &&
+          ev.target.tagName === "A" &&
+          ev.target.closest("[data-overlay]")
+        ) {
+          closeRef.current();
+        }
+      },
+      false,
+    );
+
     return () => {
       removeEventListener("resize", resizeObserver);
       removeEventListener("transitionend", resizeObserver);
+
+      unloadClick();
     };
   }, [closeRef, openedRef]);
 

@@ -2,13 +2,13 @@ type UnloadCallback = () => void;
 
 export function listenWindowEvent(
   eventName: keyof WindowEventMap,
-  callback: () => void,
+  callback: EventListener,
   immediate = true,
 ) {
   addEventListener(eventName, callback);
 
   if (immediate) {
-    callback();
+    callback(new Event("immediate"));
   }
 
   return () => {

@@ -1,6 +1,6 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-import { Button } from "@/components/Primitive/Button/Button";
+import { Button } from "@/components/Form/Button/Button";
 import { Theme } from "@/components/Theme/Theme/Theme";
 import { ThemeSpread } from "@/services/components/ThemeSpread";
 

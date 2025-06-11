@@ -1,4 +1,5 @@
 export { Animate } from "@/components/Animate/Animate/Animate";
+export { Button } from "@/components/Form/Button/Button";
 export { InputSearch } from "@/components/Generic/InputSearch/InputSearch";
 export { Share } from "@/components/Generic/Share/Share";
 export { TextClamp } from "@/components/Generic/TextClamp/TextClamp";
@@ -6,7 +7,6 @@ export { Header } from "@/components/Header/Header/Header";
 export { HeaderContainer } from "@/components/Header/HeaderContainer/HeaderContainer";
 export { HeaderNav } from "@/components/Header/HeaderNav/HeaderNav";
 export { Pagination } from "@/components/Pagination/Pagination/Pagination";
-export { Button } from "@/components/Primitive/Button/Button";
 export { Container } from "@/components/Primitive/Container/Container";
 export { Section } from "@/components/Primitive/Section/Section";
 export { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";

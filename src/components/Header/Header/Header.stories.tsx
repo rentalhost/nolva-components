@@ -73,9 +73,29 @@ function defaultRender(
   );
 }
 
+export const RelativeExample: StoryObj<typeof Header> = {
+  render: defaultRender,
+  args: {
+    className:
+      "border-b border-theme-300 shadow-xs/5 min-h-12 stuck:min-h-10 transition-all group stuck:text-sm",
+    children: <HeaderContainerFixture />,
+  },
+};
+
 export const StaticExample: StoryObj<typeof Header> = {
   render: defaultRender,
   args: {
+    position: "static",
+    className:
+      "border-b border-theme-300 shadow-xs/5 min-h-12 stuck:min-h-10 transition-all group stuck:text-sm",
+    children: <HeaderContainerFixture />,
+  },
+};
+
+export const AbsoluteExample: StoryObj<typeof Header> = {
+  render: defaultRender,
+  args: {
+    position: "absolute",
     className:
       "border-b border-theme-300 shadow-xs/5 min-h-12 stuck:min-h-10 transition-all group stuck:text-sm",
     children: <HeaderContainerFixture />,

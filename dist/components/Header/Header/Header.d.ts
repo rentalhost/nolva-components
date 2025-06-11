@@ -3,16 +3,17 @@ interface Props extends PropsWithChildren {
     /**
      * Defines the header positioning behavior.
      *
-     * - `static`: the header is placed according to the normal document flow (not sticky or fixed).
-     * - `absolute`: the header is positioned relative to its normal position and overlays the page content.
-     * - `fixed`: the header is fixed to the top of the viewport and overlays the page content.
-     * - `sticky`: the header remains at the top of the viewport as you scroll, but retains its space in the layout.
+     * - `static`: positioned according to normal document flow, no special behavior.
+     * - `relative`: follows normal flow, supports z-index, not sticky or fixed.
+     * - `absolute`: removed from flow, positioned relative to nearest positioned ancestor.
+     * - `fixed`: fixed to top of viewport, overlays content, removed from flow.
+     * - `sticky`: sticks to top during scroll, retains space in layout, only works in scrollable containers.
      *
-     * When `static` or `absolute`, elements will never be considered as `stuck:`.
+     * Elements with `relative` or `absolute` will never trigger `stuck:` state.
      *
-     * Default is `static`.
+     * Default is `relative`.
      */
-    position?: "absolute" | "fixed" | "static" | "sticky";
+    position?: "absolute" | "fixed" | "relative" | "static" | "sticky";
     /**
      * Custom class name.
      */

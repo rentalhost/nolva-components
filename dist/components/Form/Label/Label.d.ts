@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import type { PropsWithChildren } from "react";
-interface Props extends PropsWithChildren {
+interface Props extends PropsWithChildren, Pick<ComponentProps<"label">, "ref"> {
     /**
      * The title of the label.
      */
@@ -30,5 +30,5 @@ interface Props extends PropsWithChildren {
      */
     childrenClassName?: string;
 }
-export declare function Label({ title, required, size, titleClassName, className, children, childrenClassName, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Label({ ref, title, required, size, titleClassName, className, children, childrenClassName, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

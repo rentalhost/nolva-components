@@ -151,15 +151,13 @@ export function PrintPage({
         <div className="top-(--height) absolute inset-x-0 bottom-0 animate-pulse bg-red-200 bg-blend-overlay print:hidden" />
       )}
 
-      <div className="absolute inset-x-0 top-0 empty:hidden print:fixed">
-        {header}
-      </div>
+      <div className="absolute inset-x-0 top-0 print:fixed">{header}</div>
 
       <div className="relative">{children}</div>
 
       <div
         className={twMerge(
-          "top-(--height) absolute inset-x-0 -translate-y-full empty:hidden print:fixed",
+          "top-(--height) absolute inset-x-0 -translate-y-full print:fixed",
           overflowMode === "allowed" && "top-auto bottom-0 -translate-y-0",
         )}
       >

@@ -11,8 +11,12 @@
 
 @custom-variant stuck (&[data-stuck], &:has([data-forcing-overlay]));
 
-body:has([data-overlay]) {
-  @apply overflow-hidden;
+body {
+  @apply **:empty:[is(div,span,p,h1,h2,h3,h4,h5,h6)]:hidden;
+
+  &:has([data-overlay]) {
+    @apply overflow-hidden;
+  }
 }
 
 @theme {

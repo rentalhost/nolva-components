@@ -1,5 +1,6 @@
 export { Animate } from "./components/Animate/Animate/Animate";
 export { Button } from "./components/Form/Button/Button";
+export { Form } from "./components/Form/Form/Form";
 export { Input } from "./components/Form/Input/Input";
 export { Label } from "./components/Form/Label/Label";
 export { Textarea } from "./components/Form/Textarea/Textarea";

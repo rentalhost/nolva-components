@@ -116,7 +116,7 @@ export function Pagination({
     <div
       data-component="Pagination"
       className={twMerge(
-        "flex flex-wrap items-center justify-center gap-2 empty:hidden",
+        "flex flex-wrap items-center justify-center gap-2",
         className,
       )}
     >

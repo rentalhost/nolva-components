@@ -1,0 +1,1 @@
+import{jsx as o}from"react/jsx-runtime";import{twMerge as r}from"tailwind-merge";export function Form({className:m,...i}){return o("form",{"data-component":"Form",className:r("grid max-mobile:[--grid-cols:1] not-max-mobile:grid-cols-12 gap-4",m),...i})}

@@ -1,18 +1,28 @@
+import { toArray } from "@/services/ArrayService";
+
+import type { Arrayable } from "@/services/ArrayService";
+
 type UnloadCallback = () => void;
 
 export function listenWindowEvent(
-  eventName: keyof WindowEventMap,
+  eventName: Arrayable<keyof WindowEventMap>,
   callback: EventListener,
   immediate = true,
 ) {
-  addEventListener(eventName, callback);
+  const eventNames = toArray(eventName);
+
+  for (const name of eventNames) {
+    addEventListener(name, callback);
+  }
 
   if (immediate) {
     callback(new Event("immediate"));
   }
 
   return () => {
-    removeEventListener(eventName, callback);
+    for (const name of eventNames) {
+      removeEventListener(name, callback);
+    }
   };
 }
 

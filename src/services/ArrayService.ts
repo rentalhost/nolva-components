@@ -45,3 +45,9 @@ export function paginate(
 
   return range(start, end);
 }
+
+export type Arrayable<T> = T | T[];
+
+export function toArray<T>(value: Arrayable<T>): T[] {
+  return Array.isArray(value) ? value : [value];
+}

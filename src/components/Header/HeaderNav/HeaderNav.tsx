@@ -105,18 +105,13 @@ export function HeaderNav({
   const openedRef = useImmediateRef(opened);
 
   useEffect(() => {
-    function resizeObserver(ev?: Event) {
-      if (ev?.type === "resize" && openedRef.current) {
+    const unload = listenWindowEvent(["resize", "transitionend"], (ev) => {
+      if (ev.type === "resize" && openedRef.current) {
         closeRef.current();
       }
 
       setMobileMode(navRef.current!.scrollWidth > navRef.current!.clientWidth);
-    }
-
-    addEventListener("resize", resizeObserver);
-    addEventListener("transitionend", resizeObserver);
-
-    resizeObserver();
+    });
 
     const unloadClick = listenWindowEvent(
       "click",
@@ -133,9 +128,7 @@ export function HeaderNav({
     );
 
     return () => {
-      removeEventListener("resize", resizeObserver);
-      removeEventListener("transitionend", resizeObserver);
-
+      unload();
       unloadClick();
     };
   }, [closeRef, openedRef]);

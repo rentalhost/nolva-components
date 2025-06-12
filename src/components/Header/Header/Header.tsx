@@ -24,6 +24,13 @@ interface Props extends PropsWithChildren {
   position?: "absolute" | "fixed" | "relative" | "static" | "sticky";
 
   /**
+   * Detect stick after this position.
+   *
+   * Defaults to `0`.
+   */
+  stickAfter?: number;
+
+  /**
    * Custom class name.
    */
   className?: string;
@@ -34,7 +41,12 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Header({ position = "relative", className, children }: Props) {
+export function Header({
+  position = "relative",
+  stickAfter = 0,
+  className,
+  children,
+}: Props) {
   const headerRef = useRef<HTMLDivElement>(null);
 
   const [isSticky, setIsSticky] = useState(false);
@@ -45,9 +57,9 @@ export function Header({ position = "relative", className, children }: Props) {
     }
 
     return listenScroll(() => {
-      setIsSticky(document.scrollingElement!.scrollTop > 0);
+      setIsSticky(document.scrollingElement!.scrollTop > stickAfter);
     });
-  }, [position]);
+  }, [position, stickAfter]);
 
   return (
     <header

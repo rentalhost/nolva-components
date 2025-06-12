@@ -15,6 +15,12 @@ interface Props extends PropsWithChildren {
      */
     position?: "absolute" | "fixed" | "relative" | "static" | "sticky";
     /**
+     * Detect stick after this position.
+     *
+     * Defaults to `0`.
+     */
+    stickAfter?: number;
+    /**
      * Custom class name.
      */
     className?: string;
@@ -23,5 +29,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Header({ position, className, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Header({ position, stickAfter, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

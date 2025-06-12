@@ -81,22 +81,22 @@ export function Animate({
 
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const { unload: listenUnload } = listenScroll((unload) => {
-      const child = ref.current?.firstElementChild;
-      const isVisible = isHTMLElement(child) && inViewport(child, threshold);
+  useEffect(
+    () =>
+      listenScroll((unload) => {
+        const child = ref.current?.firstElementChild;
+        const isVisible = isHTMLElement(child) && inViewport(child, threshold);
 
-      setVisible(isVisible);
+        setVisible(isVisible);
 
-      if (!always && isVisible) {
-        requestIdleCallback(() => {
-          unload();
-        });
-      }
-    });
-
-    return listenUnload;
-  }, [always, threshold]);
+        if (!always && isVisible) {
+          requestIdleCallback(() => {
+            unload();
+          });
+        }
+      }),
+    [always, threshold],
+  );
 
   return (
     <div

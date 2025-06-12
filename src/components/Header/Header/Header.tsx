@@ -40,15 +40,13 @@ export function Header({ position = "relative", className, children }: Props) {
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    if (["fixed", "sticky", "absolute"].includes(position)) {
+    if (["static", "relative"].includes(position)) {
       return;
     }
 
-    const { unload } = listenScroll(() => {
+    return listenScroll(() => {
       setIsSticky(document.scrollingElement!.scrollTop > 0);
     });
-
-    return unload;
   }, [position]);
 
   return (

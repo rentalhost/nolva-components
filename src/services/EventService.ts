@@ -39,5 +39,5 @@ export function listenScroll(callback: (unload: UnloadCallback) => void) {
     unloadResize();
   }
 
-  return { unload };
+  return unload;
 }

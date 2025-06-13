@@ -63,6 +63,13 @@ interface Props extends PropsWithChildren {
   infinity?: boolean;
 
   /**
+   * Enable free flow mode.
+   *
+   * Defaults to `false`.
+   */
+  freeFlow?: boolean;
+
+  /**
    * Stretch items to fill the container when there is less items than needed.
    *
    * Defaults to `true`.
@@ -174,6 +181,7 @@ export function Slider({
   items = 1,
   gap = 0.5,
   infinity = true,
+  freeFlow = false,
   stretch = true,
   centered = true,
   className,
@@ -280,9 +288,9 @@ export function Slider({
               : { delay: duration, pauseOnMouseEnter: true }
           }
           breakpoints={breakpoints}
-          modules={[Autoplay, FreeMode, Keyboard]}
+          modules={[Autoplay, Keyboard, ...(freeFlow ? [FreeMode] : [])]}
           centerInsufficientSlides={centered}
-          freeMode={{ enabled: true, sticky: true }}
+          freeMode={{ enabled: freeFlow, sticky: true }}
           keyboard={{ enabled: true, onlyInViewport: true }}
           loopAddBlankSlides={false}
           speed={speed * visibleCount}

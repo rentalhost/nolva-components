@@ -37,6 +37,12 @@ interface Props extends PropsWithChildren {
      */
     infinity?: boolean;
     /**
+     * Enable free flow mode.
+     *
+     * Defaults to `false`.
+     */
+    freeFlow?: boolean;
+    /**
      * Stretch items to fill the container when there is less items than needed.
      *
      * Defaults to `true`.
@@ -126,5 +132,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Slider({ duration, speed, items, gap, infinity, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

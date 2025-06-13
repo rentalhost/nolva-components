@@ -25,7 +25,7 @@ export async function promisePortal<T>(resolver: Resolver<T>) {
   return new Promise<T>((resolve) => {
     void elementPromise.then(resolve);
   }).finally(() => {
-    requestIdleCallback(() => {
+    queueMicrotask(() => {
       elementRoot.unmount();
       document.body.removeChild(element);
     });

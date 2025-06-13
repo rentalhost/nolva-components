@@ -21,7 +21,7 @@ export function ShareNetworkIcon({ network, title, url, className }: Props) {
       data-component="ShareNetworkIcon"
       data-network={network.name.toLowerCase()}
       className={twMerge(
-        "rounded-sm p-1.5 transition hover:scale-105",
+        "rounded-sm p-2 transition hover:scale-105",
         network.className,
         className,
       )}

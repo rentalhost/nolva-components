@@ -11,6 +11,7 @@ import { twMerge } from "@/services/TailwindMergeService";
 import { getSimplifiedUrl } from "@/services/UrlService";
 
 import type { ShareNetworkName } from "@/components/Generic/Share/ShareNetwork";
+import type { CSSProperties } from "react";
 
 interface Props {
   /**
@@ -91,17 +92,20 @@ export function Share({
     <div
       data-component="Share"
       className={twMerge(
-        "bg-theme-100 text-theme-500 flex h-12 justify-between rounded p-2 shadow",
+        "bg-theme-100 text-theme-500 grid grid-cols-[1fr_auto] justify-between rounded p-2 shadow",
         className,
       )}
     >
-      <div className="flex items-center">
-        <FaShareFromSquare className="max-mobile:hidden size-5 mx-2" />
+      <div className="grid grid-cols-[auto_1fr] items-center">
+        <FaShareFromSquare className="size-5 mx-2" />
 
         <p>{text}</p>
       </div>
 
-      <div className="flex gap-2 text-white">
+      <div
+        className="grid grid-cols-[repeat(var(--networks-count),1fr)] gap-2 text-white"
+        style={{ "--networks-count": networks.length } as CSSProperties}
+      >
         {networks.map((network) => (
           <ShareNetworkIcon
             key={network}

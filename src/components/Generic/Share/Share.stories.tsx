@@ -14,7 +14,7 @@ export const ModifiedExample: StoryObj<typeof Share> = {
     title: "Example",
     url: "https://google.com",
     networks: ["x", "facebook", "linkedin"],
-    className: "bg-blue-100 text-blue-800 h-10",
+    className: "bg-blue-100 text-blue-800",
     networkClassName: "bg-blue-600 data-[network=linkedin]:bg-red-600",
   },
 };

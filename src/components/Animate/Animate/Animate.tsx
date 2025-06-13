@@ -90,9 +90,7 @@ export function Animate({
         setVisible(isVisible);
 
         if (!always && isVisible) {
-          requestIdleCallback(() => {
-            unload();
-          });
+          unload();
         }
       }),
     [always, threshold],

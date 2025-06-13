@@ -27,11 +27,11 @@ export function listenWindowEvent(
 }
 
 export function listenScroll(callback: (unload: UnloadCallback) => void) {
-  function callbackBound() {
-    callback(unload);
-  }
-
-  const unload = listenWindowEvent(["scroll", "resize"], callbackBound);
+  const unload = listenWindowEvent(["scroll", "resize"], () => {
+    queueMicrotask(() => {
+      callback(unload);
+    });
+  });
 
   return unload;
 }

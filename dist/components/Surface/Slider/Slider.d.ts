@@ -10,6 +10,13 @@ interface Props extends PropsWithChildren {
      */
     duration?: number;
     /**
+     * Slide advance speed in milliseconds.
+     * It multiplies to the visible items count.
+     *
+     * Defaults to `300`.
+     */
+    speed?: number;
+    /**
      * Number of items per slide.
      * Supports breakpoints object.
      *
@@ -119,5 +126,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Slider({ duration, items, gap, infinity, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ duration, speed, items, gap, infinity, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

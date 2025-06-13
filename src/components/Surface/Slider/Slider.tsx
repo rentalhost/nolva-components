@@ -32,6 +32,14 @@ interface Props extends PropsWithChildren {
   duration?: number;
 
   /**
+   * Slide advance speed in milliseconds.
+   * It multiplies to the visible items count.
+   *
+   * Defaults to `300`.
+   */
+  speed?: number;
+
+  /**
    * Number of items per slide.
    * Supports breakpoints object.
    *
@@ -162,6 +170,7 @@ interface Props extends PropsWithChildren {
 
 export function Slider({
   duration = 5000,
+  speed = 300,
   items = 1,
   gap = 0.5,
   infinity = true,
@@ -276,6 +285,7 @@ export function Slider({
           freeMode={{ enabled: true, sticky: true }}
           keyboard={{ enabled: true, onlyInViewport: true }}
           loopAddBlankSlides={false}
+          speed={speed * visibleCount}
           onSlideChange={({ realIndex }) => {
             setIndex(realIndex);
           }}

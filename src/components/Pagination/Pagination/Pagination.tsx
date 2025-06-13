@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { FaAngleLeft, FaAnglesLeft } from "react-icons/fa6";
-import { twMerge } from "tailwind-merge";
 
 import { PaginationPage } from "@/components/Pagination/Pagination/PaginationPage";
 import { circularRange, paginate } from "@/services/ArrayService";
 import { noop } from "@/services/FunctionService";
 import { clamp } from "@/services/NumberService";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ComponentProps } from "react";
 

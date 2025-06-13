@@ -1,4 +1,4 @@
-import { twMerge } from "tailwind-merge";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ComponentProps } from "react";
 

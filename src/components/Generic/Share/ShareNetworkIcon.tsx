@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { twMerge } from "tailwind-merge";
+
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ShareNetwork } from "@/components/Generic/Share/ShareNetwork";
 

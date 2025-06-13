@@ -1,6 +1,5 @@
-import { twMerge } from "tailwind-merge";
-
 import { inputClassName } from "@/components/Form/Input/Input";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ComponentProps } from "react";
 

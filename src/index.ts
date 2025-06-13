@@ -22,3 +22,6 @@ export { Hero } from "@/components/Surface/Hero/Hero";
 export { Media } from "@/components/Surface/Media/Media";
 export { Slider } from "@/components/Surface/Slider/Slider";
 export { Theme } from "@/components/Theme/Theme/Theme";
+
+export { twMerge } from "@/services/TailwindMergeService";
+export { twJoin } from "tailwind-merge";

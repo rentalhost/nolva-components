@@ -1,6 +1,5 @@
-import { twMerge } from "tailwind-merge";
-
 import { Section } from "@/components/Primitive/Section/Section";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { PropsWithChildren, ReactNode } from "react";
 

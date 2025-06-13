@@ -1,6 +1,5 @@
-import { twMerge } from "tailwind-merge";
-
 import { Theme, variants } from "@/components/Theme/Theme/Theme";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
-import { twMerge } from "tailwind-merge";
+
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { PropsWithChildren, ReactNode } from "react";
 

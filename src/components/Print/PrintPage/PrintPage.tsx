@@ -1,5 +1,6 @@
 import { useId, useMemo } from "react";
-import { twMerge } from "tailwind-merge";
+
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { CSSProperties, ReactNode } from "react";
 

@@ -31,13 +31,7 @@ export function listenScroll(callback: (unload: UnloadCallback) => void) {
     callback(unload);
   }
 
-  const unloadScroll = listenWindowEvent("scroll", callbackBound);
-  const unloadResize = listenWindowEvent("resize", callbackBound, false);
-
-  function unload() {
-    unloadScroll();
-    unloadResize();
-  }
+  const unload = listenWindowEvent(["scroll", "resize"], callbackBound);
 
   return unload;
 }

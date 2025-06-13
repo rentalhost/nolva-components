@@ -1,6 +1,5 @@
-import { twMerge } from "tailwind-merge";
-
 import { getExtension } from "@/services/FileService";
+import { twMerge } from "@/services/TailwindMergeService";
 
 interface Props {
   /**

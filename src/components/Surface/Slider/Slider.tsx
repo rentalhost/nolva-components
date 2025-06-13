@@ -11,12 +11,12 @@ import {
 import { FaAngleLeft } from "react-icons/fa6";
 import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { twMerge } from "tailwind-merge";
 
 import { Pagination } from "@/components/Pagination/Pagination/Pagination";
 import { SliderArrow } from "@/components/Surface/Slider/SliderArrow";
 import { listenWindowEvent } from "@/services/EventService";
 import { normalizeBreakpoints } from "@/services/SwiperService";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
 import type { Breakpoints } from "@/services/ResponsiveService";

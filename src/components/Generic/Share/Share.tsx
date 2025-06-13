@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { FaShareFromSquare } from "react-icons/fa6";
-import { twMerge } from "tailwind-merge";
 
 import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
 import { ShareNetworkIcon } from "@/components/Generic/Share/ShareNetworkIcon";
 import { listenWindowEvent } from "@/services/EventService";
 import { listenMutationObserver } from "@/services/MutationService";
+import { twMerge } from "@/services/TailwindMergeService";
 import { getSimplifiedUrl } from "@/services/UrlService";
 
 import type { ShareNetworkName } from "@/components/Generic/Share/ShareNetwork";

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { TbHandClick } from "react-icons/tb";
-import { twMerge } from "tailwind-merge";
+
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { CSSProperties, ReactNode } from "react";
 

@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import { twMerge } from "tailwind-merge";
 
 import { listenWindowEvent } from "@/services/EventService";
 import { useImmediateRef } from "@/services/hooks/useImmediateRef";
 import { promisePortal } from "@/services/PortalService";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { Resolve } from "@/services/PortalService";
 import type { PropsWithChildren, ReactElement, ReactNode } from "react";

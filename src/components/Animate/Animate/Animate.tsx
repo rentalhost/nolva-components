@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 import { listenScroll } from "@/services/EventService";
+import { twMerge } from "@/services/TailwindMergeService";
 import { inViewport } from "@/services/WindowService";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";

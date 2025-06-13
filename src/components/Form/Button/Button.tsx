@@ -1,5 +1,6 @@
 import { cloneElement, isValidElement } from "react";
-import { twMerge } from "tailwind-merge";
+
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { PropsWithChildren } from "react";
 import type { JSX } from "react/jsx-runtime";

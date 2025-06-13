@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 import { listenResizeObserver } from "@/services/MutationService";
+import { twMerge } from "@/services/TailwindMergeService";
 
 interface Props {
   /**

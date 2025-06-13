@@ -1,5 +1,4 @@
-import { twMerge } from "tailwind-merge";
-
+import { twMerge } from "@/services/TailwindMergeService";
 import { appendQueryString } from "@/services/UrlService";
 
 import type { ReactNode } from "react";

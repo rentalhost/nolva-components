@@ -74,6 +74,7 @@ export function InputSearch({
     <form
       action={formAction}
       method={formMethod}
+      suppressHydrationWarning
       data-component="InputSearch"
       className={twMerge(
         "border-theme-100 has-focus:border-theme-300 group relative flex rounded border transition bg-white",
@@ -93,6 +94,7 @@ export function InputSearch({
         type="search"
         name={inputName}
         defaultValue={inputDefaultValue}
+        suppressHydrationWarning
         className={twMerge(
           "w-full pl-9 focus:outline-none py-1.5",
           inputClassName,

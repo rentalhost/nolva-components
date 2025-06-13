@@ -38,6 +38,7 @@ export function Input({ type = "text", className, ...props }: Props) {
     <input
       type={type}
       data-component="Input"
+      suppressHydrationWarning
       className={twMerge(inputClassName, className)}
       {...props}
     />

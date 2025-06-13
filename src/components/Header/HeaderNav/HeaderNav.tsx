@@ -72,7 +72,7 @@ export function HeaderNav({
 }: Props) {
   const navRef = useRef<HTMLDivElement>(null);
 
-  const [mobileMode, setMobileMode] = useState(false);
+  const [mobileMode, setMobileMode] = useState(true);
   const [opened, setOpened] = useState(false);
 
   const portalResolver = useRef<Resolve<void>>(null);

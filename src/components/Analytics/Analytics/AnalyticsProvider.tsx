@@ -2,7 +2,7 @@
 
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { sendGAEvent } from "@next/third-parties/google";
-import { createContext, useMemo } from "react";
+import { createContext, useCallback, useMemo } from "react";
 
 import type { PropsWithChildren } from "react";
 
@@ -20,14 +20,14 @@ export function AnalyticsProvider({
   gaId = process.env["NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"],
   children,
 }: Props) {
-  const value = useMemo(
-    () => ({
-      sendEvent(name: string, params?: Record<string, unknown>) {
-        sendGAEvent("event", name, params ?? {});
-      },
-    }),
+  const sendEvent = useCallback(
+    (name: string, params?: Record<string, unknown>) => {
+      sendGAEvent("event", name, params ?? {});
+    },
     [],
   );
+
+  const value = useMemo(() => ({ sendEvent }), [sendEvent]);
 
   return (
     <AnalyticsContext.Provider value={value}>

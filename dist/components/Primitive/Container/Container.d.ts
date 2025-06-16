@@ -20,6 +20,10 @@ interface Props extends PropsWithChildren {
      * Container children.
      */
     children?: ReactNode;
+    /**
+     * Function to be called when the container is in the viewport.
+     */
+    onInViewport?(this: void): void;
 }
-export declare function Container({ paddingX, fluid, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Container({ paddingX, fluid, className, children, onInViewport, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

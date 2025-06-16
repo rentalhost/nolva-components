@@ -1,5 +1,5 @@
 export function listenMutationObserver(
-  element: Node | null | undefined,
+  element: Element | null | undefined,
   options: MutationObserverInit,
   callback: MutationCallback,
   immediate = true,
@@ -10,12 +10,12 @@ export function listenMutationObserver(
     callback([], observer);
   }
 
-  if (element instanceof Node) {
+  if (element instanceof Element) {
     observer.observe(element, options);
   }
 
   return () => {
-    if (element instanceof Node) {
+    if (element instanceof Element) {
       observer.disconnect();
     }
   };

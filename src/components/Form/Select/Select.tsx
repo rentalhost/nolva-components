@@ -1,6 +1,6 @@
 import { FaChevronDown } from "react-icons/fa6";
 
-import { inputClassName } from "@/components/Form/fixtures";
+import { inputClassName } from "@/components/fixtures";
 import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ComponentProps } from "react";

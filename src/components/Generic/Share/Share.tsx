@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaShareFromSquare } from "react-icons/fa6";
 
 import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
@@ -75,6 +75,14 @@ export function Share({
   const [documentTitle, setDocumentTitle] = useState<string>(title ?? "");
   const [documentUrl, setDocumentUrl] = useState<string>(url ?? "");
 
+  const selectedNetworks = useMemo(
+    () =>
+      networks.includes("native") && !("share" in navigator)
+        ? networks.filter((network) => network !== "native")
+        : networks,
+    [networks],
+  );
+
   useEffect(() => {
     if (title !== undefined) {
       return;
@@ -115,9 +123,9 @@ export function Share({
 
       <div
         className="grid grid-cols-[repeat(var(--networks-count),1fr)] gap-2 text-white"
-        style={{ "--networks-count": networks.length } as CSSProperties}
+        style={{ "--networks-count": selectedNetworks.length } as CSSProperties}
       >
-        {networks.map((network) => (
+        {selectedNetworks.map((network) => (
           <ShareNetworkIcon
             key={network}
             network={allNetworks[network]}

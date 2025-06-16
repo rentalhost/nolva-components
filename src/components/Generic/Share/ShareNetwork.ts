@@ -3,6 +3,7 @@ import {
   FaLinkedinIn,
   FaXTwitter,
   FaWhatsapp,
+  FaShareNodes,
 } from "react-icons/fa6";
 
 import { generateQueryString } from "@/services/UrlService";
@@ -19,7 +20,9 @@ export class ShareNetwork {
     public readonly name: string,
     public readonly icon: IconType,
     public readonly className: string,
-    public readonly url: ({ title, url }: ShareNetworkUrlProps) => string,
+    public readonly url:
+      | "native"
+      | (({ title, url }: ShareNetworkUrlProps) => string),
   ) {}
 }
 
@@ -57,6 +60,7 @@ export const networks = {
         text: title === "" ? url : `${title}\n\n${url}`,
       })}`,
   ),
+  native: new ShareNetwork("Native", FaShareNodes, "bg-neutral-500", "native"),
 } satisfies Readonly<Record<string, ShareNetwork>>;
 
 export type ShareNetworkName = keyof typeof networks;

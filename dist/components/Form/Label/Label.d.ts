@@ -6,6 +6,13 @@ interface Props extends PropsWithChildren, Pick<ComponentProps<"label">, "ref"> 
      */
     title?: ReactNode;
     /**
+     * The primary placeholder of the children input.
+     *
+     * - If `true`, the primary placeholder will be the title.
+     * - If `string`, the primary placeholder will be the string.
+     */
+    primaryPlaceholder?: string | true;
+    /**
      * Whether the label is required.
      */
     required?: boolean;
@@ -30,5 +37,5 @@ interface Props extends PropsWithChildren, Pick<ComponentProps<"label">, "ref"> 
      */
     childrenClassName?: string;
 }
-export declare function Label({ ref, title, required, size, titleClassName, className, children, childrenClassName, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Label({ ref, title, primaryPlaceholder, required, size, titleClassName, className, children, childrenClassName, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

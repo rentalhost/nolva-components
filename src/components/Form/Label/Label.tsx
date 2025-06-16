@@ -1,3 +1,8 @@
+"use client";
+
+import { useMemo } from "react";
+
+import { LabelContext } from "@/components/Form/Label/LabelProvider";
 import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
@@ -10,6 +15,14 @@ interface Props
    * The title of the label.
    */
   title?: ReactNode;
+
+  /**
+   * The primary placeholder of the children input.
+   *
+   * - If `true`, the primary placeholder will be the title.
+   * - If `string`, the primary placeholder will be the string.
+   */
+  primaryPlaceholder?: string | true;
 
   /**
    * Whether the label is required.
@@ -45,6 +58,7 @@ interface Props
 export function Label({
   ref,
   title,
+  primaryPlaceholder,
   required = false,
   size = 12,
   titleClassName,
@@ -52,27 +66,41 @@ export function Label({
   children,
   childrenClassName,
 }: Props) {
-  return (
-    <label
-      ref={ref}
-      data-component="Label"
-      className={twMerge(
-        "grid gap-1 col-span-[var(--grid-cols,var(--size))]",
-        className,
-      )}
-      style={{ "--size": size } as CSSProperties}
-    >
-      <span
-        className={twMerge(
-          "text-sm font-semibold",
-          required && "after:text-rose-600 after:content-['_*']",
-          titleClassName,
-        )}
-      >
-        {title}
-      </span>
+  const value = useMemo(
+    () => ({
+      primaryPlaceholder:
+        primaryPlaceholder === true
+          ? typeof title === "string"
+            ? title
+            : undefined
+          : primaryPlaceholder,
+    }),
+    [primaryPlaceholder, title],
+  );
 
-      <div className={childrenClassName}>{children}</div>
-    </label>
+  return (
+    <LabelContext.Provider value={value}>
+      <label
+        ref={ref}
+        data-component="Label"
+        className={twMerge(
+          "grid gap-1 col-span-[var(--grid-cols,var(--size))]",
+          className,
+        )}
+        style={{ "--size": size } as CSSProperties}
+      >
+        <span
+          className={twMerge(
+            "text-sm font-semibold",
+            required && "after:text-rose-600 after:content-['_*']",
+            titleClassName,
+          )}
+        >
+          {title}
+        </span>
+
+        <div className={childrenClassName}>{children}</div>
+      </label>
+    </LabelContext.Provider>
   );
 }

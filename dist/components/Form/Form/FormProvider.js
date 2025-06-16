@@ -1,0 +1,1 @@
+"use client";import{jsx as r}from"react/jsx-runtime";import{createContext as t,useMemo as e,useState as o}from"react";export const FormContext=t({});export function FormProvider({children:t}){let[n,i]=o(!1),m=e(()=>({focused:n,setFocused:i}),[n]);return r(FormContext.Provider,{value:m,children:t})}

@@ -1,0 +1,1 @@
+import{jsx as r}from"react/jsx-runtime";export function contextWrapper(t,n){return function({...e}){return r(t,{children:r(n,{...e})})}}

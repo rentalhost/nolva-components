@@ -6,7 +6,7 @@ interface Props extends PropsWithChildren {
      *
      * Defaults to none (respects `fadeEffect`).
      */
-    effect?: "slideDown" | "slideLeft" | "slideRight" | "slideUp" | "zoomIn" | "zoomOut";
+    effect?: "none" | "slideDown" | "slideLeft" | "slideRight" | "slideUp" | "zoomIn" | "zoomOut";
     /**
      * Animation duration.
      *
@@ -32,9 +32,13 @@ interface Props extends PropsWithChildren {
      */
     threshold?: Threshold;
     /**
+     * Container class name.
+     */
+    className?: string;
+    /**
      * Container children.
      */
     children?: ReactNode;
 }
-export declare function Animate({ effect, duration, easing, always, threshold, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Animate({ effect, duration, easing, always, threshold, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

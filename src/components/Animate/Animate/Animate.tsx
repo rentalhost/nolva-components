@@ -15,6 +15,7 @@ interface Props extends PropsWithChildren {
    * Defaults to none (respects `fadeEffect`).
    */
   effect?:
+    | "none"
     | "slideDown"
     | "slideLeft"
     | "slideRight"
@@ -51,12 +52,18 @@ interface Props extends PropsWithChildren {
   threshold?: Threshold;
 
   /**
+   * Container class name.
+   */
+  className?: string;
+
+  /**
    * Container children.
    */
   children?: ReactNode;
 }
 
 const effects: Record<NonNullable<Props["effect"]>, string> = {
+  none: "",
   slideDown: "not-data-animated:*:-translate-y-1/2",
   slideLeft: "not-data-animated:*:translate-x-1/2",
   slideRight: "not-data-animated:*:-translate-x-1/2",
@@ -71,6 +78,7 @@ export function Animate({
   easing = "ease-out",
   always = false,
   threshold,
+  className,
   children,
 }: Props) {
   const animateRef = useRef<HTMLDivElement>(null);
@@ -93,8 +101,10 @@ export function Animate({
       data-component="Animate"
       data-animated={visible || undefined}
       className={twMerge(
-        "contents *:transition *:duration-(--animate-duration) *:ease-(--animate-easing) not-data-animated:*:opacity-0",
+        "contents *:transition *:duration-(--animate-duration) *:ease-(--animate-easing)",
+        effect !== "none" && "not-data-animated:*:opacity-0",
         effect === undefined ? undefined : effects[effect],
+        className,
       )}
       style={
         {

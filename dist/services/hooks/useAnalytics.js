@@ -1,0 +1,1 @@
+"use client";import{useContext as t}from"react";import{AnalyticsContext as n}from"../../components/Analytics/Analytics/AnalyticsProvider.js";export function useAnalytics(){let{sendEvent:r}=t(n);return{sendEvent:r}}

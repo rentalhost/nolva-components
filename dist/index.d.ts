@@ -1,3 +1,4 @@
+export { AnalyticsProvider } from "./components/Analytics/Analytics/AnalyticsProvider";
 export { Animate } from "./components/Animate/Animate/Animate";
 export { Button } from "./components/Form/Button/Button";
 export { Form } from "./components/Form/Form/Form";
@@ -24,5 +25,6 @@ export { Slider } from "./components/Surface/Slider/Slider";
 export { Theme } from "./components/Theme/Theme/Theme";
 export { listenWindowEvent, listenScroll } from "./services/EventService";
 export { listenMutationObserver, listenResizeObserver, } from "./services/MutationService";
+export { useAnalytics } from "./services/hooks/useAnalytics";
 export { twMerge } from "./services/TailwindMergeService";
 export { twJoin } from "tailwind-merge";

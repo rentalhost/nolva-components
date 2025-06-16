@@ -1,3 +1,4 @@
+export { AnalyticsProvider } from "@/components/Analytics/Analytics/AnalyticsProvider";
 export { Animate } from "@/components/Animate/Animate/Animate";
 export { Button } from "@/components/Form/Button/Button";
 export { Form } from "@/components/Form/Form/Form";
@@ -28,6 +29,8 @@ export {
   listenMutationObserver,
   listenResizeObserver,
 } from "@/services/MutationService";
+
+export { useAnalytics } from "@/services/hooks/useAnalytics";
 
 export { twMerge } from "@/services/TailwindMergeService";
 export { twJoin } from "tailwind-merge";

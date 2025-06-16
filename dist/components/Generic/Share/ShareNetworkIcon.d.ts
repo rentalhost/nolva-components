@@ -4,6 +4,7 @@ interface Props {
     title: string;
     url: string;
     className?: string;
+    onClick(this: void): void;
 }
-export declare function ShareNetworkIcon({ network, title, url, className }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function ShareNetworkIcon({ network, title, url, className, onClick, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

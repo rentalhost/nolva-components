@@ -29,6 +29,10 @@ interface Props {
      * The class name of the touch icon.
      */
     touchIconClassName?: string;
+    /**
+     * The callback when the user flips the card.
+     */
+    onFlip?(this: void, viewpoint: "back" | "front"): void;
 }
-export declare function FlipCard({ className, flipTo, axis, contentFront, contentBack, heightController, touchIconClassName, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function FlipCard({ className, flipTo, axis, contentFront, contentBack, heightController, touchIconClassName, onFlip, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

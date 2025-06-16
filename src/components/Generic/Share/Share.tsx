@@ -51,6 +51,16 @@ interface Props {
    * Determines the class name of the share container.
    */
   className?: string;
+
+  /**
+   * Determines the callback when a network is clicked.
+   */
+  onShare?(
+    this: void,
+    network: string,
+    documentUrl: string,
+    documentTitle: string,
+  ): void;
 }
 
 export function Share({
@@ -60,6 +70,7 @@ export function Share({
   networks = Object.keys(allNetworks) as ShareNetworkName[],
   networkClassName,
   className,
+  onShare,
 }: Props) {
   const [documentTitle, setDocumentTitle] = useState<string>(title ?? "");
   const [documentUrl, setDocumentUrl] = useState<string>(url ?? "");
@@ -113,6 +124,9 @@ export function Share({
             title={documentTitle}
             url={documentUrl}
             className={networkClassName}
+            onClick={() => {
+              onShare?.(network, documentUrl, documentTitle);
+            }}
           />
         ))}
       </div>

@@ -173,6 +173,11 @@ interface Props extends PropsWithChildren {
    * Container children.
    */
   children?: ReactNode;
+
+  /**
+   * Callback fired when the slider navigates to a new slide.
+   */
+  onNavigate?(this: void): void;
 }
 
 export function Slider({
@@ -195,6 +200,7 @@ export function Slider({
   paginationCompressed = true,
   paginationLimit,
   children = [],
+  onNavigate,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
@@ -236,8 +242,10 @@ export function Slider({
       const indexNew = (index + itemsCount + deltaFinal) % itemsCount;
 
       swiper!.slideTo(indexNew);
+
+      onNavigate?.();
     },
-    [arrowsStepMode, index, itemsCount, swiper, visibleCount],
+    [arrowsStepMode, index, itemsCount, onNavigate, swiper, visibleCount],
   );
 
   const paginationTotal = useMemo(
@@ -350,6 +358,7 @@ export function Slider({
             firstLast={false}
             previousNext={false}
             onClick={(page) => {
+              onNavigate?.();
               swiper!.slideTo(
                 paginationCompressed ? (page - 1) * visibleCount : page - 1,
               );

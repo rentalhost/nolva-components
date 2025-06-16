@@ -39,6 +39,10 @@ interface Props extends PropsWithChildren {
      * Container children.
      */
     children?: ReactNode;
+    /**
+     * Callback fired when the animation starts.
+     */
+    onAnimate?(this: void): void;
 }
-export declare function Animate({ effect, duration, easing, always, threshold, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Animate({ effect, duration, easing, always, threshold, className, children, onAnimate, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

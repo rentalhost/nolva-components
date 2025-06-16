@@ -60,6 +60,11 @@ interface Props extends PropsWithChildren {
    * Container children.
    */
   children?: ReactNode;
+
+  /**
+   * Callback fired when the animation starts.
+   */
+  onAnimate?(this: void): void;
 }
 
 const effects: Record<NonNullable<Props["effect"]>, string> = {
@@ -80,6 +85,7 @@ export function Animate({
   threshold,
   className,
   children,
+  onAnimate,
 }: Props) {
   const animateRef = useRef<HTMLDivElement>(null);
 
@@ -90,10 +96,14 @@ export function Animate({
   }, [ref]);
 
   useEffect(() => {
-    if (visible && !always) {
-      disconnect();
+    if (visible) {
+      onAnimate?.();
+
+      if (!always) {
+        disconnect();
+      }
     }
-  }, [always, disconnect, visible]);
+  }, [always, disconnect, onAnimate, visible]);
 
   return (
     <div

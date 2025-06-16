@@ -32,6 +32,10 @@ interface Props {
      * Determines the class name of the share container.
      */
     className?: string;
+    /**
+     * Determines the callback when a network is clicked.
+     */
+    onShare?(this: void, network: string, documentUrl: string, documentTitle: string): void;
 }
-export declare function Share({ text, title, url, networks, networkClassName, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Share({ text, title, url, networks, networkClassName, className, onShare, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

@@ -43,6 +43,11 @@ interface Props {
    * The class name of the touch icon.
    */
   touchIconClassName?: string;
+
+  /**
+   * The callback when the user flips the card.
+   */
+  onFlip?(this: void, viewpoint: "back" | "front"): void;
 }
 
 const baseClassName =
@@ -57,6 +62,7 @@ export function FlipCard({
   contentBack,
   heightController = "front",
   touchIconClassName,
+  onFlip,
 }: Props) {
   const [flip, setFlip] = useState(false);
 
@@ -74,9 +80,14 @@ export function FlipCard({
         } as CSSProperties
       }
       onClick={() => {
+        onFlip?.("back");
         setFlip((state) => !state);
       }}
+      onMouseEnter={() => {
+        onFlip?.("back");
+      }}
       onMouseLeave={() => {
+        onFlip?.("front");
         setFlip(false);
       }}
     >

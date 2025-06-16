@@ -131,6 +131,10 @@ interface Props extends PropsWithChildren {
      * Container children.
      */
     children?: ReactNode;
+    /**
+     * Callback fired when the slider navigates to a new slide.
+     */
+    onNavigate?(this: void): void;
 }
-export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, onNavigate, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

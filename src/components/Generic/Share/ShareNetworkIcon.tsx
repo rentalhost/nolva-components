@@ -9,9 +9,16 @@ interface Props {
   title: string;
   url: string;
   className?: string;
+  onClick(this: void): void;
 }
 
-export function ShareNetworkIcon({ network, title, url, className }: Props) {
+export function ShareNetworkIcon({
+  network,
+  title,
+  url,
+  className,
+  onClick,
+}: Props) {
   const NetworkIcon = network.icon;
 
   return (
@@ -25,6 +32,7 @@ export function ShareNetworkIcon({ network, title, url, className }: Props) {
         network.className,
         className,
       )}
+      onClick={onClick}
     >
       <NetworkIcon className="size-full" />
     </Link>

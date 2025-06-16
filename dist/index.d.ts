@@ -1,4 +1,5 @@
 export { AnalyticsProvider } from "./components/Analytics/Analytics/AnalyticsProvider";
+export { AnalyticsViewport } from "./components/Analytics/Analytics/AnalyticsViewport";
 export { Animate } from "./components/Animate/Animate/Animate";
 export { Button } from "./components/Form/Button/Button";
 export { Form } from "./components/Form/Form/Form";

@@ -1,8 +1,3 @@
-"use client";
-
-import { useEffect } from "react";
-
-import { useInViewport } from "@/services/hooks/useInViewport";
 import { twMerge } from "@/services/TailwindMergeService";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
@@ -31,11 +26,6 @@ interface Props extends PropsWithChildren {
    * Container children.
    */
   children?: ReactNode;
-
-  /**
-   * Function to be called when the container is in the viewport.
-   */
-  onInViewport?(this: void): void;
 }
 
 export function Container({
@@ -43,19 +33,9 @@ export function Container({
   fluid = false,
   className,
   children,
-  onInViewport,
 }: Props) {
-  const { ref, visible } = useInViewport();
-
-  useEffect(() => {
-    if (visible) {
-      onInViewport?.();
-    }
-  }, [onInViewport, visible]);
-
   return (
     <div
-      ref={ref}
       data-component="Container"
       className={twMerge(
         "w-full px-[--spacing(var(--padding-x))]",

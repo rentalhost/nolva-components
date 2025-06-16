@@ -302,7 +302,7 @@ export function Slider({
           keyboard={{ enabled: true, onlyInViewport: true }}
           loopAddBlankSlides={false}
           speed={speed * visibleCount}
-          onSliderMove={({ realIndex }) => {
+          onSlideChange={({ realIndex }) => {
             setIndex(realIndex);
           }}
           onTouchEnd={() => {

@@ -2,8 +2,8 @@
 
 import { useContext } from "react";
 
+import { inputClassName } from "@/components/Form/fixtures";
 import { FormContext } from "@/components/Form/Form/FormProvider";
-import { inputClassName } from "@/components/Form/Input/Input";
 import { LabelContext } from "@/components/Form/Label/LabelProvider";
 import { twMerge } from "@/services/TailwindMergeService";
 

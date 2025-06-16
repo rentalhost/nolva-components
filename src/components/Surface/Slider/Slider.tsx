@@ -302,8 +302,11 @@ export function Slider({
           keyboard={{ enabled: true, onlyInViewport: true }}
           loopAddBlankSlides={false}
           speed={speed * visibleCount}
-          onSlideChange={({ realIndex }) => {
+          onSliderMove={({ realIndex }) => {
             setIndex(realIndex);
+          }}
+          onTouchEnd={() => {
+            onNavigate?.();
           }}
           onResize={({ params: { slidesPerView } }) => {
             if (typeof slidesPerView === "number") {

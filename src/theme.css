@@ -26,6 +26,8 @@
 }
 
 @theme {
+  --default-transition-duration: 300ms;
+
   --container-container: var(--container-7xl);
 
   --breakpoint-mobile: 48rem;

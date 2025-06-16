@@ -29,6 +29,11 @@ export function useInViewport(
     observer.current = null;
   }, []);
 
+  const visibleAfterLeavingViewport = useCallback(
+    (rect: DOMRect) => considerVisibleAfterLeavingViewport && rect.top < 0,
+    [considerVisibleAfterLeavingViewport],
+  );
+
   const ref = useCallback(
     (element: Element | null | undefined) => {
       disconnect();
@@ -38,8 +43,7 @@ export function useInViewport(
           ([entry]) => {
             setVisible(
               entry!.isIntersecting ||
-                (considerVisibleAfterLeavingViewport &&
-                  entry!.boundingClientRect.top < 0),
+                visibleAfterLeavingViewport(entry!.boundingClientRect),
             );
           },
           typeof threshold === "number"
@@ -49,9 +53,13 @@ export function useInViewport(
 
         observerNew.observe(element);
         observer.current = observerNew;
+
+        if (visibleAfterLeavingViewport(element.getBoundingClientRect())) {
+          setVisible(true);
+        }
       }
     },
-    [considerVisibleAfterLeavingViewport, disconnect, threshold],
+    [disconnect, threshold, visibleAfterLeavingViewport],
   );
 
   return { ref, visible, disconnect } as const;

@@ -1,3 +1,4 @@
+import type { Threshold } from "../../../services/hooks/useInViewport";
 import type { PropsWithChildren, ReactNode } from "react";
 interface Props extends PropsWithChildren {
     /**
@@ -27,9 +28,9 @@ interface Props extends PropsWithChildren {
     /**
      * Animation threshold.
      *
-     * Defaults to `0.1` (10%).
+     * Defaults to `25px`.
      */
-    threshold?: number;
+    threshold?: Threshold;
     /**
      * Container children.
      */

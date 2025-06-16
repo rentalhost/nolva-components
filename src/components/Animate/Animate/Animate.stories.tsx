@@ -50,7 +50,7 @@ export const Example: StoryObj<typeof Animate> = {
   render: exampleRender,
   args: {
     always: true,
-    effect: "slideDown",
+    effect: "slideUp",
     children: (
       <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>
     ),

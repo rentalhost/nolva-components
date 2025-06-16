@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { animate } from "@/services/AnimateService";
+import { useInViewport } from "@/services/hooks/useInViewport";
 
 import type { Easing } from "@/services/AnimateService";
 import type { CSSProperties } from "react";
@@ -61,26 +62,16 @@ export function Counter({
   easing,
   className,
 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const { ref, visible, disconnect } = useInViewport(0.25);
 
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry!.isIntersecting) {
-        unload();
-        animate(duration, setProgress, easing);
-      }
-    });
-
-    function unload() {
-      observer.disconnect();
+    if (visible) {
+      disconnect();
+      animate(duration, setProgress, easing);
     }
-
-    observer.observe(ref.current!);
-
-    return unload;
-  }, [duration, easing]);
+  }, [disconnect, duration, easing, visible]);
 
   return (
     <div

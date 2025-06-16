@@ -121,3 +121,23 @@ export const FixedExample: StoryObj<typeof Header> = {
     children: <HeaderContainerFixture />,
   },
 };
+
+export const SimplifiedExample: StoryObj<typeof Header> = {
+  render(args) {
+    return (
+      <>
+        <Header {...args} />
+
+        <div className="h-screen bg-blue-100 p-4">
+          <div className="h-32 w-32 outline">Example</div>
+        </div>
+      </>
+    );
+  },
+  args: {
+    position: "fixed",
+    className:
+      "border-b border-theme-300 shadow-xs/5 min-h-12 stuck:min-h-10 transition-all group stuck:text-sm",
+    children: <HeaderContainerFixture />,
+  },
+};

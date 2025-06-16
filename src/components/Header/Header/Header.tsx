@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
-import { listenScroll } from "@/services/EventService";
+import { useInViewport } from "@/services/hooks/useInViewport";
 import { twMerge } from "@/services/TailwindMergeService";
 
-import type { PropsWithChildren, ReactNode } from "react";
+import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
   /**
@@ -47,32 +45,30 @@ export function Header({
   className,
   children,
 }: Props) {
-  const headerRef = useRef<HTMLDivElement>(null);
+  const { ref, visible } = useInViewport("1px", true);
 
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    if (["static", "relative"].includes(position)) {
-      return;
-    }
-
-    return listenScroll(() => {
-      setIsSticky(document.scrollingElement!.scrollTop > stickAfter);
-    });
-  }, [position, stickAfter]);
+  const isStuck =
+    visible && !["static", "relative", "absolute"].includes(position);
 
   return (
-    <header
-      ref={headerRef}
-      data-component="Header"
-      data-stuck={isSticky || undefined}
-      className={twMerge(
-        "flex bg-theme-50 inset-x-0 top-0 z-20",
-        position,
-        className,
-      )}
-    >
-      {children}
-    </header>
+    <>
+      <header
+        data-component="Header"
+        data-stuck={isStuck || undefined}
+        className={twMerge(
+          "flex bg-theme-50 inset-x-0 top-0 z-20",
+          position,
+          className,
+        )}
+      >
+        {children}
+      </header>
+
+      <div
+        ref={ref}
+        className="absolute top-[calc(100vh+var(--offset-y))]"
+        style={{ "--offset-y": `${stickAfter}px` } as CSSProperties}
+      />
+    </>
   );
 }

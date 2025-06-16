@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import { listenScroll } from "@/services/EventService";
+import { useInViewport } from "@/services/hooks/useInViewport";
 import { twMerge } from "@/services/TailwindMergeService";
-import { inViewport } from "@/services/WindowService";
 
+import type { Threshold } from "@/services/hooks/useInViewport";
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
@@ -46,9 +46,9 @@ interface Props extends PropsWithChildren {
   /**
    * Animation threshold.
    *
-   * Defaults to `0.1` (10%).
+   * Defaults to `25px`.
    */
-  threshold?: number;
+  threshold?: Threshold;
 
   /**
    * Container children.
@@ -65,40 +65,31 @@ const effects: Record<NonNullable<Props["effect"]>, string> = {
   zoomOut: "not-data-animated:*:scale-125",
 } as const;
 
-function isHTMLElement(node: unknown): node is HTMLElement {
-  return node instanceof HTMLElement;
-}
-
 export function Animate({
   effect,
   duration = 400,
   easing = "ease-out",
   always = false,
-  threshold = 0.1,
+  threshold,
   children,
 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const animateRef = useRef<HTMLDivElement>(null);
 
-  const [visible, setVisible] = useState(false);
+  const { ref, visible, disconnect } = useInViewport(threshold, true);
 
-  useEffect(
-    () =>
-      listenScroll((unload) => {
-        const child = ref.current?.firstElementChild;
-        const isVisible = isHTMLElement(child) && inViewport(child, threshold);
+  useEffect(() => {
+    ref(animateRef.current?.firstElementChild);
+  }, [ref]);
 
-        setVisible(isVisible);
-
-        if (!always && isVisible) {
-          unload();
-        }
-      }),
-    [always, threshold],
-  );
+  useEffect(() => {
+    if (visible && !always) {
+      disconnect();
+    }
+  }, [always, disconnect, visible]);
 
   return (
     <div
-      ref={ref}
+      ref={animateRef}
       data-component="Animate"
       data-animated={visible || undefined}
       className={twMerge(

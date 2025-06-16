@@ -54,7 +54,11 @@ export function Input({
       data-component="Input"
       suppressHydrationWarning
       className={twMerge(inputClassName, className)}
-      placeholder={focused === true ? placeholder : primaryPlaceholder}
+      placeholder={
+        primaryPlaceholder === undefined || focused === true
+          ? placeholder
+          : primaryPlaceholder
+      }
       {...props}
     />
   );

@@ -22,7 +22,11 @@ export function Textarea({
       data-component="Textarea"
       suppressHydrationWarning
       className={twMerge(inputClassName, className)}
-      placeholder={focused === true ? placeholder : primaryPlaceholder}
+      placeholder={
+        primaryPlaceholder === undefined || focused === true
+          ? placeholder
+          : primaryPlaceholder
+      }
       {...props}
     />
   );

@@ -12,6 +12,10 @@ interface Props {
      */
     quality?: number;
     /**
+     * Determines if the image should be loaded as a priority.
+     */
+    priority?: boolean;
+    /**
      * Use unoptimized image mode.
      */
     unoptimized?: boolean;
@@ -21,5 +25,5 @@ interface Props {
     className?: string;
 }
 export declare const allowedExtensions: readonly ["jpg", "png", "webp"];
-export declare function MediaImage({ src, alt, quality, unoptimized, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function MediaImage({ src, alt, quality, priority, unoptimized, className, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

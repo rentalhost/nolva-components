@@ -23,6 +23,11 @@ interface Props {
   quality?: number;
 
   /**
+   * Determines if the image should be loaded as a priority.
+   */
+  priority?: boolean;
+
+  /**
    * Use unoptimized image mode.
    */
   unoptimized?: boolean;
@@ -42,6 +47,7 @@ export function MediaImage({
   src,
   alt,
   quality,
+  priority,
   unoptimized,
   className,
 }: Props) {
@@ -70,6 +76,7 @@ export function MediaImage({
       height={0}
       alt={alt}
       quality={quality}
+      priority={priority}
       unoptimized={unoptimized}
       data-component="MediaImage"
       className={twMerge("w-full", className)}

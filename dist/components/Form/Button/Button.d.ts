@@ -1,6 +1,7 @@
-import type { PropsWithChildren } from "react";
+import type { ComponentProps, PropsWithChildren } from "react";
 import type { JSX } from "react/jsx-runtime";
 interface Props extends PropsWithChildren {
+    type?: ComponentProps<"button">["type"];
     /**
      * Determines if the button is disabled.
      */
@@ -21,5 +22,5 @@ interface Props extends PropsWithChildren {
      */
     className?: string;
 }
-export declare function Button({ disabled, fill, className, asChild, children, }: Props): JSX.Element;
+export declare function Button({ type, disabled, fill, className, asChild, children, }: Props): JSX.Element;
 export {};

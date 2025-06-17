@@ -2,10 +2,12 @@ import { cloneElement, isValidElement } from "react";
 
 import { twMerge } from "@/services/TailwindMergeService";
 
-import type { PropsWithChildren } from "react";
+import type { ComponentProps, PropsWithChildren } from "react";
 import type { JSX } from "react/jsx-runtime";
 
 interface Props extends PropsWithChildren {
+  type?: ComponentProps<"button">["type"];
+
   /**
    * Determines if the button is disabled.
    */
@@ -31,6 +33,7 @@ interface Props extends PropsWithChildren {
 }
 
 export function Button({
+  type = "button",
   disabled = false,
   fill = "solid",
   className,
@@ -61,7 +64,8 @@ export function Button({
 
   return (
     <button
-      type="button"
+      // eslint-disable-next-line react/button-has-type
+      type={type}
       disabled={disabled}
       data-component="Button"
       data-theme={fill}

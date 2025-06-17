@@ -33,6 +33,14 @@ export {
 } from "@/services/MutationService";
 
 export { useAnalytics } from "@/services/hooks/useAnalytics";
+export { useImmediateRef } from "@/services/hooks/useImmediateRef";
+export { useInViewport } from "@/services/hooks/useInViewport";
+
+export { range } from "@/services/ArrayService";
+
+export { clamp } from "@/services/NumberService";
+
+export { generateQueryString } from "@/services/UrlService";
 
 export { twMerge } from "@/services/TailwindMergeService";
 export { twJoin } from "tailwind-merge";

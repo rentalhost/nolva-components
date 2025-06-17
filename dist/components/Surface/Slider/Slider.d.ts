@@ -1,6 +1,6 @@
 import { SliderArrow } from "./SliderArrow";
 import type { ArrowAdvance } from "./SliderArrow";
-import type { Breakpoints } from "../../../services/ResponsiveService";
+import type { Breakpoints } from "../../../services/SwiperService";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 interface Props extends PropsWithChildren {
     /**

@@ -1,4 +1,3 @@
-import type { Breakpoints } from "@/services/ResponsiveService";
 import type { SwiperOptions } from "swiper/types";
 
 const allBreakpoints = {
@@ -11,6 +10,7 @@ const allBreakpoints = {
 } as const;
 
 type BreakpointName = keyof typeof allBreakpoints;
+export type Breakpoints = Partial<Record<BreakpointName, number>>;
 
 function fillBreakpoints(rawBreakpoints: Breakpoints | number) {
   const breakpoints =

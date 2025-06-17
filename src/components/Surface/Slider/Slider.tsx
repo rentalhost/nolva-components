@@ -19,7 +19,7 @@ import { normalizeBreakpoints } from "@/services/SwiperService";
 import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
-import type { Breakpoints } from "@/services/ResponsiveService";
+import type { Breakpoints } from "@/services/SwiperService";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import type { SwiperClass } from "swiper/react";
 

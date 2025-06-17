@@ -1,1 +1,0 @@
-let e=["xs","sm","md","lg","xl","2xl"];export function normalizeBreakpoints(t,n,r,i){var o;return o=void 0===n?{xs:0}:"number"==typeof n?{xs:n}:n,Object.fromEntries(e.map(n=>[t+n,function(t,n,r,i){for(let r=e.indexOf(n);r>=0;r--){let n=e[r];if(n in t){let e=t[n];return void 0===i?e:Math.min(e,i)}}return r}(o,n,r,i)]))}

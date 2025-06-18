@@ -15,6 +15,7 @@ interface Props extends PropsWithChildren {
    * Defaults to none (respects `fadeEffect`).
    */
   effect?:
+    | "fade"
     | "none"
     | "slideDown"
     | "slideLeft"
@@ -69,6 +70,7 @@ interface Props extends PropsWithChildren {
 
 const effects: Record<NonNullable<Props["effect"]>, string> = {
   none: "",
+  fade: "",
   slideDown: "not-data-animated:*:-translate-y-1/2",
   slideLeft: "not-data-animated:*:translate-x-1/2",
   slideRight: "not-data-animated:*:-translate-x-1/2",
@@ -78,7 +80,7 @@ const effects: Record<NonNullable<Props["effect"]>, string> = {
 } as const;
 
 export function Animate({
-  effect,
+  effect = "fade",
   duration = 400,
   easing = "ease-out",
   always = false,
@@ -113,7 +115,7 @@ export function Animate({
       className={twMerge(
         "contents *:transition *:duration-(--animate-duration) *:ease-(--animate-easing)",
         effect !== "none" && "not-data-animated:*:opacity-0",
-        effect === undefined ? undefined : effects[effect],
+        effects[effect],
         className,
       )}
       style={

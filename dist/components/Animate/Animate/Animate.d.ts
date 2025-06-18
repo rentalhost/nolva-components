@@ -6,7 +6,7 @@ interface Props extends PropsWithChildren {
      *
      * Defaults to none (respects `fadeEffect`).
      */
-    effect?: "none" | "slideDown" | "slideLeft" | "slideRight" | "slideUp" | "zoomIn" | "zoomOut";
+    effect?: "fade" | "none" | "slideDown" | "slideLeft" | "slideRight" | "slideUp" | "zoomIn" | "zoomOut";
     /**
      * Animation duration.
      *

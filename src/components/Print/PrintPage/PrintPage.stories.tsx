@@ -1,5 +1,8 @@
+import { renderToStaticMarkup } from "react-dom/server";
+
 import { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
 import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
+import { transformHTML } from "@/services/HTMLService";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
@@ -41,6 +44,41 @@ export const SinglePage: StoryObj<typeof PrintPage> = {
         <h1 className="text-3xl font-semibold">Hello world!</h1>
 
         <p>Lorem ipsum dolor sit.</p>
+
+        <code className="my-4 grid gap-y-4 whitespace-pre-line text-sm">
+          {(() => {
+            const transformed = transformHTML(
+              "TextNode\n" +
+                '<p class="text-blue-600" data-skip data-allowed>p</p>\n' +
+                '<div style="color: blue;">div <strong data-skip>strong</strong></div>\n' +
+                '<mark>mark <strong style="color: red;" data-skip>strong</strong></mark>\n' +
+                "<dl data-skip data-allowed><em data-skip data-allowed>replace</em></dl>\n" +
+                "<br />\n" +
+                "<!-- !comment -->",
+              [
+                ["em", ["data-allowed"]],
+                ["p", ["data-allowed"]],
+                [
+                  "dl",
+                  ["data-allowed"],
+                  (props, children) => (
+                    <div className="text-green-600" {...props}>
+                      <span data-ignore>{children}</span>
+                    </div>
+                  ),
+                ],
+              ],
+            );
+
+            return (
+              <>
+                <div>{renderToStaticMarkup(transformed)}</div>
+
+                {transformed}
+              </>
+            );
+          })()}
+        </code>
       </>
     ),
   },

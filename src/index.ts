@@ -27,16 +27,19 @@ export { Slider } from "@/components/Surface/Slider/Slider";
 export { Theme } from "@/components/Theme/Theme/Theme";
 
 export { listenWindowEvent, listenScroll } from "@/services/EventService";
-export {
-  listenMutationObserver,
-  listenResizeObserver,
-} from "@/services/MutationService";
 
 export { useAnalytics } from "@/services/hooks/useAnalytics";
 export { useImmediateRef } from "@/services/hooks/useImmediateRef";
 export { useInViewport } from "@/services/hooks/useInViewport";
 
 export { range } from "@/services/ArrayService";
+
+export { transformHTML } from "@/services/HTMLService";
+
+export {
+  listenMutationObserver,
+  listenResizeObserver,
+} from "@/services/MutationService";
 
 export { clamp } from "@/services/NumberService";
 

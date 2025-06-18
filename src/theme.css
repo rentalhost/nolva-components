@@ -19,10 +19,6 @@
       @apply overflow-hidden;
     }
   }
-
-  a {
-    @apply inline-block;
-  }
 }
 
 @theme {

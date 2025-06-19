@@ -6,6 +6,7 @@ import { useState } from "react";
 import { YoutubePlay } from "@/components/Surface/Media/fixtures/YoutubePlay";
 import { Media } from "@/components/Surface/Media/Media";
 import { twMerge } from "@/services/TailwindMergeService";
+import { getVideoYoutubeThumbnail } from "@/services/VideoService";
 
 interface Props {
   /**
@@ -85,7 +86,7 @@ export function MediaVideoYoutube({
       ) : (
         <>
           <Media
-            src={`https://i.ytimg.com/vi_webp/${id}/sddefault.webp`}
+            src={getVideoYoutubeThumbnail(id)}
             alt="thumbnail"
             className={twMerge(
               "size-full absolute object-cover transition group-hover/thumbnail:scale-105",

@@ -1,0 +1,1 @@
+import e from"get-video-id";export function getVideoYoutubeThumbnail(e){return`https://i.ytimg.com/vi_webp/${e}/sddefault.webp`}export function getVideoThumbnail(t){let i=e(t);return"youtube"===i.service?getVideoYoutubeThumbnail(i.id):null}

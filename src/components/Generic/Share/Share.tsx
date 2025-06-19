@@ -132,6 +132,7 @@ export function Share({
             network={allNetworks[network]}
             title={documentTitle}
             url={documentUrl}
+            suppressHydrationWarning
             className={networkClassName}
             onClick={() => {
               onShare?.(network, documentUrl, documentTitle);

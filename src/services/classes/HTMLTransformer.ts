@@ -144,7 +144,7 @@ export class HTMLTransformer {
       }
 
       if (!this.tags.has(child.tagName)) {
-        return this.processChildren(child.children);
+        return null;
       }
 
       const tagAttributes: Record<string, unknown> = {};

@@ -5,7 +5,7 @@ import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
 import { HTMLTransformer } from "@/services/classes/HTMLTransformer";
 
 import type { Meta, StoryObj } from "@storybook/react";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 
 export default {
   component: PrintPage,
@@ -56,7 +56,6 @@ defaultTransformer.setTextReplacer((text) => {
   return text;
 });
 
-defaultTransformer.setTagReplacer("dd", () => null);
 defaultTransformer.setTagReplacer(
   "dl",
   ({ "data-skip": _, children, ...props }) => (
@@ -66,6 +65,11 @@ defaultTransformer.setTagReplacer(
       </span>
     </div>
   ),
+);
+
+defaultTransformer.setTagReplacer(
+  "mark",
+  ({ children }) => children as Awaited<ReactNode>,
 );
 
 export const SinglePage: StoryObj<typeof PrintPage> = {
@@ -85,6 +89,7 @@ export const SinglePage: StoryObj<typeof PrintPage> = {
                 '<mark>mark <strong style="color: red;" data-skip>strong</strong></mark>\n' +
                 "<dl data-skip data-allowed><em data-skip data-allowed>replace</em></dl>\n" +
                 "<dd>remove</dd>" +
+                "<script>remove</script>" +
                 "<br />\n" +
                 "<!-- !comment -->",
             );

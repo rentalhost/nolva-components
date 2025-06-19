@@ -121,7 +121,13 @@ export function transformHTML(input: string, replacers?: Replacer[]) {
               baseAttributes.has(attributeName) ||
               replacerAttributes?.includes(attributeName) === true
             ) {
-              tagAttribs[attributeName] = attributeValue;
+              if (attributeName === "style") {
+                setStyleProp(attributeValue, tagAttribs);
+              } else if (attributeName === "class") {
+                tagAttribs["className"] = attributeValue;
+              } else {
+                tagAttribs[attributeName] = attributeValue;
+              }
             }
           }
 
@@ -140,15 +146,6 @@ export function transformHTML(input: string, replacers?: Replacer[]) {
             );
           }
         }
-      }
-
-      if (typeof tagAttribs["style"] === "string") {
-        setStyleProp(tagAttribs["style"], tagAttribs);
-      }
-
-      if (typeof tagAttribs["class"] === "string") {
-        tagAttribs["className"] = tagAttribs["class"];
-        delete tagAttribs["class"];
       }
 
       return createElement(

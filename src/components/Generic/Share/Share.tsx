@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaShareFromSquare } from "react-icons/fa6";
 
 import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
@@ -63,11 +63,13 @@ interface Props {
   ): void;
 }
 
+const allNetworksKeys = Object.keys(allNetworks) as ShareNetworkName[];
+
 export function Share({
   text = "Share",
   title,
   url,
-  networks = Object.keys(allNetworks) as ShareNetworkName[],
+  networks = allNetworksKeys,
   networkClassName,
   className,
   onShare,
@@ -75,13 +77,17 @@ export function Share({
   const [documentTitle, setDocumentTitle] = useState<string>(title ?? "");
   const [documentUrl, setDocumentUrl] = useState<string>(url ?? "");
 
-  const selectedNetworks = useMemo(
-    () =>
-      networks.includes("native") && !("share" in navigator)
-        ? networks.filter((network) => network !== "native")
-        : networks,
-    [networks],
+  const [selectedNetworks, setSelectedNetworks] = useState<ShareNetworkName[]>(
+    [],
   );
+
+  useEffect(() => {
+    setSelectedNetworks(
+      networks.includes("native") && !("share" in navigator)
+        ? [...networks].filter((network) => network !== "native")
+        : networks,
+    );
+  }, [networks]);
 
   useEffect(() => {
     if (title !== undefined) {
@@ -106,10 +112,6 @@ export function Share({
       setDocumentUrl(getSimplifiedUrl());
     });
   }, [url]);
-
-  if (typeof window === "undefined") {
-    return null;
-  }
 
   return (
     <div

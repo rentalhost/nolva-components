@@ -37,5 +37,5 @@ interface Props {
      */
     onShare?(this: void, network: string, documentUrl: string, documentTitle: string): void;
 }
-export declare function Share({ text, title, url, networks, networkClassName, className, onShare, }: Props): import("react/jsx-runtime").JSX.Element | null;
+export declare function Share({ text, title, url, networks, networkClassName, className, onShare, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

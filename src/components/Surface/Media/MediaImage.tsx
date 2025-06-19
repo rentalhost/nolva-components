@@ -38,7 +38,7 @@ interface Props {
   className?: string;
 }
 
-export const allowedExtensions = ["jpg", "png", "webp"] as const;
+export const allowedExtensions = ["jpg", "jpeg", "png", "webp", "gif"] as const;
 
 const emptySrc =
   "data:image/webp;base64,UklGRhYAAABXRUJQVlA4TAoAAAAvAAAAAEX/I/of";

@@ -24,6 +24,6 @@ interface Props {
      */
     className?: string;
 }
-export declare const allowedExtensions: readonly ["jpg", "png", "webp"];
+export declare const allowedExtensions: readonly ["jpg", "jpeg", "png", "webp", "gif"];
 export declare function MediaImage({ src, alt, quality, priority, unoptimized, className, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

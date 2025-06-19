@@ -124,6 +124,7 @@ export function Share({
       <div
         className="grid grid-cols-[repeat(var(--networks-count),1fr)] gap-2 text-white"
         style={{ "--networks-count": selectedNetworks.length } as CSSProperties}
+        suppressHydrationWarning
       >
         {selectedNetworks.map((network) => (
           <ShareNetworkIcon

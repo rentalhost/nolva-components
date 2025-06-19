@@ -146,6 +146,11 @@ export function transformHTML(input: string, replacers?: Replacer[]) {
         setStyleProp(tagAttribs["style"], tagAttribs);
       }
 
+      if (typeof tagAttribs["class"] === "string") {
+        tagAttribs["className"] = tagAttribs["class"];
+        delete tagAttribs["class"];
+      }
+
       return createElement(
         domNode.tagName,
         tagAttribs,

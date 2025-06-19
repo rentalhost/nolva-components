@@ -18,13 +18,30 @@ interface Props {
    */
   className?: string;
 
+  /**
+   * The class name of the iframe.
+   */
   iframeClassName?: string;
 
+  /**
+   * The class name of the thumbnail.
+   */
   thumbnailClassName?: string;
 
+  /**
+   * The class name of the overlay.
+   */
   overlayClassName?: string;
 
+  /**
+   * The class name of the play button.
+   */
   playClassName?: string;
+
+  /**
+   * The callback when the play button is clicked.
+   */
+  onPlay?(this: void, id: string): void;
 }
 
 export function MediaVideoYoutube({
@@ -34,6 +51,7 @@ export function MediaVideoYoutube({
   thumbnailClassName,
   overlayClassName,
   playClassName,
+  onPlay,
 }: Props) {
   const [play, setPlay] = useState(false);
 
@@ -46,7 +64,13 @@ export function MediaVideoYoutube({
         className,
       )}
       onClick={() => {
-        setPlay(true);
+        setPlay((state) => {
+          if (!state) {
+            onPlay?.(id);
+          }
+
+          return true;
+        });
       }}
     >
       {play ? (
@@ -79,7 +103,7 @@ export function MediaVideoYoutube({
 
           <YoutubePlay
             className={twMerge(
-              "absolute bottom-2.5 right-2.5 w-16 shadow-lg shadow-theme-950/25 transition group-hover/thumbnail:scale-105",
+              "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 shadow-lg shadow-theme-950/25 transition group-hover/thumbnail:scale-115",
               playClassName,
             )}
           />

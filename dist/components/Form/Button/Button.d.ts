@@ -1,11 +1,12 @@
-import type { ComponentProps, PropsWithChildren } from "react";
+import type { ComponentProps } from "react";
 import type { JSX } from "react/jsx-runtime";
-interface Props extends PropsWithChildren {
-    type?: ComponentProps<"button">["type"];
+interface Props extends ComponentProps<"button"> {
     /**
-     * Determines if the button is disabled.
+     * The type of the button.
+     *
+     * Defaults to "button".
      */
-    disabled?: boolean;
+    type?: ComponentProps<"button">["type"];
     /**
      * Specifies the fill style of the button.
      * Can be "outline", "solid", or "transparent".
@@ -17,10 +18,6 @@ interface Props extends PropsWithChildren {
      * If true, the button will render as a child element.
      */
     asChild?: boolean;
-    /**
-     * Additional CSS classes to apply to the button.
-     */
-    className?: string;
 }
-export declare function Button({ type, disabled, fill, className, asChild, children, }: Props): JSX.Element;
+export declare function Button({ type, disabled, fill, className, asChild, children, ...props }: Props): JSX.Element;
 export {};

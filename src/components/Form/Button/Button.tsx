@@ -2,16 +2,16 @@ import { cloneElement, isValidElement } from "react";
 
 import { twMerge } from "@/services/TailwindMergeService";
 
-import type { ComponentProps, PropsWithChildren } from "react";
+import type { ComponentProps } from "react";
 import type { JSX } from "react/jsx-runtime";
 
-interface Props extends PropsWithChildren {
-  type?: ComponentProps<"button">["type"];
-
+interface Props extends ComponentProps<"button"> {
   /**
-   * Determines if the button is disabled.
+   * The type of the button.
+   *
+   * Defaults to "button".
    */
-  disabled?: boolean;
+  type?: ComponentProps<"button">["type"];
 
   /**
    * Specifies the fill style of the button.
@@ -25,11 +25,6 @@ interface Props extends PropsWithChildren {
    * If true, the button will render as a child element.
    */
   asChild?: boolean;
-
-  /**
-   * Additional CSS classes to apply to the button.
-   */
-  className?: string;
 }
 
 export function Button({
@@ -39,6 +34,7 @@ export function Button({
   className,
   asChild = false,
   children,
+  ...props
 }: Props) {
   const buttonClassName = twMerge(
     "inline-flex gap-x-2 items-center justify-center",
@@ -70,6 +66,7 @@ export function Button({
       data-component="Button"
       data-theme={fill}
       className={buttonClassName}
+      {...props}
     >
       {children}
     </button>

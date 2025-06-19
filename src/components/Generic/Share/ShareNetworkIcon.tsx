@@ -26,10 +26,6 @@ export function ShareNetworkIcon({
   const NetworkIcon = network.icon;
 
   if (network.url === "native") {
-    if (typeof window === "undefined") {
-      return;
-    }
-
     return (
       <div
         data-component="ShareNetworkIconNative"

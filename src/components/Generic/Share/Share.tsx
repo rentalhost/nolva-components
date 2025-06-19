@@ -107,6 +107,10 @@ export function Share({
     });
   }, [url]);
 
+  if (typeof window === "undefined") {
+    return null;
+  }
+
   return (
     <div
       data-component="Share"

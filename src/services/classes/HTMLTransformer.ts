@@ -6,11 +6,11 @@ import styleProps from "style-to-js";
 import type { ChildNode } from "domhandler";
 import type { ComponentProps, ElementType, ReactNode } from "react";
 
-type TextReplacerCallback = (text: string) => Awaited<ReactNode>;
+type TextReplacerCallback = (text: string) => ReactNode;
 
 type TagReplacerCallback<T extends ElementType> = (
   props: ComponentProps<T> & Record<string, unknown>,
-) => Awaited<ReactNode>;
+) => ReactNode;
 
 export class HTMLTransformer {
   private readonly attributes = new Set<string>();
@@ -130,7 +130,7 @@ export class HTMLTransformer {
     return this.processChildren(handler.dom);
   }
 
-  private processChild(child: ChildNode): Awaited<ReactNode> {
+  private processChild(child: ChildNode): ReactNode {
     if (child instanceof Text) {
       return this.textReplacement?.(child.data) ?? child.data;
     } else if (child instanceof Element) {

@@ -7,5 +7,5 @@ interface Props {
     suppressHydrationWarning?: boolean;
     onClick(this: void): void;
 }
-export declare function ShareNetworkIcon({ network, title, url, className, suppressHydrationWarning, onClick, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function ShareNetworkIcon({ network, title, url, className, onClick, }: Props): import("react/jsx-runtime").JSX.Element | undefined;
 export {};

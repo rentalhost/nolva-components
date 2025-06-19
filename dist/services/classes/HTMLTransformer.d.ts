@@ -1,6 +1,6 @@
 import type { ComponentProps, ElementType, ReactNode } from "react";
-type TextReplacerCallback = (text: string) => Awaited<ReactNode>;
-type TagReplacerCallback<T extends ElementType> = (props: ComponentProps<T> & Record<string, unknown>) => Awaited<ReactNode>;
+type TextReplacerCallback = (text: string) => ReactNode;
+type TagReplacerCallback<T extends ElementType> = (props: ComponentProps<T> & Record<string, unknown>) => ReactNode;
 export declare class HTMLTransformer {
     private readonly attributes;
     private readonly tags;

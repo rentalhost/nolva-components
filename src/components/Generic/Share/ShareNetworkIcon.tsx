@@ -21,17 +21,19 @@ export function ShareNetworkIcon({
   title,
   url,
   className,
-  suppressHydrationWarning,
   onClick,
 }: Props) {
   const NetworkIcon = network.icon;
 
   if (network.url === "native") {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     return (
       <div
         data-component="ShareNetworkIconNative"
         data-network={network.name.toLowerCase()}
-        suppressHydrationWarning={suppressHydrationWarning}
         className={twMerge(
           shareNetworkIconClassName,
           network.className,
@@ -53,7 +55,6 @@ export function ShareNetworkIcon({
       href={network.url({ title, url })}
       data-component="ShareNetworkIcon"
       data-network={network.name.toLowerCase()}
-      suppressHydrationWarning={suppressHydrationWarning}
       className={twMerge(
         shareNetworkIconClassName,
         network.className,

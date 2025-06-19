@@ -13,6 +13,7 @@ export declare class HTMLTransformer {
     setTextReplacer(replacement: TextReplacerCallback): void;
     setTagReplacer<T extends ElementType & string>(tagName: T, replacement: TagReplacerCallback<T>): void;
     transform(html: string): import("react").FunctionComponentElement<import("react").FragmentProps>[];
+    private processAttributes;
     private processChild;
     private processChildren;
 }

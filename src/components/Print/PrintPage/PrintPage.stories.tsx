@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
 import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
 import { HTMLTransformer } from "@/services/classes/HTMLTransformer";
+import { twMerge } from "@/services/TailwindMergeService";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps, ReactNode } from "react";
@@ -58,8 +59,11 @@ defaultTransformer.setTextReplacer((text) => {
 
 defaultTransformer.setTagReplacer(
   "dl",
-  ({ "data-skip": _, children, ...props }) => (
-    <div className="text-green-600" {...(props as object)}>
+  ({ "data-skip": _, children, className, ...props }) => (
+    <div
+      className={twMerge("text-green-600", className)}
+      {...(props as object)}
+    >
       <span data-ignore tabIndex={-1}>
         {children}
       </span>
@@ -87,7 +91,7 @@ export const SinglePage: StoryObj<typeof PrintPage> = {
                 '<p class="text-blue-600" data-skip data-allowed>p</p>\n' +
                 '<div style="color: blue;">div <strong data-skip>strong</strong></div>\n' +
                 '<mark>mark <strong style="color: red;" data-skip>strong</strong></mark>\n' +
-                "<dl data-skip data-allowed><em data-skip data-allowed>replace</em></dl>\n" +
+                '<dl class="class-example" data-skip data-allowed><em data-skip data-allowed>replace</em></dl>\n' +
                 "<dd>remove</dd>" +
                 "<script>remove</script>" +
                 "<br />\n" +

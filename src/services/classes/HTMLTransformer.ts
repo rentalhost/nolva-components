@@ -130,6 +130,27 @@ export class HTMLTransformer {
     return this.processChildren(handler.dom);
   }
 
+  private processAttributes(element: Element) {
+    const tagAttributes: Record<string, unknown> = {};
+
+    for (const [name, value] of Object.entries(element.attribs)) {
+      if (
+        this.attributes.has(name) ||
+        this.tags.get(element.tagName)?.has(name) === true
+      ) {
+        if (name === "style") {
+          tagAttributes["style"] = styleProps(value, { reactCompat: true });
+        } else if (name === "class") {
+          tagAttributes["className"] = value;
+        } else {
+          tagAttributes[name] = value;
+        }
+      }
+    }
+
+    return tagAttributes;
+  }
+
   private processChild(child: ChildNode): ReactNode {
     if (child instanceof Text) {
       return this.textReplacement?.(child.data) ?? child.data;
@@ -138,7 +159,7 @@ export class HTMLTransformer {
 
       if (replacement) {
         return replacement({
-          ...child.attribs,
+          ...this.processAttributes(child),
           children: this.processChildren(child.children),
         });
       }
@@ -147,26 +168,9 @@ export class HTMLTransformer {
         return null;
       }
 
-      const tagAttributes: Record<string, unknown> = {};
-
-      for (const [name, value] of Object.entries(child.attribs)) {
-        if (
-          this.attributes.has(name) ||
-          this.tags.get(child.tagName)?.has(name) === true
-        ) {
-          if (name === "style") {
-            tagAttributes["style"] = styleProps(value, { reactCompat: true });
-          } else if (name === "class") {
-            tagAttributes["className"] = value;
-          } else {
-            tagAttributes[name] = value;
-          }
-        }
-      }
-
       return createElement(
         child.tagName,
-        tagAttributes,
+        this.processAttributes(child),
         child.children.length === 0
           ? null
           : this.processChildren(child.children),

@@ -35,6 +35,7 @@
   },
   "include": [
     ".env.d.ts",
+    ".reset.d.ts",
     "references.d.ts",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx",

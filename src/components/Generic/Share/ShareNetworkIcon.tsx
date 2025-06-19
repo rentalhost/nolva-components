@@ -29,6 +29,7 @@ export function ShareNetworkIcon({
       <div
         data-component="ShareNetworkIconNative"
         data-network={network.name.toLowerCase()}
+        suppressHydrationWarning
         className={twMerge(
           shareNetworkIconClassName,
           network.className,

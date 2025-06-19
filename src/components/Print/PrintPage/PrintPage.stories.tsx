@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
 import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
-import { transformHTML } from "@/services/HTMLService";
+import { HTMLTransformer } from "@/services/classes/HTMLTransformer";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
@@ -37,6 +37,37 @@ export default {
 
 export const EmptyPage: StoryObj<typeof PrintPage> = {};
 
+const defaultTransformer = HTMLTransformer.createDefault();
+
+defaultTransformer.allowTag("em", ["data-allowed"]);
+defaultTransformer.allowTag("p", ["data-allowed"]);
+
+defaultTransformer.setTextReplacer((text) => {
+  if (text === "TextNode\n") {
+    return (
+      <>
+        <span>{text.trimEnd()}</span>
+
+        {"\n"}
+      </>
+    );
+  }
+
+  return text;
+});
+
+defaultTransformer.setTagReplacer("dd", () => null);
+defaultTransformer.setTagReplacer(
+  "dl",
+  ({ "data-skip": _, children, ...props }) => (
+    <div className="text-green-600" {...(props as object)}>
+      <span data-ignore tabIndex={-1}>
+        {children}
+      </span>
+    </div>
+  ),
+);
+
 export const SinglePage: StoryObj<typeof PrintPage> = {
   args: {
     children: (
@@ -47,27 +78,15 @@ export const SinglePage: StoryObj<typeof PrintPage> = {
 
         <code className="my-4 grid gap-y-4 whitespace-pre-line text-sm">
           {(() => {
-            const transformed = transformHTML(
+            const transformed = defaultTransformer.transform(
               "TextNode\n" +
                 '<p class="text-blue-600" data-skip data-allowed>p</p>\n' +
                 '<div style="color: blue;">div <strong data-skip>strong</strong></div>\n' +
                 '<mark>mark <strong style="color: red;" data-skip>strong</strong></mark>\n' +
                 "<dl data-skip data-allowed><em data-skip data-allowed>replace</em></dl>\n" +
+                "<dd>remove</dd>" +
                 "<br />\n" +
                 "<!-- !comment -->",
-              [
-                ["em", ["data-allowed"]],
-                ["p", ["data-allowed"]],
-                [
-                  "dl",
-                  ["data-allowed"],
-                  (props, children) => (
-                    <div className="text-green-600" {...props}>
-                      <span data-ignore>{children}</span>
-                    </div>
-                  ),
-                ],
-              ],
             );
 
             return (

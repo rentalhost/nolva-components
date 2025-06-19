@@ -41,6 +41,13 @@ export const VideoLocalBackgroundExample: StoryObj<typeof Media> = {
   },
 };
 
+export const VideoRemoteExample: StoryObj<typeof Media> = {
+  args: {
+    src: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
+    className: "w-128",
+  },
+};
+
 export const StaticImageExample: StoryObj<typeof Media> = {
   args: {
     src: ExampleImage,

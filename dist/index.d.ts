@@ -7,6 +7,7 @@ export { Input } from "./components/Form/Input/Input";
 export { Label } from "./components/Form/Label/Label";
 export { Textarea } from "./components/Form/Textarea/Textarea";
 export { Select } from "./components/Form/Select/Select";
+export { BackTopButton } from "./components/Generic/BackTopButton/BackTopButton";
 export { InputSearch } from "./components/Generic/InputSearch/InputSearch";
 export { Share } from "./components/Generic/Share/Share";
 export { TextClamp } from "./components/Generic/TextClamp/TextClamp";

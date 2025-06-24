@@ -13,6 +13,7 @@ export { Resource } from "./components/Generic/Resource/Resource";
 export { ResourceProvider } from "./components/Generic/Resource/ResourceProvider";
 export { Share } from "./components/Generic/Share/Share";
 export { TextClamp } from "./components/Generic/TextClamp/TextClamp";
+export { WhatsappButton } from "./components/Generic/WhatsappButton/WhatsappButton";
 export { Header } from "./components/Header/Header/Header";
 export { HeaderContainer } from "./components/Header/HeaderContainer/HeaderContainer";
 export { HeaderNav } from "./components/Header/HeaderNav/HeaderNav";

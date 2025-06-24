@@ -12,6 +12,10 @@
 @custom-variant stuck (&[data-stuck], &:has([data-forcing-overlay]));
 
 @layer base {
+  html {
+    scroll-timeline: --scroll-progress block;
+  }
+
   body {
     @apply **:empty:[is(div,span,p,h1,h2,h3,h4,h5,h6)]:hidden;
 
@@ -23,10 +27,19 @@
 
 @theme {
   --default-transition-duration: 300ms;
-
   --container-container: var(--container-7xl);
-
   --breakpoint-mobile: 48rem;
+
+  --animate-scroll-progress: scroll-progress auto;
+
+  @keyframes scroll-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
 }
 
 @theme inline {

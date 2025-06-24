@@ -1,0 +1,1 @@
+import{jsx as r}from"react/jsx-runtime";import{twMerge as e}from"../../../services/TailwindMergeService.js";export function ScrollProgress({className:i}){return r("div",{className:e("animate-scroll-progress bg-neutral-400 top-0 h-1 not-supports-scroll-timeline:hidden fixed inset-x-0  origin-left [animation-timeline:--scroll-progress]",i)})}

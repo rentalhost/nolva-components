@@ -27,6 +27,7 @@ export { FlipCard } from "@/components/Surface/FlipCard/FlipCard";
 export { Hero } from "@/components/Surface/Hero/Hero";
 export { Media } from "@/components/Surface/Media/Media";
 export { Slider } from "@/components/Surface/Slider/Slider";
+export { VLibras } from "@/components/Surface/VLibras/VLibras";
 export { Theme } from "@/components/Theme/Theme/Theme";
 
 export { HTMLTransformer } from "@/services/classes/HTMLTransformer";

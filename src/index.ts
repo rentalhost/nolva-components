@@ -34,6 +34,7 @@ export { listenWindowEvent, listenScroll } from "@/services/EventService";
 export { useAnalytics } from "@/services/hooks/useAnalytics";
 export { useImmediateRef } from "@/services/hooks/useImmediateRef";
 export { useInViewport } from "@/services/hooks/useInViewport";
+export { useLocalStorage } from "@/services/hooks/useLocalStorage";
 
 export { range } from "@/services/ArrayService";
 

@@ -20,10 +20,17 @@ interface Props {
      */
     unoptimized?: boolean;
     /**
+     * The spot of the image.
+     */
+    spot?: {
+        x: number;
+        y: number;
+    };
+    /**
      * The class name of the image.
      */
     className?: string;
 }
 export declare const allowedExtensions: readonly ["jpg", "jpeg", "png", "webp", "gif"];
-export declare function MediaImage({ src, alt, quality, priority, unoptimized, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function MediaImage({ src, alt, quality, priority, unoptimized, spot, className, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

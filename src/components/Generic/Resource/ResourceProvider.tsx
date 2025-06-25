@@ -2,8 +2,8 @@
 
 import { createContext, useEffect, useMemo, useState } from "react";
 
+import { listenWindowEvent } from "@/services/EventService";
 import { useLocalStorage } from "@/services/hooks/useLocalStorage";
-import { listenWindowEvent } from "@rentalhost/nolva-components";
 
 import type { PropsWithChildren } from "react";
 

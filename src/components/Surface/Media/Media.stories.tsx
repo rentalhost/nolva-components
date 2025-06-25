@@ -14,6 +14,17 @@ export const ImageExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/storybook.webp",
     alt: "Storybook",
+    priority: true,
+  },
+};
+
+export const ImageSpotExample: StoryObj<typeof Media> = {
+  args: {
+    src: "/assets/storybook.webp",
+    alt: "Storybook",
+    className: "w-30 h-32 object-cover",
+    spot: { x: 100.5, y: 0 },
+    priority: true,
   },
 };
 
@@ -52,6 +63,7 @@ export const StaticImageExample: StoryObj<typeof Media> = {
   args: {
     src: ExampleImage,
     alt: "Storybook",
+    priority: true,
   },
 };
 

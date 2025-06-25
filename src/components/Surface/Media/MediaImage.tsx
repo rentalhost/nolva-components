@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { listenResizeObserver } from "@/services/MutationService";
 import { twMerge } from "@/services/TailwindMergeService";
 
+import type { CSSProperties } from "react";
+
 interface Props {
   /**
    * The source of the image.
@@ -33,6 +35,14 @@ interface Props {
   unoptimized?: boolean;
 
   /**
+   * The spot of the image.
+   */
+  spot?: {
+    x: number;
+    y: number;
+  };
+
+  /**
    * The class name of the image.
    */
   className?: string;
@@ -49,6 +59,7 @@ export function MediaImage({
   quality,
   priority,
   unoptimized,
+  spot,
   className,
 }: Props) {
   const ref = useRef<HTMLImageElement>(null);
@@ -79,7 +90,12 @@ export function MediaImage({
       priority={priority}
       unoptimized={unoptimized}
       data-component="MediaImage"
-      className={twMerge("w-full", className)}
+      className={twMerge(
+        "w-full",
+        spot !== undefined && "object-(--spot)",
+        className,
+      )}
+      style={{ "--spot": spot && `${spot.x}% ${spot.y}%` } as CSSProperties}
     />
   );
 }

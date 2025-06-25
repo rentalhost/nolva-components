@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { FaAngleLeft, FaAnglesLeft } from "react-icons/fa6";
 

@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { twMerge } from "@/services/TailwindMergeService";
 import { appendQueryString } from "@/services/UrlService";
 
@@ -24,13 +28,19 @@ export function PaginationPage({
   className,
   onClick,
 }: Props) {
+  const [route, setRoute] = useState<string>();
+
+  useEffect(() => {
+    setRoute(
+      queryString === undefined
+        ? undefined
+        : appendQueryString(queryString, String(page)),
+    );
+  }, [page, queryString]);
+
   return (
     <a
-      href={
-        queryString === undefined
-          ? undefined
-          : appendQueryString(queryString, String(page))
-      }
+      href={route}
       data-component="PaginationPage"
       data-active={isCurrent === true || isSpread === true ? true : undefined}
       data-active-spread={isSpread === true ? true : undefined}

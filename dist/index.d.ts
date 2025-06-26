@@ -18,6 +18,7 @@ export { Header } from "./components/Header/Header/Header";
 export { HeaderContainer } from "./components/Header/HeaderContainer/HeaderContainer";
 export { HeaderNav } from "./components/Header/HeaderNav/HeaderNav";
 export { Pagination } from "./components/Pagination/Pagination/Pagination";
+export { Alert } from "./components/Primitive/Alert/Alert";
 export { Container } from "./components/Primitive/Container/Container";
 export { Section } from "./components/Primitive/Section/Section";
 export { PrintContainer } from "./components/Print/PrintContainer/PrintContainer";

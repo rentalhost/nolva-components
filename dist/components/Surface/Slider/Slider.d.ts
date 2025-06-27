@@ -136,5 +136,5 @@ interface Props extends PropsWithChildren {
      */
     onNavigate?(this: void): void;
 }
-export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, onNavigate, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children, onNavigate, }: Props): false | import("react/jsx-runtime").JSX.Element;
 export {};

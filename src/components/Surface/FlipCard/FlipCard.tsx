@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { TbHandClick } from "react-icons/tb";
 
 import { twMerge } from "@/services/TailwindMergeService";
@@ -66,11 +66,6 @@ export function FlipCard({
 }: Props) {
   const [flip, setFlip] = useState(false);
 
-  const clickHandler = useCallback(() => {
-    onFlip?.("back");
-    setFlip((state) => !state);
-  }, [onFlip]);
-
   return (
     <div
       data-component="FlipCard"
@@ -84,6 +79,10 @@ export function FlipCard({
           "--flip-angle": flipTo === "left" ? "-180deg" : "180deg",
         } as CSSProperties
       }
+      onClick={() => {
+        onFlip?.("back");
+        setFlip((state) => !state);
+      }}
       onMouseEnter={() => {
         onFlip?.("back");
       }}
@@ -104,7 +103,6 @@ export function FlipCard({
         )}
       >
         <div
-          onClick={clickHandler}
           className={
             heightController === "front"
               ? baseClassName
@@ -115,7 +113,6 @@ export function FlipCard({
         </div>
 
         <div
-          onClick={clickHandler}
           className={twMerge(
             baseClassName,
             heightController === "front" && absoluteClassName,

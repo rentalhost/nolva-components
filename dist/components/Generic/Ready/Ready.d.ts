@@ -1,0 +1,2 @@
+import type { PropsWithChildren, ReactNode } from "react";
+export declare function Ready({ children }: PropsWithChildren): import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | (string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined);

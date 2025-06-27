@@ -1,0 +1,1 @@
+"use client";import{useReady as e}from"../../../services/hooks/useReady.js";export function Ready({children:o}){return e()&&o}

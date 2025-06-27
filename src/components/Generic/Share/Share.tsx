@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaShareFromSquare } from "react-icons/fa6";
 
+import { Ready } from "@/components/Generic/Ready/Ready";
 import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
 import { ShareNetworkIcon } from "@/components/Generic/Share/ShareNetworkIcon";
 import { listenWindowEvent } from "@/services/EventService";
@@ -114,37 +115,41 @@ export function Share({
   }, [url]);
 
   return (
-    <div
-      data-component="Share"
-      className={twMerge(
-        "bg-theme-100 text-theme-500 grid grid-cols-[1fr_auto] justify-between rounded p-2 shadow",
-        className,
-      )}
-    >
-      <div className="grid grid-cols-[auto_1fr] items-center">
-        <FaShareFromSquare className="size-5 mx-2" />
-
-        <p>{text}</p>
-      </div>
-
+    <Ready>
       <div
-        className="grid grid-cols-[repeat(var(--networks-count),1fr)] gap-2 text-white"
-        style={{ "--networks-count": selectedNetworks.length } as CSSProperties}
-        suppressHydrationWarning
+        data-component="Share"
+        className={twMerge(
+          "bg-theme-100 text-theme-500 grid grid-cols-[1fr_auto] justify-between rounded p-2 shadow",
+          className,
+        )}
       >
-        {selectedNetworks.map((network) => (
-          <ShareNetworkIcon
-            key={network}
-            network={allNetworks[network]}
-            title={documentTitle}
-            url={documentUrl}
-            className={networkClassName}
-            onClick={() => {
-              onShare?.(network, documentUrl, documentTitle);
-            }}
-          />
-        ))}
+        <div className="grid grid-cols-[auto_1fr] items-center">
+          <FaShareFromSquare className="size-5 mx-2" />
+
+          <p>{text}</p>
+        </div>
+
+        <div
+          className="grid grid-cols-[repeat(var(--networks-count),1fr)] gap-2 text-white"
+          style={
+            { "--networks-count": selectedNetworks.length } as CSSProperties
+          }
+          suppressHydrationWarning
+        >
+          {selectedNetworks.map((network) => (
+            <ShareNetworkIcon
+              key={network}
+              network={allNetworks[network]}
+              title={documentTitle}
+              url={documentUrl}
+              className={networkClassName}
+              onClick={() => {
+                onShare?.(network, documentUrl, documentTitle);
+              }}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </Ready>
   );
 }

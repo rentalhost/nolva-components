@@ -15,6 +15,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "@/components/Pagination/Pagination/Pagination";
 import { SliderArrow } from "@/components/Surface/Slider/SliderArrow";
 import { listenWindowEvent } from "@/services/EventService";
+import { useReady } from "@/services/hooks/useReady";
 import { normalizeBreakpoints } from "@/services/SwiperService";
 import { twMerge } from "@/services/TailwindMergeService";
 
@@ -202,6 +203,8 @@ export function Slider({
   children = [],
   onNavigate,
 }: Props) {
+  const isReady = useReady();
+
   const containerRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
 
@@ -261,114 +264,118 @@ export function Slider({
 
   useEffect(
     () =>
-      listenWindowEvent("resize", () => {
-        if (containerRef.current !== null && arrowRef.current !== null) {
-          setHasArrowSpace(
-            containerRef.current.offsetWidth +
-              3 * arrowRef.current.offsetWidth <=
-              document.body.offsetWidth,
-          );
-        }
-      }),
-    [],
+      isReady
+        ? listenWindowEvent("resize", () => {
+            if (containerRef.current !== null && arrowRef.current !== null) {
+              setHasArrowSpace(
+                containerRef.current.offsetWidth +
+                  3 * arrowRef.current.offsetWidth <=
+                  document.body.offsetWidth,
+              );
+            }
+          })
+        : undefined,
+    [isReady],
   );
 
   return (
-    <div data-component="Slider" className={twMerge("relative", className)}>
-      <div ref={containerRef} className="relative flex">
-        <SliderArrow
-          ref={arrowRef}
-          icon={arrowsIcon}
-          className={arrowsClassName}
-          placement={arrowPlacementFinal}
-          isDisabled={!infinity && index === 0}
-          onClick={() => {
-            arrowClick(-1);
-          }}
-        />
+    isReady && (
+      <div data-component="Slider" className={twMerge("relative", className)}>
+        <div ref={containerRef} className="relative flex">
+          <SliderArrow
+            ref={arrowRef}
+            icon={arrowsIcon}
+            className={arrowsClassName}
+            placement={arrowPlacementFinal}
+            isDisabled={!infinity && index === 0}
+            onClick={() => {
+              arrowClick(-1);
+            }}
+          />
 
-        <Swiper
-          onSwiper={setSwiper}
-          loop={infinity && isOverflow}
-          autoplay={
-            duration === 0
-              ? false
-              : { delay: duration, pauseOnMouseEnter: true }
-          }
-          breakpoints={breakpoints}
-          modules={[Autoplay, Keyboard, ...(freeFlow ? [FreeMode] : [])]}
-          centerInsufficientSlides={centered}
-          freeMode={{ enabled: freeFlow, sticky: true }}
-          keyboard={{ enabled: true, onlyInViewport: true }}
-          loopAddBlankSlides={false}
-          speed={speed * visibleCount}
-          onSlideChange={({ realIndex }) => {
-            setIndex(realIndex);
-          }}
-          onTouchEnd={() => {
-            onNavigate?.();
-          }}
-          onResize={({ params: { slidesPerView } }) => {
-            if (typeof slidesPerView === "number") {
-              setVisibleCount(slidesPerView);
+          <Swiper
+            onSwiper={setSwiper}
+            loop={infinity && isOverflow}
+            autoplay={
+              duration === 0
+                ? false
+                : { delay: duration, pauseOnMouseEnter: true }
             }
-          }}
-          className={twMerge("flex-1", !swiper && "hidden")}
-        >
-          {Children.map(children, (child, childIndex) => (
-            <SwiperSlide
-              // eslint-disable-next-line react/no-array-index-key
-              key={childIndex}
-            >
-              {child}
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <SliderArrow
-          rotate
-          icon={arrowsIcon}
-          className={arrowsClassName}
-          placement={arrowPlacementFinal}
-          isDisabled={!infinity && index === 0}
-          onClick={() => {
-            arrowClick(1);
-          }}
-        />
-      </div>
-
-      {paginationEnabled && (
-        <div
-          className={twMerge(
-            "z-10",
-            pagination === false && "hidden",
-            pagination === "overlay" && "absolute inset-x-0 bottom-0",
-            paginationClassName,
-          )}
-        >
-          <Pagination
-            current={
-              paginationCompressed
-                ? index === itemsCount - visibleCount
-                  ? paginationTotal
-                  : Math.ceil((index + 1) / visibleCount)
-                : index + 1
-            }
-            total={paginationTotal}
-            visibleCount={paginationLimit}
-            spread={paginationCompressed ? undefined : visibleCount - 1}
-            pageClassName="text-[size:0] w-2.5"
-            firstLast={false}
-            previousNext={false}
-            onClick={(page) => {
+            breakpoints={breakpoints}
+            modules={[Autoplay, Keyboard, ...(freeFlow ? [FreeMode] : [])]}
+            centerInsufficientSlides={centered}
+            freeMode={{ enabled: freeFlow, sticky: true }}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            loopAddBlankSlides={false}
+            speed={speed * visibleCount}
+            onSlideChange={({ realIndex }) => {
+              setIndex(realIndex);
+            }}
+            onTouchEnd={() => {
               onNavigate?.();
-              swiper!.slideTo(
-                paginationCompressed ? (page - 1) * visibleCount : page - 1,
-              );
+            }}
+            onResize={({ params: { slidesPerView } }) => {
+              if (typeof slidesPerView === "number") {
+                setVisibleCount(slidesPerView);
+              }
+            }}
+            className={twMerge("flex-1", !swiper && "hidden")}
+          >
+            {Children.map(children, (child, childIndex) => (
+              <SwiperSlide
+                // eslint-disable-next-line react/no-array-index-key
+                key={childIndex}
+              >
+                {child}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <SliderArrow
+            rotate
+            icon={arrowsIcon}
+            className={arrowsClassName}
+            placement={arrowPlacementFinal}
+            isDisabled={!infinity && index === 0}
+            onClick={() => {
+              arrowClick(1);
             }}
           />
         </div>
-      )}
-    </div>
+
+        {paginationEnabled && (
+          <div
+            className={twMerge(
+              "z-10",
+              pagination === false && "hidden",
+              pagination === "overlay" && "absolute inset-x-0 bottom-0",
+              paginationClassName,
+            )}
+          >
+            <Pagination
+              current={
+                paginationCompressed
+                  ? index === itemsCount - visibleCount
+                    ? paginationTotal
+                    : Math.ceil((index + 1) / visibleCount)
+                  : index + 1
+              }
+              total={paginationTotal}
+              visibleCount={paginationLimit}
+              spread={paginationCompressed ? undefined : visibleCount - 1}
+              pageClassName="text-[size:0] w-2.5"
+              firstLast={false}
+              previousNext={false}
+              onClick={(page) => {
+                onNavigate?.();
+                swiper!.slideTo(
+                  paginationCompressed ? (page - 1) * visibleCount : page - 1,
+                );
+              }}
+            />
+          </div>
+        )}
+      </div>
+    )
   );
 }

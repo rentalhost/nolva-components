@@ -40,5 +40,5 @@ interface Props extends PropsWithChildren {
      */
     openedModalContent(this: void, closeHandler: () => void): ReactElement;
 }
-export declare function HeaderNav({ navClassName, listClassName, children, icon, iconClassName, closedIcon, closedIconClassName, openedModalContent, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function HeaderNav({ navClassName, listClassName, children, icon, iconClassName, closedIcon, closedIconClassName, openedModalContent, }: Props): false | import("react/jsx-runtime").JSX.Element;
 export {};

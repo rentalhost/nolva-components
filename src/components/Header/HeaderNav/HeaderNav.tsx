@@ -5,6 +5,7 @@ import { FaBars, FaXmark } from "react-icons/fa6";
 
 import { listenWindowEvent } from "@/services/EventService";
 import { useImmediateRef } from "@/services/hooks/useImmediateRef";
+import { useReady } from "@/services/hooks/useReady";
 import { promisePortal } from "@/services/PortalService";
 import { twMerge } from "@/services/TailwindMergeService";
 
@@ -70,6 +71,8 @@ export function HeaderNav({
   closedIconClassName,
   openedModalContent,
 }: Props) {
+  const isReady = useReady();
+
   const navRef = useRef<HTMLDivElement>(null);
 
   const [mobileMode, setMobileMode] = useState(true);
@@ -105,6 +108,10 @@ export function HeaderNav({
   const openedRef = useImmediateRef(opened);
 
   useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+
     const unload = listenWindowEvent(["resize", "transitionend"], (ev) => {
       if (ev.type === "resize" && openedRef.current) {
         closeRef.current();
@@ -131,45 +138,47 @@ export function HeaderNav({
       unload();
       unloadClick();
     };
-  }, [closeRef, openedRef]);
+  }, [closeRef, isReady, openedRef]);
 
   const iconVisible = useMemo(() => mobileMode || opened, [mobileMode, opened]);
 
   return (
-    <nav
-      ref={navRef}
-      data-forcing-overlay={opened || undefined}
-      data-component="HeaderNav"
-      className={twMerge(
-        "overflow-hidden text-nowrap relative flex",
-        navClassName,
-      )}
-    >
-      <ul
+    isReady && (
+      <nav
+        ref={navRef}
+        data-forcing-overlay={opened || undefined}
+        data-component="HeaderNav"
         className={twMerge(
-          "flex items-center justify-between gap-x-6 flex-nowrap transition",
-          iconVisible && "opacity-0 pointer-events-none",
-          listClassName,
+          "overflow-hidden text-nowrap relative flex",
+          navClassName,
         )}
       >
-        {children}
-      </ul>
+        <ul
+          className={twMerge(
+            "flex items-center justify-between gap-x-6 flex-nowrap transition",
+            iconVisible && "opacity-0 pointer-events-none",
+            listClassName,
+          )}
+        >
+          {children}
+        </ul>
 
-      <div
-        className={twMerge(
-          "transition select-none absolute right-0 inset-y-0 flex items-center justify-center",
-          !iconVisible && "opacity-0 pointer-events-none",
-          iconClassName,
-          opened && closedIconClassName,
-        )}
-        onClick={() => {
-          close();
-        }}
-      >
-        <div className="border-theme-200 bg-theme-200/50 active:bg-theme-300/50 hover:border-theme-300 active:border-theme-400 cursor-pointer rounded-full border p-2 transition">
-          {opened ? closedIcon : icon}
+        <div
+          className={twMerge(
+            "transition select-none absolute right-0 inset-y-0 flex items-center justify-center",
+            !iconVisible && "opacity-0 pointer-events-none",
+            iconClassName,
+            opened && closedIconClassName,
+          )}
+          onClick={() => {
+            close();
+          }}
+        >
+          <div className="border-theme-200 bg-theme-200/50 active:bg-theme-300/50 hover:border-theme-300 active:border-theme-400 cursor-pointer rounded-full border p-2 transition">
+            {opened ? closedIcon : icon}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    )
   );
 }

@@ -11,6 +11,18 @@ interface Props extends PropsWithChildren {
      */
     marginY?: number;
     /**
+     * Container top margin.
+     *
+     * Default to `marginY`.
+     */
+    marginTop?: number;
+    /**
+     * Container bottom margin.
+     *
+     * Default to `marginY`.
+     */
+    marginBottom?: number;
+    /**
      * Container class name.
      */
     className?: string;
@@ -19,5 +31,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Section({ id, marginY, className, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Section({ id, marginY, marginTop, marginBottom, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

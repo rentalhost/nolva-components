@@ -22,6 +22,11 @@ interface Props extends ComponentProps<"button"> {
   fill?: "outline" | "solid" | "transparent";
 
   /**
+   * The component type.
+   */
+  __internalComponentType?: string;
+
+  /**
    * If true, the button will render as a child element.
    */
   asChild?: boolean;
@@ -33,6 +38,7 @@ export function Button({
   fill = "solid",
   className,
   asChild = false,
+  __internalComponentType = "Button",
   children,
   ...props
 }: Props) {
@@ -63,7 +69,7 @@ export function Button({
       // eslint-disable-next-line react/button-has-type
       type={type}
       disabled={disabled}
-      data-component="Button"
+      data-component={__internalComponentType}
       data-theme={fill}
       className={buttonClassName}
       {...props}

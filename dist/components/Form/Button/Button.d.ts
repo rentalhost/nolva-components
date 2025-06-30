@@ -15,9 +15,13 @@ interface Props extends ComponentProps<"button"> {
      */
     fill?: "outline" | "solid" | "transparent";
     /**
+     * The component type.
+     */
+    __internalComponentType?: string;
+    /**
      * If true, the button will render as a child element.
      */
     asChild?: boolean;
 }
-export declare function Button({ type, disabled, fill, className, asChild, children, ...props }: Props): JSX.Element;
+export declare function Button({ type, disabled, fill, className, asChild, __internalComponentType, children, ...props }: Props): JSX.Element;
 export {};

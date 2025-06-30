@@ -51,17 +51,19 @@ export function ScrollProgress({
     }
 
     return listenWindowEvent(["scroll", "resize"], () => {
-      const rect = ref.current!.getBoundingClientRect();
+      const rect = ref.current?.getBoundingClientRect();
 
-      const currentProgress =
-        (1 / rect.height) *
-        clamp(window.innerHeight - rect.top, 0, rect.height);
+      if (rect !== undefined) {
+        const currentProgress =
+          (1 / rect.height) *
+          clamp(window.innerHeight - rect.top, 0, rect.height);
 
-      setProgress(currentProgress);
-      onProgress?.(currentProgress);
+        setProgress(currentProgress);
+        onProgress?.(currentProgress);
 
-      if (currentProgress === 1) {
-        onCompleted?.();
+        if (currentProgress === 1) {
+          onCompleted?.();
+        }
       }
     });
   }, [isReady, onCompleted, onProgress]);

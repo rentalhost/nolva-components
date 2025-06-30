@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbHandClick } from "react-icons/tb";
 
 import { twMerge } from "@/services/TailwindMergeService";
@@ -66,12 +66,18 @@ export function FlipCard({
 }: Props) {
   const [flip, setFlip] = useState(false);
 
+  const [supportsHover, setSupportsHover] = useState(false);
+
+  useEffect(() => {
+    setSupportsHover(window.matchMedia("(hover: hover)").matches);
+  }, []);
+
   return (
     <div
       data-component="FlipCard"
       data-flipped={flip || undefined}
       className={twMerge(
-        "perspective-distant size-full group overflow-hidden",
+        "perspective-distant size-full group/flip-card overflow-hidden",
         className,
       )}
       style={
@@ -93,9 +99,12 @@ export function FlipCard({
     >
       <div
         className={twMerge(
-          "duration-800 relative h-full transition-transform [transform-style:preserve-3d] group-hover:[transform:rotateY(var(--flip-angle))]",
-          axis === "vertical" &&
-            "group-hover:[transform:rotateX(var(--flip-angle))]",
+          "duration-800 relative h-full transition-transform [transform-style:preserve-3d]",
+          supportsHover &&
+            "group-hover/flip-card:[transform:rotateY(var(--flip-angle))]",
+          supportsHover &&
+            axis === "vertical" &&
+            "group-hover/flip-card:[transform:rotateX(var(--flip-angle))]",
           flip && "[transform:rotateY(var(--flip-angle))]",
           flip &&
             axis === "vertical" &&

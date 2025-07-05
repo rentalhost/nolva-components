@@ -1,11 +1,11 @@
 "use client";
 
+import { clamp } from "@rentalhost/nolva-core";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { listenWindowEvent } from "@/services/EventService";
 import { useReady } from "@/services/hooks/useReady";
-import { clamp } from "@/services/NumberService";
 import { twMerge } from "@/services/TailwindMergeService";
 
 import type { CSSProperties, PropsWithChildren } from "react";

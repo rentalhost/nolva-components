@@ -1,5 +1,6 @@
+import { range } from "@rentalhost/nolva-core";
+
 import { Counter } from "@/components/Surface/Counter/Counter";
-import { range } from "@/services/ArrayService";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

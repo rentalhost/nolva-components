@@ -1,5 +1,6 @@
 "use client";
 
+import { getExtension } from "@rentalhost/nolva-core";
 import getVideoId from "get-video-id";
 
 import { allowedExtensions as imageAllowedExtensions } from "@/components/Surface/Media/MediaImage";
@@ -13,7 +14,6 @@ import {
   MediaVideoLocal,
 } from "@/components/Surface/Media/MediaVideoLocal";
 import { MediaVideoYoutube } from "@/components/Surface/Media/MediaVideoYoutube";
-import { getExtension } from "@/services/FileService";
 
 import type { ComponentProps } from "react";
 
@@ -55,7 +55,7 @@ function isExtension<ThenProps extends Props>(
   props: Props,
   extensions: readonly string[],
 ): props is ThenProps {
-  return extensions.includes(getExtension(props.src as string));
+  return extensions.includes(getExtension(props.src as string) ?? "");
 }
 
 export function Media(props: Props) {

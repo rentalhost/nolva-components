@@ -1,6 +1,6 @@
-import { toArray } from "@/services/ArrayService";
+import { toArray } from "@rentalhost/nolva-core";
 
-import type { Arrayable } from "@/services/ArrayService";
+import type { Arrayable } from "@rentalhost/nolva-core";
 
 type UnloadCallback = () => void;
 

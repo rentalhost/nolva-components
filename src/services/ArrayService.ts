@@ -1,6 +1,4 @@
-export function range(start: number, end: number) {
-  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-}
+import { range } from "@rentalhost/nolva-core";
 
 export function circularRange(
   start: number,
@@ -44,10 +42,4 @@ export function paginate(
   }
 
   return range(start, end);
-}
-
-export type Arrayable<T> = T | T[];
-
-export function toArray<T>(value: Arrayable<T>): T[] {
-  return Array.isArray(value) ? value : [value];
 }

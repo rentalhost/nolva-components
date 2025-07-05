@@ -1,9 +1,8 @@
 "use client";
 
+import { deferPromise } from "@rentalhost/nolva-core";
 import { cloneElement } from "react";
 import { createRoot } from "react-dom/client";
-
-import { deferPromise } from "@/services/PromiseService";
 
 import type { ReactElement } from "react";
 import type { RefAttributes } from "react";

@@ -1,4 +1,5 @@
-import { getExtension } from "@/services/FileService";
+import { getExtension } from "@rentalhost/nolva-core";
+
 import { twMerge } from "@/services/TailwindMergeService";
 
 interface Props {

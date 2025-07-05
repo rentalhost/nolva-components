@@ -1,5 +1,6 @@
+import { range } from "@rentalhost/nolva-core";
+
 import { Animate } from "@/components/Animate/Animate/Animate";
-import { range } from "@/services/ArrayService";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";

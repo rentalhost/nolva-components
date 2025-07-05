@@ -45,14 +45,10 @@ export { useInViewport } from "@/services/hooks/useInViewport";
 export { useLocalStorage } from "@/services/hooks/useLocalStorage";
 export { useReady } from "@/services/hooks/useReady";
 
-export { range } from "@/services/ArrayService";
-
 export {
   listenMutationObserver,
   listenResizeObserver,
 } from "@/services/MutationService";
-
-export { clamp } from "@/services/NumberService";
 
 export { generateQueryString } from "@/services/UrlService";
 

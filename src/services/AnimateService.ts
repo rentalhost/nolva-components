@@ -1,5 +1,6 @@
+import { clamp } from "@rentalhost/nolva-core";
+
 import { Timer } from "@/services/classes/Timer";
-import { clamp } from "@/services/NumberService";
 
 type EasingFunction = (t: number) => number;
 

@@ -88,7 +88,7 @@ export const InfinityOffExample: StoryObj<typeof Slider> = {
 
 export const StretchOffExample: StoryObj<typeof Slider> = {
   args: {
-    children: cards.slice(0, 3),
+    children: [...cards.slice(0, 3), false, null, undefined],
     items: 5,
     stretch: false,
   },

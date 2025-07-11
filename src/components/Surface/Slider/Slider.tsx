@@ -200,7 +200,7 @@ export function Slider({
   paginationClassName,
   paginationCompressed = true,
   paginationLimit,
-  children = [],
+  children: baseChildren = [],
   onNavigate,
 }: Props) {
   const isReady = useReady();
@@ -211,11 +211,14 @@ export function Slider({
   const [index, setIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(Number.MAX_SAFE_INTEGER);
 
-  const itemsCount = useMemo(() => Children.count(children), [children]);
+  const children = useMemo(
+    () => Children.toArray(baseChildren).filter(Boolean),
+    [baseChildren],
+  );
 
   const breakpoints = useMemo(
-    () => normalizeBreakpoints(itemsCount, items, gap, stretch),
-    [gap, items, itemsCount, stretch],
+    () => normalizeBreakpoints(children.length, items, gap, stretch),
+    [children.length, gap, items, stretch],
   );
 
   const [swiper, setSwiper] = useState<SwiperClass>();
@@ -223,8 +226,8 @@ export function Slider({
   const [hasArrowSpace, setHasArrowSpace] = useState(false);
 
   const isOverflow = useMemo(
-    () => itemsCount > visibleCount,
-    [itemsCount, visibleCount],
+    () => children.length > visibleCount,
+    [children.length, visibleCount],
   );
 
   const arrowPlacementFinal = useMemo(
@@ -242,19 +245,21 @@ export function Slider({
       const deltaAdvance = arrowsStepMode === "sequential" ? 1 : visibleCount;
       const deltaFinal = delta * deltaAdvance;
 
-      const indexNew = (index + itemsCount + deltaFinal) % itemsCount;
+      const indexNew = (index + children.length + deltaFinal) % children.length;
 
       swiper!.slideTo(indexNew);
 
       onNavigate?.();
     },
-    [arrowsStepMode, index, itemsCount, onNavigate, swiper, visibleCount],
+    [arrowsStepMode, index, children.length, onNavigate, swiper, visibleCount],
   );
 
   const paginationTotal = useMemo(
     () =>
-      paginationCompressed ? Math.ceil(itemsCount / visibleCount) : itemsCount,
-    [itemsCount, paginationCompressed, visibleCount],
+      paginationCompressed
+        ? Math.ceil(children.length / visibleCount)
+        : children.length,
+    [children.length, paginationCompressed, visibleCount],
   );
 
   const paginationEnabled = useMemo(
@@ -321,7 +326,7 @@ export function Slider({
             }}
             className={twMerge("flex-1", !swiper && "hidden")}
           >
-            {Children.map(children, (child, childIndex) => (
+            {children.map((child, childIndex) => (
               <SwiperSlide
                 // eslint-disable-next-line react/no-array-index-key
                 key={childIndex}
@@ -355,7 +360,7 @@ export function Slider({
             <Pagination
               current={
                 paginationCompressed
-                  ? index === itemsCount - visibleCount
+                  ? index === children.length - visibleCount
                     ? paginationTotal
                     : Math.ceil((index + 1) / visibleCount)
                   : index + 1

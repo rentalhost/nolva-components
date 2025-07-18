@@ -58,6 +58,7 @@ export function Button({
 
   if (asChild && isValidElement(children)) {
     return cloneElement(children as JSX.Element, {
+      "data-component": __internalComponentType,
       "data-theme": fill,
       className: buttonClassName,
       disabled,

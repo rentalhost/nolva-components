@@ -30,17 +30,21 @@ export function BackButton({
   fallbackRoute,
   className,
 }: Props) {
-  const [useFallback, setUseFallback] = useState(true);
+  const hasFallbackRoute = fallbackRoute !== undefined;
+
+  const [useFallback, setUseFallback] = useState(hasFallbackRoute);
 
   useEffect(() => {
-    try {
-      if (new URL(document.referrer).host === location.host) {
-        setUseFallback(false);
+    if (hasFallbackRoute && history.length > 1) {
+      try {
+        if (new URL(document.referrer).host === location.host) {
+          setUseFallback(false);
+        }
+      } catch {
+        // Empty.
       }
-    } catch {
-      // Empty.
     }
-  }, []);
+  }, [hasFallbackRoute]);
 
   const contents = useMemo(
     () => (

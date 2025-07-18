@@ -6,4 +6,8 @@ export default {
   component: BackButton,
 } satisfies Meta<typeof BackButton>;
 
-export const Example: StoryObj<typeof BackButton> = {};
+export const Example: StoryObj<typeof BackButton> = {
+  args: {
+    fallbackRoute: "https://google.com",
+  },
+};

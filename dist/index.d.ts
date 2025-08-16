@@ -42,6 +42,7 @@ export { useInViewport } from "./services/hooks/useInViewport";
 export { useLocalStorage } from "./services/hooks/useLocalStorage";
 export { useReady } from "./services/hooks/useReady";
 export { listenMutationObserver, listenResizeObserver, } from "./services/MutationService";
+export { promisePortal, promiseElement } from "./services/PortalService";
 export { generateQueryString } from "./services/UrlService";
 export { twMerge } from "./services/TailwindMergeService";
 export { twJoin } from "tailwind-merge";

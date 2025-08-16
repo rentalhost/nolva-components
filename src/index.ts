@@ -50,6 +50,8 @@ export {
   listenResizeObserver,
 } from "@/services/MutationService";
 
+export { promisePortal, promiseElement } from "@/services/PortalService";
+
 export { generateQueryString } from "@/services/UrlService";
 
 export { twMerge } from "@/services/TailwindMergeService";

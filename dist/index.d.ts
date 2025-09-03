@@ -35,7 +35,7 @@ export { Slider } from "./components/Surface/Slider/Slider";
 export { VLibras } from "./components/Surface/VLibras/VLibras";
 export { Theme } from "./components/Theme/Theme/Theme";
 export { HTMLTransformer } from "./services/classes/HTMLTransformer";
-export { listenWindowEvent, listenScroll } from "./services/EventService";
+export { listenEvent, listenScroll, listenWindowEvent, listenWindowScroll, } from "./services/EventService";
 export { useAnalytics } from "./services/hooks/useAnalytics";
 export { useImmediateRef } from "./services/hooks/useImmediateRef";
 export { useInViewport } from "./services/hooks/useInViewport";

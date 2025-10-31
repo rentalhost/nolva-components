@@ -1,12 +1,12 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useMemo } from "react";
-
-import { LabelContext } from "@/components/Form/Label/LabelProvider";
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { PropsWithChildren } from "react";
+
+import { LabelContext } from "@/components/Form/Label/LabelProvider";
 
 interface Props
   extends PropsWithChildren,

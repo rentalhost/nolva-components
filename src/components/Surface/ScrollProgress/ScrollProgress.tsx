@@ -1,14 +1,14 @@
 "use client";
 
 import { clamp } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/nolva-core";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+import type { CSSProperties, PropsWithChildren } from "react";
+
 import { listenWindowScroll } from "@/services/EventService";
 import { useReady } from "@/services/hooks/useReady";
-import { twMerge } from "@/services/TailwindMergeService";
-
-import type { CSSProperties, PropsWithChildren } from "react";
 
 interface Props extends PropsWithChildren {
   /**

@@ -1,6 +1,6 @@
-import "@storybook/preview.css";
-
 import { allModes } from "@storybook/modes";
+
+import "@storybook/preview.css";
 
 import type { Preview } from "@storybook/react";
 

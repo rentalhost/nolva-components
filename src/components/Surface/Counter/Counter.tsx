@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-import { animate } from "@/services/AnimateService";
-import { useInViewport } from "@/services/hooks/useInViewport";
-
 import type { Easing } from "@/services/AnimateService";
 import type { CSSProperties } from "react";
+
+import { animate } from "@/services/AnimateService";
+import { useInViewport } from "@/services/hooks/useInViewport";
 
 interface Props {
   /**

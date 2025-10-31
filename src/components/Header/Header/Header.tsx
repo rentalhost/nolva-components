@@ -1,9 +1,10 @@
 "use client";
 
-import { useInViewport } from "@/services/hooks/useInViewport";
-import { twMerge } from "@/services/TailwindMergeService";
+import { twMerge } from "@rentalhost/nolva-core";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
+
+import { useInViewport } from "@/services/hooks/useInViewport";
 
 interface Props extends PropsWithChildren {
   /**

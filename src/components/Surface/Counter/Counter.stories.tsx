@@ -1,8 +1,8 @@
 import { range } from "@rentalhost/nolva-core";
 
-import { Counter } from "@/components/Surface/Counter/Counter";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { Counter } from "@/components/Surface/Counter/Counter";
 
 export default {
   component: Counter,

@@ -1,14 +1,14 @@
 "use client";
 
 import { clamp, noop } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/nolva-core";
 import { useMemo } from "react";
 import { FaAngleLeft, FaAnglesLeft } from "react-icons/fa6";
 
+import type { ComponentProps } from "react";
+
 import { PaginationPage } from "@/components/Pagination/Pagination/PaginationPage";
 import { circularRange, paginate } from "@/services/ArrayService";
-import { twMerge } from "@/services/TailwindMergeService";
-
-import type { ComponentProps } from "react";
 
 interface Props {
   /**

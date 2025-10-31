@@ -2,10 +2,10 @@
 
 import { createContext, useEffect, useMemo, useState } from "react";
 
+import type { PropsWithChildren } from "react";
+
 import { listenWindowEvent } from "@/services/EventService";
 import { useLocalStorage } from "@/services/hooks/useLocalStorage";
-
-import type { PropsWithChildren } from "react";
 
 interface ContextProps {
   domain?: string;

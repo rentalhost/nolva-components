@@ -1,7 +1,8 @@
-import { Container } from "@/components/Primitive/Container/Container";
-import { twMerge } from "@/services/TailwindMergeService";
+import { twMerge } from "@rentalhost/nolva-core";
 
 import type { ComponentProps } from "react";
+
+import { Container } from "@/components/Primitive/Container/Container";
 
 export function HeaderContainer({
   className,

@@ -3,6 +3,8 @@
 import { getExtension } from "@rentalhost/nolva-core";
 import getVideoId from "get-video-id";
 
+import type { ComponentProps } from "react";
+
 import { allowedExtensions as imageAllowedExtensions } from "@/components/Surface/Media/MediaImage";
 import { MediaImage } from "@/components/Surface/Media/MediaImage";
 import {
@@ -14,8 +16,6 @@ import {
   MediaVideoLocal,
 } from "@/components/Surface/Media/MediaVideoLocal";
 import { MediaVideoYoutube } from "@/components/Surface/Media/MediaVideoYoutube";
-
-import type { ComponentProps } from "react";
 
 type ImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
   src: `${string}.${(typeof imageAllowedExtensions)[number]}` | (string & {});

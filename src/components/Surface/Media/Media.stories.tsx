@@ -1,10 +1,11 @@
-import { Media } from "@/components/Surface/Media/Media";
 import ExampleSvg from "@assets/storybook.svg";
 import ExampleImage from "@assets/storybook.webp";
 import ExampleVideoLocal from "@assets/video-example-1.webm";
 import ExampleVideoLocalPoster from "@assets/video-example-1.webp";
 
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { Media } from "@/components/Surface/Media/Media";
 
 export default {
   component: Media,

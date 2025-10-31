@@ -1,6 +1,6 @@
-import { Alert } from "@/components/Primitive/Alert/Alert";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { Alert } from "@/components/Primitive/Alert/Alert";
 
 export default {
   component: Alert,

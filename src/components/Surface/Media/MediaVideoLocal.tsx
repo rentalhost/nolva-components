@@ -1,6 +1,5 @@
 import { getExtension } from "@rentalhost/nolva-core";
-
-import { twMerge } from "@/services/TailwindMergeService";
+import { twMerge } from "@rentalhost/nolva-core";
 
 interface Props {
   /**

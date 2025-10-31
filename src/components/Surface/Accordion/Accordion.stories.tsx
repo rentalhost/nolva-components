@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Animate } from "@/components/Animate/Animate/Animate";
 import { Accordion } from "@/components/Surface/Accordion/Accordion";
 import { Theme } from "@/components/Theme/Theme/Theme";
-
-import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: Accordion,

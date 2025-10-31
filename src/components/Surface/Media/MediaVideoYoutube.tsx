@@ -1,11 +1,11 @@
 /* eslint-disable react/iframe-missing-sandbox */
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useState } from "react";
 
 import { YoutubePlay } from "@/components/Surface/Media/fixtures/YoutubePlay";
 import { Media } from "@/components/Surface/Media/Media";
-import { twMerge } from "@/services/TailwindMergeService";
 import { getVideoYoutubeThumbnail } from "@/services/VideoService";
 
 interface Props {

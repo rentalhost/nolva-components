@@ -1,8 +1,8 @@
 "use client";
 
-import { useReady } from "@/services/hooks/useReady";
-
 import type { PropsWithChildren, ReactNode } from "react";
+
+import { useReady } from "@/services/hooks/useReady";
 
 export function Ready({ children }: PropsWithChildren) {
   const isReady = useReady();

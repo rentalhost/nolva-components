@@ -1,11 +1,11 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ComponentProps } from "react";
+
 import { Button } from "@/components/Form/Button/Button";
 import { Theme } from "@/components/Theme/Theme/Theme";
 import { ThemeSpread } from "@/services/components/ThemeSpread";
-
-import type { Meta, StoryObj } from "@storybook/react";
-import type { ComponentProps } from "react";
 
 export default {
   component: Button,

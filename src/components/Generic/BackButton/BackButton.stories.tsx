@@ -1,6 +1,6 @@
-import { BackButton } from "@/components/Generic/BackButton/BackButton";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { BackButton } from "@/components/Generic/BackButton/BackButton";
 
 export default {
   component: BackButton,

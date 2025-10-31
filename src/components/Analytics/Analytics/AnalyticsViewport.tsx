@@ -26,6 +26,7 @@ export function AnalyticsViewport({ eventName, eventParams }: Props) {
   useEffect(() => {
     if (!submitted && visible) {
       sendEvent?.(eventName, eventParams);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSubmitted(true);
     }
   }, [eventName, eventParams, sendEvent, submitted, visible]);

@@ -1,12 +1,12 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import { renderToStaticMarkup } from "react-dom/server";
+
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ComponentProps, ReactNode } from "react";
 
 import { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
 import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
 import { HTMLTransformer } from "@/services/classes/HTMLTransformer";
-import { twMerge } from "@/services/TailwindMergeService";
-
-import type { Meta, StoryObj } from "@storybook/react";
-import type { ComponentProps, ReactNode } from "react";
 
 export default {
   component: PrintPage,

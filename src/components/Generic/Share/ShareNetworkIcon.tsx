@@ -1,6 +1,5 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import Link from "next/link";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ShareNetwork } from "@/components/Generic/Share/ShareNetwork";
 

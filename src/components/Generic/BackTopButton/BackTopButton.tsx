@@ -1,9 +1,9 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { FaAnglesUp } from "react-icons/fa6";
 
 import { useAnalytics } from "@/services/hooks/useAnalytics";
-import { twMerge } from "@/services/TailwindMergeService";
 
 interface Props {
   /**

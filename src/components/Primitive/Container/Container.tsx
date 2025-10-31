@@ -1,4 +1,4 @@
-import { twMerge } from "@/services/TailwindMergeService";
+import { twMerge } from "@rentalhost/nolva-core";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 

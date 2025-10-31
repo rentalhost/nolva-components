@@ -1,7 +1,8 @@
-import { Section } from "@/components/Primitive/Section/Section";
-import { twMerge } from "@/services/TailwindMergeService";
+import { twMerge } from "@rentalhost/nolva-core";
 
 import type { PropsWithChildren, ReactNode } from "react";
+
+import { Section } from "@/components/Primitive/Section/Section";
 
 interface Props extends PropsWithChildren {
   /**

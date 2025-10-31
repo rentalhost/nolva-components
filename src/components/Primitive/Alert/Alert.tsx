@@ -1,3 +1,4 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import {
   FaBomb,
   FaBug,
@@ -6,8 +7,6 @@ import {
   FaCircleExclamation,
   FaCircleXmark,
 } from "react-icons/fa6";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { PropsWithChildren } from "react";
 import type { IconType } from "react-icons/lib";

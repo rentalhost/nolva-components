@@ -1,11 +1,11 @@
 import { range } from "@rentalhost/nolva-core";
 import { FaLeftLong } from "react-icons/fa6";
 
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Container } from "@/components/Primitive/Container/Container";
 import { FlipCard } from "@/components/Surface/FlipCard/FlipCard";
 import { Slider } from "@/components/Surface/Slider/Slider";
-
-import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: Slider,

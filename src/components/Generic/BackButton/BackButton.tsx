@@ -38,6 +38,7 @@ export function BackButton({
     if (hasFallbackRoute && history.length > 1) {
       try {
         if (new URL(document.referrer).host === location.host) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setUseFallback(false);
         }
       } catch {

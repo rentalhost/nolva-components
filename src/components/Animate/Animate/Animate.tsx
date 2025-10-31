@@ -1,12 +1,12 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useEffect, useRef } from "react";
-
-import { useInViewport } from "@/services/hooks/useInViewport";
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { Threshold } from "@/services/hooks/useInViewport";
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
+
+import { useInViewport } from "@/services/hooks/useInViewport";
 
 interface Props extends PropsWithChildren {
   /**

@@ -1,9 +1,8 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { PropsWithChildren, ReactNode } from "react";
 

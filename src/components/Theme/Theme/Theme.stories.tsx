@@ -1,7 +1,8 @@
-import { Theme, variants } from "@/components/Theme/Theme/Theme";
-import { twMerge } from "@/services/TailwindMergeService";
+import { twMerge } from "@rentalhost/nolva-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { Theme, variants } from "@/components/Theme/Theme/Theme";
 
 export default {
   component: Theme,

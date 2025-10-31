@@ -6,9 +6,9 @@ import {
   FaShareNodes,
 } from "react-icons/fa6";
 
-import { generateQueryString } from "@/services/UrlService";
-
 import type { IconType } from "react-icons/lib";
+
+import { generateQueryString } from "@/services/UrlService";
 
 interface ShareNetworkUrlProps {
   title: string;

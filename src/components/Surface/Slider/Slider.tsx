@@ -1,5 +1,6 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import {
   Children,
   useCallback,
@@ -12,17 +13,16 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
+import type { Breakpoints } from "@/services/SwiperService";
+import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
+import type { SwiperClass } from "swiper/react";
+
 import { Pagination } from "@/components/Pagination/Pagination/Pagination";
 import { SliderArrow } from "@/components/Surface/Slider/SliderArrow";
 import { listenWindowEvent } from "@/services/EventService";
 import { useReady } from "@/services/hooks/useReady";
 import { normalizeBreakpoints } from "@/services/SwiperService";
-import { twMerge } from "@/services/TailwindMergeService";
-
-import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
-import type { Breakpoints } from "@/services/SwiperService";
-import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
-import type { SwiperClass } from "swiper/react";
 
 interface Props extends PropsWithChildren {
   /**

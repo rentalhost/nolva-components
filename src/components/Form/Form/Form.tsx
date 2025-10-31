@@ -1,12 +1,12 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useContext } from "react";
+
+import type { ComponentProps } from "react";
 
 import { FormContext, FormProvider } from "@/components/Form/Form/FormProvider";
 import { contextWrapper } from "@/services/ContextService";
-import { twMerge } from "@/services/TailwindMergeService";
-
-import type { ComponentProps } from "react";
 
 export const Form = contextWrapper(
   FormProvider,

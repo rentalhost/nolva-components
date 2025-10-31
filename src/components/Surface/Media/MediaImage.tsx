@@ -1,12 +1,12 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-import { listenResizeObserver } from "@/services/MutationService";
-import { twMerge } from "@/services/TailwindMergeService";
-
 import type { CSSProperties } from "react";
+
+import { listenResizeObserver } from "@/services/MutationService";
 
 interface Props {
   /**

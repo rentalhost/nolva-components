@@ -1,8 +1,8 @@
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
-import { Pagination } from "@/components/Pagination/Pagination/Pagination";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { Pagination } from "@/components/Pagination/Pagination/Pagination";
 
 export default {
   component: Pagination,

@@ -1,7 +1,6 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa6";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 interface Props {
   /**

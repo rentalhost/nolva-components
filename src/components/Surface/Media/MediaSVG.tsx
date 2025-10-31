@@ -1,6 +1,5 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import Image from "next/image";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 interface Props {
   /**

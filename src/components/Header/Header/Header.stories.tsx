@@ -1,10 +1,10 @@
 import Image from "next/image";
 
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Header } from "@/components/Header/Header/Header";
 import { HeaderContainer } from "@/components/Header/HeaderContainer/HeaderContainer";
 import { HeaderNav } from "@/components/Header/HeaderNav/HeaderNav";
-
-import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: Header,

@@ -1,6 +1,6 @@
-import { WhatsappButton } from "@/components/Generic/WhatsappButton/WhatsappButton";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { WhatsappButton } from "@/components/Generic/WhatsappButton/WhatsappButton";
 
 export default {
   component: WhatsappButton,

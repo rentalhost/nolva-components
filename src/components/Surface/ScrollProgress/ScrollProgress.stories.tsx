@@ -1,6 +1,6 @@
-import { ScrollProgress } from "@/components/Surface/ScrollProgress/ScrollProgress";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { ScrollProgress } from "@/components/Surface/ScrollProgress/ScrollProgress";
 
 export default {
   component: ScrollProgress,

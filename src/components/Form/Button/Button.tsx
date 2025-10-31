@@ -1,6 +1,5 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import { cloneElement, isValidElement } from "react";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { ComponentProps } from "react";
 import type { JSX } from "react/jsx-runtime";

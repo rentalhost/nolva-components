@@ -1,6 +1,6 @@
-import { TextClamp } from "@/components/Generic/TextClamp/TextClamp";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { TextClamp } from "@/components/Generic/TextClamp/TextClamp";
 
 export default {
   component: TextClamp,

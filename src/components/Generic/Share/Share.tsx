@@ -1,18 +1,18 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useEffect, useState } from "react";
 import { FaShareFromSquare } from "react-icons/fa6";
+
+import type { ShareNetworkName } from "@/components/Generic/Share/ShareNetwork";
+import type { CSSProperties } from "react";
 
 import { Ready } from "@/components/Generic/Ready/Ready";
 import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
 import { ShareNetworkIcon } from "@/components/Generic/Share/ShareNetworkIcon";
 import { listenWindowEvent } from "@/services/EventService";
 import { listenMutationObserver } from "@/services/MutationService";
-import { twMerge } from "@/services/TailwindMergeService";
 import { getSimplifiedUrl } from "@/services/UrlService";
-
-import type { ShareNetworkName } from "@/components/Generic/Share/ShareNetwork";
-import type { CSSProperties } from "react";
 
 interface Props {
   /**
@@ -83,6 +83,7 @@ export function Share({
   );
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedNetworks(
       networks.includes("native") && !("share" in navigator)
         ? [...networks].filter((network) => network !== "native")

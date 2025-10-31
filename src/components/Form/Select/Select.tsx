@@ -1,9 +1,9 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import { FaChevronDown } from "react-icons/fa6";
 
-import { inputClassName } from "@/components/fixtures";
-import { twMerge } from "@/services/TailwindMergeService";
-
 import type { ComponentProps } from "react";
+
+import { inputClassName } from "@/components/fixtures";
 
 interface Props extends ComponentProps<"select"> {
   /**

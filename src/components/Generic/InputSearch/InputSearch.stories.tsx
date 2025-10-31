@@ -1,6 +1,6 @@
-import { InputSearch } from "@/components/Generic/InputSearch/InputSearch";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { InputSearch } from "@/components/Generic/InputSearch/InputSearch";
 
 export default {
   component: InputSearch,

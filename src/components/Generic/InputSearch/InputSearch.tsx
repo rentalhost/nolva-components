@@ -1,6 +1,5 @@
+import { twMerge } from "@rentalhost/nolva-core";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { FormHTMLAttributes, ReactNode } from "react";
 

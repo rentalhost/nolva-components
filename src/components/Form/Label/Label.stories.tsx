@@ -1,7 +1,7 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Form } from "@/components/Form/Form/Form";
 import { Label } from "@/components/Form/Label/Label";
-
-import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   component: Label,

@@ -1,6 +1,6 @@
-import { Select } from "@/components/Form/Select/Select";
-
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { Select } from "@/components/Form/Select/Select";
 
 export default {
   component: Select,

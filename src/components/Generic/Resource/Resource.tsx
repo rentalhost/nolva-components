@@ -1,12 +1,12 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import Link from "next/link";
 import { useContext } from "react";
 
-import { ResourceContext } from "@/components/Generic/Resource/ResourceProvider";
-import { twMerge } from "@/services/TailwindMergeService";
-
 import type { ComponentProps } from "react";
+
+import { ResourceContext } from "@/components/Generic/Resource/ResourceProvider";
 
 interface Props extends ComponentProps<"div"> {
   /**

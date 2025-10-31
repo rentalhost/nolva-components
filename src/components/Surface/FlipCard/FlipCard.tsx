@@ -1,9 +1,8 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useState } from "react";
 import { TbHandClick } from "react-icons/tb";
-
-import { twMerge } from "@/services/TailwindMergeService";
 
 import type { CSSProperties, ReactNode } from "react";
 

@@ -59,7 +59,4 @@ export { promisePortal, promiseElement } from "@/services/PortalService";
 
 export { generateQueryString } from "@/services/UrlService";
 
-export { twMerge } from "@/services/TailwindMergeService";
-export { twJoin } from "tailwind-merge";
-
 export { getVideoThumbnail } from "@/services/VideoService";

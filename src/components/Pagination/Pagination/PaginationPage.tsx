@@ -1,11 +1,11 @@
 "use client";
 
+import { twMerge } from "@rentalhost/nolva-core";
 import { useEffect, useState } from "react";
 
-import { twMerge } from "@/services/TailwindMergeService";
-import { appendQueryString } from "@/services/UrlService";
-
 import type { ReactNode } from "react";
+
+import { appendQueryString } from "@/services/UrlService";
 
 interface Props {
   page: number;
@@ -31,6 +31,7 @@ export function PaginationPage({
   const [route, setRoute] = useState<string>();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRoute(
       queryString === undefined
         ? undefined

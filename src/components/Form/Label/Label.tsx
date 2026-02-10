@@ -9,8 +9,7 @@ import type { PropsWithChildren } from "react";
 import { LabelContext } from "@/components/Form/Label/LabelProvider";
 
 interface Props
-  extends PropsWithChildren,
-    Pick<ComponentProps<"label">, "ref"> {
+  extends PropsWithChildren, Pick<ComponentProps<"label">, "ref"> {
   /**
    * The title of the label.
    */

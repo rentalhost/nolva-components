@@ -99,6 +99,7 @@ const variants = new Map<Props["variant"], AlertVariant>([
 
 export function Alert({ title, variant, children }: Props) {
   const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     icon: AlertIcon,
     bodyClassName,
     titleClassName,

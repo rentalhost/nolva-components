@@ -1,9 +1,9 @@
+import type { ComponentProps } from "react";
 import { allowedExtensions as imageAllowedExtensions } from "./MediaImage";
 import { MediaImage } from "./MediaImage";
 import { allowedExtensions as svgAllowedExtensions, MediaSVG } from "./MediaSVG";
 import { allowedExtensions as videoLocalAllowedExtensions, MediaVideoLocal } from "./MediaVideoLocal";
 import { MediaVideoYoutube } from "./MediaVideoYoutube";
-import type { ComponentProps } from "react";
 type ImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
     src: `${string}.${(typeof imageAllowedExtensions)[number]}` | (string & {});
 };

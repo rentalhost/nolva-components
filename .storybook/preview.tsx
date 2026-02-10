@@ -1,10 +1,9 @@
-import { allModes } from "@storybook/modes";
-
 import "@storybook/preview.css";
 
 import type { Preview } from "@storybook/react";
 
 export default {
+  tags: ["autodocs"],
   parameters: {
     viewport: {
       viewports: {
@@ -32,9 +31,6 @@ export default {
         cellAmount: 4,
         opacity: 0.1,
       },
-    },
-    chromatic: {
-      modes: allModes,
     },
   },
   argTypesEnhancers: [

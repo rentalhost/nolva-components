@@ -47,6 +47,7 @@ function PseudoComponent() {
   return <div>Example</div>;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Animate> = {
   render: exampleRender,
   args: {
@@ -58,6 +59,7 @@ export const Example: StoryObj<typeof Animate> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const SubComponentExample: StoryObj<typeof Animate> = {
   args: {
     effect: "slideDown",
@@ -65,6 +67,7 @@ export const SubComponentExample: StoryObj<typeof Animate> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Issue1RelativeIssue: StoryObj<typeof Animate> = {
   render(props) {
     return (

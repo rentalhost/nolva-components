@@ -36,6 +36,7 @@ export default {
   },
 } satisfies Meta<typeof PrintPage>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const EmptyPage: StoryObj<typeof PrintPage> = {};
 
 const defaultTransformer = HTMLTransformer.createDefault();
@@ -76,6 +77,7 @@ defaultTransformer.setTagReplacer(
   ({ children }) => children as Awaited<ReactNode>,
 );
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const SinglePage: StoryObj<typeof PrintPage> = {
   args: {
     children: (
@@ -112,6 +114,7 @@ export const SinglePage: StoryObj<typeof PrintPage> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const MultiplePages: StoryObj<typeof PrintPage> = {
   render: (args) => (
     <>
@@ -129,6 +132,7 @@ export const MultiplePages: StoryObj<typeof PrintPage> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ShortenPage: StoryObj<typeof PrintPage> = {
   render: (args) => (
     <>
@@ -143,6 +147,7 @@ export const ShortenPage: StoryObj<typeof PrintPage> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const OverflowModeWarningPage: StoryObj<typeof PrintPage> = {
   args: {
     size: "CustomSize" as ComponentProps<typeof PrintPage>["size"],
@@ -187,6 +192,7 @@ export const OverflowModeWarningPage: StoryObj<typeof PrintPage> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const OverflowModeAllowedPage: StoryObj<typeof PrintPage> = {
   args: {
     overflowMode: "allowed",

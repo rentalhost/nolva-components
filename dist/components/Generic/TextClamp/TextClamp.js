@@ -1,1 +1,1 @@
-import{jsx as e}from"react/jsx-runtime";import{twMerge as i}from"../../../services/TailwindMergeService.js";export function TextClamp({lines:r,children:t,className:n}){return e("div",{"data-component":"TextClamp",className:i("line-clamp-(--lines)",n),style:{"--lines":r},children:t})}
+import{jsx as e}from"react/jsx-runtime";import{twMerge as t}from"@rentalhost/nolva-core";export function TextClamp({lines:n,children:r,className:a}){return e("div",{"data-component":"TextClamp",className:t("line-clamp-(--lines)",a),style:{"--lines":n},children:r})}

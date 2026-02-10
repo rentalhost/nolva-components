@@ -23,14 +23,17 @@ const cards = range(1, 50).map((number, _, array) => (
   <CardExample key={number} number={number} total={array.length} />
 ));
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Slider> = {
   args: {
     children: cards,
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const EmptyExample: StoryObj<typeof Slider> = {};
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FlipCardsExample: StoryObj<typeof Slider> = {
   args: {
     items: { xs: 2, sm: 5 },
@@ -47,6 +50,7 @@ export const FlipCardsExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FlipCardsExample2: StoryObj<typeof Slider> = {
   args: {
     items: { xs: 2, sm: 5 },
@@ -63,6 +67,7 @@ export const FlipCardsExample2: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const DurationExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -70,6 +75,7 @@ export const DurationExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const BreakpointsExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -78,6 +84,7 @@ export const BreakpointsExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const InfinityOffExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -86,6 +93,7 @@ export const InfinityOffExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StretchOffExample: StoryObj<typeof Slider> = {
   args: {
     children: [...cards.slice(0, 3), false, null, undefined],
@@ -94,6 +102,7 @@ export const StretchOffExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StretchOffCenteredOffExample: StoryObj<typeof Slider> = {
   args: {
     children: cards.slice(0, 4),
@@ -103,6 +112,7 @@ export const StretchOffCenteredOffExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StretchOffFullExample: StoryObj<typeof Slider> = {
   args: {
     children: cards.slice(0, 5),
@@ -111,6 +121,7 @@ export const StretchOffFullExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StretchOffFullExample2: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -119,6 +130,7 @@ export const StretchOffFullExample2: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ClassNameExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -129,6 +141,7 @@ export const ClassNameExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ArrowsIconExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -137,6 +150,7 @@ export const ArrowsIconExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ArrowsPlacementExample: StoryObj<typeof Slider> = {
   render: (args) => (
     <Container>
@@ -151,6 +165,7 @@ export const ArrowsPlacementExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ArrowsStepModeBatchExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -159,6 +174,7 @@ export const ArrowsStepModeBatchExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const PaginationExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -168,6 +184,7 @@ export const PaginationExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const PaginationLimitExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
@@ -176,6 +193,7 @@ export const PaginationLimitExample: StoryObj<typeof Slider> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const IssueExample1: StoryObj<typeof Slider> = {
   args: {
     children: cards.slice(0, 6),

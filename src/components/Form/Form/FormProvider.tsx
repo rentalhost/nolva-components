@@ -9,6 +9,7 @@ interface ContextProps {
   setFocused?: Dispatch<SetStateAction<boolean>>;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FormContext = createContext<ContextProps>({});
 
 export function FormProvider({ children }: PropsWithChildren) {

@@ -11,6 +11,7 @@ export default {
   component: Media,
 } satisfies Meta<typeof Media>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ImageExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/storybook.webp",
@@ -19,6 +20,7 @@ export const ImageExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ImageSpotExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/storybook.webp",
@@ -29,6 +31,7 @@ export const ImageSpotExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const SvgExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/storybook.svg",
@@ -36,6 +39,7 @@ export const SvgExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const VideoLocalProtectExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/video-example-1.webm",
@@ -45,6 +49,7 @@ export const VideoLocalProtectExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const VideoLocalBackgroundExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/video-example-1.webm",
@@ -53,6 +58,7 @@ export const VideoLocalBackgroundExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const VideoRemoteExample: StoryObj<typeof Media> = {
   args: {
     src: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
@@ -60,6 +66,7 @@ export const VideoRemoteExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StaticImageExample: StoryObj<typeof Media> = {
   args: {
     src: ExampleImage,
@@ -68,6 +75,7 @@ export const StaticImageExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StaticSvgExample: StoryObj<typeof Media> = {
   args: {
     src: ExampleSvg,
@@ -75,6 +83,7 @@ export const StaticSvgExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StaticVideoLocalExample: StoryObj<typeof Media> = {
   args: {
     src: ExampleVideoLocal,
@@ -82,6 +91,7 @@ export const StaticVideoLocalExample: StoryObj<typeof Media> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const BrokenExample: StoryObj<typeof Media> = {
   args: {
     src: "example.unsupported" as never,

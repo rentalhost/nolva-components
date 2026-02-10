@@ -55,7 +55,7 @@ export function WhatsappButton({
   iconClassName,
   className,
 }: Props) {
-  const phoneNormalized = (phonePrefix + phone).replace(/\D/g, "");
+  const phoneNormalized = (phonePrefix + phone).replaceAll(/\D/g, "");
 
   return (
     <Link

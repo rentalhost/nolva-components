@@ -6,6 +6,7 @@ export default {
   component: FlipCard,
 } satisfies Meta<typeof FlipCard>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FlipToRightExample: StoryObj<typeof FlipCard> = {
   render: (args) => (
     <div className="h-32 w-32 bg-slate-200">
@@ -18,6 +19,7 @@ export const FlipToRightExample: StoryObj<typeof FlipCard> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FlipToLeftExample: StoryObj<typeof FlipCard> = {
   render: (args) => (
     <div className="h-32 w-32 bg-slate-200">
@@ -39,6 +41,7 @@ export const FlipToLeftExample: StoryObj<typeof FlipCard> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const AxisVerticalExample: StoryObj<typeof FlipCard> = {
   render: (args) => (
     <div className="h-32 w-32 bg-slate-200">
@@ -61,6 +64,7 @@ export const AxisVerticalExample: StoryObj<typeof FlipCard> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const HeightControllerBackExample: StoryObj<typeof FlipCard> = {
   render: (args) => (
     <div className="w-32 bg-slate-200">

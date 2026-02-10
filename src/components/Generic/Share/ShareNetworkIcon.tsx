@@ -22,6 +22,7 @@ export function ShareNetworkIcon({
   className,
   onClick,
 }: Props) {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const NetworkIcon = network.icon;
 
   if (network.url === "native") {

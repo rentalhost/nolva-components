@@ -12,6 +12,7 @@ function PseudoElement() {
   return <div className="bg-theme-50">Example</div>;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Theme> = {
   args: {
     variant: "green",
@@ -37,6 +38,7 @@ export const Example: StoryObj<typeof Theme> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const NoThemeExample: StoryObj<typeof Theme> = {
   render: () => (
     <div className="text-theme-800 bg-theme-200 border-theme-600/25 shadow-theme-800/10 hover:bg-theme-300 active:bg-theme-400 inline-block w-full cursor-pointer select-none rounded border p-5 text-center shadow transition">
@@ -45,6 +47,7 @@ export const NoThemeExample: StoryObj<typeof Theme> = {
   ),
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const PseudoElementExample: StoryObj<typeof Theme> = {
   args: {
     variant: "green",

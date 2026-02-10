@@ -6,6 +6,7 @@ export default {
   component: ScrollProgress,
 } satisfies Meta<typeof ScrollProgress>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof ScrollProgress> = {
   render(args) {
     return (

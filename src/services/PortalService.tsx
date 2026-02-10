@@ -19,14 +19,14 @@ export async function promisePortal<T>(resolver: Resolver<T>) {
 
   elementRoot.render(resolver(elementResolve));
 
-  document.body.appendChild(element);
+  document.body.append(element);
 
   return new Promise<T>((resolve) => {
     void elementPromise.then(resolve);
   }).finally(() => {
     requestIdleCallback(() => {
       elementRoot.unmount();
-      document.body.removeChild(element);
+      element.remove();
     });
   });
 }

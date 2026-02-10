@@ -6,8 +6,10 @@ export default {
   component: Share,
 } satisfies Meta<typeof Share>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Share> = {};
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ModifiedExample: StoryObj<typeof Share> = {
   args: {
     text: "Example:",

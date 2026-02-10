@@ -6,6 +6,7 @@ export default {
   component: Alert,
 } satisfies Meta<typeof Alert>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Alert> = {
   args: {
     title: "Error",

@@ -8,6 +8,7 @@ export default {
   component: Hero,
 } satisfies Meta<typeof Hero>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Hero> = {
   args: {
     backgroundContent: (

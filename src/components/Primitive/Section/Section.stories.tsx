@@ -6,6 +6,7 @@ export default {
   component: Section,
 } satisfies Meta<typeof Section>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Section> = {
   render: (args) => (
     <>
@@ -22,6 +23,7 @@ export const Example: StoryObj<typeof Section> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const NoMarginExample: StoryObj<typeof Section> = {
   render: (args) => (
     <>

@@ -1,7 +1,7 @@
-import { SliderArrow } from "./SliderArrow";
 import type { ArrowAdvance } from "./SliderArrow";
 import type { Breakpoints } from "../../../services/SwiperService";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
+import { SliderArrow } from "./SliderArrow";
 interface Props extends PropsWithChildren {
     /**
      * Autoplay duration in milliseconds.

@@ -8,6 +8,7 @@ import type { ComponentProps } from "react";
 import { FormContext, FormProvider } from "@/components/Form/Form/FormProvider";
 import { contextWrapper } from "@/services/ContextService";
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Form = contextWrapper(
   FormProvider,
   ({ onFocus, className, ...props }: ComponentProps<"form">) => {

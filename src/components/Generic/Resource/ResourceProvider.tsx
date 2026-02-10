@@ -11,6 +11,7 @@ interface ContextProps {
   domain?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ResourceContext = createContext<ContextProps>({});
 
 export function ResourceProvider({ children }: PropsWithChildren) {

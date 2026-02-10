@@ -8,6 +8,7 @@ export default {
   component: Counter,
 } satisfies Meta<typeof Counter>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Counter> = {
   render({ to, ...props }) {
     return (

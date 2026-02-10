@@ -6,6 +6,7 @@ export default {
   component: TextClamp,
 } satisfies Meta<typeof TextClamp>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof TextClamp> = {
   args: {
     lines: 2,

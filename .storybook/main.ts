@@ -2,12 +2,7 @@ import type { StorybookConfig } from "@storybook/nextjs";
 
 export default {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
-  addons: [
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@chromatic-com/storybook",
-  ],
-  docs: { autodocs: true },
+  docs: {},
   framework: {
     name: "@storybook/nextjs",
     options: {

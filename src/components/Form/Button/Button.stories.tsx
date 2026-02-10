@@ -11,6 +11,7 @@ export default {
   component: Button,
 } satisfies Meta<typeof Button>;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const SolidExample: StoryObj<typeof Button> = {
   render: (args) => (
     <div className="flex flex-wrap gap-4">
@@ -27,6 +28,7 @@ export const SolidExample: StoryObj<typeof Button> = {
   ),
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const SolidDisabledExample: StoryObj<typeof Button> = {
   render: (args) => (
     <div className="flex flex-wrap gap-4">
@@ -46,6 +48,7 @@ export const SolidDisabledExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const OutlineExample: StoryObj<typeof Button> = {
   render: (args) => (
     <div className="flex flex-wrap gap-4">
@@ -65,6 +68,7 @@ export const OutlineExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const OutlineDisabledExample: StoryObj<typeof Button> = {
   render: (args) => (
     <div className="flex flex-wrap gap-4">
@@ -85,6 +89,7 @@ export const OutlineDisabledExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const TransparentExample: StoryObj<typeof Button> = {
   render: (args) => (
     <div className="flex flex-wrap gap-4">
@@ -104,6 +109,7 @@ export const TransparentExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const TransparentDisabledExample: StoryObj<typeof Button> = {
   render: (args) => (
     <div className="flex flex-wrap gap-4">
@@ -124,6 +130,7 @@ export const TransparentDisabledExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const LinkExample: StoryObj<typeof Button> = {
   args: {
     asChild: true,
@@ -132,6 +139,7 @@ export const LinkExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const LinkDisabledExample: StoryObj<typeof Button> = {
   args: {
     asChild: true,
@@ -141,12 +149,14 @@ export const LinkDisabledExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const IconExample: StoryObj<typeof Button> = {
   args: {
     children: <FaMagnifyingGlass />,
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const IconTextExample: StoryObj<typeof Button> = {
   args: {
     children: (
@@ -159,6 +169,7 @@ export const IconTextExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const IconTextReverseExample: StoryObj<typeof Button> = {
   args: {
     children: (
@@ -171,6 +182,7 @@ export const IconTextReverseExample: StoryObj<typeof Button> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const AsChildFallbackExample: StoryObj<typeof Button> = {
   args: {
     asChild: true,
@@ -211,6 +223,7 @@ function BrandYellowButton(args: ComponentProps<typeof Button>) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const BrandExample: StoryObj<typeof Button> = {
   render: (args) => (
     <div className="flex gap-4">

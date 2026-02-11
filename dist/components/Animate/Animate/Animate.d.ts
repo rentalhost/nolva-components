@@ -14,6 +14,12 @@ interface Props extends PropsWithChildren {
      */
     duration?: number;
     /**
+     * Animation distance.
+     *
+     * Defaults to `50%`.
+     */
+    distance?: string;
+    /**
      * Animation easing.
      *
      * Defaults to `easeInOut`.
@@ -44,5 +50,5 @@ interface Props extends PropsWithChildren {
      */
     onAnimate?(this: void): void;
 }
-export declare function Animate({ effect, duration, easing, always, threshold, className, children, onAnimate, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Animate({ effect, duration, distance, easing, always, threshold, className, children, onAnimate, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

@@ -60,6 +60,19 @@ export const Example: StoryObj<typeof Animate> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
+export const DistancePixels: StoryObj<typeof Animate> = {
+  render: exampleRender,
+  args: {
+    always: true,
+    effect: "slideRight",
+    distance: "10px",
+    children: (
+      <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>
+    ),
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const SubComponentExample: StoryObj<typeof Animate> = {
   args: {
     effect: "slideDown",

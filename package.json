@@ -1,6 +1,6 @@
 {
   "name": "@rentalhost/nolva-components",
-  "version": "1.0.1",
+  "version": "1.0.20",
   "private": true,
   "type": "module",
   "scripts": {

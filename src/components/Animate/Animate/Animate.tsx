@@ -32,6 +32,13 @@ interface Props extends PropsWithChildren {
   duration?: number;
 
   /**
+   * Animation distance.
+   *
+   * Defaults to `50%`.
+   */
+  distance?: string;
+
+  /**
    * Animation easing.
    *
    * Defaults to `easeInOut`.
@@ -71,10 +78,10 @@ interface Props extends PropsWithChildren {
 const effects: Record<NonNullable<Props["effect"]>, string> = {
   none: "",
   fade: "",
-  slideDown: "not-data-animated:*:-translate-y-1/2",
-  slideLeft: "not-data-animated:*:translate-x-1/2",
-  slideRight: "not-data-animated:*:-translate-x-1/2",
-  slideUp: "not-data-animated:*:translate-y-1/2",
+  slideDown: "not-data-animated:*:-translate-y-(--translate-distance)",
+  slideLeft: "not-data-animated:*:translate-x-(--translate-distance)",
+  slideRight: "not-data-animated:*:-translate-x-(--translate-distance)",
+  slideUp: "not-data-animated:*:translate-y-(--translate-distance)",
   zoomIn: "not-data-animated:*:scale-50",
   zoomOut: "not-data-animated:*:scale-125",
 } as const;
@@ -82,6 +89,7 @@ const effects: Record<NonNullable<Props["effect"]>, string> = {
 export function Animate({
   effect = "fade",
   duration = 400,
+  distance = "50%",
   easing = "ease-out",
   always = false,
   threshold,
@@ -122,6 +130,7 @@ export function Animate({
         {
           "--animate-duration": `${duration}ms`,
           "--animate-easing": easing,
+          "--translate-distance": distance,
         } as CSSProperties
       }
     >

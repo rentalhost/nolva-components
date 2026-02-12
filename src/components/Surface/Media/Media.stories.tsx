@@ -67,6 +67,15 @@ export const VideoRemoteExample: StoryObj<typeof Media> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
+export const VideoRemoteButtonOpacityExample: StoryObj<typeof Media> = {
+  args: {
+    src: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
+    className: "w-128",
+    playOpacity: 0.75,
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const VideoRemoteButtonDiagonalExample: StoryObj<typeof Media> = {
   args: {
     src: "https://www.youtube.com/watch?v=LXb3EKWsInQ",

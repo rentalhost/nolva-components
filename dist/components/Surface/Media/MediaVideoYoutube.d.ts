@@ -24,9 +24,21 @@ interface Props {
      */
     playClassName?: string;
     /**
+     * The position of the play button.
+     *
+     * Defaults to `center`.
+     */
+    playPosition?: "bottom-left" | "bottom-right" | "center" | "top-left" | "top-right" | false;
+    /**
+     * The opacity of the play button.
+     *
+     * Defaults to `1`.
+     */
+    playOpacity?: number;
+    /**
      * The callback when the play button is clicked.
      */
     onPlay?(this: void, id: string): void;
 }
-export declare function MediaVideoYoutube({ id, className, iframeClassName, thumbnailClassName, overlayClassName, playClassName, onPlay, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function MediaVideoYoutube({ id, className, iframeClassName, thumbnailClassName, overlayClassName, playClassName, playPosition, playOpacity, onPlay, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

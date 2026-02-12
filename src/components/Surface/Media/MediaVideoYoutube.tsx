@@ -4,6 +4,8 @@
 import { twMerge } from "@rentalhost/nolva-core";
 import { useState } from "react";
 
+import type { CSSProperties } from "react";
+
 import { YoutubePlay } from "@/components/Surface/Media/fixtures/YoutubePlay";
 import { Media } from "@/components/Surface/Media/Media";
 import { getVideoYoutubeThumbnail } from "@/services/VideoService";
@@ -53,6 +55,13 @@ interface Props {
     | false;
 
   /**
+   * The opacity of the play button.
+   *
+   * Defaults to `1`.
+   */
+  playOpacity?: number;
+
+  /**
    * The callback when the play button is clicked.
    */
   onPlay?(this: void, id: string): void;
@@ -66,6 +75,7 @@ export function MediaVideoYoutube({
   overlayClassName,
   playClassName,
   playPosition = "center",
+  playOpacity = 1,
   onPlay,
 }: Props) {
   const [play, setPlay] = useState(false);
@@ -118,8 +128,9 @@ export function MediaVideoYoutube({
 
           {playPosition !== false && (
             <YoutubePlay
+              style={{ "--opacity": playOpacity } as CSSProperties}
               className={twMerge(
-                "absolute w-16 shadow-lg shadow-theme-950/25 transition group-hover/thumbnail:scale-115",
+                "absolute w-16 shadow-lg shadow-theme-950/25 transition group-hover/thumbnail:scale-115 not-hover:opacity-(--opacity)",
                 playPosition === "center"
                   ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   : playPosition === "top-right"

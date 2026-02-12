@@ -67,6 +67,24 @@ export const VideoRemoteExample: StoryObj<typeof Media> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
+export const VideoRemoteButtonDiagonalExample: StoryObj<typeof Media> = {
+  args: {
+    src: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
+    className: "w-128",
+    playPosition: "bottom-right",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const VideoRemoteButtonHiddenExample: StoryObj<typeof Media> = {
+  args: {
+    src: "https://www.youtube.com/watch?v=LXb3EKWsInQ",
+    className: "w-128",
+    playPosition: false,
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const StaticImageExample: StoryObj<typeof Media> = {
   args: {
     src: ExampleImage,

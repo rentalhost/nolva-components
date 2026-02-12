@@ -40,6 +40,19 @@ interface Props {
   playClassName?: string;
 
   /**
+   * The position of the play button.
+   *
+   * Defaults to `center`.
+   */
+  playPosition?:
+    | "bottom-left"
+    | "bottom-right"
+    | "center"
+    | "top-left"
+    | "top-right"
+    | false;
+
+  /**
    * The callback when the play button is clicked.
    */
   onPlay?(this: void, id: string): void;
@@ -52,6 +65,7 @@ export function MediaVideoYoutube({
   thumbnailClassName,
   overlayClassName,
   playClassName,
+  playPosition = "center",
   onPlay,
 }: Props) {
   const [play, setPlay] = useState(false);
@@ -102,12 +116,23 @@ export function MediaVideoYoutube({
             )}
           />
 
-          <YoutubePlay
-            className={twMerge(
-              "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 shadow-lg shadow-theme-950/25 transition group-hover/thumbnail:scale-115",
-              playClassName,
-            )}
-          />
+          {playPosition !== false && (
+            <YoutubePlay
+              className={twMerge(
+                "absolute w-16 shadow-lg shadow-theme-950/25 transition group-hover/thumbnail:scale-115",
+                playPosition === "center"
+                  ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  : playPosition === "top-right"
+                    ? "top-4 right-4"
+                    : playPosition === "top-left"
+                      ? "top-4 left-4"
+                      : playPosition === "bottom-right"
+                        ? "bottom-4 right-4"
+                        : "bottom-4 left-4",
+                playClassName,
+              )}
+            />
+          )}
         </>
       )}
     </div>

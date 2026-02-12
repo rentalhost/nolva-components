@@ -1,13 +1,15 @@
 import type { ComponentProps } from "react";
-interface Props extends ComponentProps<"div"> {
+interface Props extends Omit<ComponentProps<"div">, "id"> {
     /**
      * The type of the resource.
+     *
+     * Defaults to `media`.
      */
-    resourceType: string;
+    type?: string;
     /**
      * The ID of the resource.
      */
-    resourceId: number;
+    id: number;
 }
-export declare function Resource({ resourceType, resourceId, className, children, ...props }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Resource({ type, id, className, children, ...props }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

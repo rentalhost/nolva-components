@@ -10,6 +10,7 @@ export { Select } from "@/components/Form/Select/Select";
 export { BackButton } from "@/components/Generic/BackButton/BackButton";
 export { BackTopButton } from "@/components/Generic/BackTopButton/BackTopButton";
 export { InputSearch } from "@/components/Generic/InputSearch/InputSearch";
+export { LinkOptional } from "@/components/Generic/LinkOptional/LinkOptional";
 export { Ready } from "@/components/Generic/Ready/Ready";
 export { Resource } from "@/components/Generic/Resource/Resource";
 export { ResourceProvider } from "@/components/Generic/Resource/ResourceProvider";

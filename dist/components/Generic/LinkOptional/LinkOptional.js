@@ -1,0 +1,1 @@
+import{jsx as r}from"react/jsx-runtime";import n from"next/link";export function LinkOptional({href:t,...i}){return null==t?r("a",{...i}):r(n,{href:t,...i})}

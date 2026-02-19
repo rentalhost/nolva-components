@@ -54,9 +54,13 @@ export function ScrollProgress({
       const rect = ref.current?.getBoundingClientRect();
 
       if (rect !== undefined) {
+        const rectTop = rect.top + window.scrollY;
+        const rectInside = Math.max(window.innerHeight - rectTop, 0);
+        const rectHeight = rect.height - rectInside;
+
         const currentProgress =
-          (1 / rect.height) *
-          clamp(window.innerHeight - rect.top, 0, rect.height);
+          (1 / rectHeight) *
+          clamp(window.innerHeight - rect.top - rectInside, 0, rectHeight);
 
         setProgress(currentProgress);
         onProgress?.(currentProgress);

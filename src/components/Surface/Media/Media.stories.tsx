@@ -16,7 +16,7 @@ export const ImageExample: StoryObj<typeof Media> = {
   args: {
     src: "/assets/storybook.webp",
     alt: "Storybook",
-    priority: true,
+    priority: false,
   },
 };
 

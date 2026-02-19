@@ -33,6 +33,7 @@ export function MediaSVG({ src, alt, priority, className }: Props) {
       width={0}
       height={0}
       priority={priority}
+      loading="eager"
       unoptimized
       data-component="MediaSVG"
       className={twMerge("w-full", className)}

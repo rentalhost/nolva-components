@@ -1,9 +1,9 @@
 "use client";
 
-import { twMerge } from "@rentalhost/nolva-core";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { getNextImageUrl, twMerge } from "@rentalhost/nolva-core";
+import { useEffect, useMemo, useRef, useState } from "react";
 
+import type { ImgProps } from "next/dist/shared/lib/get-img-props";
 import type { CSSProperties } from "react";
 
 import { listenResizeObserver } from "@/services/MutationService";
@@ -54,17 +54,23 @@ const emptySrc =
   "data:image/webp;base64,UklGRhYAAABXRUJQVlA4TAoAAAAvAAAAAEX/I/of";
 
 export function MediaImage({
-  src,
+  src: srcBase,
   alt,
   quality,
-  priority,
-  unoptimized,
+  priority = false,
   spot,
   className,
 }: Props) {
   const ref = useRef<HTMLImageElement>(null);
 
   const [width, setWidth] = useState(0);
+  const { src, srcSet, sizes } = useMemo(
+    (): ImgProps =>
+      width === 0
+        ? ({ src: emptySrc } as ImgProps)
+        : getNextImageUrl(srcBase, width, quality),
+    [quality, srcBase, width],
+  );
 
   useEffect(
     () =>
@@ -80,15 +86,15 @@ export function MediaImage({
   );
 
   return (
-    <Image
+    <img
       ref={ref}
-      src={width === 0 ? emptySrc : src}
+      src={src}
+      srcSet={srcSet}
+      sizes={sizes}
       width={width}
       height={0}
       alt={alt}
-      quality={quality}
-      priority={priority}
-      unoptimized={unoptimized}
+      loading={priority ? "eager" : "lazy"}
       data-component="MediaImage"
       className={twMerge(
         "w-full",

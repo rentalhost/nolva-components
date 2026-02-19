@@ -473,7 +473,7 @@
 
     "@polka/url": ["@polka/url@1.0.0-next.29", "", {}, "sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww=="],
 
-    "@rentalhost/nolva-core": ["@rentalhost/nolva-core@github:rentalhost/nolva-core#d8e6ec3", { "dependencies": { "tailwind-merge": "^3.5.0" } }, "rentalhost-nolva-core-d8e6ec3"],
+    "@rentalhost/nolva-core": ["@rentalhost/nolva-core@github:rentalhost/nolva-core#9441310", { "dependencies": { "tailwind-merge": "^3.5.0" } }, "rentalhost-nolva-core-9441310"],
 
     "@rheactor/eslint-config-rheactor": ["@rheactor/eslint-config-rheactor@github:rheactor/eslint-config-rheactor#481a9db", { "dependencies": { "@eslint/eslintrc": "^3.3.3", "@eslint/js": "^10.0.1", "@next/eslint-plugin-next": "^16.1.6", "@stylistic/eslint-plugin": "^5.8.0", "eslint": "^9.39.2", "eslint-config-next": "^16.1.6", "eslint-import-resolver-typescript": "^4.4.4", "eslint-plugin-import": "^2.32.0", "eslint-plugin-promise": "^7.2.1", "eslint-plugin-react": "^7.37.5", "eslint-plugin-react-hooks": "^7.0.1", "eslint-plugin-react-hooks-addons": "^0.5.1", "eslint-plugin-regexp": "^3.0.0", "eslint-plugin-unicorn": "^63.0.0", "eslint-plugin-unused-imports": "^4.4.1", "eslint-plugin-vitest": "^0.5.4", "globals": "^17.3.0", "typescript": "^5.9.3", "typescript-eslint": "^8.55.0" }, "peerDependencies": { "react": "^19.2.4" }, "optionalPeers": ["react"] }, "rheactor-eslint-config-rheactor-481a9db"],
 

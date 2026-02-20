@@ -330,6 +330,9 @@ export function Slider({
             }}
             onResize={(swiperInstance) => {
               handleResize(swiperInstance.params.slidesPerView);
+              queueMicrotask(() => {
+                swiperInstance.update();
+              });
             }}
             className={twMerge("flex-1", !swiper && "hidden")}
           >

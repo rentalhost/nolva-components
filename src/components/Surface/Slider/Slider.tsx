@@ -267,58 +267,11 @@ export function Slider({
     [isOverflow, paginationCompressed, paginationTotal],
   );
 
-  const swiperChildren = useMemo(
-    () => (
-      <Swiper
-        onSwiper={setSwiper}
-        loop={infinity && isOverflow}
-        autoplay={
-          duration === 0 ? false : { delay: duration, pauseOnMouseEnter: true }
-        }
-        breakpoints={breakpoints}
-        modules={[Autoplay, Keyboard, ...(freeFlow ? [FreeMode] : [])]}
-        centerInsufficientSlides={centered}
-        freeMode={{ enabled: freeFlow, sticky: true }}
-        keyboard={{ enabled: true, onlyInViewport: true }}
-        loopAddBlankSlides={false}
-        speed={speed * visibleCount}
-        onSlideChange={({ realIndex }) => {
-          setIndex(realIndex);
-        }}
-        onTouchEnd={() => {
-          onNavigate?.();
-        }}
-        onResize={({ params: { slidesPerView } }) => {
-          if (typeof slidesPerView === "number") {
-            setVisibleCount(slidesPerView);
-          }
-        }}
-        className={twMerge("flex-1", !swiper && "hidden")}
-      >
-        {children.map((child, childIndex) => (
-          <SwiperSlide
-            // eslint-disable-next-line react/no-array-index-key
-            key={childIndex}
-          >
-            {child}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    ),
-    [
-      breakpoints,
-      centered,
-      children,
-      duration,
-      freeFlow,
-      infinity,
-      isOverflow,
-      onNavigate,
-      speed,
-      swiper,
-      visibleCount,
-    ],
-  );
+  const handleResize = useCallback((slidesPerView: unknown) => {
+    if (typeof slidesPerView === "number") {
+      setVisibleCount(slidesPerView);
+    }
+  }, []);
 
   useEffect(
     () =>
@@ -351,7 +304,44 @@ export function Slider({
             }}
           />
 
-          {swiperChildren}
+          <Swiper
+            onSwiper={setSwiper}
+            loop={infinity && isOverflow}
+            autoplay={
+              duration === 0
+                ? false
+                : { delay: duration, pauseOnMouseEnter: true }
+            }
+            breakpoints={breakpoints}
+            modules={[Autoplay, Keyboard, ...(freeFlow ? [FreeMode] : [])]}
+            centerInsufficientSlides={centered}
+            freeMode={{ enabled: freeFlow, sticky: true }}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            loopAddBlankSlides={false}
+            speed={speed * visibleCount}
+            onSlideChange={({ realIndex }) => {
+              setIndex(realIndex);
+            }}
+            onTouchEnd={() => {
+              onNavigate?.();
+            }}
+            onAfterInit={(swiperInstance) => {
+              handleResize(swiperInstance.params.slidesPerView);
+            }}
+            onResize={(swiperInstance) => {
+              handleResize(swiperInstance.params.slidesPerView);
+            }}
+            className={twMerge("flex-1", !swiper && "hidden")}
+          >
+            {children.map((child, childIndex) => (
+              <SwiperSlide
+                // eslint-disable-next-line react/no-array-index-key
+                key={childIndex}
+              >
+                {child}
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
           <SliderArrow
             rotate

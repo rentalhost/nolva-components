@@ -1,7 +1,6 @@
-"use client";
-
 import { twMerge } from "@rentalhost/nolva-core";
 import { useId, useMemo } from "react";
+import { stringifyCSSProperties } from "react-style-stringify";
 
 import type { CSSProperties, ReactNode } from "react";
 
@@ -108,29 +107,14 @@ export function PrintPage({
   const height = isLandscape ? dimensions.width : dimensions.height;
 
   const options = useMemo(
-    () =>
-      Object.entries({
-        margin: 0,
-        width,
-        height,
-        "page-orientation": isLandscape && "rotate-left",
-      }),
+    () => ({
+      margin: 0,
+      width,
+      height,
+      "page-orientation": isLandscape && "rotate-left",
+    }),
     [width, height, isLandscape],
   );
-
-  const style = useMemo(() => {
-    if (typeof document === "undefined") {
-      return undefined;
-    }
-
-    const element = document.createElement("div");
-
-    for (const [key, value] of options) {
-      element.style.setProperty(key, String(value));
-    }
-
-    return { __html: `@page ${id} { ${element.style.cssText} }` };
-  }, [id, options]);
 
   return (
     <div
@@ -148,12 +132,10 @@ export function PrintPage({
         } as CSSProperties
       }
     >
-      {style && (
-        <style
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={style}
-        />
-      )}
+      <style
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: `@page ${id} { ${stringifyCSSProperties(options)} }` }}
+      />
 
       {overflowMode === "warning" && (
         <div className="top-(--height) absolute inset-x-0 bottom-0 animate-pulse bg-red-200 bg-blend-overlay print:hidden" />

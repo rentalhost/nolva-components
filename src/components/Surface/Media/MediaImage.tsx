@@ -50,8 +50,7 @@ interface Props {
 
 export const allowedExtensions = ["jpg", "jpeg", "png", "webp", "gif"] as const;
 
-const emptySrc =
-  "data:image/webp;base64,UklGRhYAAABXRUJQVlA4TAoAAAAvAAAAAEX/I/of";
+const emptySrc = "data:image/webp;base64,UklGRhYAAABXRUJQVlA4TAoAAAAvAAAAAEX/I/of";
 
 export function MediaImage({
   src: srcBase,
@@ -66,9 +65,7 @@ export function MediaImage({
   const [width, setWidth] = useState(0);
   const { src, srcSet, sizes } = useMemo(
     (): ImgProps =>
-      width === 0
-        ? ({ src: emptySrc } as ImgProps)
-        : getNextImageUrl(srcBase, width, quality),
+      width === 0 ? ({ src: emptySrc } as ImgProps) : getNextImageUrl(srcBase, width, quality),
     [quality, srcBase, width],
   );
 
@@ -96,11 +93,7 @@ export function MediaImage({
       alt={alt}
       loading={priority ? "eager" : "lazy"}
       data-component="MediaImage"
-      className={twMerge(
-        "w-full",
-        spot !== undefined && "object-(--spot)",
-        className,
-      )}
+      className={twMerge("w-full", spot !== undefined && "object-(--spot)", className)}
       style={{ "--spot": spot && `${spot.x}% ${spot.y}%` } as CSSProperties}
     />
   );

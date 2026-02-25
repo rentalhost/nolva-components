@@ -37,12 +37,7 @@ interface InputTextProps extends ComponentProps<"input"> {
 
 type Props = InputTextProps;
 
-export function Input({
-  type = "text",
-  placeholder,
-  className,
-  ...props
-}: Props) {
+export function Input({ type = "text", placeholder, className, ...props }: Props) {
   const { focused } = useContext(FormContext);
   const { primaryPlaceholder } = useContext(LabelContext);
 
@@ -53,9 +48,7 @@ export function Input({
       suppressHydrationWarning
       className={twMerge(inputClassName, className)}
       placeholder={
-        primaryPlaceholder === undefined || focused === true
-          ? placeholder
-          : primaryPlaceholder
+        primaryPlaceholder === undefined || focused === true ? placeholder : primaryPlaceholder
       }
       {...props}
     />

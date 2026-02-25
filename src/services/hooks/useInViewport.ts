@@ -42,8 +42,7 @@ export function useInViewport(
         const observerNew = new IntersectionObserver(
           ([entry]) => {
             setVisible(
-              entry!.isIntersecting ||
-                visibleAfterLeavingViewport(entry!.boundingClientRect),
+              entry!.isIntersecting || visibleAfterLeavingViewport(entry!.boundingClientRect),
             );
           },
           typeof threshold === "number"

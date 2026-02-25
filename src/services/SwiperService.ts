@@ -14,9 +14,7 @@ export type Breakpoints = Partial<Record<BreakpointName, number>>;
 
 function fillBreakpoints(rawBreakpoints: Breakpoints | number) {
   const breakpoints =
-    typeof rawBreakpoints === "number"
-      ? { xs: rawBreakpoints }
-      : { ...rawBreakpoints };
+    typeof rawBreakpoints === "number" ? { xs: rawBreakpoints } : { ...rawBreakpoints };
 
   let previousBreakpoint = 1;
 
@@ -42,15 +40,12 @@ export function normalizeBreakpoints(
 
   return Object.fromEntries(
     Object.entries(allBreakpoints).map(([breakpointName, breakpointPixels]) => {
-      const itemsBreakpoint =
-        itemsBreakpoints[breakpointName as BreakpointName];
+      const itemsBreakpoint = itemsBreakpoints[breakpointName as BreakpointName];
 
       return [
         breakpointPixels,
         {
-          slidesPerView: stretch
-            ? Math.min(itemsCount, itemsBreakpoint)
-            : itemsBreakpoint,
+          slidesPerView: stretch ? Math.min(itemsCount, itemsBreakpoint) : itemsBreakpoint,
           spaceBetween: gapBreakpoints[breakpointName as BreakpointName] * 4,
         } as SwiperOptions,
       ];

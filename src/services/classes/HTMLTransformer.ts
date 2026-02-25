@@ -134,10 +134,7 @@ export class HTMLTransformer {
     const tagAttributes: Record<string, unknown> = {};
 
     for (const [name, value] of Object.entries(element.attribs)) {
-      if (
-        this.attributes.has(name) ||
-        this.tags.get(element.tagName)?.has(name) === true
-      ) {
+      if (this.attributes.has(name) || this.tags.get(element.tagName)?.has(name) === true) {
         if (name === "style") {
           tagAttributes["style"] = styleProps(value, { reactCompat: true });
         } else if (name === "class") {
@@ -171,9 +168,7 @@ export class HTMLTransformer {
       return createElement(
         child.tagName,
         this.processAttributes(child),
-        child.children.length === 0
-          ? null
-          : this.processChildren(child.children),
+        child.children.length === 0 ? null : this.processChildren(child.children),
       );
     }
 
@@ -181,8 +176,6 @@ export class HTMLTransformer {
   }
 
   private processChildren(children: ChildNode[]) {
-    return children.map((child, key) =>
-      createElement(Fragment, { key }, this.processChild(child)),
-    );
+    return children.map((child, key) => createElement(Fragment, { key }, this.processChild(child)));
   }
 }

@@ -39,16 +39,10 @@ export default {
         argType.mapping ??= {};
 
         if (argType.type !== undefined) {
-          if (
-            argType.type.name === "enum" &&
-            argType.type.value.includes("ReactPortal")
-          ) {
+          if (argType.type.name === "enum" && argType.type.value.includes("ReactPortal")) {
             argType.control = { disable: true };
             argType.table!.type!.summary = "ReactNode";
-          } else if (
-            argType.type.name === "enum" &&
-            argType.type.value.includes("string")
-          ) {
+          } else if (argType.type.name === "enum" && argType.type.value.includes("string")) {
             argType.control = { type: "text" };
           } else if (
             argType.type.name === "enum" &&

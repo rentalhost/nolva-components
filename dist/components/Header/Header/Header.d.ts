@@ -29,5 +29,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Header({ position, stickAfter, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Header({ position, stickAfter, className, children }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

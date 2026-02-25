@@ -20,12 +20,9 @@ export function AnalyticsProvider({
   gaId = process.env["NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"],
   children,
 }: Props) {
-  const sendEvent = useCallback(
-    (name: string, params?: Record<string, unknown>) => {
-      sendGAEvent("event", name, params ?? {});
-    },
-    [],
-  );
+  const sendEvent = useCallback((name: string, params?: Record<string, unknown>) => {
+    sendGAEvent("event", name, params ?? {});
+  }, []);
 
   const value = useMemo(() => ({ sendEvent }), [sendEvent]);
 

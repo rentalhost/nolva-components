@@ -30,22 +30,12 @@ type SVGProps = Omit<ComponentProps<typeof MediaSVG>, "src"> & {
 };
 
 type VideoLocalProps = Omit<ComponentProps<typeof MediaVideoLocal>, "src"> & {
-  src:
-    | `${string}.${(typeof videoLocalAllowedExtensions)[number]}`
-    | (string & {});
+  src: `${string}.${(typeof videoLocalAllowedExtensions)[number]}` | (string & {});
 };
 
-type VideoYoutubeProps = Omit<
-  ComponentProps<typeof MediaVideoYoutube>,
-  "id"
-> & { src: string };
+type VideoYoutubeProps = Omit<ComponentProps<typeof MediaVideoYoutube>, "id"> & { src: string };
 
-type Props =
-  | ImageProps
-  | StaticImageProps
-  | SVGProps
-  | VideoLocalProps
-  | VideoYoutubeProps;
+type Props = ImageProps | StaticImageProps | SVGProps | VideoLocalProps | VideoYoutubeProps;
 
 function isStaticImage(props: Props): props is StaticImageProps {
   return typeof props.src === "object" && "src" in props.src;

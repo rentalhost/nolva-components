@@ -11,8 +11,7 @@ export type Resolve<T> = (value: T) => void;
 export type Resolver<T> = (resolve: Resolve<T>) => ReactElement;
 
 export async function promisePortal<T>(resolver: Resolver<T>) {
-  const { promise: elementPromise, resolve: elementResolve } =
-    deferPromise<T>();
+  const { promise: elementPromise, resolve: elementResolve } = deferPromise<T>();
 
   const element = document.createElement("div");
   const elementRoot = createRoot(element);

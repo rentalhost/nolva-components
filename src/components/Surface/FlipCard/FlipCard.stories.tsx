@@ -34,9 +34,7 @@ export const FlipToLeftExample: StoryObj<typeof FlipCard> = {
       </div>
     ),
     contentBack: (
-      <div className="size-full flex items-center justify-center rounded bg-white">
-        Back
-      </div>
+      <div className="size-full flex items-center justify-center rounded bg-white">Back</div>
     ),
   },
 };
@@ -57,9 +55,7 @@ export const AxisVerticalExample: StoryObj<typeof FlipCard> = {
       </div>
     ),
     contentBack: (
-      <div className="size-full flex items-center justify-center rounded bg-white">
-        Back
-      </div>
+      <div className="size-full flex items-center justify-center rounded bg-white">Back</div>
     ),
   },
 };
@@ -76,15 +72,15 @@ export const HeightControllerBackExample: StoryObj<typeof FlipCard> = {
     heightController: "back",
     contentFront: (
       <div className="size-full flex items-center justify-center rounded bg-black text-white">
-        Front Front Front Front Front Front Front Front Front Front Front Front
-        Front Front Front Front Front Front Front Front Front Front Front Front
-        Front Front Front Front Front Front Front Front Front Front Front Front
+        Front Front Front Front Front Front Front Front Front Front Front Front Front Front Front
+        Front Front Front Front Front Front Front Front Front Front Front Front Front Front Front
+        Front Front Front Front Front Front
       </div>
     ),
     contentBack: (
       <div className="size-full flex items-center justify-center rounded bg-white">
-        Back Back Back Back Back Back Back Back Back Back Back Back Back Back
-        Back Back Back Back Back Back Back Back Back Back Back Back Back Back
+        Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back Back
+        Back Back Back Back Back Back Back Back Back Back
       </div>
     ),
   },

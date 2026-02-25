@@ -62,10 +62,7 @@ export function WhatsappButton({
       href={`https://wa.me/${phoneNormalized}`}
       target="_blank"
       rel="noreferrer"
-      className={twMerge(
-        "group/whatsapp fixed bottom-18 right-0 flex",
-        className,
-      )}
+      className={twMerge("group/whatsapp fixed bottom-18 right-0 flex", className)}
     >
       <div
         className={twMerge(
@@ -73,15 +70,11 @@ export function WhatsappButton({
           contentClassName,
         )}
       >
-        <strong
-          className={twMerge("font-semibold text-neutral-600", titleClassName)}
-        >
+        <strong className={twMerge("font-semibold text-neutral-600", titleClassName)}>
           {title ?? "WhatsApp"}
         </strong>
 
-        <span className={twMerge("text-theme-900", phoneClassName)}>
-          {phone}
-        </span>
+        <span className={twMerge("text-theme-900", phoneClassName)}>{phone}</span>
       </div>
 
       <div

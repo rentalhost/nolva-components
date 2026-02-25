@@ -46,13 +46,7 @@ interface Props {
    *
    * Defaults to `center`.
    */
-  playPosition?:
-    | "bottom-left"
-    | "bottom-right"
-    | "center"
-    | "top-left"
-    | "top-right"
-    | false;
+  playPosition?: "bottom-left" | "bottom-right" | "center" | "top-left" | "top-right" | false;
 
   /**
    * The opacity of the play button.

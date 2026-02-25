@@ -1,14 +1,7 @@
 "use client";
 
 import { twMerge } from "@rentalhost/nolva-core";
-import {
-  Children,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { Children, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
 import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -135,10 +128,7 @@ interface Props extends PropsWithChildren {
    *
    * Defaults to `overlay`.
    */
-  arrowsPlacementFallback?: Exclude<
-    ComponentProps<typeof SliderArrow>["placement"],
-    "external"
-  >;
+  arrowsPlacementFallback?: Exclude<ComponentProps<typeof SliderArrow>["placement"], "external">;
 
   /**
    * Pagination placement.
@@ -211,10 +201,7 @@ export function Slider({
   const [index, setIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(Number.MAX_SAFE_INTEGER);
 
-  const children = useMemo(
-    () => Children.toArray(baseChildren).filter(Boolean),
-    [baseChildren],
-  );
+  const children = useMemo(() => Children.toArray(baseChildren).filter(Boolean), [baseChildren]);
 
   const breakpoints = useMemo(
     () => normalizeBreakpoints(children.length, items, gap, stretch),
@@ -225,10 +212,7 @@ export function Slider({
 
   const [hasArrowSpace, setHasArrowSpace] = useState(false);
 
-  const isOverflow = useMemo(
-    () => children.length > visibleCount,
-    [children.length, visibleCount],
-  );
+  const isOverflow = useMemo(() => children.length > visibleCount, [children.length, visibleCount]);
 
   const arrowPlacementFinal = useMemo(
     () =>
@@ -255,10 +239,7 @@ export function Slider({
   );
 
   const paginationTotal = useMemo(
-    () =>
-      paginationCompressed
-        ? Math.ceil(children.length / visibleCount)
-        : children.length,
+    () => (paginationCompressed ? Math.ceil(children.length / visibleCount) : children.length),
     [children.length, paginationCompressed, visibleCount],
   );
 
@@ -279,8 +260,7 @@ export function Slider({
         ? listenWindowEvent("resize", () => {
             if (containerRef.current !== null && arrowRef.current !== null) {
               setHasArrowSpace(
-                containerRef.current.offsetWidth +
-                  3 * arrowRef.current.offsetWidth <=
+                containerRef.current.offsetWidth + 3 * arrowRef.current.offsetWidth <=
                   document.body.offsetWidth,
               );
             }
@@ -307,11 +287,7 @@ export function Slider({
           <Swiper
             onSwiper={setSwiper}
             loop={infinity && isOverflow}
-            autoplay={
-              duration === 0
-                ? false
-                : { delay: duration, pauseOnMouseEnter: true }
-            }
+            autoplay={duration === 0 ? false : { delay: duration, pauseOnMouseEnter: true }}
             breakpoints={breakpoints}
             modules={[Autoplay, Keyboard, ...(freeFlow ? [FreeMode] : [])]}
             centerInsufficientSlides={centered}
@@ -383,9 +359,7 @@ export function Slider({
               previousNext={false}
               onClick={(page) => {
                 onNavigate?.();
-                swiper!.slideTo(
-                  paginationCompressed ? (page - 1) * visibleCount : page - 1,
-                );
+                swiper!.slideTo(paginationCompressed ? (page - 1) * visibleCount : page - 1);
               }}
             />
           </div>

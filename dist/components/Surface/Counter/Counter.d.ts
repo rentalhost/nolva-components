@@ -33,5 +33,5 @@ interface Props {
      */
     className?: string;
 }
-export declare function Counter({ from, to, decimals, duration, easing, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Counter({ from, to, decimals, duration, easing, className }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

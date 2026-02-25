@@ -46,13 +46,7 @@ interface SelectOption {
   className?: string;
 }
 
-export function Select({
-  placeholder,
-  options,
-  className,
-  arrowClassName,
-  ...props
-}: Props) {
+export function Select({ placeholder, options, className, arrowClassName, ...props }: Props) {
   return (
     <div className="relative">
       <select

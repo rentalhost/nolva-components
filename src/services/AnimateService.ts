@@ -15,11 +15,7 @@ const easings = {
 
 export type Easing = EasingFunction | keyof typeof easings;
 
-function calculateProgress(
-  current: number,
-  total: number,
-  easing: Easing = "ease-in-out",
-): number {
+function calculateProgress(current: number, total: number, easing: Easing = "ease-in-out"): number {
   const easingFunction = typeof easing === "string" ? easings[easing] : easing;
 
   return easingFunction(clamp(current / total, 0, 1));

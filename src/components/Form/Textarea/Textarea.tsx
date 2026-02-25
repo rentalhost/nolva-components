@@ -9,11 +9,7 @@ import { inputClassName } from "@/components/fixtures";
 import { FormContext } from "@/components/Form/Form/FormProvider";
 import { LabelContext } from "@/components/Form/Label/LabelProvider";
 
-export function Textarea({
-  placeholder,
-  className,
-  ...props
-}: ComponentProps<"textarea">) {
+export function Textarea({ placeholder, className, ...props }: ComponentProps<"textarea">) {
   const { focused } = useContext(FormContext);
   const { primaryPlaceholder } = useContext(LabelContext);
 
@@ -23,9 +19,7 @@ export function Textarea({
       suppressHydrationWarning
       className={twMerge(inputClassName, className)}
       placeholder={
-        primaryPlaceholder === undefined || focused === true
-          ? placeholder
-          : primaryPlaceholder
+        primaryPlaceholder === undefined || focused === true ? placeholder : primaryPlaceholder
       }
       {...props}
     />

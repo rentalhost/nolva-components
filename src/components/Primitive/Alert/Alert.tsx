@@ -20,14 +20,7 @@ interface Props extends PropsWithChildren {
   /**
    * Variant of the alert.
    */
-  variant:
-    | "advice"
-    | "critical"
-    | "debug"
-    | "error"
-    | "info"
-    | "success"
-    | "warning";
+  variant: "advice" | "critical" | "debug" | "error" | "info" | "success" | "warning";
 }
 
 class AlertVariant {
@@ -118,12 +111,7 @@ export function Alert({ title, variant, children }: Props) {
         <strong className="font-semibold capitalize">{title}</strong>
       </div>
 
-      <ul
-        className={twMerge(
-          "list-disc space-y-2 rounded p-3 pt-6 pl-8",
-          bodyClassName,
-        )}
-      >
+      <ul className={twMerge("list-disc space-y-2 rounded p-3 pt-6 pl-8", bodyClassName)}>
         {children}
       </ul>
     </div>

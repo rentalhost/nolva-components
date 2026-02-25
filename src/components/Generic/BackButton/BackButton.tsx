@@ -25,11 +25,7 @@ interface Props {
   className?: string;
 }
 
-export function BackButton({
-  title = "Back",
-  fallbackRoute,
-  className,
-}: Props) {
+export function BackButton({ title = "Back", fallbackRoute, className }: Props) {
   const hasFallbackRoute = fallbackRoute !== undefined;
 
   const [useFallback, setUseFallback] = useState(hasFallbackRoute);

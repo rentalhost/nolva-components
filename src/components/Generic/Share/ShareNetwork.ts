@@ -1,10 +1,4 @@
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaXTwitter,
-  FaWhatsapp,
-  FaShareNodes,
-} from "react-icons/fa6";
+import { FaFacebookF, FaLinkedinIn, FaXTwitter, FaWhatsapp, FaShareNodes } from "react-icons/fa6";
 
 import type { IconType } from "react-icons/lib";
 
@@ -20,9 +14,7 @@ export class ShareNetwork {
     public readonly name: string,
     public readonly icon: IconType,
     public readonly className: string,
-    public readonly url:
-      | "native"
-      | (({ title, url }: ShareNetworkUrlProps) => string),
+    public readonly url: "native" | (({ title, url }: ShareNetworkUrlProps) => string),
   ) {}
 }
 
@@ -48,8 +40,7 @@ export const networks = {
     "LinkedIn",
     FaLinkedinIn,
     "bg-[#3F95E0]",
-    ({ url }) =>
-      `https://www.linkedin.com/sharing/share-offsite${generateQueryString({ url })}`,
+    ({ url }) => `https://www.linkedin.com/sharing/share-offsite${generateQueryString({ url })}`,
   ),
   whatsapp: new ShareNetwork(
     "WhatsApp",

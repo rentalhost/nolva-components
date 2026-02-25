@@ -34,9 +34,7 @@ export function SliderArrow({
         "flex items-center -translate-x-full transition starting:opacity-0 transform-3d",
         "data-disabled:pointer-events-none data-disabled:opacity-25",
         rotate ? "right-0 translate-x-full" : "left-0",
-        placement === "external"
-          ? "h-full w-fit absolute z-10"
-          : "translate-x-0",
+        placement === "external" ? "h-full w-fit absolute z-10" : "translate-x-0",
         (placement === "overlay" || placement === "disabled") &&
           "absolute z-10 h-fit top-1/2 -translate-y-1/2",
         placement === "disabled" && "opacity-0 data-disabled:opacity-0",

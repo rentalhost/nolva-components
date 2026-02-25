@@ -12,16 +12,9 @@ interface Props {
   onClick(this: void): void;
 }
 
-const shareNetworkIconClassName =
-  "cursor-pointer rounded-sm p-2 transition hover:scale-105";
+const shareNetworkIconClassName = "cursor-pointer rounded-sm p-2 transition hover:scale-105";
 
-export function ShareNetworkIcon({
-  network,
-  title,
-  url,
-  className,
-  onClick,
-}: Props) {
+export function ShareNetworkIcon({ network, title, url, className, onClick }: Props) {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const NetworkIcon = network.icon;
 
@@ -30,11 +23,7 @@ export function ShareNetworkIcon({
       <div
         data-component="ShareNetworkIconNative"
         data-network={network.name.toLowerCase()}
-        className={twMerge(
-          shareNetworkIconClassName,
-          network.className,
-          className,
-        )}
+        className={twMerge(shareNetworkIconClassName, network.className, className)}
         onClick={() => {
           void navigator.share({ title, url });
           onClick();
@@ -51,11 +40,7 @@ export function ShareNetworkIcon({
       href={network.url({ title, url })}
       data-component="ShareNetworkIcon"
       data-network={network.name.toLowerCase()}
-      className={twMerge(
-        shareNetworkIconClassName,
-        network.className,
-        className,
-      )}
+      className={twMerge(shareNetworkIconClassName, network.className, className)}
       onClick={onClick}
     >
       <NetworkIcon className="size-full" />

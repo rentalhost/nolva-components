@@ -32,11 +32,7 @@ export function PaginationPage({
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setRoute(
-      queryString === undefined
-        ? undefined
-        : appendQueryString(queryString, String(page)),
-    );
+    setRoute(queryString === undefined ? undefined : appendQueryString(queryString, String(page)));
   }, [page, queryString]);
 
   return (

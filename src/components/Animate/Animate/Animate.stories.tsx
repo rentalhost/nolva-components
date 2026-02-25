@@ -53,9 +53,7 @@ export const Example: StoryObj<typeof Animate> = {
   args: {
     always: true,
     effect: "slideUp",
-    children: (
-      <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>
-    ),
+    children: <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>,
   },
 };
 
@@ -66,9 +64,7 @@ export const DistancePixels: StoryObj<typeof Animate> = {
     always: true,
     effect: "slideRight",
     distance: "10px",
-    children: (
-      <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>
-    ),
+    children: <div className="w-max rounded bg-blue-600 p-8 text-white">Example</div>,
   },
 };
 

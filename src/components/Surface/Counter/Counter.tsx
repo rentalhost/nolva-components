@@ -49,19 +49,10 @@ interface Props {
 }
 
 function toFixedFlooring(value: number, decimals: number) {
-  return decimals === 0
-    ? Math.floor(value)
-    : value.toFixed(decimals + 1).slice(0, -1);
+  return decimals === 0 ? Math.floor(value) : value.toFixed(decimals + 1).slice(0, -1);
 }
 
-export function Counter({
-  from = 0,
-  to,
-  decimals = 0,
-  duration = 1000,
-  easing,
-  className,
-}: Props) {
+export function Counter({ from = 0, to, decimals = 0, duration = 1000, easing, className }: Props) {
   const { ref, visible, disconnect } = useInViewport(0.25);
 
   const [progress, setProgress] = useState(0);

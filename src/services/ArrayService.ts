@@ -1,11 +1,6 @@
 import { range } from "@rentalhost/nolva-core";
 
-export function circularRange(
-  start: number,
-  end: number,
-  from: number,
-  spread: number,
-): number[] {
+export function circularRange(start: number, end: number, from: number, spread: number): number[] {
   const size = end - start + 1;
   const idx = (((from - start) % size) + size) % size;
   const first = (idx + 1) % size;
@@ -13,11 +8,7 @@ export function circularRange(
   return Array.from({ length: spread }, (_, i) => start + ((first + i) % size));
 }
 
-export function paginate(
-  current: number,
-  total: number,
-  visibleCount?: number,
-): number[] {
+export function paginate(current: number, total: number, visibleCount?: number): number[] {
   if (visibleCount === undefined) {
     return range(1, total);
   }

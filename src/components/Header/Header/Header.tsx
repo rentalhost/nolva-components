@@ -40,27 +40,17 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Header({
-  position = "relative",
-  stickAfter = 0,
-  className,
-  children,
-}: Props) {
+export function Header({ position = "relative", stickAfter = 0, className, children }: Props) {
   const { ref, visible } = useInViewport("1px", true);
 
-  const isStuck =
-    visible && !["static", "relative", "absolute"].includes(position);
+  const isStuck = visible && !["static", "relative", "absolute"].includes(position);
 
   return (
     <>
       <header
         data-component="Header"
         data-stuck={isStuck || undefined}
-        className={twMerge(
-          "flex bg-theme-50 inset-x-0 top-0 z-20",
-          position,
-          className,
-        )}
+        className={twMerge("flex bg-theme-50 inset-x-0 top-0 z-20", position, className)}
       >
         {children}
       </header>

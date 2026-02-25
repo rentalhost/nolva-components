@@ -8,8 +8,7 @@ import type { PropsWithChildren } from "react";
 
 import { LabelContext } from "@/components/Form/Label/LabelProvider";
 
-interface Props
-  extends PropsWithChildren, Pick<ComponentProps<"label">, "ref"> {
+interface Props extends PropsWithChildren, Pick<ComponentProps<"label">, "ref"> {
   /**
    * The title of the label.
    */
@@ -82,10 +81,7 @@ export function Label({
       <label
         ref={ref}
         data-component="Label"
-        className={twMerge(
-          "grid gap-1 col-span-[var(--grid-cols,var(--size))]",
-          className,
-        )}
+        className={twMerge("grid gap-1 col-span-[var(--grid-cols,var(--size))]", className)}
         style={{ "--size": size } as CSSProperties}
       >
         <span

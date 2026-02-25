@@ -193,10 +193,7 @@ export const AsChildFallbackExample: StoryObj<typeof Button> = {
 function BrandBlueButton(args: ComponentProps<typeof Button>) {
   return (
     <Theme variant="brand-blue">
-      <Button
-        {...args}
-        className="bg-theme-700 border-theme-800 theme-outline:bg-theme-100"
-      />
+      <Button {...args} className="bg-theme-700 border-theme-800 theme-outline:bg-theme-100" />
     </Theme>
   );
 }
@@ -204,10 +201,7 @@ function BrandBlueButton(args: ComponentProps<typeof Button>) {
 function BrandGreenButton(args: ComponentProps<typeof Button>) {
   return (
     <Theme variant="brand-green">
-      <Button
-        {...args}
-        className="bg-theme-400 border-theme-600 text-theme-950"
-      />
+      <Button {...args} className="bg-theme-400 border-theme-600 text-theme-950" />
     </Theme>
   );
 }
@@ -215,10 +209,7 @@ function BrandGreenButton(args: ComponentProps<typeof Button>) {
 function BrandYellowButton(args: ComponentProps<typeof Button>) {
   return (
     <Theme variant="brand-yellow">
-      <Button
-        {...args}
-        className="bg-theme-300 border-theme-500 text-theme-950"
-      />
+      <Button {...args} className="bg-theme-300 border-theme-500 text-theme-950" />
     </Theme>
   );
 }

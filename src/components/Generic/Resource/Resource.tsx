@@ -22,21 +22,11 @@ interface Props extends Omit<ComponentProps<"div">, "id"> {
   id: number;
 }
 
-export function Resource({
-  type = "media",
-  id,
-  className,
-  children,
-  ...props
-}: Props) {
+export function Resource({ type = "media", id, className, children, ...props }: Props) {
   const { domain } = useContext(ResourceContext);
 
   return (
-    <div
-      data-component="Resource"
-      className={twMerge("relative", className)}
-      {...props}
-    >
+    <div data-component="Resource" className={twMerge("relative", className)} {...props}>
       {children}
 
       {domain !== undefined && (

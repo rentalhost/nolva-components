@@ -59,8 +59,7 @@ export function ScrollProgress({
         const rectHeight = rect.height - rectInside;
 
         const currentProgress =
-          (1 / rectHeight) *
-          clamp(window.innerHeight - rect.top - rectInside, 0, rectHeight);
+          (1 / rectHeight) * clamp(window.innerHeight - rect.top - rectInside, 0, rectHeight);
 
         setProgress(currentProgress);
         onProgress?.(currentProgress);
@@ -76,10 +75,7 @@ export function ScrollProgress({
     () => (
       <div
         data-component="ScrollProgressBar"
-        className={twMerge(
-          "fixed top-0 left-0 h-1 w-(--progress) bg-theme-400",
-          progressClassName,
-        )}
+        className={twMerge("fixed top-0 left-0 h-1 w-(--progress) bg-theme-400", progressClassName)}
         style={{ "--progress": `${progress * 100}%` } as CSSProperties}
       />
     ),

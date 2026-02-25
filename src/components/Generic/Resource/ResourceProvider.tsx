@@ -39,10 +39,7 @@ export function ResourceProvider({ children }: PropsWithChildren) {
 
   return (
     <ResourceContext.Provider value={value}>
-      <div
-        className="group/resource contents"
-        data-enabled={enabled || undefined}
-      >
+      <div className="group/resource contents" data-enabled={enabled || undefined}>
         {children}
       </div>
     </ResourceContext.Provider>

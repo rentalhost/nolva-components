@@ -39,13 +39,7 @@ export type Variant =
   | "yellow"
   | "zinc";
 
-type VariantSemantic =
-  | "danger"
-  | "debug"
-  | "error"
-  | "info"
-  | "success"
-  | "warning";
+type VariantSemantic = "danger" | "debug" | "error" | "info" | "success" | "warning";
 
 export const variants = {
   // Colors.

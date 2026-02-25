@@ -116,17 +116,10 @@ export function Pagination({
   return (
     <div
       data-component="Pagination"
-      className={twMerge(
-        "flex flex-wrap items-center justify-center gap-2",
-        className,
-      )}
+      className={twMerge("flex flex-wrap items-center justify-center gap-2", className)}
     >
       {visible && firstLast && (
-        <PaginationPage
-          page={1}
-          isDisabled={currentClamped === 1}
-          {...pageProps}
-        >
+        <PaginationPage page={1} isDisabled={currentClamped === 1} {...pageProps}>
           <FaAnglesLeft />
         </PaginationPage>
       )}
@@ -165,11 +158,7 @@ export function Pagination({
       )}
 
       {visible && firstLast && (
-        <PaginationPage
-          page={total}
-          isDisabled={currentClamped === total}
-          {...pageProps}
-        >
+        <PaginationPage page={total} isDisabled={currentClamped === total} {...pageProps}>
           <FaAnglesLeft className="rotate-180" />
         </PaginationPage>
       )}

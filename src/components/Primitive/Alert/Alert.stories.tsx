@@ -16,13 +16,12 @@ export const Example: StoryObj<typeof Alert> = {
         <li>Example</li>
 
         <li>
-          Example Example Example Example Example Example Example Example
-          Example Example Example Example Example Example Example Example
-          Example Example Example Example Example Example Example Example
-          Example Example Example Example Example Example Example Example
-          Example Example Example Example Example Example Example Example
-          Example Example Example Example Example Example Example Example
-          Example Example Example Example Example Example Example Example
+          Example Example Example Example Example Example Example Example Example Example Example
+          Example Example Example Example Example Example Example Example Example Example Example
+          Example Example Example Example Example Example Example Example Example Example Example
+          Example Example Example Example Example Example Example Example Example Example Example
+          Example Example Example Example Example Example Example Example Example Example Example
+          Example
         </li>
 
         <li>Example</li>

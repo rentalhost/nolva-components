@@ -21,5 +21,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Container({ paddingX, fluid, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Container({ paddingX, fluid, className, children }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

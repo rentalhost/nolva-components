@@ -58,24 +58,15 @@ defaultTransformer.setTextReplacer((text) => {
   return text;
 });
 
-defaultTransformer.setTagReplacer(
-  "dl",
-  ({ "data-skip": _, children, className, ...props }) => (
-    <div
-      className={twMerge("text-green-600", className)}
-      {...(props as object)}
-    >
-      <span data-ignore tabIndex={-1}>
-        {children}
-      </span>
-    </div>
-  ),
-);
+defaultTransformer.setTagReplacer("dl", ({ "data-skip": _, children, className, ...props }) => (
+  <div className={twMerge("text-green-600", className)} {...(props as object)}>
+    <span data-ignore tabIndex={-1}>
+      {children}
+    </span>
+  </div>
+));
 
-defaultTransformer.setTagReplacer(
-  "mark",
-  ({ children }) => children as Awaited<ReactNode>,
-);
+defaultTransformer.setTagReplacer("mark", ({ children }) => children as Awaited<ReactNode>);
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const SinglePage: StoryObj<typeof PrintPage> = {
@@ -151,16 +142,8 @@ export const ShortenPage: StoryObj<typeof PrintPage> = {
 export const OverflowModeWarningPage: StoryObj<typeof PrintPage> = {
   args: {
     size: "CustomSize" as ComponentProps<typeof PrintPage>["size"],
-    header: (
-      <div className="flex h-8 items-center justify-start bg-blue-200/50 px-4">
-        Header
-      </div>
-    ),
-    footer: (
-      <div className="flex h-8 items-center justify-end bg-green-200/50 px-4">
-        Footer
-      </div>
-    ),
+    header: <div className="flex h-8 items-center justify-start bg-blue-200/50 px-4">Header</div>,
+    footer: <div className="flex h-8 items-center justify-end bg-green-200/50 px-4">Footer</div>,
     margin: "2.5rem 1rem 0",
     children: (
       <div className="leading-7.25">
@@ -183,9 +166,8 @@ export const OverflowModeWarningPage: StoryObj<typeof PrintPage> = {
         <p>Under the</p>
 
         <p className="text-balance my-2 text-xs">
-          The <strong>overflowing content</strong> will be forcibly printed on
-          the next page. The blinking animation is part of the component when it
-          detects overflow.
+          The <strong>overflowing content</strong> will be forcibly printed on the next page. The
+          blinking animation is part of the component when it detects overflow.
         </p>
       </div>
     ),
@@ -197,16 +179,8 @@ export const OverflowModeAllowedPage: StoryObj<typeof PrintPage> = {
   args: {
     overflowMode: "allowed",
     size: "CustomSize" as ComponentProps<typeof PrintPage>["size"],
-    header: (
-      <div className="flex h-8 items-center justify-start bg-blue-200/50 px-4">
-        Header
-      </div>
-    ),
-    footer: (
-      <div className="flex h-8 items-center justify-end bg-green-200/50 px-4">
-        Footer
-      </div>
-    ),
+    header: <div className="flex h-8 items-center justify-start bg-blue-200/50 px-4">Header</div>,
+    footer: <div className="flex h-8 items-center justify-end bg-green-200/50 px-4">Footer</div>,
     margin: "2.5rem 1rem",
     children: (
       <div className="leading-7.25">

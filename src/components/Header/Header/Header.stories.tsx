@@ -27,10 +27,7 @@ function HeaderContainerFixture() {
         // eslint-disable-next-line react/no-unstable-nested-components
         openedModalContent={(closeHandler) => (
           <div className="bg-theme-950/75 starting:opacity-0 fixed inset-0 z-10 flex flex-col items-center justify-center gap-y-4 text-white backdrop-blur-md transition">
-            <div
-              onClick={closeHandler}
-              className="cursor-pointer hover:underline"
-            >
+            <div onClick={closeHandler} className="cursor-pointer hover:underline">
               Close (onClick)
             </div>
 
@@ -59,9 +56,7 @@ function HeaderContainerFixture() {
   );
 }
 
-function defaultRender(
-  args: Parameters<NonNullable<StoryObj<typeof Header>["render"]>>[0],
-) {
+function defaultRender(args: Parameters<NonNullable<StoryObj<typeof Header>["render"]>>[0]) {
   return (
     <>
       <Header {...args} />

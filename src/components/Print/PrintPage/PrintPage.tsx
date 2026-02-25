@@ -1,3 +1,5 @@
+"use client";
+
 import { twMerge } from "@rentalhost/nolva-core";
 import { useId, useMemo } from "react";
 
@@ -158,7 +160,7 @@ export function PrintPage({
       <div
         className={twMerge(
           "top-(--height) absolute inset-x-0 -translate-y-full print:fixed",
-          overflowMode === "allowed" && "top-auto bottom-0 -translate-y-0",
+          overflowMode === "allowed" && "top-auto bottom-0 translate-y-0",
         )}
       >
         {footer}

@@ -49,8 +49,7 @@ interface Props {
   onFlip?(this: void, viewpoint: "back" | "front"): void;
 }
 
-const baseClassName =
-  "flex h-full items-center justify-center [backface-visibility:hidden]";
+const baseClassName = "flex h-full items-center justify-center [backface-visibility:hidden]";
 const absoluteClassName = "absolute inset-0";
 
 export function FlipCard({
@@ -97,16 +96,12 @@ export function FlipCard({
           axis === "vertical" &&
             "not-max-mobile:group-hover/flip-card:[transform:rotateX(var(--flip-angle))]",
           flip && "[transform:rotateY(var(--flip-angle))]",
-          flip &&
-            axis === "vertical" &&
-            "[transform:rotateX(var(--flip-angle))]",
+          flip && axis === "vertical" && "[transform:rotateX(var(--flip-angle))]",
         )}
       >
         <div
           className={
-            heightController === "front"
-              ? baseClassName
-              : twMerge(baseClassName, absoluteClassName)
+            heightController === "front" ? baseClassName : twMerge(baseClassName, absoluteClassName)
           }
         >
           {contentFront}

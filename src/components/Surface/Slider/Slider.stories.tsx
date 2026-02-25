@@ -41,9 +41,7 @@ export const FlipCardsExample: StoryObj<typeof Slider> = {
     children: range(1, 10).map((number) => (
       <FlipCard
         key={number}
-        contentFront={
-          <div className="rounded bg-black p-16 text-white">Front {number}</div>
-        }
+        contentFront={<div className="rounded bg-black p-16 text-white">Front {number}</div>}
         contentBack={<div className="rounded bg-white p-8">Back</div>}
       />
     )),
@@ -58,9 +56,7 @@ export const FlipCardsExample2: StoryObj<typeof Slider> = {
     children: range(1, 3).map((number) => (
       <FlipCard
         key={number}
-        contentFront={
-          <div className="rounded bg-black p-16 text-white">Front {number}</div>
-        }
+        contentFront={<div className="rounded bg-black p-16 text-white">Front {number}</div>}
         contentBack={<div className="rounded bg-white p-8">Back</div>}
       />
     )),

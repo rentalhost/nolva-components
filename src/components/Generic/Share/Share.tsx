@@ -56,12 +56,7 @@ interface Props {
   /**
    * Determines the callback when a network is clicked.
    */
-  onShare?(
-    this: void,
-    network: string,
-    documentUrl: string,
-    documentTitle: string,
-  ): void;
+  onShare?(this: void, network: string, documentUrl: string, documentTitle: string): void;
 }
 
 const allNetworksKeys = Object.keys(allNetworks) as ShareNetworkName[];
@@ -78,9 +73,7 @@ export function Share({
   const [documentTitle, setDocumentTitle] = useState<string>(title ?? "");
   const [documentUrl, setDocumentUrl] = useState<string>(url ?? "");
 
-  const [selectedNetworks, setSelectedNetworks] = useState<ShareNetworkName[]>(
-    [],
-  );
+  const [selectedNetworks, setSelectedNetworks] = useState<ShareNetworkName[]>([]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -96,13 +89,9 @@ export function Share({
       return;
     }
 
-    return listenMutationObserver(
-      document.querySelector("title"),
-      { childList: true },
-      () => {
-        setDocumentTitle(document.title);
-      },
-    );
+    return listenMutationObserver(document.querySelector("title"), { childList: true }, () => {
+      setDocumentTitle(document.title);
+    });
   }, [title]);
 
   useEffect(() => {
@@ -132,9 +121,7 @@ export function Share({
 
         <div
           className="grid grid-cols-[repeat(var(--networks-count),1fr)] gap-2 text-white"
-          style={
-            { "--networks-count": selectedNetworks.length } as CSSProperties
-          }
+          style={{ "--networks-count": selectedNetworks.length } as CSSProperties}
           suppressHydrationWarning
         >
           {selectedNetworks.map((network) => (

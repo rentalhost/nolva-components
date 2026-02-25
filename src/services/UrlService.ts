@@ -6,9 +6,7 @@ export function appendQueryString(key: string, value: string) {
   return url.href;
 }
 
-export function generateQueryString(
-  params: Record<string, string | undefined>,
-) {
+export function generateQueryString(params: Record<string, string | undefined>) {
   const queryString = new URLSearchParams();
 
   for (const [key, value] of Object.entries(params)) {

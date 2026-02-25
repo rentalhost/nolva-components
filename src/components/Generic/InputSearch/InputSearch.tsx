@@ -94,10 +94,7 @@ export function InputSearch({
         name={inputName}
         defaultValue={inputDefaultValue}
         suppressHydrationWarning
-        className={twMerge(
-          "w-full pl-9 focus:outline-none py-1.5",
-          inputClassName,
-        )}
+        className={twMerge("w-full pl-9 focus:outline-none py-1.5", inputClassName)}
         placeholder={inputPlaceholder}
       />
 

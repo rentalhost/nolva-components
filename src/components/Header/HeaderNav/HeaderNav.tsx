@@ -148,10 +148,7 @@ export function HeaderNav({
         ref={navRef}
         data-forcing-overlay={opened || undefined}
         data-component="HeaderNav"
-        className={twMerge(
-          "overflow-hidden text-nowrap relative flex",
-          navClassName,
-        )}
+        className={twMerge("overflow-hidden text-nowrap relative flex", navClassName)}
       >
         <ul
           className={twMerge(

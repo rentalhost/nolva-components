@@ -119,6 +119,10 @@ export function PrintPage({
   );
 
   const style = useMemo(() => {
+    if (typeof document === "undefined") {
+      return undefined;
+    }
+
     const element = document.createElement("div");
 
     for (const [key, value] of options) {
@@ -144,10 +148,12 @@ export function PrintPage({
         } as CSSProperties
       }
     >
-      <style
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={style}
-      />
+      {style && (
+        <style
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={style}
+        />
+      )}
 
       {overflowMode === "warning" && (
         <div className="top-(--height) absolute inset-x-0 bottom-0 animate-pulse bg-red-200 bg-blend-overlay print:hidden" />

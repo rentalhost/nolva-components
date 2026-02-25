@@ -47,6 +47,10 @@ interface Props {
      * The content of the page.
      */
     children: ReactNode;
+    /**
+     * The class name of the page.
+     */
+    className?: string;
 }
 type Size = keyof typeof sizes;
 interface CustomSize {
@@ -74,5 +78,5 @@ declare const sizes: {
  *
  * It also provides an overflow warning if the content exceeds the page's size.
  */
-export declare function PrintPage({ size, orientation, margin, header, footer, overflowMode, shorten, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function PrintPage({ size, orientation, margin, header, footer, overflowMode, shorten, children, className, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

@@ -59,6 +59,11 @@ interface Props {
    * The content of the page.
    */
   children: ReactNode;
+
+  /**
+   * The class name of the page.
+   */
+  className?: string;
 }
 
 type Size = keyof typeof sizes;
@@ -96,6 +101,7 @@ export function PrintPage({
   overflowMode = "warning",
   shorten = false,
   children,
+  className,
 }: Props) {
   const id = useId();
 
@@ -122,6 +128,7 @@ export function PrintPage({
       className={twMerge(
         "w-(--width) min-h-(--height) p-(--margin) not-print:rounded-sm not-print:shadow-md not-print:shadow-gray-600/10 not-print:bg-white not-print:outline not-print:outline-gray-600/25 not-print:overflow-hidden relative break-after-page box-decoration-clone [page:var(--id)] [zoom:var(--zoom)]",
         shorten && "min-h-auto",
+        className,
       )}
       style={
         {

@@ -149,7 +149,7 @@ export function PrintPage({
         <div className="absolute inset-x-0 top-0 print:fixed">{header}</div>
       )}
 
-      {children}
+      <div className="relative">{children}</div>
 
       {isValidElement(footer) && (
         <div

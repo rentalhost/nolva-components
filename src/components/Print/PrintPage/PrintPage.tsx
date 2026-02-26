@@ -1,5 +1,5 @@
 import { twMerge } from "@rentalhost/nolva-core";
-import { useId, useMemo } from "react";
+import { isValidElement, useId, useMemo } from "react";
 import { stringifyCSSProperties } from "react-style-stringify";
 
 import type { CSSProperties, ReactNode } from "react";
@@ -103,7 +103,7 @@ export function PrintPage({
   children,
   className,
 }: Props) {
-  const id = useId();
+  const pageId = useId();
 
   const dimensions = isSize(size) ? sizes[size] : size;
 
@@ -112,54 +112,55 @@ export function PrintPage({
   const width = isLandscape ? dimensions.height : dimensions.width;
   const height = isLandscape ? dimensions.width : dimensions.height;
 
-  const options = useMemo(
-    () => ({
-      margin: 0,
-      width,
-      height,
-      "page-orientation": isLandscape && "rotate-left",
-    }),
-    [width, height, isLandscape],
+  const style = useMemo(
+    () =>
+      `@page ${pageId} { ${stringifyCSSProperties({
+        margin: 0,
+        width,
+        height,
+      } as object)} }`,
+    [pageId, height, width],
   );
 
   return (
     <div
       data-component="PrintPage"
       className={twMerge(
-        "w-(--width) min-h-(--height) p-(--margin) not-print:rounded-sm not-print:shadow-md not-print:shadow-gray-600/10 not-print:bg-white not-print:outline not-print:outline-gray-600/25 not-print:overflow-hidden relative break-after-page box-decoration-clone [page:var(--id)] [zoom:var(--zoom)]",
+        "w-(--width) min-h-(--height) p-(--margin) not-print:rounded-sm not-print:shadow-md not-print:shadow-gray-600/10 not-print:bg-white not-print:outline not-print:outline-gray-600/25 not-print:overflow-hidden relative not-last:*:break-after-page box-decoration-clone [page:var(--page-id)]",
         shorten && "min-h-auto",
         className,
       )}
       style={
         {
-          "--id": id,
+          "--page-id": pageId,
           "--width": width,
           "--height": height,
           "--margin": margin,
         } as CSSProperties
       }
     >
-      <style
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: `@page ${id} { ${stringifyCSSProperties(options)} }` }}
-      />
+      <style>{style}</style>
 
       {overflowMode === "warning" && (
         <div className="top-(--height) absolute inset-x-0 bottom-0 animate-pulse bg-red-200 bg-blend-overlay print:hidden" />
       )}
 
-      <div className="absolute inset-x-0 top-0 print:fixed">{header}</div>
+      {isValidElement(header) && (
+        <div className="absolute inset-x-0 top-0 print:fixed">{header}</div>
+      )}
 
-      <div className="relative">{children}</div>
+      {children}
 
-      <div
-        className={twMerge(
-          "top-(--height) absolute inset-x-0 -translate-y-full print:fixed",
-          overflowMode === "allowed" && "top-auto bottom-0 translate-y-0",
-        )}
-      >
-        {footer}
-      </div>
+      {isValidElement(footer) && (
+        <div
+          className={twMerge(
+            "top-(--height) absolute inset-x-0 -translate-y-full print:fixed",
+            overflowMode === "allowed" && "top-auto bottom-0 translate-y-0",
+          )}
+        >
+          {footer}
+        </div>
+      )}
     </div>
   );
 }

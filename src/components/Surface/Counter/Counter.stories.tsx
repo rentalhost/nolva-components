@@ -24,6 +24,8 @@ export const Example: StoryObj<typeof Counter> = {
     to: 123.5,
     decimals: 1,
     easing: "ease-out",
+    thousandSeparator: ".",
+    decimalSeparator: ",",
     className: "after:content-['_millions']",
   },
 };

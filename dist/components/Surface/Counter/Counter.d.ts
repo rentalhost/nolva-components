@@ -11,6 +11,16 @@ interface Props {
      */
     to: number;
     /**
+     * Thousand separator.
+     * Defaults to none.
+     */
+    thousandSeparator?: string;
+    /**
+     * Decimal separator.
+     * Defaults to `.`
+     */
+    decimalSeparator?: string;
+    /**
      * Number of decimals.
      *
      * Defaults to `0`.
@@ -33,5 +43,5 @@ interface Props {
      */
     className?: string;
 }
-export declare function Counter({ from, to, decimals, duration, easing, className }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Counter({ from, to, thousandSeparator, decimalSeparator, decimals, duration, easing, className, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

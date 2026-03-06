@@ -1,10 +1,12 @@
 "use client";
 
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faBars, faXmark } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FaBars, FaXmark } from "react-icons/fa6";
 
 import type { Resolve } from "@/services/PortalService";
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { PropsWithChildren, ReactElement, ReactNode } from "react";
 
 import { listenWindowEvent } from "@/services/EventService";
@@ -34,7 +36,7 @@ interface Props extends PropsWithChildren {
    *
    * Defaults to `<FaBars />`.
    */
-  icon?: ReactNode;
+  icon?: IconType;
 
   /**
    * The class name of the icon element.
@@ -46,7 +48,7 @@ interface Props extends PropsWithChildren {
    *
    * Defaults to `<FaXmark />`.
    */
-  closedIcon?: ReactNode;
+  closedIcon?: IconType;
 
   /**
    * The class name of the icon element when the menu is closed.
@@ -65,9 +67,9 @@ export function HeaderNav({
   navClassName,
   listClassName,
   children,
-  icon = <FaBars />,
+  icon = faBars,
   iconClassName,
-  closedIcon = <FaXmark />,
+  closedIcon = faXmark,
   closedIconClassName,
   openedModalContent,
 }: Props) {
@@ -172,7 +174,7 @@ export function HeaderNav({
           }}
         >
           <div className="border-theme-200 bg-theme-200/50 active:bg-theme-300/50 hover:border-theme-300 active:border-theme-400 cursor-pointer rounded-full border p-2 transition">
-            {opened ? closedIcon : icon}
+            <Icon type={opened ? closedIcon : icon} />
           </div>
         </div>
       </nav>

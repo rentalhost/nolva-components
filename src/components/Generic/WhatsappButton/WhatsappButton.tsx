@@ -1,6 +1,7 @@
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faWhatsapp } from "@rheactor/rheactor-font-awesome/brands";
 import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa6";
 
 interface Props {
   /**
@@ -83,7 +84,7 @@ export function WhatsappButton({
           iconClassName,
         )}
       >
-        <FaWhatsapp />
+        <Icon type={faWhatsapp} className="size-1/2" />
       </div>
     </Link>
   );

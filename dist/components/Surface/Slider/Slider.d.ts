@@ -1,5 +1,6 @@
 import type { ArrowAdvance } from "./SliderArrow";
 import type { Breakpoints } from "../../../services/SwiperService";
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import { SliderArrow } from "./SliderArrow";
 interface Props extends PropsWithChildren {
@@ -64,7 +65,7 @@ interface Props extends PropsWithChildren {
      *
      * Defaults to `<FaAngleLeft />`.
      */
-    arrowsIcon?: ReactNode;
+    arrowsIcon?: IconType;
     /**
      * Arrows advance mode.
      *

@@ -1,5 +1,6 @@
 import { twMerge } from "@rentalhost/nolva-core";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { FormHTMLAttributes, ReactNode } from "react";
 
@@ -86,7 +87,7 @@ export function InputSearch({
           iconClassName,
         )}
       >
-        <FaMagnifyingGlass />
+        <Icon type={faMagnifyingGlass} />
       </div>
 
       <input

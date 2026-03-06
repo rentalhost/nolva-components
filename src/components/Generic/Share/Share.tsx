@@ -1,8 +1,9 @@
 "use client";
 
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faShareFromSquare } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useEffect, useState } from "react";
-import { FaShareFromSquare } from "react-icons/fa6";
 
 import type { ShareNetworkName } from "@/components/Generic/Share/ShareNetwork";
 import type { CSSProperties } from "react";
@@ -114,7 +115,7 @@ export function Share({
         )}
       >
         <div className="grid grid-cols-[auto_1fr] items-center">
-          <FaShareFromSquare className="size-5 mx-2" />
+          <Icon type={faShareFromSquare} className="size-5 mx-2" />
 
           <p>{text}</p>
         </div>

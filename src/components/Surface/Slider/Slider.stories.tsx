@@ -1,5 +1,5 @@
 import { range } from "@rentalhost/nolva-core";
-import { FaLeftLong } from "react-icons/fa6";
+import { faLeftLong } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -142,7 +142,7 @@ export const ArrowsIconExample: StoryObj<typeof Slider> = {
   args: {
     children: cards,
     items: 5,
-    arrowsIcon: <FaLeftLong />,
+    arrowsIcon: faLeftLong,
   },
 };
 

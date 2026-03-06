@@ -7,13 +7,13 @@
       "dependencies": {
         "@next/third-parties": "^16.1.6",
         "@rentalhost/nolva-core": "github:rentalhost/nolva-core",
+        "@rheactor/rheactor-font-awesome": "^7.2.0",
         "@tailwindcss/postcss": "^4.2.1",
         "domhandler": "^5.0.3",
         "get-video-id": "^4.1.7",
         "htmlparser2": "^10.1.0",
         "react": "^19.2.4",
         "react-dom": "^19.2.4",
-        "react-icons": "^5.6.0",
         "react-style-stringify": "^1.2.0",
         "style-to-js": "^1.1.21",
         "swiper": "^12.1.2",
@@ -517,6 +517,8 @@
     "@rentalhost/nolva-core": ["@rentalhost/nolva-core@github:rentalhost/nolva-core#9441310", { "dependencies": { "tailwind-merge": "^3.5.0" } }, "rentalhost-nolva-core-9441310", "sha512-kXntRhyrljFnzxwUs5QSuIYFTG8DT+9MUxTQFmEQGNOdWSAR0R8Jze3QM+ere3ED61Sb74c4ptvpKKANOxtP5Q=="],
 
     "@rheactor/eslint-config-rheactor": ["@rheactor/eslint-config-rheactor@github:rheactor/eslint-config-rheactor#2bdaeb8", { "dependencies": { "@eslint/eslintrc": "^3.3.4", "@eslint/js": "^10.0.1", "@next/eslint-plugin-next": "^16.1.6", "@stylistic/eslint-plugin": "^5.9.0", "eslint": "^9.39.3", "eslint-config-next": "^16.1.6", "eslint-import-resolver-typescript": "^4.4.4", "eslint-plugin-import": "^2.32.0", "eslint-plugin-promise": "^7.2.1", "eslint-plugin-react": "^7.37.5", "eslint-plugin-react-hooks": "^7.0.1", "eslint-plugin-react-hooks-addons": "^0.5.1", "eslint-plugin-regexp": "^3.0.0", "eslint-plugin-unicorn": "^63.0.0", "eslint-plugin-unused-imports": "^4.4.1", "eslint-plugin-vitest": "^0.5.4", "globals": "^17.3.0", "typescript": "^5.9.3", "typescript-eslint": "^8.56.1" }, "peerDependencies": { "react": "^19.2.4" }, "optionalPeers": ["react"] }, "rheactor-eslint-config-rheactor-2bdaeb8", "sha512-f9eBdFDEHzTxMsm4GiccuZn+SbIEpPjIHx6mEzpVEihgPCV1EQbN3mlauBLYzX3U2Uut4+uOAW8gLaWwQdPymg=="],
+
+    "@rheactor/rheactor-font-awesome": ["@rheactor/rheactor-font-awesome@7.2.0", "https://npm.pkg.github.com/download/@rheactor/rheactor-font-awesome/7.2.0/5a8fd7f6cede9c799bbcf47d7b219be34b0a3f02", {}, "sha512-Rn9QytmcPKBICTqtH+NeplNuTiMqE0AAkuTsSTrMi25Mj27AGREzd9ZT33lCs53CIbjUhT3e/fvwIqM6MkeYIw=="],
 
     "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.0-rc.3", "", {}, "sha512-eybk3TjzzzV97Dlj5c+XrBFW57eTNhzod66y9HrBlzJ6NsCrWCp/2kaPS3K9wJmurBC0Tdw4yPjXKZqlznim3Q=="],
 
@@ -1783,8 +1785,6 @@
     "react-docgen-typescript": ["react-docgen-typescript@2.4.0", "", { "peerDependencies": { "typescript": "5.9.3" } }, "sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg=="],
 
     "react-dom": ["react-dom@19.2.4", "", { "dependencies": { "scheduler": "^0.27.0" }, "peerDependencies": { "react": "^19.2.4" } }, "sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ=="],
-
-    "react-icons": ["react-icons@5.6.0", "", { "peerDependencies": { "react": "*" } }, "sha512-RH93p5ki6LfOiIt0UtDyNg/cee+HLVR6cHHtW3wALfo+eOHTp8RnU2kRkI6E+H19zMIs03DyxUG/GfZMOGvmiA=="],
 
     "react-is": ["react-is@16.13.1", "", {}, "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="],
 

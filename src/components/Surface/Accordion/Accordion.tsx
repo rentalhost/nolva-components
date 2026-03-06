@@ -1,8 +1,9 @@
 "use client";
 
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faAngleDown } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useState } from "react";
-import { FaAngleDown } from "react-icons/fa";
 
 import type { PropsWithChildren, ReactNode } from "react";
 
@@ -83,7 +84,8 @@ export function Accordion({
       >
         <TitleKind className={titleClassName}>{title}</TitleKind>
 
-        <FaAngleDown
+        <Icon
+          type={faAngleDown}
           size={24}
           className={twMerge(
             "flex cursor-pointer items-center transition pointer-events-none",

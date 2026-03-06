@@ -1,8 +1,9 @@
 "use client";
 
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faHandPointer } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useState } from "react";
-import { TbHandClick } from "react-icons/tb";
 
 import type { CSSProperties, ReactNode } from "react";
 
@@ -49,7 +50,7 @@ interface Props {
   onFlip?(this: void, viewpoint: "back" | "front"): void;
 }
 
-const baseClassName = "flex h-full items-center justify-center [backface-visibility:hidden]";
+const baseClassName = "backface-hidden flex h-full items-center justify-center";
 const absoluteClassName = "absolute inset-0";
 
 export function FlipCard({
@@ -91,12 +92,12 @@ export function FlipCard({
     >
       <div
         className={twMerge(
-          "duration-800 relative h-full transition-transform [transform-style:preserve-3d]",
-          "not-max-mobile:group-hover/flip-card:[transform:rotateY(var(--flip-angle))]",
+          "duration-800 relative h-full transition-transform transform-3d",
+          "not-max-mobile:group-hover/flip-card:transform-[rotateY(var(--flip-angle))]",
           axis === "vertical" &&
-            "not-max-mobile:group-hover/flip-card:[transform:rotateX(var(--flip-angle))]",
-          flip && "[transform:rotateY(var(--flip-angle))]",
-          flip && axis === "vertical" && "[transform:rotateX(var(--flip-angle))]",
+            "not-max-mobile:group-hover/flip-card:transform-[rotateX(var(--flip-angle))]",
+          flip && "transform-[rotateY(var(--flip-angle))]",
+          flip && axis === "vertical" && "transform-[rotateX(var(--flip-angle))]",
         )}
       >
         <div
@@ -111,8 +112,8 @@ export function FlipCard({
           className={twMerge(
             baseClassName,
             heightController === "front" && absoluteClassName,
-            "[transform:rotateY(var(--flip-angle))]",
-            axis === "vertical" && "[transform:rotateX(var(--flip-angle))]",
+            "transform-[rotateY(var(--flip-angle))]",
+            axis === "vertical" && "transform-[rotateX(var(--flip-angle))]",
           )}
         >
           {contentBack}
@@ -125,7 +126,7 @@ export function FlipCard({
           touchIconClassName,
         )}
       >
-        <TbHandClick />
+        <Icon type={faHandPointer} />
       </div>
     </div>
   );

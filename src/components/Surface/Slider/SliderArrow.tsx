@@ -1,6 +1,7 @@
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
 
-import type { ReactNode } from "react";
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 
 export type ArrowAdvance = "batch" | "sequential";
 
@@ -8,7 +9,7 @@ type ArrowPlacement = "disabled" | "external" | "internal" | "overlay";
 
 interface Props {
   ref?: React.RefObject<HTMLDivElement | null>;
-  icon: ReactNode;
+  icon: IconType;
   className?: string;
   rotate?: boolean;
   placement: ArrowPlacement;
@@ -48,7 +49,7 @@ export function SliderArrow({
         )}
         onClick={onClick}
       >
-        {icon}
+        <Icon type={icon} />
       </div>
     </div>
   );

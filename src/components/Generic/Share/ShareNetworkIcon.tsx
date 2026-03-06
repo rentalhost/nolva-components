@@ -1,4 +1,5 @@
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
 import Link from "next/link";
 
 import type { ShareNetwork } from "@/components/Generic/Share/ShareNetwork";
@@ -15,9 +16,6 @@ interface Props {
 const shareNetworkIconClassName = "cursor-pointer rounded-sm p-2 transition hover:scale-105";
 
 export function ShareNetworkIcon({ network, title, url, className, onClick }: Props) {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const NetworkIcon = network.icon;
-
   if (network.url === "native") {
     return (
       <div
@@ -29,7 +27,7 @@ export function ShareNetworkIcon({ network, title, url, className, onClick }: Pr
           onClick();
         }}
       >
-        <NetworkIcon className="size-full" />
+        <Icon type={network.icon} className="size-full" />
       </div>
     );
   }
@@ -43,7 +41,7 @@ export function ShareNetworkIcon({ network, title, url, className, onClick }: Pr
       className={twMerge(shareNetworkIconClassName, network.className, className)}
       onClick={onClick}
     >
-      <NetworkIcon className="size-full" />
+      <Icon type={network.icon} className="size-full" />
     </Link>
   );
 }

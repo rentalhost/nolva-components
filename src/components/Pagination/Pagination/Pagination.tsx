@@ -2,8 +2,9 @@
 
 import { clamp, noop } from "@rentalhost/nolva-core";
 import { twMerge } from "@rentalhost/nolva-core";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faAngleLeft, faAnglesLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useMemo } from "react";
-import { FaAngleLeft, FaAnglesLeft } from "react-icons/fa6";
 
 import type { ComponentProps } from "react";
 
@@ -120,7 +121,7 @@ export function Pagination({
     >
       {visible && firstLast && (
         <PaginationPage page={1} isDisabled={currentClamped === 1} {...pageProps}>
-          <FaAnglesLeft />
+          <Icon type={faAnglesLeft} />
         </PaginationPage>
       )}
 
@@ -130,7 +131,7 @@ export function Pagination({
           isDisabled={currentClamped === 1}
           {...pageProps}
         >
-          <FaAngleLeft />
+          <Icon type={faAngleLeft} />
         </PaginationPage>
       )}
 
@@ -153,13 +154,13 @@ export function Pagination({
           isDisabled={currentClamped === total}
           {...pageProps}
         >
-          <FaAngleLeft className="rotate-180" />
+          <Icon type={faAngleLeft} className="rotate-180" />
         </PaginationPage>
       )}
 
       {visible && firstLast && (
         <PaginationPage page={total} isDisabled={currentClamped === total} {...pageProps}>
-          <FaAnglesLeft className="rotate-180" />
+          <Icon type={faAnglesLeft} className="rotate-180" />
         </PaginationPage>
       )}
     </div>

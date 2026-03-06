@@ -1,3 +1,4 @@
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { PropsWithChildren, ReactElement, ReactNode } from "react";
 interface Props extends PropsWithChildren {
     /**
@@ -18,7 +19,7 @@ interface Props extends PropsWithChildren {
      *
      * Defaults to `<FaBars />`.
      */
-    icon?: ReactNode;
+    icon?: IconType;
     /**
      * The class name of the icon element.
      */
@@ -28,7 +29,7 @@ interface Props extends PropsWithChildren {
      *
      * Defaults to `<FaXmark />`.
      */
-    closedIcon?: ReactNode;
+    closedIcon?: IconType;
     /**
      * The class name of the icon element when the menu is closed.
      */

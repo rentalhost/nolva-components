@@ -1,13 +1,14 @@
 "use client";
 
 import { twMerge } from "@rentalhost/nolva-core";
+import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { Children, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FaAngleLeft } from "react-icons/fa6";
 import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
 import type { Breakpoints } from "@/services/SwiperService";
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import type { SwiperClass } from "swiper/react";
 
@@ -88,7 +89,7 @@ interface Props extends PropsWithChildren {
    *
    * Defaults to `<FaAngleLeft />`.
    */
-  arrowsIcon?: ReactNode;
+  arrowsIcon?: IconType;
 
   /**
    * Arrows advance mode.
@@ -181,7 +182,7 @@ export function Slider({
   stretch = true,
   centered = true,
   className,
-  arrowsIcon = <FaAngleLeft />,
+  arrowsIcon = faAngleLeft,
   arrowsStepMode = "sequential",
   arrowsClassName,
   arrowsPlacement = "overlay",

@@ -1,7 +1,8 @@
 "use client";
 
 import { twMerge } from "@rentalhost/nolva-core";
-import { FaAnglesUp } from "react-icons/fa6";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faAngleUp } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import { useAnalytics } from "@/services/hooks/useAnalytics";
 
@@ -34,7 +35,7 @@ export function BackTopButton({ title = "Back to Top", className }: Props) {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }}
     >
-      <FaAnglesUp />
+      <Icon type={faAngleUp} />
 
       <div className="max-mobile:hidden">{title}</div>
     </div>

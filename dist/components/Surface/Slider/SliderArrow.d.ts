@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 export type ArrowAdvance = "batch" | "sequential";
 type ArrowPlacement = "disabled" | "external" | "internal" | "overlay";
 interface Props {
     ref?: React.RefObject<HTMLDivElement | null>;
-    icon: ReactNode;
+    icon: IconType;
     className?: string;
     rotate?: boolean;
     placement: ArrowPlacement;

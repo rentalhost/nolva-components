@@ -1,6 +1,12 @@
-import { FaFacebookF, FaLinkedinIn, FaXTwitter, FaWhatsapp, FaShareNodes } from "react-icons/fa6";
+import {
+  faFacebookF,
+  faLinkedinIn,
+  faWhatsapp,
+  faXTwitter,
+} from "@rheactor/rheactor-font-awesome/brands";
+import { faShareNodes } from "@rheactor/rheactor-font-awesome/classic-regular";
 
-import type { IconType } from "react-icons/lib";
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 
 import { generateQueryString } from "@/services/UrlService";
 
@@ -21,14 +27,14 @@ export class ShareNetwork {
 export const networks = {
   x: new ShareNetwork(
     "X",
-    FaXTwitter,
+    faXTwitter,
     "bg-neutral-950",
     ({ title, url }) =>
       `https://x.com/intent/tweet${generateQueryString({ text: title === "" ? undefined : `${title}\n\n`, url })}`,
   ),
   facebook: new ShareNetwork(
     "Facebook",
-    FaFacebookF,
+    faFacebookF,
     "bg-[#1374C8]",
     ({ url }) =>
       `https://www.facebook.com/sharer/sharer.php${generateQueryString({
@@ -38,20 +44,20 @@ export const networks = {
   ),
   linkedin: new ShareNetwork(
     "LinkedIn",
-    FaLinkedinIn,
+    faLinkedinIn,
     "bg-[#3F95E0]",
     ({ url }) => `https://www.linkedin.com/sharing/share-offsite${generateQueryString({ url })}`,
   ),
   whatsapp: new ShareNetwork(
     "WhatsApp",
-    FaWhatsapp,
+    faWhatsapp,
     "bg-[#00C04F]",
     ({ title, url }) =>
       `https://api.whatsapp.com/send${generateQueryString({
         text: title === "" ? url : `${title}\n\n${url}`,
       })}`,
   ),
-  native: new ShareNetwork("Native", FaShareNodes, "bg-neutral-500", "native"),
+  native: new ShareNetwork("Native", faShareNodes, "bg-neutral-500", "native"),
 } satisfies Readonly<Record<string, ShareNetwork>>;
 
 export type ShareNetworkName = keyof typeof networks;

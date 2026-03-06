@@ -1,5 +1,6 @@
 import { twMerge } from "@rentalhost/nolva-core";
-import { FaChevronDown } from "react-icons/fa6";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faChevronDown } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { ComponentProps } from "react";
 
@@ -83,7 +84,7 @@ export function Select({ placeholder, options, className, arrowClassName, ...pro
           arrowClassName,
         )}
       >
-        <FaChevronDown className="size-3" />
+        <Icon type={faChevronDown} className="size-3" />
       </div>
     </div>
   );

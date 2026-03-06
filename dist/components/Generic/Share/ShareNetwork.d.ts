@@ -1,4 +1,4 @@
-import type { IconType } from "react-icons/lib";
+import type { IconType } from "@rheactor/rheactor-font-awesome";
 interface ShareNetworkUrlProps {
     title: string;
     url: string;

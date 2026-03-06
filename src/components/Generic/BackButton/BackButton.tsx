@@ -1,8 +1,9 @@
 "use client";
 
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { FaAngleLeft } from "react-icons/fa6";
 
 import { Button } from "@/components/Form/Button/Button";
 
@@ -46,7 +47,7 @@ export function BackButton({ title = "Back", fallbackRoute, className }: Props) 
   const contents = useMemo(
     () => (
       <>
-        <FaAngleLeft />
+        <Icon type={faAngleLeft} />
 
         <span>{title}</span>
       </>

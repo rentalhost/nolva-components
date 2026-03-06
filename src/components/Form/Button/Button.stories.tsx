@@ -1,4 +1,5 @@
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { Icon } from "@rheactor/rheactor-font-awesome";
+import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
@@ -152,7 +153,7 @@ export const LinkDisabledExample: StoryObj<typeof Button> = {
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const IconExample: StoryObj<typeof Button> = {
   args: {
-    children: <FaMagnifyingGlass />,
+    children: <Icon type={faMagnifyingGlass} />,
   },
 };
 
@@ -161,7 +162,7 @@ export const IconTextExample: StoryObj<typeof Button> = {
   args: {
     children: (
       <>
-        <FaMagnifyingGlass />
+        <Icon type={faMagnifyingGlass} />
 
         <span>Example</span>
       </>
@@ -176,7 +177,7 @@ export const IconTextReverseExample: StoryObj<typeof Button> = {
       <>
         <span>Example</span>
 
-        <FaMagnifyingGlass />
+        <Icon type={faMagnifyingGlass} />
       </>
     ),
   },

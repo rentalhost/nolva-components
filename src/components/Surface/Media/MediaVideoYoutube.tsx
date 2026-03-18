@@ -1,7 +1,7 @@
 /* eslint-disable react/iframe-missing-sandbox */
 "use client";
 
-import { twMerge } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { useState } from "react";
 
 import type { CSSProperties } from "react";

@@ -1,4 +1,4 @@
-import { range } from "@rentalhost/nolva-core";
+import { range } from "@rentalhost/rheactor-core";
 
 export function circularRange(start: number, end: number, from: number, spread: number): number[] {
   const size = end - start + 1;

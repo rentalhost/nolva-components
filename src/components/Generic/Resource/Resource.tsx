@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import Link from "next/link";
 import { useContext } from "react";
 

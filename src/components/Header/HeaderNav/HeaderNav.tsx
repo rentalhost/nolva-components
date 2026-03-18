@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faBars, faXmark } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";

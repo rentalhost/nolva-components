@@ -1,5 +1,5 @@
-import { getExtension } from "@rentalhost/nolva-core";
-import { twMerge } from "@rentalhost/nolva-core";
+import { getExtension } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 
 interface Props {
   /**

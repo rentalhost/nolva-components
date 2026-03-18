@@ -1,4 +1,4 @@
-import { range } from "@rentalhost/nolva-core";
+import { range } from "@rentalhost/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";

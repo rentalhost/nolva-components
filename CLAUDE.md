@@ -11,7 +11,7 @@ Este documento fornece uma compreensão rápida da arquitetura e padrões único
 - **TailwindCSS 4.1.18** com sistema customizado de variantes
 - **Storybook 10.2.8** para documentação de componentes
 - **Build**: TypeScript → SWC (minificação)
-- **Dependência interna**: `@rentalhost/nolva-core` (GitHub) para utilitários compartilhados como `twMerge`
+- **Dependência interna**: `@rentalhost/rheactor-core` (GitHub) para utilitários compartilhados como `twMerge`
 
 ## Organização de Componentes
 
@@ -134,7 +134,7 @@ bun run build-storybook  # Build estático do Storybook
 
 - **TypeScript**: Strict mode com `noImplicitReturns`, `noUnusedLocals`, `noUnusedParameters`
 - **Props**: Extend `ComponentProps<"element">` para elementos nativos
-- **Styling**: Sempre usar `twMerge` de `@rentalhost/nolva-core` (não do tailwind-merge local)
+- **Styling**: Sempre usar `twMerge` de `@rentalhost/rheactor-core` (não do tailwind-merge local)
 - **className**: Prop `className` sempre merged por último para permitir overrides do consumidor
 - **Data attributes**: Prefixar componentes com `data-component` e estados com `data-*`
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { useEffect, useRef } from "react";
 
 import type { Threshold } from "@/services/hooks/useInViewport";

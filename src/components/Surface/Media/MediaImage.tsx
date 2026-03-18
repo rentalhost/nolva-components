@@ -1,6 +1,6 @@
 "use client";
 
-import { getNextImageUrl, twMerge } from "@rentalhost/nolva-core";
+import { getNextImageUrl, twMerge } from "@rentalhost/rheactor-core";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { ImgProps } from "next/dist/shared/lib/get-img-props";

@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { useMemo } from "react";
 
 import type { ComponentProps, CSSProperties, ReactNode } from "react";

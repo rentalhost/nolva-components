@@ -1,4 +1,4 @@
-import { twMerge } from "@rentalhost/nolva-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { isValidElement, useId, useMemo } from "react";
 import { stringifyCSSProperties } from "react-style-stringify";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { getExtension } from "@rentalhost/nolva-core";
+import { getExtension } from "@rentalhost/rheactor-core";
 import getVideoId from "get-video-id";
 
 import type { ComponentProps } from "react";

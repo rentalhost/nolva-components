@@ -1,1 +1,1 @@
-export class Timer{constructor(t,l){this.interval=null,this.callback=t,this.delay=l,this.start()}start(){this.stop(),this.interval=setInterval(this.callback,this.delay)}stop(){null!==this.interval&&clearInterval(this.interval)}}
+export class Timer{constructor(t,l,s=!0){this.interval=null,this.callback=t,this.delay=l,this.start(s)}start(t=!1){t&&queueMicrotask(this.callback),this.stop(),this.interval=setInterval(this.callback,this.delay)}stop(){null!==this.interval&&clearInterval(this.interval)}}

@@ -31,6 +31,7 @@ export { Counter } from "./components/Surface/Counter/Counter";
 export { FlipCard } from "./components/Surface/FlipCard/FlipCard";
 export { Hero } from "./components/Surface/Hero/Hero";
 export { Media } from "./components/Surface/Media/Media";
+export { Mosaic } from "./components/Surface/Mosaic/Mosaic";
 export { ScrollProgress } from "./components/Surface/ScrollProgress/ScrollProgress";
 export { Slider } from "./components/Surface/Slider/Slider";
 export { VLibras } from "./components/Surface/VLibras/VLibras";

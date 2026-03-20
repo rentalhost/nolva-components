@@ -74,13 +74,13 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
   const pastItemsCounter = useRef(0);
 
   const pickItems = useCallback(
-    () =>
+    (count = columns) =>
       allItems
         .toSorted(
           (itemA, itemB) =>
             (pastItems.current.get(itemA) ?? 0) - (pastItems.current.get(itemB) ?? 0),
         )
-        .slice(0, columns),
+        .slice(0, count),
     [allItems, columns],
   );
 
@@ -111,45 +111,37 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
     };
   }, [duration, toInvisible]);
 
-  const updateCheck = useEffectEvent((columnsCount: number) => {
-    if (columnsCount !== items.length) {
-      queueMicrotask(() => {
-        refreshItems();
-        timer.current?.start();
-      });
-    }
-  });
-
-  const updateColumns = useCallback((sync = false) => {
-    let columnsCount = 0;
-
-    if (ref.current) {
-      columnsCount = getComputedStyle(ref.current).gridTemplateColumns.split(" ").length;
-
-      if (sync) {
-        flushSync(() => {
-          setColumns(columnsCount);
-        });
-      } else {
-        setColumns(columnsCount);
-      }
-    }
-
-    return columnsCount;
-  }, []);
+  const readColumns = useCallback(
+    () => (ref.current ? getComputedStyle(ref.current).gridTemplateColumns.split(" ").length : 0),
+    [],
+  );
 
   useLayoutEffect(() => {
-    updateColumns();
-  }, [updateColumns]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setColumns(readColumns());
+  }, [readColumns]);
+
+  const onResize = useEffectEvent(() => {
+    const columnsCount = readColumns();
+
+    if (columnsCount === items.length) {
+      return;
+    }
+
+    flushSync(() => {
+      setColumns(columnsCount);
+      setItems(pickItems(columnsCount));
+    });
+
+    timer.current?.start();
+  });
 
   useEffect(
     () =>
       listenResizeObserver(ref.current, {}, () => {
-        queueMicrotask(() => {
-          updateCheck(updateColumns(true));
-        });
+        queueMicrotask(onResize);
       }),
-    [updateColumns],
+    [],
   );
 
   useEffect(() => {

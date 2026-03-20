@@ -7,10 +7,13 @@ import {
   isValidElement,
   useCallback,
   useEffect,
+  useEffectEvent,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
+import { flushSync } from "react-dom";
 
 import type { CSSProperties, JSX, PropsWithChildren, ReactNode } from "react";
 
@@ -108,26 +111,45 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
     };
   }, [duration, toInvisible]);
 
+  const updateCheck = useEffectEvent((columnsCount: number) => {
+    if (columnsCount !== items.length) {
+      queueMicrotask(() => {
+        refreshItems();
+        timer.current?.start();
+      });
+    }
+  });
+
+  const updateColumns = useCallback((sync = false) => {
+    let columnsCount = 0;
+
+    if (ref.current) {
+      columnsCount = getComputedStyle(ref.current).gridTemplateColumns.split(" ").length;
+
+      if (sync) {
+        flushSync(() => {
+          setColumns(columnsCount);
+        });
+      } else {
+        setColumns(columnsCount);
+      }
+    }
+
+    return columnsCount;
+  }, []);
+
+  useLayoutEffect(() => {
+    updateColumns();
+  }, [updateColumns]);
+
   useEffect(
     () =>
       listenResizeObserver(ref.current, {}, () => {
-        if (ref.current) {
-          const currentColumns = getComputedStyle(ref.current).gridTemplateColumns.split(
-            " ",
-          ).length;
-
-          setColumns(currentColumns);
-
-          if (currentColumns !== items.length) {
-            queueMicrotask(() => {
-              refreshItems();
-
-              timer.current?.start();
-            });
-          }
-        }
+        queueMicrotask(() => {
+          updateCheck(updateColumns(true));
+        });
       }),
-    [items.length, refreshItems],
+    [updateColumns],
   );
 
   useEffect(() => {
@@ -150,7 +172,11 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
 
   return (
     <div data-component="Mosaic">
-      <div ref={ref} className={twMerge("grid grid-cols-1 max-h-0", className)} aria-hidden />
+      <div
+        ref={ref}
+        className={twMerge("grid-cols-1", className, "grid max-h-0 overflow-hidden")}
+        aria-hidden
+      />
 
       <div
         data-visible={

@@ -53,8 +53,16 @@ export function useInViewport(
         observerNew.observe(element);
         observer.current = observerNew;
 
-        if (visibleAfterLeavingViewport(element.getBoundingClientRect())) {
+        const rect = element.getBoundingClientRect();
+
+        if (visibleAfterLeavingViewport(rect)) {
           setVisible(true);
+        } else {
+          const bottomMargin = typeof threshold === "number" ? 0 : Number.parseFloat(threshold);
+
+          if (rect.top < window.innerHeight - bottomMargin && rect.bottom > 0) {
+            setVisible(true);
+          }
         }
       }
     },

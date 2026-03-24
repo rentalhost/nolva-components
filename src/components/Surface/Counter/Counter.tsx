@@ -1,5 +1,6 @@
 "use client";
 
+import { formatNumber } from "@rentalhost/rheactor-core";
 import { useEffect, useMemo, useState } from "react";
 
 import type { Easing } from "@/services/AnimateService";
@@ -74,18 +75,11 @@ export function Counter({
 
   const [progress, setProgress] = useState(0);
 
-  const value = useMemo(() => {
-    const valueProgress = from + (to - from) * progress;
-    const valueFixed = valueProgress.toFixed(decimals);
-    const [valueNumber, valueDecimal = ""] = valueFixed.split(".") as [string, string];
-
-    const valueFormatted =
-      thousandSeparator === ""
-        ? valueNumber
-        : valueNumber.replaceAll(/\B(?=(?:\d{3})+(?!\d))/g, thousandSeparator);
-
-    return decimals === 0 ? valueFormatted : valueFormatted + decimalSeparator + valueDecimal;
-  }, [decimalSeparator, decimals, from, progress, thousandSeparator, to]);
+  const value = useMemo(
+    () =>
+      formatNumber(from + (to - from) * progress, decimals, decimalSeparator, thousandSeparator),
+    [decimalSeparator, decimals, from, progress, thousandSeparator, to],
+  );
 
   useEffect(() => {
     if (visible) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 import type { Threshold } from "@/services/hooks/useInViewport";
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
@@ -101,7 +101,7 @@ export function Animate({
 
   const { ref, visible, disconnect } = useInViewport(threshold, true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     ref(animateRef.current?.firstElementChild);
   }, [ref]);
 

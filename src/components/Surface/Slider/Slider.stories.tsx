@@ -19,25 +19,178 @@ function CardExample({ number, total }: { number: number; total: number }) {
   );
 }
 
-const cards = range(1, 50).map((number, _, array) => (
-  <CardExample key={number} number={number} total={array.length} />
-));
+function generateCards(count: number) {
+  return range(1, count).map((number, _, array) => (
+    <CardExample key={number} number={number} total={array.length} />
+  ));
+}
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-  },
+  args: { children: generateCards(5) },
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const EmptyExample: StoryObj<typeof Slider> = {};
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
+export const DurationExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-3 gap-x-8",
+    children: generateCards(5),
+    duration: 1000,
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const DurationWrapBounceExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-3 gap-x-8",
+    children: generateCards(5),
+    duration: 1000,
+    wrapMode: "bounce",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const DurationWrapBounceStepBackExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-3 gap-x-8",
+    children: generateCards(7),
+    duration: 2500,
+    steps: -1,
+    wrapMode: "bounce",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const DurationWrapBouncePageExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-3 gap-x-8",
+    children: generateCards(7),
+    duration: 2500,
+    steps: "page",
+    wrapMode: "bounce",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const DurationWrapStopExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-3 gap-x-8",
+    children: generateCards(5),
+    duration: 1000,
+    wrapMode: "stop",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const BreakpointsExample: StoryObj<typeof Slider> = {
+  args: {
+    duration: 2500,
+    infinity: true,
+    className:
+      "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 sm:gap-x-5 md:gap-x-4 lg:gap-x-3 xl:gap-x-2 2xl:gap-x-1",
+    children: generateCards(15),
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const FreeFlowExample: StoryObj<typeof Slider> = {
+  args: {
+    duration: 2500,
+    infinity: true,
+    freeFlow: true,
+    className:
+      "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 sm:gap-x-5 md:gap-x-4 lg:gap-x-3 xl:gap-x-2 2xl:gap-x-1",
+    children: generateCards(15),
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const FreeFlowStopOnInteractionExample: StoryObj<typeof Slider> = {
+  args: {
+    duration: 2500,
+    infinity: true,
+    freeFlow: true,
+    stopOnInteraction: true,
+    className:
+      "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-6 sm:gap-x-5 md:gap-x-4 lg:gap-x-3 xl:gap-x-2 2xl:gap-x-1",
+    children: generateCards(15),
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const JustifyUndefinedExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-4 md:grid-cols-5 gap-x-16",
+    children: generateCards(2),
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const JustifySpaceBetweenExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-4 md:grid-cols-5 gap-x-16",
+    children: generateCards(2),
+    justify: "space-between",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const JustifyExpandExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-4 md:grid-cols-5 gap-x-16",
+    children: generateCards(2),
+    justify: "expand",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const CenteredExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-3 md:grid-cols-5 gap-x-16",
+    children: generateCards(4),
+    centered: true,
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const PlayOffscreenOffExample: StoryObj<typeof Slider> = {
+  render: (args) => (
+    <div className="my-320">
+      <Slider {...args} />
+    </div>
+  ),
+  args: {
+    duration: 1000,
+    className: "grid-cols-3 md:grid-cols-5 gap-x-16",
+    children: generateCards(15),
+    freeFlow: true,
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const PlayOffscreenOnExample: StoryObj<typeof Slider> = {
+  render: (args) => (
+    <div className="my-320">
+      <Slider {...args} />
+    </div>
+  ),
+  args: {
+    duration: 1000,
+    className: "grid-cols-3 md:grid-cols-5 gap-x-16",
+    children: generateCards(15),
+    freeFlow: true,
+    playOffscreen: true,
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const FlipCardsExample: StoryObj<typeof Slider> = {
   args: {
-    items: { xs: 2, sm: 5 },
-    paginationCompressed: false,
+    infinity: true,
+    className: "grid-cols-2 sm:grid-cols-5",
     children: range(1, 10).map((number) => (
       <FlipCard
         key={number}
@@ -49,100 +202,30 @@ export const FlipCardsExample: StoryObj<typeof Slider> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const FlipCardsExample2: StoryObj<typeof Slider> = {
-  args: {
-    items: { xs: 2, sm: 5 },
-    paginationCompressed: false,
-    children: range(1, 3).map((number) => (
-      <FlipCard
-        key={number}
-        contentFront={<div className="rounded bg-black p-16 text-white">Front {number}</div>}
-        contentBack={<div className="rounded bg-white p-8">Back</div>}
-      />
-    )),
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const DurationExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    duration: 1000,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const BreakpointsExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    items: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5, "2xl": 6 },
-    gap: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5, "2xl": 6 },
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const InfinityOffExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    items: 3,
-    infinity: false,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const StretchOffExample: StoryObj<typeof Slider> = {
-  args: {
-    children: [...cards.slice(0, 3), false, null, undefined],
-    items: 5,
-    stretch: false,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const StretchOffCenteredOffExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards.slice(0, 4),
-    items: 5,
-    stretch: false,
-    centered: false,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const StretchOffFullExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards.slice(0, 5),
-    items: 5,
-    stretch: false,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const StretchOffFullExample2: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    items: 5,
-    stretch: false,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const ClassNameExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    items: 5,
-    className: "bg-red-400",
-    arrowsClassName: "bg-blue-400",
-    paginationClassName: "bg-green-400",
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ArrowsIconExample: StoryObj<typeof Slider> = {
   args: {
-    children: cards,
-    items: 5,
+    className: "grid-cols-5 gap-x-8",
+    children: generateCards(15),
     arrowsIcon: faLeftLong,
+    arrowsClassName: "bg-blue-500 hover:bg-blue-600 active:bg-blue-700",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const ArrowsPlacementDisabledExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-5 gap-x-8",
+    children: generateCards(15),
+    arrowsPlacement: "disabled",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const ArrowsPlacementOverlayExample: StoryObj<typeof Slider> = {
+  args: {
+    className: "grid-cols-5 gap-x-8",
+    children: generateCards(15),
+    arrowsPlacement: "overlay",
   },
 };
 
@@ -154,46 +237,29 @@ export const ArrowsPlacementExample: StoryObj<typeof Slider> = {
     </Container>
   ),
   args: {
-    children: cards,
-    items: 5,
+    className: "grid-cols-5 gap-x-8",
+    children: generateCards(15),
     arrowsPlacement: "external",
     arrowsPlacementFallback: "internal",
+    arrowsSteps: "page",
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const ArrowsStepModeBatchExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    items: 5,
-    arrowsStepMode: "batch",
-  },
-};
+// // eslint-disable-next-line @typescript-eslint/naming-convention
+// export const PaginationExample: StoryObj<typeof Slider> = {
+//   args: {
+//     children: cards,
+//     items: 5,
+//     pagination: "overlay",
+//     paginationCompressed: false,
+//   },
+// };
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const PaginationExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    items: 5,
-    pagination: "overlay",
-    paginationCompressed: false,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const PaginationLimitExample: StoryObj<typeof Slider> = {
-  args: {
-    children: cards,
-    items: 5,
-    paginationLimit: 3,
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export const IssueExample1: StoryObj<typeof Slider> = {
-  args: {
-    children: cards.slice(0, 6),
-    items: { xs: 1, md: 2, lg: 3 },
-    arrowsStepMode: "batch",
-  },
-};
+// // eslint-disable-next-line @typescript-eslint/naming-convention
+// export const PaginationLimitExample: StoryObj<typeof Slider> = {
+//   args: {
+//     children: cards,
+//     items: 5,
+//     paginationLimit: 3,
+//   },
+// };

@@ -1,0 +1,1 @@
+export function rotate(t,r,e){return((t+r)%e+e)%e}

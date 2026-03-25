@@ -1,105 +1,132 @@
 "use client";
 
-import { twMerge } from "@rentalhost/rheactor-core";
+import { clamp, twMerge } from "@rentalhost/rheactor-core";
 import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
-import { Children, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Children,
+  isValidElement,
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { flushSync } from "react-dom";
 
-import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
-import type { Breakpoints } from "@/services/SwiperService";
 import type { IconType } from "@rheactor/rheactor-font-awesome";
-import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
-import type { SwiperClass } from "swiper/react";
+import type { ComponentProps, CSSProperties, PropsWithChildren, ReactNode } from "react";
 
-import { Pagination } from "@/components/Pagination/Pagination/Pagination";
 import { SliderArrow } from "@/components/Surface/Slider/SliderArrow";
+import { Timer } from "@/services/classes/Timer";
 import { listenWindowEvent } from "@/services/EventService";
-import { useReady } from "@/services/hooks/useReady";
-import { normalizeBreakpoints } from "@/services/SwiperService";
+import { useImmediateRef } from "@/services/hooks/useImmediateRef";
+import { useInViewport } from "@/services/hooks/useInViewport";
+import { listenResizeObserver } from "@/services/MutationService";
+import { rotate } from "@/services/NumberService";
 
 interface Props extends PropsWithChildren {
   /**
-   * Autoplay duration in milliseconds.
+   * Animation duration in milliseconds.
    *
    * Defaults to `5000`.
    */
   duration?: number;
 
   /**
-   * Slide advance speed in milliseconds.
-   * It multiplies to the visible items count.
+   * Enable infinite scrolling.
    *
-   * Defaults to `300`.
-   */
-  speed?: number;
-
-  /**
-   * Number of items per slide.
-   * Supports breakpoints object.
-   *
-   * Defaults to `1`.
-   */
-  items?: Breakpoints | number;
-
-  /**
-   * Gap between items, based on `rem`.
-   * Supports breakpoints object.
-   *
-   * Defaults to `0.5`.
-   */
-  gap?: Breakpoints | number;
-
-  /**
-   * Enable infinite loop.
-   *
-   * Defaults to `true`.
+   * Defaults to `false`.
    */
   infinity?: boolean;
 
   /**
-   * Enable free flow mode.
+   * Wrap mode when reaching the end.
+   *
+   * Ignored when `infinity` is `true`.
+   *
+   * Defaults to `rewind`.
+   */
+  wrapMode?: "bounce" | "rewind" | "stop";
+
+  /**
+   * Justify items to fills the container.
+   *
+   * Defaults to `false`.
+   */
+  justify?: "expand" | "space-between";
+
+  /**
+   * Center items when there is enough space.
+   *
+   * Ignored when `justify` is defined.
+   *
+   * Defaults to `false`.
+   */
+  centered?: boolean;
+
+  /**
+   * Number of steps for autoplay.
+   *
+   * Defaults to `1`.
+   */
+  steps?: number | "page";
+
+  /**
+   * Step duration in milliseconds.
+   *
+   * When `steps` is page, this value is multiplied by `sqrt(visible items)`.
+   *
+   * Defaults to `300`.
+   */
+  stepDuration?: number;
+
+  /**
+   * Stop autoplay on first interaction.
+   *
+   * Defaults to `false`.
+   */
+  stopOnInteraction?: boolean;
+
+  /**
+   * Allow autoplay to works when slider is offscreen.
+   *
+   * Defaults to `false`.
+   */
+  playOffscreen?: boolean;
+
+  /**
+   * Free flow mode.
    *
    * Defaults to `false`.
    */
   freeFlow?: boolean;
 
   /**
-   * Stretch items to fill the container when there is less items than needed.
+   * Container class name, including grid and gap rules.
    *
-   * Defaults to `true`.
-   */
-  stretch?: boolean;
-
-  /**
-   * Center items when there is less items than needed.
-   * Works only when `fill` is `false`.
-   *
-   * Defaults to `true`.
-   */
-  centered?: boolean;
-
-  /**
-   * Container class name.
+   * Defaults to `grid-cols-1`.
    */
   className?: string;
 
   /**
+   * Container children.
+   */
+  children?: ReactNode;
+
+  /**
    * Arrows icon.
    *
-   * Defaults to `<FaAngleLeft />`.
+   * Defaults to `faAngleLeft`.
    */
   arrowsIcon?: IconType;
 
   /**
    * Arrows advance mode.
    *
-   * - `single` - Advance one item at a time.
-   * - `visible` - Advance all visible items at a time.
-   *
-   * Defaults to `single`.
+   * Defaults to same as `step`.
    */
-  arrowsStepMode?: ArrowAdvance;
+  arrowsSteps?: number | "page";
 
   /**
    * Arrows class name applied to each arrow.
@@ -132,90 +159,242 @@ interface Props extends PropsWithChildren {
   arrowsPlacementFallback?: Exclude<ComponentProps<typeof SliderArrow>["placement"], "external">;
 
   /**
-   * Pagination placement.
-   *
-   * - `after` - Pagination is placed after the container.
-   * - `overlay` - Pagination is placed on bottom of the container, overlaying items.
-   * - `false` - Pagination is disabled.
-   *
-   * Defaults to `after`.
-   */
-  pagination?: "after" | "overlay" | false;
-
-  /**
-   * Pagination class name.
-   */
-  paginationClassName?: string;
-
-  /**
-   * Pagination compressed mode.
-   *
-   * When enabled, each pagination item page represents the slider items based on visible items count.
-   *
-   * Defaults to `true`.
-   */
-  paginationCompressed?: boolean;
-
-  /**
-   * Pagination visible item pages count.
-   */
-  paginationLimit?: number;
-
-  /**
-   * Container children.
-   */
-  children?: ReactNode;
-
-  /**
-   * Callback fired when the slider navigates to a new slide.
+   * Callback fired when the slider navigates.
    */
   onNavigate?(this: void): void;
 }
 
 export function Slider({
   duration = 5000,
-  speed = 300,
-  items = 1,
-  gap = 0.5,
-  infinity = true,
+  infinity = false,
+  wrapMode = "rewind",
+  justify,
+  centered = false,
+  steps = 1,
+  stepDuration = 300,
+  stopOnInteraction = false,
+  playOffscreen = false,
   freeFlow = false,
-  stretch = true,
-  centered = true,
   className,
+  children,
   arrowsIcon = faAngleLeft,
-  arrowsStepMode = "sequential",
+  arrowsSteps = steps,
   arrowsClassName,
   arrowsPlacement = "overlay",
   arrowsPlacementFallback = "overlay",
-  pagination = "after",
-  paginationClassName,
-  paginationCompressed = true,
-  paginationLimit,
-  children: baseChildren = [],
   onNavigate,
 }: Props) {
-  const isReady = useReady();
-
+  const sliderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
+  const metricsRef = useRef<HTMLDivElement>(null);
 
-  const [index, setIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(Number.MAX_SAFE_INTEGER);
+  const { ref: viewportRef, visible: viewportVisible } = useInViewport(0);
 
-  const children = useMemo(() => Children.toArray(baseChildren).filter(Boolean), [baseChildren]);
+  useEffect(() => {
+    viewportRef(containerRef.current);
+  }, [viewportRef]);
 
-  const breakpoints = useMemo(
-    () => normalizeBreakpoints(children.length, items, gap, stretch),
-    [children.length, gap, items, stretch],
+  const items = useMemo(
+    () => Children.toArray(children).filter((child) => isValidElement(child)),
+    [children],
   );
 
-  const [swiper, setSwiper] = useState<SwiperClass>();
+  const [width, setWidth] = useState(0);
+  const [columns, setColumns] = useState(0);
+  const [columnWidth, setColumnWidth] = useState(0);
+  const [columnGap, setColumnGap] = useState(0);
+  const [stride, setStride] = useState(0);
+
+  const [direction, setDirection] = useState(1);
+
+  const [transitionActive, setTransitionActive] = useState(true);
+
+  const [index, setIndex] = useState(0);
+  const indexMin = -items.length + columns;
+
+  const [dragOffset, setDragOffset] = useState<number>();
+  const [dragOrigin, setDragOrigin] = useState<number>();
+
+  const [autoplay, setAutoplay] = useState(duration > 0);
+
+  const isOverflow = columns > 0 && items.length > columns;
+
+  const flushTransition = useCallback((callback: () => void) => {
+    queueMicrotask(() => {
+      flushSync(() => {
+        setTransitionActive(false);
+        callback();
+      });
+
+      setTransitionActive(true);
+    });
+  }, []);
+
+  const updateMetrics = useEffectEvent(() => {
+    flushTransition(() => {
+      if (metricsRef.current) {
+        const computed = getComputedStyle(metricsRef.current);
+        const computedColumns = computed.gridTemplateColumns.split(" ");
+        const computedColumnsGap = Number.parseFloat(computed.columnGap);
+        const computedColumnsWidth = Number.parseFloat(computedColumns.at(0)!);
+
+        setWidth(
+          computedColumns.length * computedColumnsWidth +
+            (computedColumns.length - 1) * computedColumnsGap,
+        );
+        setColumns(computedColumns.length);
+        setColumnWidth(computedColumnsWidth);
+        setColumnGap(computedColumnsGap);
+        setStride(computedColumnsWidth + computedColumnsGap);
+      }
+    });
+  });
+
+  const move = useImmediateRef((delta: number) => {
+    const indexTarget = index - delta * direction;
+
+    if (infinity) {
+      setIndex(indexTarget);
+    } else {
+      const indexClamped = clamp(indexTarget, indexMin, 0);
+
+      if (indexClamped === indexTarget || indexClamped !== index || wrapMode === "stop") {
+        setIndex(indexClamped);
+      } else if (wrapMode === "rewind") {
+        setIndex(indexClamped === indexMin ? 0 : indexMin);
+      } else {
+        setDirection((state) => -state);
+        setIndex(clamp(2 * indexClamped - indexTarget, indexMin, 0));
+      }
+    }
+  });
+
+  const autoplayTick = useEffectEvent(() => {
+    if (viewportVisible || playOffscreen) {
+      move.current(steps === "page" ? columns : steps);
+      setDragOffset(undefined);
+    }
+  });
+
+  const timer = useRef<Timer>(undefined);
+
+  useEffect(() => {
+    if (!autoplay || !isOverflow) {
+      timer.current?.stop();
+      timer.current = undefined;
+
+      return;
+    }
+
+    timer.current = new Timer(autoplayTick, duration, false);
+
+    return () => {
+      timer.current?.stop();
+      timer.current = undefined;
+    };
+  }, [duration, autoplay, isOverflow]);
+
+  useEffect(() => {
+    if (viewportVisible) {
+      timer.current?.start();
+    } else {
+      setDragOffset(undefined);
+    }
+  }, [viewportVisible]);
+
+  const translateRef = useRef<HTMLDivElement>(null);
+  const [translateOffset, setTranslateOffset] = useState(0);
+
+  const updateTranslateOffset = useEffectEvent(() => {
+    if (isOverflow && translateRef.current) {
+      setTranslateOffset(Number.parseFloat(getComputedStyle(translateRef.current).translate));
+    }
+  });
+
+  const translateTickRef = useRef<ReturnType<typeof requestAnimationFrame>>(undefined);
+
+  const translateTickCancel = useRef(() => {
+    if (translateTickRef.current !== undefined) {
+      cancelAnimationFrame(translateTickRef.current);
+
+      translateTickRef.current = undefined;
+    }
+  });
+
+  const translateTickStart = useRef(() => {
+    function tick() {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      updateTranslateOffset();
+
+      translateTickCancel.current();
+      translateTickRef.current = requestAnimationFrame(tick);
+    }
+
+    tick();
+  });
+
+  useEffect(
+    () => () => {
+      translateTickCancel.current();
+    },
+    [],
+  );
+
+  const rotationOffset = useMemo(() => {
+    if (!infinity || !isOverflow) {
+      return 0;
+    }
+
+    if (translateOffset > 0) {
+      return Math.ceil(translateOffset / stride);
+    }
+
+    const overflowEdge = (items.length - columns) * -stride;
+
+    if (translateOffset < overflowEdge) {
+      return Math.floor((translateOffset - overflowEdge) / stride);
+    }
+
+    return 0;
+  }, [infinity, isOverflow, translateOffset, items.length, columns, stride]);
+
+  const sliderOffset = dragOffset ?? index * stride;
+
+  const staticOffset = useMemo(() => {
+    const centerOffset =
+      !justify && centered && columns > items.length
+        ? (width - items.length * stride + columnGap) / 2
+        : 0;
+
+    return centerOffset + rotationOffset * -stride;
+  }, [centered, columnGap, columns, items.length, justify, rotationOffset, stride, width]);
+
+  const trackStyle = useMemo(
+    () =>
+      ({
+        "--width": `${width}px`,
+        "--columns": items.length,
+        "--column-width": justify === "expand" ? "1fr" : `${columnWidth}px`,
+        "--slider-x": `${isOverflow ? sliderOffset : 0}px`,
+        "--duration": `${stepDuration * (steps === "page" ? Math.sqrt(columns) : 1)}ms`,
+      }) as CSSProperties,
+    [
+      columnWidth,
+      columns,
+      isOverflow,
+      items.length,
+      justify,
+      sliderOffset,
+      stepDuration,
+      steps,
+      width,
+    ],
+  );
 
   const [hasArrowSpace, setHasArrowSpace] = useState(false);
 
-  const isOverflow = useMemo(() => children.length > visibleCount, [children.length, visibleCount]);
-
-  const arrowPlacementFinal = useMemo(
+  const arrowsPlacementFinal = useMemo(
     () =>
       isOverflow
         ? hasArrowSpace || arrowsPlacement !== "external"
@@ -225,147 +404,165 @@ export function Slider({
     [isOverflow, arrowsPlacement, arrowsPlacementFallback, hasArrowSpace],
   );
 
-  const arrowClick = useCallback(
-    (delta: number) => {
-      const deltaAdvance = arrowsStepMode === "sequential" ? 1 : visibleCount;
-      const deltaFinal = delta * deltaAdvance;
+  useEffect(
+    () =>
+      listenResizeObserver(metricsRef.current, {}, () => {
+        updateMetrics();
+        updateTranslateOffset();
 
-      const indexNew = (index + children.length + deltaFinal) % children.length;
-
-      swiper!.slideTo(indexNew);
-
-      onNavigate?.();
-    },
-    [arrowsStepMode, index, children.length, onNavigate, swiper, visibleCount],
+        timer.current?.start();
+      }),
+    [],
   );
-
-  const paginationTotal = useMemo(
-    () => (paginationCompressed ? Math.ceil(children.length / visibleCount) : children.length),
-    [children.length, paginationCompressed, visibleCount],
-  );
-
-  const paginationEnabled = useMemo(
-    () => (paginationCompressed ? paginationTotal > 1 : isOverflow),
-    [isOverflow, paginationCompressed, paginationTotal],
-  );
-
-  const handleResize = useCallback((slidesPerView: unknown) => {
-    if (typeof slidesPerView === "number") {
-      setVisibleCount(slidesPerView);
-    }
-  }, []);
 
   useEffect(
     () =>
-      isReady
-        ? listenWindowEvent("resize", () => {
-            if (containerRef.current !== null && arrowRef.current !== null) {
-              setHasArrowSpace(
-                containerRef.current.offsetWidth + 3 * arrowRef.current.offsetWidth <=
-                  document.body.offsetWidth,
-              );
-            }
-          })
-        : undefined,
-    [isReady],
+      listenWindowEvent("resize", () => {
+        if (sliderRef.current && arrowRef.current) {
+          setHasArrowSpace(
+            sliderRef.current.offsetWidth + 2 * arrowRef.current.offsetWidth + 16 <=
+              document.body.offsetWidth,
+          );
+        }
+      }),
+    [],
   );
 
   return (
-    isReady && (
-      <div data-component="Slider" className={twMerge("relative", className)}>
-        <div ref={containerRef} className="relative flex">
-          <SliderArrow
-            ref={arrowRef}
-            icon={arrowsIcon}
-            className={arrowsClassName}
-            placement={arrowPlacementFinal}
-            isDisabled={!infinity && index === 0}
-            onClick={() => {
-              arrowClick(-1);
-            }}
+    <div
+      ref={sliderRef}
+      data-component="Slider"
+      className="relative"
+      onPointerEnter={() => {
+        timer.current?.stop();
+      }}
+      onPointerLeave={() => {
+        timer.current?.start();
+      }}
+    >
+      <div className="grid grid-cols-[auto_1fr_auto]">
+        <SliderArrow
+          ref={arrowRef}
+          icon={arrowsIcon}
+          className={arrowsClassName}
+          placement={arrowsPlacementFinal}
+          isDisabled={!infinity && index === 0}
+          onClick={() => {
+            move.current(arrowsSteps === "page" ? -columns : -arrowsSteps);
+          }}
+        />
+
+        <div ref={containerRef} className="overflow-hidden">
+          <div
+            ref={metricsRef}
+            className={twMerge("gap-x-0 grid-cols-1", className, "grid max-h-0 overflow-hidden")}
+            aria-hidden="true"
           />
 
-          <Swiper
-            onSwiper={setSwiper}
-            loop={infinity && isOverflow}
-            autoplay={duration === 0 ? false : { delay: duration, pauseOnMouseEnter: true }}
-            breakpoints={breakpoints}
-            modules={[Autoplay, Keyboard, ...(freeFlow ? [FreeMode] : [])]}
-            centerInsufficientSlides={centered}
-            freeMode={{ enabled: freeFlow, sticky: true }}
-            keyboard={{ enabled: true, onlyInViewport: true }}
-            loopAddBlankSlides={false}
-            speed={speed * visibleCount}
-            onSlideChange={({ realIndex }) => {
-              setIndex(realIndex);
+          <div
+            className="translate-x-(--static-x) select-none"
+            style={{ "--static-x": `${staticOffset}px` } as CSSProperties}
+            onPointerDown={(ev) => {
+              if (isOverflow) {
+                ev.currentTarget.setPointerCapture(ev.pointerId);
+                ev.stopPropagation();
+
+                if (stopOnInteraction) {
+                  setAutoplay(false);
+                }
+
+                setDragOrigin(ev.clientX - translateOffset);
+              }
             }}
-            onTouchEnd={() => {
-              onNavigate?.();
+            onPointerMove={(ev) => {
+              if (isOverflow && ev.currentTarget.hasPointerCapture(ev.pointerId)) {
+                ev.stopPropagation();
+
+                setDragOffset(ev.clientX - dragOrigin!);
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                updateTranslateOffset();
+              }
             }}
-            onAfterInit={(swiperInstance) => {
-              handleResize(swiperInstance.params.slidesPerView);
+            onPointerUp={(ev) => {
+              if (isOverflow && ev.currentTarget.hasPointerCapture(ev.pointerId)) {
+                ev.stopPropagation();
+
+                const dragDelta = ev.clientX - dragOrigin!;
+                const indexTarget =
+                  stride === 0
+                    ? 0
+                    : freeFlow
+                      ? Math.ceil(dragDelta / stride)
+                      : Math.round(dragDelta / stride);
+
+                setIndex(infinity ? indexTarget : clamp(indexTarget, indexMin, 0));
+                setDragOffset(freeFlow ? dragDelta : undefined);
+                setDragOrigin(undefined);
+              }
             }}
-            onResize={(swiperInstance) => {
-              handleResize(swiperInstance.params.slidesPerView);
-              queueMicrotask(() => {
-                swiperInstance.update();
-              });
-            }}
-            className={twMerge("flex-1", !swiper && "hidden")}
           >
-            {children.map((child, childIndex) => (
-              <SwiperSlide
-                // eslint-disable-next-line react/no-array-index-key
-                key={childIndex}
-              >
-                {child}
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <div
+              ref={translateRef}
+              className={twMerge(
+                "gap-x-0",
+                className,
+                transitionActive &&
+                  viewportVisible &&
+                  dragOrigin === undefined &&
+                  "transition duration-(--duration)",
+                "grid translate-x-(--slider-x) grid-cols-[repeat(var(--columns),var(--column-width))]! w-(--width) *:order-(--order)",
+                justify === "space-between" && "justify-between",
+              )}
+              style={trackStyle}
+              // eslint-disable-next-line react/no-unknown-property
+              onTransitionStart={() => {
+                timer.current?.stop();
+                translateTickStart.current();
+              }}
+              onTransitionEnd={() => {
+                if (infinity && Math.abs(index) >= items.length) {
+                  flushTransition(() => {
+                    setTranslateOffset(0);
+                    setIndex(0);
+                  });
+                }
 
-          <SliderArrow
-            rotate
-            icon={arrowsIcon}
-            className={arrowsClassName}
-            placement={arrowPlacementFinal}
-            isDisabled={!infinity && index === 0}
-            onClick={() => {
-              arrowClick(1);
-            }}
-          />
+                timer.current?.start();
+                onNavigate?.();
+
+                translateTickCancel.current();
+              }}
+            >
+              {items.map((item, itemIndex) => (
+                <div
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={itemIndex}
+                  style={
+                    {
+                      "--order": isOverflow
+                        ? rotate(itemIndex, rotationOffset, items.length)
+                        : itemIndex,
+                    } as CSSProperties
+                  }
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {paginationEnabled && (
-          <div
-            className={twMerge(
-              "z-10",
-              pagination === false && "hidden",
-              pagination === "overlay" && "absolute inset-x-0 bottom-0",
-              paginationClassName,
-            )}
-          >
-            <Pagination
-              current={
-                paginationCompressed
-                  ? index === children.length - visibleCount
-                    ? paginationTotal
-                    : Math.ceil((index + 1) / visibleCount)
-                  : index + 1
-              }
-              total={paginationTotal}
-              visibleCount={paginationLimit}
-              spread={paginationCompressed ? undefined : visibleCount - 1}
-              pageClassName="text-[size:0] w-2.5"
-              firstLast={false}
-              previousNext={false}
-              onClick={(page) => {
-                onNavigate?.();
-                swiper!.slideTo(paginationCompressed ? (page - 1) * visibleCount : page - 1);
-              }}
-            />
-          </div>
-        )}
+        <SliderArrow
+          rotate
+          icon={arrowsIcon}
+          className={arrowsClassName}
+          placement={arrowsPlacementFinal}
+          isDisabled={!infinity && index <= indexMin}
+          onClick={() => {
+            move.current(arrowsSteps === "page" ? columns : arrowsSteps);
+          }}
+        />
       </div>
-    )
+    </div>
   );
 }

@@ -167,7 +167,7 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
       <div
         ref={ref}
         className={twMerge("grid-cols-1", className, "grid max-h-0 overflow-hidden")}
-        aria-hidden
+        aria-hidden="true"
       />
 
       <div

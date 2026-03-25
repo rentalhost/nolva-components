@@ -7,7 +7,7 @@ interface Props {
     className?: string;
     rotate?: boolean;
     placement: ArrowPlacement;
-    isDisabled?: boolean;
+    isDisabled: boolean;
     onClick(this: void): void;
 }
 export declare function SliderArrow({ ref, icon, className, rotate, placement, isDisabled, onClick, }: Props): import("react/jsx-runtime").JSX.Element;

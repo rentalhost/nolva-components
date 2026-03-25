@@ -1,80 +1,95 @@
-import type { ArrowAdvance } from "./SliderArrow";
-import type { Breakpoints } from "../../../services/SwiperService";
 import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import { SliderArrow } from "./SliderArrow";
 interface Props extends PropsWithChildren {
     /**
-     * Autoplay duration in milliseconds.
+     * Animation duration in milliseconds.
      *
      * Defaults to `5000`.
      */
     duration?: number;
     /**
-     * Slide advance speed in milliseconds.
-     * It multiplies to the visible items count.
+     * Enable infinite scrolling.
      *
-     * Defaults to `300`.
-     */
-    speed?: number;
-    /**
-     * Number of items per slide.
-     * Supports breakpoints object.
-     *
-     * Defaults to `1`.
-     */
-    items?: Breakpoints | number;
-    /**
-     * Gap between items, based on `rem`.
-     * Supports breakpoints object.
-     *
-     * Defaults to `0.5`.
-     */
-    gap?: Breakpoints | number;
-    /**
-     * Enable infinite loop.
-     *
-     * Defaults to `true`.
+     * Defaults to `false`.
      */
     infinity?: boolean;
     /**
-     * Enable free flow mode.
+     * Wrap mode when reaching the end.
+     *
+     * Ignored when `infinity` is `true`.
+     *
+     * Defaults to `rewind`.
+     */
+    wrapMode?: "bounce" | "rewind" | "stop";
+    /**
+     * Justify items to fills the container.
+     *
+     * Defaults to `false`.
+     */
+    justify?: "expand" | "space-between";
+    /**
+     * Center items when there is enough space.
+     *
+     * Ignored when `justify` is defined.
+     *
+     * Defaults to `false`.
+     */
+    centered?: boolean;
+    /**
+     * Number of steps for autoplay.
+     *
+     * Defaults to `1`.
+     */
+    steps?: number | "page";
+    /**
+     * Step duration in milliseconds.
+     *
+     * When `steps` is page, this value is multiplied by `sqrt(visible items)`.
+     *
+     * Defaults to `300`.
+     */
+    stepDuration?: number;
+    /**
+     * Stop autoplay on first interaction.
+     *
+     * Defaults to `false`.
+     */
+    stopOnInteraction?: boolean;
+    /**
+     * Allow autoplay to works when slider is offscreen.
+     *
+     * Defaults to `false`.
+     */
+    playOffscreen?: boolean;
+    /**
+     * Free flow mode.
      *
      * Defaults to `false`.
      */
     freeFlow?: boolean;
     /**
-     * Stretch items to fill the container when there is less items than needed.
+     * Container class name, including grid and gap rules.
      *
-     * Defaults to `true`.
-     */
-    stretch?: boolean;
-    /**
-     * Center items when there is less items than needed.
-     * Works only when `fill` is `false`.
-     *
-     * Defaults to `true`.
-     */
-    centered?: boolean;
-    /**
-     * Container class name.
+     * Defaults to `grid-cols-1`.
      */
     className?: string;
     /**
+     * Container children.
+     */
+    children?: ReactNode;
+    /**
      * Arrows icon.
      *
-     * Defaults to `<FaAngleLeft />`.
+     * Defaults to `faAngleLeft`.
      */
     arrowsIcon?: IconType;
     /**
      * Arrows advance mode.
      *
-     * - `single` - Advance one item at a time.
-     * - `visible` - Advance all visible items at a time.
-     *
-     * Defaults to `single`.
+     * Defaults to same as `step`.
      */
-    arrowsStepMode?: ArrowAdvance;
+    arrowsSteps?: number | "page";
     /**
      * Arrows class name applied to each arrow.
      */
@@ -103,39 +118,9 @@ interface Props extends PropsWithChildren {
      */
     arrowsPlacementFallback?: Exclude<ComponentProps<typeof SliderArrow>["placement"], "external">;
     /**
-     * Pagination placement.
-     *
-     * - `after` - Pagination is placed after the container.
-     * - `overlay` - Pagination is placed on bottom of the container, overlaying items.
-     * - `false` - Pagination is disabled.
-     *
-     * Defaults to `after`.
-     */
-    pagination?: "after" | "overlay" | false;
-    /**
-     * Pagination class name.
-     */
-    paginationClassName?: string;
-    /**
-     * Pagination compressed mode.
-     *
-     * When enabled, each pagination item page represents the slider items based on visible items count.
-     *
-     * Defaults to `true`.
-     */
-    paginationCompressed?: boolean;
-    /**
-     * Pagination visible item pages count.
-     */
-    paginationLimit?: number;
-    /**
-     * Container children.
-     */
-    children?: ReactNode;
-    /**
-     * Callback fired when the slider navigates to a new slide.
+     * Callback fired when the slider navigates.
      */
     onNavigate?(this: void): void;
 }
-export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children: baseChildren, onNavigate, }: Props): false | import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ duration, infinity, wrapMode, justify, centered, steps, stepDuration, stopOnInteraction, playOffscreen, freeFlow, className, children, arrowsIcon, arrowsSteps, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, onNavigate, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

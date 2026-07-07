@@ -1,8 +1,8 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+﻿import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import Link from "next/link";
 
-import type { ShareNetwork } from "@/components/Generic/Share/ShareNetwork";
+import type { ShareNetwork } from "#/components/Generic/Share/ShareNetwork";
 
 interface Props {
   network: ShareNetwork;

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 import type { ComponentProps } from "react";
 
-import { ResourceContext } from "@/components/Generic/Resource/ResourceProvider";
+import { ResourceContext } from "#/components/Generic/Resource/ResourceProvider";
 
 interface Props extends Omit<ComponentProps<"div">, "id"> {
   /**

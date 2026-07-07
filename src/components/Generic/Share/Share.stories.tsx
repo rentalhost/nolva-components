@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+﻿import type { Meta, StoryObj } from "@storybook/react";
 
-import { Share } from "@/components/Generic/Share/Share";
+import { Share } from "#/components/Generic/Share/Share";
 
 export default {
   component: Share,

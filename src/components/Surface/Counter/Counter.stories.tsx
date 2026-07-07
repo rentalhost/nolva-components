@@ -1,8 +1,8 @@
-import { range } from "@rentalhost/rheactor-core";
+﻿import { range } from "@rentalhost/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Counter } from "@/components/Surface/Counter/Counter";
+import { Counter } from "#/components/Surface/Counter/Counter";
 
 export default {
   component: Counter,

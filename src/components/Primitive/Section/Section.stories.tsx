@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+﻿import type { Meta, StoryObj } from "@storybook/react";
 
-import { Section } from "@/components/Primitive/Section/Section";
+import { Section } from "#/components/Primitive/Section/Section";
 
 export default {
   component: Section,

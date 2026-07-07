@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { clamp } from "@rentalhost/rheactor-core";
 import { twMerge } from "@rentalhost/rheactor-core";
@@ -7,8 +7,8 @@ import { createPortal } from "react-dom";
 
 import type { CSSProperties, PropsWithChildren } from "react";
 
-import { listenWindowScroll } from "@/services/EventService";
-import { useReady } from "@/services/hooks/useReady";
+import { listenWindowScroll } from "#/services/EventService";
+import { useReady } from "#/services/hooks/useReady";
 
 interface Props extends PropsWithChildren {
   /**

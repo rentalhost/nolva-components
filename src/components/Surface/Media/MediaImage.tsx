@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { getNextImageUrl, twMerge } from "@rentalhost/rheactor-core";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { ImgProps } from "next/dist/shared/lib/get-img-props";
 import type { CSSProperties } from "react";
 
-import { listenResizeObserver } from "@/services/MutationService";
+import { listenResizeObserver } from "#/services/MutationService";
 
 interface Props {
   /**

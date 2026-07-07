@@ -1,12 +1,12 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+﻿import { twMerge } from "@rentalhost/rheactor-core";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps, ReactNode } from "react";
 
-import { PrintContainer } from "@/components/Print/PrintContainer/PrintContainer";
-import { PrintPage } from "@/components/Print/PrintPage/PrintPage";
-import { HTMLTransformer } from "@/services/classes/HTMLTransformer";
+import { PrintContainer } from "#/components/Print/PrintContainer/PrintContainer";
+import { PrintPage } from "#/components/Print/PrintPage/PrintPage";
+import { HTMLTransformer } from "#/services/classes/HTMLTransformer";
 
 export default {
   component: PrintPage,

@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
-import { Button } from "@/components/Form/Button/Button";
+import { Button } from "#/components/Form/Button/Button";
 
 interface Props {
   /**

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { twMerge, shuffle as arrayShuffle } from "@rentalhost/rheactor-core";
 import {
@@ -17,9 +17,9 @@ import { flushSync } from "react-dom";
 
 import type { CSSProperties, JSX, PropsWithChildren, ReactNode } from "react";
 
-import { Timer } from "@/services/classes/Timer";
-import { useImmediateRef } from "@/services/hooks/useImmediateRef";
-import { listenResizeObserver } from "@/services/MutationService";
+import { Timer } from "#/services/classes/Timer";
+import { useImmediateRef } from "#/services/hooks/useImmediateRef";
+import { listenResizeObserver } from "#/services/MutationService";
 
 interface Props extends PropsWithChildren {
   /**

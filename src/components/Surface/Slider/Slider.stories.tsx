@@ -1,11 +1,11 @@
-import { range } from "@rentalhost/rheactor-core";
+﻿import { range } from "@rentalhost/rheactor-core";
 import { faLeftLong } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from "@/components/Primitive/Container/Container";
-import { FlipCard } from "@/components/Surface/FlipCard/FlipCard";
-import { Slider } from "@/components/Surface/Slider/Slider";
+import { Container } from "#/components/Primitive/Container/Container";
+import { FlipCard } from "#/components/Surface/FlipCard/FlipCard";
+import { Slider } from "#/components/Surface/Slider/Slider";
 
 export default {
   component: Slider,

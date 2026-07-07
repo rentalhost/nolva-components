@@ -1,9 +1,9 @@
-import { range } from "@rentalhost/rheactor-core";
+﻿import { range } from "@rentalhost/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
-import { Animate } from "@/components/Animate/Animate/Animate";
+import { Animate } from "#/components/Animate/Animate/Animate";
 
 export default {
   component: Animate,

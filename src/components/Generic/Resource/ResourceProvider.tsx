@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { createContext, useEffect, useMemo, useState } from "react";
 
 import type { PropsWithChildren } from "react";
 
-import { listenWindowEvent } from "@/services/EventService";
-import { useLocalStorage } from "@/services/hooks/useLocalStorage";
+import { listenWindowEvent } from "#/services/EventService";
+import { useLocalStorage } from "#/services/hooks/useLocalStorage";
 
 interface ContextProps {
   domain?: string;

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+﻿import type { Meta, StoryObj } from "@storybook/react";
 
-import { Input } from "@/components/Form/Input/Input";
+import { Input } from "#/components/Form/Input/Input";
 
 export default {
   component: Input,

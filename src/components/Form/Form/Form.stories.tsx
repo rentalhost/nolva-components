@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+﻿import type { Meta, StoryObj } from "@storybook/react";
 
-import { Form } from "@/components/Form/Form/Form";
-import { Input } from "@/components/Form/Input/Input";
-import { Label } from "@/components/Form/Label/Label";
+import { Form } from "#/components/Form/Form/Form";
+import { Input } from "#/components/Form/Input/Input";
+import { Label } from "#/components/Form/Label/Label";
 
 export default {
   component: Form,

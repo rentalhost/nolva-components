@@ -1,8 +1,8 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+﻿import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { ComponentProps } from "react";
 
-import { Container } from "@/components/Primitive/Container/Container";
+import { Container } from "#/components/Primitive/Container/Container";
 
 export function HeaderContainer({ className, ...props }: ComponentProps<typeof Container>) {
   return (

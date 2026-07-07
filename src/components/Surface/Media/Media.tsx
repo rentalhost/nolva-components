@@ -1,21 +1,21 @@
-"use client";
+﻿"use client";
 
 import { getExtension } from "@rentalhost/rheactor-core";
 import getVideoId from "get-video-id";
 
 import type { ComponentProps } from "react";
 
-import { allowedExtensions as imageAllowedExtensions } from "@/components/Surface/Media/MediaImage";
-import { MediaImage } from "@/components/Surface/Media/MediaImage";
+import { allowedExtensions as imageAllowedExtensions } from "#/components/Surface/Media/MediaImage";
+import { MediaImage } from "#/components/Surface/Media/MediaImage";
 import {
   allowedExtensions as svgAllowedExtensions,
   MediaSVG,
-} from "@/components/Surface/Media/MediaSVG";
+} from "#/components/Surface/Media/MediaSVG";
 import {
   allowedExtensions as videoLocalAllowedExtensions,
   MediaVideoLocal,
-} from "@/components/Surface/Media/MediaVideoLocal";
-import { MediaVideoYoutube } from "@/components/Surface/Media/MediaVideoYoutube";
+} from "#/components/Surface/Media/MediaVideoLocal";
+import { MediaVideoYoutube } from "#/components/Surface/Media/MediaVideoYoutube";
 
 type ImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
   src: `${string}.${(typeof imageAllowedExtensions)[number]}` | (string & {});

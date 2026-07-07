@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { clamp, noop } from "@rentalhost/rheactor-core";
 import { twMerge } from "@rentalhost/rheactor-core";
@@ -8,8 +8,8 @@ import { useMemo } from "react";
 
 import type { ComponentProps } from "react";
 
-import { PaginationPage } from "@/components/Pagination/Pagination/PaginationPage";
-import { circularRange, paginate } from "@/services/ArrayService";
+import { PaginationPage } from "#/components/Pagination/Pagination/PaginationPage";
+import { circularRange, paginate } from "#/services/ArrayService";
 
 interface Props {
   /**

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 
-import { useAnalytics } from "@/services/hooks/useAnalytics";
-import { useInViewport } from "@/services/hooks/useInViewport";
+import { useAnalytics } from "#/services/hooks/useAnalytics";
+import { useInViewport } from "#/services/hooks/useInViewport";
 
 interface Props {
   /**

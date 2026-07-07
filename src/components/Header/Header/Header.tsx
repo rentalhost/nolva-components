@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
-import { useInViewport } from "@/services/hooks/useInViewport";
+import { useInViewport } from "#/services/hooks/useInViewport";
 
 interface Props extends PropsWithChildren {
   /**

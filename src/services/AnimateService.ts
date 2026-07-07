@@ -1,6 +1,6 @@
-import { clamp } from "@rentalhost/rheactor-core";
+﻿import { clamp } from "@rentalhost/rheactor-core";
 
-import { Timer } from "@/services/classes/Timer";
+import { Timer } from "#/services/classes/Timer";
 
 type EasingFunction = (t: number) => number;
 

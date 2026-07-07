@@ -1,19 +1,19 @@
-"use client";
+﻿"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faShareFromSquare } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useEffect, useState } from "react";
 
-import type { ShareNetworkName } from "@/components/Generic/Share/ShareNetwork";
+import type { ShareNetworkName } from "#/components/Generic/Share/ShareNetwork";
 import type { CSSProperties } from "react";
 
-import { Ready } from "@/components/Generic/Ready/Ready";
-import { networks as allNetworks } from "@/components/Generic/Share/ShareNetwork";
-import { ShareNetworkIcon } from "@/components/Generic/Share/ShareNetworkIcon";
-import { listenWindowEvent } from "@/services/EventService";
-import { listenMutationObserver } from "@/services/MutationService";
-import { getSimplifiedUrl } from "@/services/UrlService";
+import { Ready } from "#/components/Generic/Ready/Ready";
+import { networks as allNetworks } from "#/components/Generic/Share/ShareNetwork";
+import { ShareNetworkIcon } from "#/components/Generic/Share/ShareNetworkIcon";
+import { listenWindowEvent } from "#/services/EventService";
+import { listenMutationObserver } from "#/services/MutationService";
+import { getSimplifiedUrl } from "#/services/UrlService";
 
 interface Props {
   /**

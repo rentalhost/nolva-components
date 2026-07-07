@@ -1,4 +1,4 @@
-/* eslint-disable react/iframe-missing-sandbox */
+﻿/* eslint-disable react/iframe-missing-sandbox */
 "use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
@@ -6,9 +6,9 @@ import { useState } from "react";
 
 import type { CSSProperties } from "react";
 
-import { YoutubePlay } from "@/components/Surface/Media/fixtures/YoutubePlay";
-import { Media } from "@/components/Surface/Media/Media";
-import { getVideoYoutubeThumbnail } from "@/services/VideoService";
+import { YoutubePlay } from "#/components/Surface/Media/fixtures/YoutubePlay";
+import { Media } from "#/components/Surface/Media/Media";
+import { getVideoYoutubeThumbnail } from "#/services/VideoService";
 
 interface Props {
   /**

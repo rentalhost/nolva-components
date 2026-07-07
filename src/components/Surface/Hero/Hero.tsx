@@ -1,8 +1,8 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+﻿import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { PropsWithChildren, ReactNode } from "react";
 
-import { Section } from "@/components/Primitive/Section/Section";
+import { Section } from "#/components/Primitive/Section/Section";
 
 interface Props extends PropsWithChildren {
   /**

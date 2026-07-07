@@ -1,8 +1,8 @@
-import { range } from "@rentalhost/rheactor-core";
+﻿import { range } from "@rentalhost/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Mosaic } from "@/components/Surface/Mosaic/Mosaic";
+import { Mosaic } from "#/components/Surface/Mosaic/Mosaic";
 
 export default {
   component: Mosaic,

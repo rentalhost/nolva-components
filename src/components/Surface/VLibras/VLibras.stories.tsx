@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+﻿import type { Meta, StoryObj } from "@storybook/react";
 
-import { VLibras } from "@/components/Surface/VLibras/VLibras";
+import { VLibras } from "#/components/Surface/VLibras/VLibras";
 
 export default {
   component: VLibras,

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
@@ -6,17 +6,17 @@ import { Children, useCallback, useEffect, useMemo, useRef, useState } from "rea
 import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import type { ArrowAdvance } from "@/components/Surface/Slider/SliderArrow";
-import type { Breakpoints } from "@/services/SwiperService";
+import type { ArrowAdvance } from "#/components/Surface/Slider/SliderArrow";
+import type { Breakpoints } from "#/services/SwiperService";
 import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import type { SwiperClass } from "swiper/react";
 
-import { Pagination } from "@/components/Pagination/Pagination/Pagination";
-import { SliderArrow } from "@/components/Surface/Slider/SliderArrow";
-import { listenWindowEvent } from "@/services/EventService";
-import { useReady } from "@/services/hooks/useReady";
-import { normalizeBreakpoints } from "@/services/SwiperService";
+import { Pagination } from "#/components/Pagination/Pagination/Pagination";
+import { SliderArrow } from "#/components/Surface/Slider/SliderArrow";
+import { listenWindowEvent } from "#/services/EventService";
+import { useReady } from "#/services/hooks/useReady";
+import { normalizeBreakpoints } from "#/services/SwiperService";
 
 interface Props extends PropsWithChildren {
   /**

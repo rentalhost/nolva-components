@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+﻿import type { Meta, StoryObj } from "@storybook/react";
 
-import { Container } from "@/components/Primitive/Container/Container";
-import { Hero } from "@/components/Surface/Hero/Hero";
-import { Media } from "@/components/Surface/Media/Media";
+import { Container } from "#/components/Primitive/Container/Container";
+import { Hero } from "#/components/Surface/Hero/Hero";
+import { Media } from "#/components/Surface/Media/Media";
 
 export default {
   component: Hero,

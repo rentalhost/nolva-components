@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { useMemo } from "react";
@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import type { PropsWithChildren } from "react";
 
-import { LabelContext } from "@/components/Form/Label/LabelProvider";
+import { LabelContext } from "#/components/Form/Label/LabelProvider";
 
 interface Props extends PropsWithChildren, Pick<ComponentProps<"label">, "ref"> {
   /**

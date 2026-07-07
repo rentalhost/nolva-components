@@ -1,10 +1,10 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+﻿import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faChevronDown } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { ComponentProps } from "react";
 
-import { inputClassName } from "@/components/fixtures";
+import { inputClassName } from "#/components/fixtures";
 
 interface Props extends ComponentProps<"select"> {
   /**

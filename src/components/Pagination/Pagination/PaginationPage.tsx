@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { useEffect, useState } from "react";
 
 import type { ReactNode } from "react";
 
-import { appendQueryString } from "@/services/UrlService";
+import { appendQueryString } from "#/services/UrlService";
 
 interface Props {
   page: number;

@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faAngleUp } from "@rheactor/rheactor-font-awesome/classic-regular";
 
-import { useAnalytics } from "@/services/hooks/useAnalytics";
+import { useAnalytics } from "#/services/hooks/useAnalytics";
 
 interface Props {
   /**

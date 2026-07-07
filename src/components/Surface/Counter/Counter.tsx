@@ -1,13 +1,13 @@
-"use client";
+﻿"use client";
 
 import { formatNumber } from "@rentalhost/rheactor-core";
 import { useEffect, useMemo, useState } from "react";
 
-import type { Easing } from "@/services/AnimateService";
+import type { Easing } from "#/services/AnimateService";
 import type { CSSProperties } from "react";
 
-import { animate } from "@/services/AnimateService";
-import { useInViewport } from "@/services/hooks/useInViewport";
+import { animate } from "#/services/AnimateService";
+import { useInViewport } from "#/services/hooks/useInViewport";
 
 interface Props {
   /**

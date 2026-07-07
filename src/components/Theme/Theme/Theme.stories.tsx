@@ -1,8 +1,8 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+﻿import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Theme, variants } from "@/components/Theme/Theme/Theme";
+import { Theme, variants } from "#/components/Theme/Theme/Theme";
 
 export default {
   component: Theme,

@@ -1,12 +1,12 @@
-import { Icon } from "@rheactor/rheactor-font-awesome";
+﻿import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
-import { Button } from "@/components/Form/Button/Button";
-import { Theme } from "@/components/Theme/Theme/Theme";
-import { ThemeSpread } from "@/services/components/ThemeSpread";
+import { Button } from "#/components/Form/Button/Button";
+import { Theme } from "#/components/Theme/Theme/Theme";
+import { ThemeSpread } from "#/services/components/ThemeSpread";
 
 export default {
   component: Button,

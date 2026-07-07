@@ -1,4 +1,4 @@
-import {
+﻿import {
   faFacebookF,
   faLinkedinIn,
   faWhatsapp,
@@ -8,7 +8,7 @@ import { faShareNodes } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { IconType } from "@rheactor/rheactor-font-awesome";
 
-import { generateQueryString } from "@/services/UrlService";
+import { generateQueryString } from "#/services/UrlService";
 
 interface ShareNetworkUrlProps {
   title: string;

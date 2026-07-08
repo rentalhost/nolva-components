@@ -1,4 +1,4 @@
-import "@storybook/preview.css";
+import "#storybook/preview.css";
 
 import type { Preview } from "@storybook/react";
 
@@ -35,22 +35,28 @@ export default {
   },
   argTypesEnhancers: [
     (context) => {
-      for (const argType of Object.values(context.argTypes)) {
-        argType.mapping ??= {};
+      for (const argumentType of Object.values(context.argTypes)) {
+        argumentType.mapping ??= {};
 
-        if (argType.type !== undefined) {
-          if (argType.type.name === "enum" && argType.type.value.includes("ReactPortal")) {
-            argType.control = { disable: true };
-            argType.table!.type!.summary = "ReactNode";
-          } else if (argType.type.name === "enum" && argType.type.value.includes("string")) {
-            argType.control = { type: "text" };
-          } else if (
-            argType.type.name === "enum" &&
-            argType.type.value.includes("false") &&
-            argType.type.value.includes("true")
+        if (argumentType.type !== undefined) {
+          if (
+            argumentType.type.name === "enum" &&
+            argumentType.type.value.includes("ReactPortal")
           ) {
-            argType.mapping["true"] = true;
-            argType.mapping["false"] = false;
+            argumentType.control = { disable: true };
+            argumentType.table!.type!.summary = "ReactNode";
+          } else if (
+            argumentType.type.name === "enum" &&
+            argumentType.type.value.includes("string")
+          ) {
+            argumentType.control = { type: "text" };
+          } else if (
+            argumentType.type.name === "enum" &&
+            argumentType.type.value.includes("false") &&
+            argumentType.type.value.includes("true")
+          ) {
+            argumentType.mapping["true"] = true;
+            argumentType.mapping["false"] = false;
           }
         }
       }

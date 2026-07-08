@@ -1,4 +1,4 @@
-﻿import { range } from "@rentalhost/rheactor-core";
+import { range } from "@rentalhost/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -10,11 +10,11 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Counter> = {
-  render({ to, ...props }) {
+  render({ to, ...properties }) {
     return (
       <div className="grid gap-y-16">
         {range(1, 20).map((key) => (
-          <Counter key={key} to={to * key} {...props} />
+          <Counter key={key} to={to * key} {...properties} />
         ))}
       </div>
     );

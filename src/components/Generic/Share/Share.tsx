@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
@@ -15,7 +15,7 @@ import { listenWindowEvent } from "#/services/EventService";
 import { listenMutationObserver } from "#/services/MutationService";
 import { getSimplifiedUrl } from "#/services/UrlService";
 
-interface Props {
+interface Properties {
   /**
    * Determines the text of the share header title.
    *
@@ -70,7 +70,7 @@ export function Share({
   networkClassName,
   className,
   onShare,
-}: Props) {
+}: Properties) {
   const [documentTitle, setDocumentTitle] = useState<string>(title ?? "");
   const [documentUrl, setDocumentUrl] = useState<string>(url ?? "");
 

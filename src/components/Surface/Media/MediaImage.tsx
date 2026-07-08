@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { getNextImageUrl, twMerge } from "@rentalhost/rheactor-core";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -8,7 +8,7 @@ import type { CSSProperties } from "react";
 
 import { listenResizeObserver } from "#/services/MutationService";
 
-interface Props {
+interface Properties {
   /**
    * The source of the image.
    */
@@ -50,32 +50,34 @@ interface Props {
 
 export const allowedExtensions = ["jpg", "jpeg", "png", "webp", "gif"] as const;
 
-const emptySrc = "data:image/webp;base64,UklGRhYAAABXRUJQVlA4TAoAAAAvAAAAAEX/I/of";
+const emptySource = "data:image/webp;base64,UklGRhYAAABXRUJQVlA4TAoAAAAvAAAAAEX/I/of";
 
 export function MediaImage({
-  src: srcBase,
+  src: sourceBase,
   alt,
   quality,
   priority = false,
   spot,
   className,
-}: Props) {
-  const ref = useRef<HTMLImageElement>(null);
+}: Properties) {
+  const reference = useRef<HTMLImageElement>(null);
 
   const [width, setWidth] = useState(0);
   const { src, srcSet, sizes } = useMemo(
     (): ImgProps =>
-      width === 0 ? ({ src: emptySrc } as ImgProps) : getNextImageUrl(srcBase, width, quality),
-    [quality, srcBase, width],
+      width === 0
+        ? ({ src: emptySource } as ImgProps)
+        : getNextImageUrl(sourceBase, width, quality),
+    [quality, sourceBase, width],
   );
 
   useEffect(
     () =>
       listenResizeObserver(
-        ref.current,
+        reference.current,
         {},
         () => {
-          setWidth((state) => Math.max(ref.current!.clientWidth, state));
+          setWidth((state) => Math.max(reference.current!.clientWidth, state));
         },
         false,
       ),
@@ -84,7 +86,7 @@ export function MediaImage({
 
   return (
     <img
-      ref={ref}
+      ref={reference}
       src={src}
       srcSet={srcSet}
       sizes={sizes}

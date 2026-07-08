@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { getExtension } from "@rentalhost/rheactor-core";
 import getVideoId from "get-video-id";
@@ -17,60 +17,67 @@ import {
 } from "#/components/Surface/Media/MediaVideoLocal";
 import { MediaVideoYoutube } from "#/components/Surface/Media/MediaVideoYoutube";
 
-type ImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
+type ImageProperties = Omit<ComponentProps<typeof MediaImage>, "src"> & {
   src: `${string}.${(typeof imageAllowedExtensions)[number]}` | (string & {});
 };
 
-type StaticImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
+type StaticImageProperties = Omit<ComponentProps<typeof MediaImage>, "src"> & {
   src: { src: string };
 };
 
-type SVGProps = Omit<ComponentProps<typeof MediaSVG>, "src"> & {
+type SVGProperties = Omit<ComponentProps<typeof MediaSVG>, "src"> & {
   src: `${string}.${(typeof svgAllowedExtensions)[number]}` | (string & {});
 };
 
-type VideoLocalProps = Omit<ComponentProps<typeof MediaVideoLocal>, "src"> & {
+type VideoLocalProperties = Omit<ComponentProps<typeof MediaVideoLocal>, "src"> & {
   src: `${string}.${(typeof videoLocalAllowedExtensions)[number]}` | (string & {});
 };
 
-type VideoYoutubeProps = Omit<ComponentProps<typeof MediaVideoYoutube>, "id"> & { src: string };
+type VideoYoutubeProperties = Omit<ComponentProps<typeof MediaVideoYoutube>, "id"> & {
+  src: string;
+};
 
-type Props = ImageProps | StaticImageProps | SVGProps | VideoLocalProps | VideoYoutubeProps;
+type Properties =
+  | ImageProperties
+  | StaticImageProperties
+  | SVGProperties
+  | VideoLocalProperties
+  | VideoYoutubeProperties;
 
-function isStaticImage(props: Props): props is StaticImageProps {
-  return typeof props.src === "object" && "src" in props.src;
+function isStaticImage(properties: Properties): properties is StaticImageProperties {
+  return typeof properties.src === "object" && "src" in properties.src;
 }
 
-function isExtension<ThenProps extends Props>(
-  props: Props,
+function isExtension<ThenProperties extends Properties>(
+  properties: Properties,
   extensions: readonly string[],
-): props is ThenProps {
-  return extensions.includes(getExtension(props.src as string) ?? "");
+): properties is ThenProperties {
+  return extensions.includes(getExtension(properties.src as string) ?? "");
 }
 
-export function Media(props: Props) {
-  if (isStaticImage(props)) {
+export function Media(properties: Properties) {
+  if (isStaticImage(properties)) {
     // eslint-disable-next-line react/destructuring-assignment
-    return <Media {...props} src={props.src.src} />;
+    return <Media {...properties} src={properties.src.src} />;
   }
 
-  if (isExtension<ImageProps>(props, imageAllowedExtensions)) {
-    return <MediaImage {...props} />;
+  if (isExtension<ImageProperties>(properties, imageAllowedExtensions)) {
+    return <MediaImage {...properties} />;
   }
 
-  if (isExtension<ImageProps>(props, svgAllowedExtensions)) {
-    return <MediaSVG {...props} />;
+  if (isExtension<ImageProperties>(properties, svgAllowedExtensions)) {
+    return <MediaSVG {...properties} />;
   }
 
-  if (isExtension<VideoLocalProps>(props, videoLocalAllowedExtensions)) {
-    return <MediaVideoLocal {...props} />;
+  if (isExtension<VideoLocalProperties>(properties, videoLocalAllowedExtensions)) {
+    return <MediaVideoLocal {...properties} />;
   }
 
   // eslint-disable-next-line react/destructuring-assignment
-  const service = getVideoId(props.src);
+  const service = getVideoId(properties.src);
 
   if (service.service === "youtube") {
-    return <MediaVideoYoutube id={service.id!} {...props} />;
+    return <MediaVideoYoutube id={service.id!} {...properties} />;
   }
 
   return null;

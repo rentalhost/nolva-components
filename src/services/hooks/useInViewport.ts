@@ -34,7 +34,7 @@ export function useInViewport(
     [considerVisibleAfterLeavingViewport],
   );
 
-  const ref = useCallback(
+  const reference = useCallback(
     (element: Element | null | undefined) => {
       disconnect();
 
@@ -69,5 +69,5 @@ export function useInViewport(
     [disconnect, threshold, visibleAfterLeavingViewport],
   );
 
-  return { ref, visible, disconnect } as const;
+  return { ref: reference, visible, disconnect } as const;
 }

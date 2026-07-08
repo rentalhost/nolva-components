@@ -8,6 +8,7 @@ import type { ReactElement } from "react";
 import type { RefAttributes } from "react";
 
 export type Resolve<T> = (value: T) => void;
+
 export type Resolver<T> = (resolve: Resolve<T>) => ReactElement;
 
 export async function promisePortal<T>(resolver: Resolver<T>) {

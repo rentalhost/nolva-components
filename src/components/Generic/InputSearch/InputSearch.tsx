@@ -4,7 +4,7 @@ import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regul
 
 import type { FormHTMLAttributes, ReactNode } from "react";
 
-interface Props {
+interface Properties {
   /**
    * The class name that will be appended to the container element.
    */
@@ -69,7 +69,7 @@ export function InputSearch({
   inputPlaceholder,
   buttonClassName,
   buttonText = "Search",
-}: Props) {
+}: Properties) {
   return (
     <form
       action={formAction}

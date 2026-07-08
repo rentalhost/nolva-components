@@ -4,7 +4,7 @@ import { stringifyCSSProperties } from "react-style-stringify";
 
 import type { CSSProperties, ReactNode } from "react";
 
-interface Props {
+interface Properties {
   /**
    * Controls the page size.
    *
@@ -102,7 +102,7 @@ export function PrintPage({
   shorten = false,
   children,
   className,
-}: Props) {
+}: Properties) {
   const pageId = useId();
 
   const dimensions = isSize(size) ? sizes[size] : size;
@@ -118,7 +118,7 @@ export function PrintPage({
         margin: 0,
         width,
         height,
-      } as object)} }`,
+      })} }`,
     [pageId, height, width],
   );
 

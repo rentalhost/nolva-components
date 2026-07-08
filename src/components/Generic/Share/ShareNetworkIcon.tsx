@@ -1,10 +1,10 @@
-﻿import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import Link from "next/link";
 
 import type { ShareNetwork } from "#/components/Generic/Share/ShareNetwork";
 
-interface Props {
+interface Properties {
   network: ShareNetwork;
   title: string;
   url: string;
@@ -15,7 +15,7 @@ interface Props {
 
 const shareNetworkIconClassName = "cursor-pointer rounded-sm p-2 transition hover:scale-105";
 
-export function ShareNetworkIcon({ network, title, url, className, onClick }: Props) {
+export function ShareNetworkIcon({ network, title, url, className, onClick }: Properties) {
   if (network.url === "native") {
     return (
       <div

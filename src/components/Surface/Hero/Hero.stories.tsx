@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Container } from "#/components/Primitive/Container/Container";
 import { Hero } from "#/components/Surface/Hero/Hero";

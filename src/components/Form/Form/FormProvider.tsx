@@ -4,13 +4,13 @@ import { createContext, useMemo, useState } from "react";
 
 import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
 
-interface ContextProps {
+interface ContextProperties {
   focused?: boolean;
   setFocused?: Dispatch<SetStateAction<boolean>>;
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const FormContext = createContext<ContextProps>({});
+export const FormContext = createContext<ContextProperties>({});
 
 export function FormProvider({ children }: PropsWithChildren) {
   const [focused, setFocused] = useState(false);

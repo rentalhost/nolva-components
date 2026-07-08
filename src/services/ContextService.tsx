@@ -4,10 +4,10 @@ export function contextWrapper<C extends FunctionComponent>(
   Provider: FunctionComponent<PropsWithChildren>,
   Component: C,
 ): C {
-  return function ({ ...props }: JSX.LibraryManagedAttributes<C, object>) {
+  return function ({ ...properties }: JSX.LibraryManagedAttributes<C, object>) {
     return (
       <Provider>
-        <Component {...props} />
+        <Component {...properties} />
       </Provider>
     );
   } as C;

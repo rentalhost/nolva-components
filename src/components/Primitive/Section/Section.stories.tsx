@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Section } from "#/components/Primitive/Section/Section";
 
@@ -8,13 +8,13 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof Section> = {
-  render: (args) => (
+  render: (parameters) => (
     <>
-      <Section {...args} />
+      <Section {...parameters} />
 
-      <Section {...args} />
+      <Section {...parameters} />
 
-      <Section {...args} />
+      <Section {...parameters} />
     </>
   ),
   args: {
@@ -25,13 +25,13 @@ export const Example: StoryObj<typeof Section> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const NoMarginExample: StoryObj<typeof Section> = {
-  render: (args) => (
+  render: (parameters) => (
     <>
-      <Section {...args} />
+      <Section {...parameters} />
 
-      <Section {...args} />
+      <Section {...parameters} />
 
-      <Section {...args} />
+      <Section {...parameters} />
     </>
   ),
   args: {

@@ -9,7 +9,7 @@ import type { ComponentProps, ElementType, ReactNode } from "react";
 type TextReplacerCallback = (text: string) => ReactNode;
 
 type TagReplacerCallback<T extends ElementType> = (
-  props: ComponentProps<T> & Record<string, unknown>,
+  properties: ComponentProps<T> & Record<string, unknown>,
 ) => ReactNode;
 
 export class HTMLTransformer {
@@ -151,7 +151,9 @@ export class HTMLTransformer {
   private processChild(child: ChildNode): ReactNode {
     if (child instanceof Text) {
       return this.textReplacement?.(child.data) ?? child.data;
-    } else if (child instanceof Element) {
+    }
+
+    if (child instanceof Element) {
       const replacement = this.tagsReplacements.get(child.tagName);
 
       if (replacement) {

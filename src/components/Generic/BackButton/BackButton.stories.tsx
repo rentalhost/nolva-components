@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { BackButton } from "#/components/Generic/BackButton/BackButton";
 

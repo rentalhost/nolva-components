@@ -1,4 +1,4 @@
-﻿import {
+import {
   faFacebookF,
   faLinkedinIn,
   faWhatsapp,
@@ -10,7 +10,7 @@ import type { IconType } from "@rheactor/rheactor-font-awesome";
 
 import { generateQueryString } from "#/services/UrlService";
 
-interface ShareNetworkUrlProps {
+interface ShareNetworkUrlProperties {
   title: string;
   url: string;
 }
@@ -20,7 +20,7 @@ export class ShareNetwork {
     public readonly name: string,
     public readonly icon: IconType,
     public readonly className: string,
-    public readonly url: "native" | (({ title, url }: ShareNetworkUrlProps) => string),
+    public readonly url: "native" | (({ title, url }: ShareNetworkUrlProperties) => string),
   ) {}
 }
 

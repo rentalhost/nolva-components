@@ -1,7 +1,7 @@
 import { twMerge } from "@rentalhost/rheactor-core";
 import Image from "next/image";
 
-interface Props {
+interface Properties {
   /**
    * The source of the image.
    */
@@ -25,7 +25,7 @@ interface Props {
 
 export const allowedExtensions = ["svg"] as const;
 
-export function MediaSVG({ src, alt, priority, className }: Props) {
+export function MediaSVG({ src, alt, priority, className }: Properties) {
   return (
     <Image
       src={src}

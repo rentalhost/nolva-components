@@ -1,7 +1,7 @@
 import { getExtension } from "@rentalhost/rheactor-core";
 import { twMerge } from "@rentalhost/rheactor-core";
 
-interface Props {
+interface Properties {
   /**
    * The source of the image.
    */
@@ -38,7 +38,7 @@ export function MediaVideoLocal({
   background = false,
   protect = false,
   className,
-}: Props) {
+}: Properties) {
   return (
     <video
       playsInline

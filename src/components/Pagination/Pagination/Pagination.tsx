@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { clamp, noop } from "@rentalhost/rheactor-core";
 import { twMerge } from "@rentalhost/rheactor-core";
@@ -11,7 +11,7 @@ import type { ComponentProps } from "react";
 import { PaginationPage } from "#/components/Pagination/Pagination/PaginationPage";
 import { circularRange, paginate } from "#/services/ArrayService";
 
-interface Props {
+interface Properties {
   /**
    * The current page.
    */
@@ -90,12 +90,12 @@ export function Pagination({
   firstLast = true,
   forceRender = false,
   onClick = noop,
-}: Props) {
-  const visible = visibleCount !== undefined && total > visibleCount;
+}: Properties) {
+  const isVisible = visibleCount !== undefined && total > visibleCount;
 
   const currentClamped = clamp(current, 1, total);
 
-  const pageProps: Pick<
+  const pageProperties: Pick<
     ComponentProps<typeof PaginationPage>,
     "className" | "onClick" | "queryString"
   > = {
@@ -119,17 +119,17 @@ export function Pagination({
       data-component="Pagination"
       className={twMerge("flex flex-wrap items-center justify-center gap-2", className)}
     >
-      {visible && firstLast && (
-        <PaginationPage page={1} isDisabled={currentClamped === 1} {...pageProps}>
+      {isVisible && firstLast && (
+        <PaginationPage page={1} isDisabled={currentClamped === 1} {...pageProperties}>
           <Icon type={faAnglesLeft} />
         </PaginationPage>
       )}
 
-      {visible && previousNext && (
+      {isVisible && previousNext && (
         <PaginationPage
           page={Math.max(1, currentClamped - 1)}
           isDisabled={currentClamped === 1}
-          {...pageProps}
+          {...pageProperties}
         >
           <Icon type={faAngleLeft} />
         </PaginationPage>
@@ -142,24 +142,24 @@ export function Pagination({
             page={page}
             isCurrent={page === currentClamped}
             isSpread={pagesSpread.includes(page)}
-            {...pageProps}
+            {...pageProperties}
           >
             {page}
           </PaginationPage>
         ))}
 
-      {visible && previousNext && (
+      {isVisible && previousNext && (
         <PaginationPage
           page={Math.min(total, currentClamped + 1)}
           isDisabled={currentClamped === total}
-          {...pageProps}
+          {...pageProperties}
         >
           <Icon type={faAngleLeft} className="rotate-180" />
         </PaginationPage>
       )}
 
-      {visible && firstLast && (
-        <PaginationPage page={total} isDisabled={currentClamped === total} {...pageProps}>
+      {isVisible && firstLast && (
+        <PaginationPage page={total} isDisabled={currentClamped === total} {...pageProperties}>
           <Icon type={faAnglesLeft} className="rotate-180" />
         </PaginationPage>
       )}

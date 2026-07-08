@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { BackTopButton } from "#/components/Generic/BackTopButton/BackTopButton";
 
@@ -8,12 +8,12 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Example: StoryObj<typeof BackTopButton> = {
-  render(args) {
+  render(parameters) {
     return (
       <>
         <div className="h-[200vh]" />
 
-        <BackTopButton {...args} />
+        <BackTopButton {...parameters} />
       </>
     );
   },

@@ -1,4 +1,4 @@
-﻿import { range } from "@rentalhost/rheactor-core";
+import { range } from "@rentalhost/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
@@ -9,36 +9,36 @@ export default {
   component: Animate,
 } satisfies Meta<typeof Animate>;
 
-function exampleRender(args: ComponentProps<typeof Animate>) {
+function exampleRender(parameters: ComponentProps<typeof Animate>) {
   return (
     <div className="flex flex-col items-center justify-center gap-16">
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
 
-      <Animate {...args} />
+      <Animate {...parameters} />
     </div>
   );
 }
@@ -78,12 +78,12 @@ export const SubComponentExample: StoryObj<typeof Animate> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Issue1RelativeIssue: StoryObj<typeof Animate> = {
-  render(props) {
+  render(properties) {
     return (
       <div className="grid gap-y-16">
         {range(0, 20).map((key) => (
           <div className="relative" key={key}>
-            <Animate {...props} />
+            <Animate {...properties} />
           </div>
         ))}
       </div>

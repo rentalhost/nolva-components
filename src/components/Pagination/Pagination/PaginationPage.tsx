@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 
 import { appendQueryString } from "#/services/UrlService";
 
-interface Props {
+interface Properties {
   page: number;
   queryString?: string;
   isCurrent?: boolean;
@@ -27,7 +27,7 @@ export function PaginationPage({
   children,
   className,
   onClick,
-}: Props) {
+}: Properties) {
   const [route, setRoute] = useState<string>();
 
   useEffect(() => {

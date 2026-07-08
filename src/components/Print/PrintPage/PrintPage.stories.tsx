@@ -1,4 +1,4 @@
-﻿import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import type { Meta, StoryObj } from "@storybook/react";
@@ -58,13 +58,16 @@ defaultTransformer.setTextReplacer((text) => {
   return text;
 });
 
-defaultTransformer.setTagReplacer("dl", ({ "data-skip": _, children, className, ...props }) => (
-  <div className={twMerge("text-green-600", className)} {...(props as object)}>
-    <span data-ignore tabIndex={-1}>
-      {children}
-    </span>
-  </div>
-));
+defaultTransformer.setTagReplacer(
+  "dl",
+  ({ "data-skip": _, children, className, ...properties }) => (
+    <div className={twMerge("text-green-600", className)} {...(properties as object)}>
+      <span data-ignore tabIndex={-1}>
+        {children}
+      </span>
+    </div>
+  ),
+);
 
 defaultTransformer.setTagReplacer("mark", ({ children }) => children as Awaited<ReactNode>);
 
@@ -107,13 +110,13 @@ export const SinglePage: StoryObj<typeof PrintPage> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const MultiplePages: StoryObj<typeof PrintPage> = {
-  render: (args) => (
+  render: (parameters) => (
     <>
-      <PrintPage {...args}>
+      <PrintPage {...parameters}>
         <strong>Orientation:</strong> portrait.
       </PrintPage>
 
-      <PrintPage {...args} orientation="landscape">
+      <PrintPage {...parameters} orientation="landscape">
         <strong>Orientation:</strong> landscape.
       </PrintPage>
     </>
@@ -125,11 +128,11 @@ export const MultiplePages: StoryObj<typeof PrintPage> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const ShortenPage: StoryObj<typeof PrintPage> = {
-  render: (args) => (
+  render: (parameters) => (
     <>
-      <PrintPage {...args} />
+      <PrintPage {...parameters} />
 
-      <PrintPage {...args} />
+      <PrintPage {...parameters} />
     </>
   ),
   args: {

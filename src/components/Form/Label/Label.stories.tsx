@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Form } from "#/components/Form/Form/Form";
 import { Label } from "#/components/Form/Label/Label";
@@ -17,14 +17,14 @@ export const Example: StoryObj<typeof Label> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const RequiredExample: StoryObj<typeof Label> = {
-  render(props) {
+  render(properties) {
     return (
       <Form>
-        <Label {...props} size={12} />
+        <Label {...properties} size={12} />
 
-        <Label {...props} />
+        <Label {...properties} />
 
-        <Label {...props} />
+        <Label {...properties} />
       </Form>
     );
   },

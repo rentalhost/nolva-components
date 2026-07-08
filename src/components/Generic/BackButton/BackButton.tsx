@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "#/components/Form/Button/Button";
 
-interface Props {
+interface Properties {
   /**
    * The title of the button.
    *
@@ -26,7 +26,7 @@ interface Props {
   className?: string;
 }
 
-export function BackButton({ title = "Back", fallbackRoute, className }: Props) {
+export function BackButton({ title = "Back", fallbackRoute, className }: Properties) {
   const hasFallbackRoute = fallbackRoute !== undefined;
 
   const [useFallback, setUseFallback] = useState(hasFallbackRoute);

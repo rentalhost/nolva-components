@@ -1,11 +1,11 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 
 import { useAnalytics } from "#/services/hooks/useAnalytics";
 import { useInViewport } from "#/services/hooks/useInViewport";
 
-interface Props {
+interface Properties {
   /**
    * The name of the event to send.
    */
@@ -17,18 +17,20 @@ interface Props {
   eventParams?: Record<string, unknown>;
 }
 
-export function AnalyticsViewport({ eventName, eventParams }: Props) {
+export function AnalyticsViewport({ eventName, eventParams }: Properties) {
   const { sendEvent } = useAnalytics();
   const { ref, visible } = useInViewport(0);
 
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if (!submitted && visible) {
-      sendEvent?.(eventName, eventParams);
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setSubmitted(true);
+    if (submitted || !visible) {
+      return;
     }
+
+    sendEvent?.(eventName, eventParams);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSubmitted(true);
   }, [eventName, eventParams, sendEvent, submitted, visible]);
 
   return <div ref={ref} data-component="AnalyticsViewport" />;

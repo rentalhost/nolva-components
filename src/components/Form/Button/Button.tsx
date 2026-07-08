@@ -4,7 +4,7 @@ import { cloneElement, isValidElement } from "react";
 import type { ComponentProps } from "react";
 import type { JSX } from "react/jsx-runtime";
 
-interface Props extends ComponentProps<"button"> {
+interface Properties extends ComponentProps<"button"> {
   /**
    * The type of the button.
    *
@@ -39,8 +39,8 @@ export function Button({
   asChild = false,
   __internalComponentType = "Button",
   children,
-  ...props
-}: Props) {
+  ...properties
+}: Properties) {
   const buttonClassName = twMerge(
     "inline-flex gap-x-2 items-center justify-center",
     "bg-theme-600 text-theme-50 p-2 px-4 border border-theme-700 transition rounded select-none cursor-pointer",
@@ -72,7 +72,7 @@ export function Button({
       data-component={__internalComponentType}
       data-theme={fill}
       className={buttonClassName}
-      {...props}
+      {...properties}
     >
       {children}
     </button>

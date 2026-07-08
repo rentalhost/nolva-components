@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Animate } from "#/components/Animate/Animate/Animate";
 import { Accordion } from "#/components/Surface/Accordion/Accordion";
@@ -41,15 +41,15 @@ export const SimpleExample: StoryObj<typeof Accordion> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const MultipleExample: StoryObj<typeof Accordion> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="grid gap-y-4">
       <Theme variant="fuchsia">
-        <Accordion {...args} />
+        <Accordion {...parameters} />
       </Theme>
 
       <Accordion
         opened
-        {...args}
+        {...parameters}
         className="group bg-blue-50"
         headerClassName="group-data-opened:text-red-600 bg-blue-50 text-blue-600 active:bg-blue-200"
         title={<em>Example</em>}
@@ -59,7 +59,7 @@ export const MultipleExample: StoryObj<typeof Accordion> = {
         bodyClassName="border-blue-200 text-blue-600"
       />
 
-      <Accordion {...args} />
+      <Accordion {...parameters} />
     </div>
   ),
   args: {

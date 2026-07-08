@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import type { CSSProperties, ReactNode } from "react";
 
-interface Props {
+interface Properties {
   /**
    * The container class name.
    */
@@ -62,7 +62,7 @@ export function FlipCard({
   heightController = "front",
   touchIconClassName,
   onFlip,
-}: Props) {
+}: Properties) {
   const [flip, setFlip] = useState(false);
 
   return (

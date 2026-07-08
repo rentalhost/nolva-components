@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
@@ -14,7 +14,7 @@ import { useImmediateRef } from "#/services/hooks/useImmediateRef";
 import { useReady } from "#/services/hooks/useReady";
 import { promisePortal } from "#/services/PortalService";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * The class name of the nav element.
    */
@@ -72,10 +72,10 @@ export function HeaderNav({
   closedIcon = faXmark,
   closedIconClassName,
   openedModalContent,
-}: Props) {
+}: Properties) {
   const isReady = useReady();
 
-  const navRef = useRef<HTMLDivElement>(null);
+  const navReference = useRef<HTMLDivElement>(null);
 
   const [mobileMode, setMobileMode] = useState(true);
   const [opened, setOpened] = useState(false);
@@ -106,31 +106,31 @@ export function HeaderNav({
     });
   }, [openedModalContent]);
 
-  const closeRef = useImmediateRef(close);
-  const openedRef = useImmediateRef(opened);
+  const closeReference = useImmediateRef(close);
+  const openedReference = useImmediateRef(opened);
 
   useEffect(() => {
     if (!isReady) {
       return;
     }
 
-    const unload = listenWindowEvent(["resize", "transitionend"], (ev) => {
-      if (ev.type === "resize" && openedRef.current) {
-        closeRef.current();
+    const unload = listenWindowEvent(["resize", "transitionend"], (windowEvent) => {
+      if (windowEvent.type === "resize" && openedReference.current) {
+        closeReference.current();
       }
 
-      setMobileMode(navRef.current!.scrollWidth > navRef.current!.clientWidth);
+      setMobileMode(navReference.current!.scrollWidth > navReference.current!.clientWidth);
     });
 
     const unloadClick = listenWindowEvent(
       "click",
-      (ev) => {
+      (clickEvent) => {
         if (
-          ev.target instanceof Element &&
-          ev.target.tagName === "A" &&
-          ev.target.closest("[data-overlay]")
+          clickEvent.target instanceof Element &&
+          clickEvent.target.tagName === "A" &&
+          clickEvent.target.closest("[data-overlay]")
         ) {
-          closeRef.current();
+          closeReference.current();
         }
       },
       false,
@@ -140,14 +140,14 @@ export function HeaderNav({
       unload();
       unloadClick();
     };
-  }, [closeRef, isReady, openedRef]);
+  }, [closeReference, isReady, openedReference]);
 
-  const iconVisible = useMemo(() => mobileMode || opened, [mobileMode, opened]);
+  const isIconVisible = useMemo(() => mobileMode || opened, [mobileMode, opened]);
 
   return (
     isReady && (
       <nav
-        ref={navRef}
+        ref={navReference}
         data-forcing-overlay={opened || undefined}
         data-component="HeaderNav"
         className={twMerge("overflow-hidden text-nowrap relative flex", navClassName)}
@@ -155,7 +155,7 @@ export function HeaderNav({
         <ul
           className={twMerge(
             "flex items-center justify-between gap-x-6 flex-nowrap transition",
-            iconVisible && "opacity-0 pointer-events-none",
+            isIconVisible && "opacity-0 pointer-events-none",
             listClassName,
           )}
         >
@@ -165,7 +165,7 @@ export function HeaderNav({
         <div
           className={twMerge(
             "transition select-none absolute right-0 inset-y-0 flex items-center justify-center",
-            !iconVisible && "opacity-0 pointer-events-none",
+            !isIconVisible && "opacity-0 pointer-events-none",
             iconClassName,
             opened && closedIconClassName,
           )}

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 
@@ -6,7 +6,7 @@ import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 import { useInViewport } from "#/services/hooks/useInViewport";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * Defines the header positioning behavior.
    *
@@ -40,7 +40,7 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Header({ position = "relative", stickAfter = 0, className, children }: Props) {
+export function Header({ position = "relative", stickAfter = 0, className, children }: Properties) {
   const { ref, visible } = useInViewport("1px", true);
 
   const isStuck = visible && !["static", "relative", "absolute"].includes(position);

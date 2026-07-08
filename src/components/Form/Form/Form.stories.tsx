@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Form } from "#/components/Form/Form/Form";
 import { Input } from "#/components/Form/Input/Input";

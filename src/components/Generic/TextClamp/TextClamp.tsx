@@ -2,7 +2,7 @@ import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * Number of lines.
    */
@@ -19,7 +19,7 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function TextClamp({ lines, children, className }: Props) {
+export function TextClamp({ lines, children, className }: Properties) {
   return (
     <div
       data-component="TextClamp"

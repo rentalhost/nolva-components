@@ -1,4 +1,4 @@
-﻿import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faChevronDown } from "@rheactor/rheactor-font-awesome/classic-regular";
 
@@ -6,7 +6,7 @@ import type { ComponentProps } from "react";
 
 import { inputClassName } from "#/components/fixtures";
 
-interface Props extends ComponentProps<"select"> {
+interface Properties extends ComponentProps<"select"> {
   /**
    * The placeholder of the select.
    */
@@ -47,13 +47,19 @@ interface SelectOption {
   className?: string;
 }
 
-export function Select({ placeholder, options, className, arrowClassName, ...props }: Props) {
+export function Select({
+  placeholder,
+  options,
+  className,
+  arrowClassName,
+  ...properties
+}: Properties) {
   return (
     <div className="relative">
       <select
         defaultValue=""
         className={twMerge(inputClassName, "appearance-none pr-11", className)}
-        {...props}
+        {...properties}
       >
         {placeholder !== undefined && (
           <>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { createContext, useEffect, useMemo, useState } from "react";
 
@@ -7,12 +7,12 @@ import type { PropsWithChildren } from "react";
 import { listenWindowEvent } from "#/services/EventService";
 import { useLocalStorage } from "#/services/hooks/useLocalStorage";
 
-interface ContextProps {
+interface ContextProperties {
   domain?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const ResourceContext = createContext<ContextProps>({});
+export const ResourceContext = createContext<ContextProperties>({});
 
 export function ResourceProvider({ children }: PropsWithChildren) {
   const [domain, setDomain] = useLocalStorage<string>("cms.domain");
@@ -20,8 +20,10 @@ export function ResourceProvider({ children }: PropsWithChildren) {
 
   useEffect(
     () =>
-      listenWindowEvent(["keydown", "keyup", "focusout"], (ev) => {
-        setEnabled(ev instanceof KeyboardEvent && ev.ctrlKey && ev.shiftKey);
+      listenWindowEvent(["keydown", "keyup", "focusout"], (windowEvent) => {
+        setEnabled(
+          windowEvent instanceof KeyboardEvent && windowEvent.ctrlKey && windowEvent.shiftKey,
+        );
       }),
     [],
   );

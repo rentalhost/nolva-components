@@ -4,8 +4,8 @@ export function getVideoYoutubeThumbnail(id: string) {
   return `https://i.ytimg.com/vi_webp/${id}/sddefault.webp`;
 }
 
-export function getVideoThumbnail(src: string) {
-  const service = getVideoId(src);
+export function getVideoThumbnail(source: string) {
+  const service = getVideoId(source);
 
   if (service.service === "youtube") {
     return getVideoYoutubeThumbnail(service.id!);

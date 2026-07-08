@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { useContext } from "react";
@@ -19,7 +19,7 @@ type InputRadio = "radio";
 type InputRange = "range";
 type InputText = "email" | "password" | "search" | "tel" | "text" | "url";
 
-interface InputTextProps extends ComponentProps<"input"> {
+interface InputTextProperties extends ComponentProps<"input"> {
   /**
    * Input type.
    */
@@ -35,9 +35,9 @@ interface InputTextProps extends ComponentProps<"input"> {
     | InputText;
 }
 
-type Props = InputTextProps;
+type Properties = InputTextProperties;
 
-export function Input({ type = "text", placeholder, className, ...props }: Props) {
+export function Input({ type = "text", placeholder, className, ...properties }: Properties) {
   const { focused } = useContext(FormContext);
   const { primaryPlaceholder } = useContext(LabelContext);
 
@@ -50,7 +50,7 @@ export function Input({ type = "text", placeholder, className, ...props }: Props
       placeholder={
         primaryPlaceholder === undefined || focused === true ? placeholder : primaryPlaceholder
       }
-      {...props}
+      {...properties}
     />
   );
 }

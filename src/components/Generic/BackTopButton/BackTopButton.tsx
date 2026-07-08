@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
@@ -6,7 +6,7 @@ import { faAngleUp } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import { useAnalytics } from "#/services/hooks/useAnalytics";
 
-interface Props {
+interface Properties {
   /**
    * The title of the button.
    *
@@ -20,7 +20,7 @@ interface Props {
   className?: string;
 }
 
-export function BackTopButton({ title = "Back to Top", className }: Props) {
+export function BackTopButton({ title = "Back to Top", className }: Properties) {
   const { sendEvent } = useAnalytics();
 
   return (

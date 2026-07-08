@@ -3,7 +3,7 @@ import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faWhatsapp } from "@rheactor/rheactor-font-awesome/brands";
 import Link from "next/link";
 
-interface Props {
+interface Properties {
   /**
    * The content class name.
    */
@@ -46,6 +46,7 @@ interface Props {
    */
   className?: string;
 }
+
 export function WhatsappButton({
   contentClassName,
   title,
@@ -55,7 +56,7 @@ export function WhatsappButton({
   phoneClassName,
   iconClassName,
   className,
-}: Props) {
+}: Properties) {
   const phoneNormalized = (phonePrefix + phone).replaceAll(/\D/g, "");
 
   return (

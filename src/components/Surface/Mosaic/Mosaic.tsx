@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge, shuffle as arrayShuffle } from "@rentalhost/rheactor-core";
 import {
@@ -21,7 +21,7 @@ import { Timer } from "#/services/classes/Timer";
 import { useImmediateRef } from "#/services/hooks/useImmediateRef";
 import { listenResizeObserver } from "#/services/MutationService";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * The duration of mosaic items visibility in ms.
    *
@@ -55,14 +55,14 @@ enum AnimationState {
   INVISIBLE,
 }
 
-export function Mosaic({ duration = 5000, shuffle = false, className, children }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+export function Mosaic({ duration = 5000, shuffle = false, className, children }: Properties) {
+  const reference = useRef<HTMLDivElement>(null);
 
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [columns, setColumns] = useState(0);
 
   const [animationState, setAnimationState] = useState(AnimationState.SETUP);
-  const animationStateRef = useImmediateRef(animationState);
+  const animationStateReference = useImmediateRef(animationState);
 
   const allItems = useMemo(() => {
     const childrenItems = Children.toArray(children).filter((child) => isValidElement(child));
@@ -112,7 +112,10 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
   }, [duration, toInvisible]);
 
   const readColumns = useCallback(
-    () => (ref.current ? getComputedStyle(ref.current).gridTemplateColumns.split(" ").length : 0),
+    () =>
+      reference.current
+        ? getComputedStyle(reference.current).gridTemplateColumns.split(" ").length
+        : 0,
     [],
   );
 
@@ -138,7 +141,7 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
 
   useEffect(
     () =>
-      listenResizeObserver(ref.current, {}, () => {
+      listenResizeObserver(reference.current, {}, () => {
         queueMicrotask(onResize);
       }),
     [],
@@ -165,7 +168,7 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
   return (
     <div data-component="Mosaic">
       <div
-        ref={ref}
+        ref={reference}
         className={twMerge("grid-cols-1", className, "grid max-h-0 overflow-hidden")}
         aria-hidden
       />
@@ -192,11 +195,11 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
           }
         }}
         onTransitionEnd={() => {
-          if (animationStateRef.current === AnimationState.FADE_IN) {
+          if (animationStateReference.current === AnimationState.FADE_IN) {
             setAnimationState(AnimationState.VISIBLE);
 
             timer.current?.start();
-          } else if (animationStateRef.current === AnimationState.FADE_OUT) {
+          } else if (animationStateReference.current === AnimationState.FADE_OUT) {
             setAnimationState(AnimationState.INVISIBLE);
 
             timer.current?.stop();

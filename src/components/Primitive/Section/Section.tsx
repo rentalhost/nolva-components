@@ -2,7 +2,7 @@ import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * Container id to be used as anchor.
    */
@@ -47,7 +47,7 @@ export function Section({
   marginBottom = marginY,
   className,
   children,
-}: Props) {
+}: Properties) {
   return (
     <section
       id={id}

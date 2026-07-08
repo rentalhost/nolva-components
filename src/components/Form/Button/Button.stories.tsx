@@ -1,4 +1,4 @@
-﻿import { Icon } from "@rheactor/rheactor-font-awesome";
+import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { Meta, StoryObj } from "@storybook/react";
@@ -14,11 +14,11 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const SolidExample: StoryObj<typeof Button> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="flex flex-wrap gap-4">
       <ThemeSpread>
         {(variant) => (
-          <Button {...args}>
+          <Button {...parameters}>
             <strong>Example: </strong>
 
             <span>{variant}</span>
@@ -31,11 +31,11 @@ export const SolidExample: StoryObj<typeof Button> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const SolidDisabledExample: StoryObj<typeof Button> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="flex flex-wrap gap-4">
       <ThemeSpread>
         {(variant) => (
-          <Button {...args}>
+          <Button {...parameters}>
             <strong>Example: </strong>
 
             <span>{variant}</span>
@@ -51,11 +51,11 @@ export const SolidDisabledExample: StoryObj<typeof Button> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const OutlineExample: StoryObj<typeof Button> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="flex flex-wrap gap-4">
       <ThemeSpread>
         {(variant) => (
-          <Button {...args}>
+          <Button {...parameters}>
             <strong>Example: </strong>
 
             <span>{variant}</span>
@@ -71,11 +71,11 @@ export const OutlineExample: StoryObj<typeof Button> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const OutlineDisabledExample: StoryObj<typeof Button> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="flex flex-wrap gap-4">
       <ThemeSpread>
         {(variant) => (
-          <Button {...args}>
+          <Button {...parameters}>
             <strong>Example: </strong>
 
             <span>{variant}</span>
@@ -92,11 +92,11 @@ export const OutlineDisabledExample: StoryObj<typeof Button> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const TransparentExample: StoryObj<typeof Button> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="flex flex-wrap gap-4">
       <ThemeSpread>
         {(variant) => (
-          <Button {...args}>
+          <Button {...parameters}>
             <strong>Example: </strong>
 
             <span>{variant}</span>
@@ -112,11 +112,11 @@ export const TransparentExample: StoryObj<typeof Button> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const TransparentDisabledExample: StoryObj<typeof Button> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="flex flex-wrap gap-4">
       <ThemeSpread>
         {(variant) => (
-          <Button {...args}>
+          <Button {...parameters}>
             <strong>Example: </strong>
 
             <span>{variant}</span>
@@ -191,45 +191,48 @@ export const AsChildFallbackExample: StoryObj<typeof Button> = {
   },
 };
 
-function BrandBlueButton(args: ComponentProps<typeof Button>) {
+function BrandBlueButton(parameters: ComponentProps<typeof Button>) {
   return (
     <Theme variant="brand-blue">
-      <Button {...args} className="bg-theme-700 border-theme-800 theme-outline:bg-theme-100" />
+      <Button
+        {...parameters}
+        className="bg-theme-700 border-theme-800 theme-outline:bg-theme-100"
+      />
     </Theme>
   );
 }
 
-function BrandGreenButton(args: ComponentProps<typeof Button>) {
+function BrandGreenButton(parameters: ComponentProps<typeof Button>) {
   return (
     <Theme variant="brand-green">
-      <Button {...args} className="bg-theme-400 border-theme-600 text-theme-950" />
+      <Button {...parameters} className="bg-theme-400 border-theme-600 text-theme-950" />
     </Theme>
   );
 }
 
-function BrandYellowButton(args: ComponentProps<typeof Button>) {
+function BrandYellowButton(parameters: ComponentProps<typeof Button>) {
   return (
     <Theme variant="brand-yellow">
-      <Button {...args} className="bg-theme-300 border-theme-500 text-theme-950" />
+      <Button {...parameters} className="bg-theme-300 border-theme-500 text-theme-950" />
     </Theme>
   );
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const BrandExample: StoryObj<typeof Button> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="flex gap-4">
-      <Button {...args}>Neutral</Button>
+      <Button {...parameters}>Neutral</Button>
 
-      <BrandBlueButton {...args}>Brand Blue</BrandBlueButton>
+      <BrandBlueButton {...parameters}>Brand Blue</BrandBlueButton>
 
-      <BrandBlueButton {...args} fill="outline">
+      <BrandBlueButton {...parameters} fill="outline">
         Brand Blue
       </BrandBlueButton>
 
-      <BrandGreenButton {...args}>Brand Green</BrandGreenButton>
+      <BrandGreenButton {...parameters}>Brand Green</BrandGreenButton>
 
-      <BrandYellowButton {...args}>Brand Yellow</BrandYellowButton>
+      <BrandYellowButton {...parameters}>Brand Yellow</BrandYellowButton>
     </div>
   ),
 };

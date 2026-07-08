@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { useContext } from "react";
@@ -11,7 +11,7 @@ import { contextWrapper } from "#/services/ContextService";
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Form = contextWrapper(
   FormProvider,
-  ({ onFocus, className, ...props }: ComponentProps<"form">) => {
+  ({ onFocus, className, ...properties }: ComponentProps<"form">) => {
     const { focused, setFocused } = useContext(FormContext);
 
     return (
@@ -23,11 +23,11 @@ export const Form = contextWrapper(
           "grid max-mobile:[--grid-cols:1] not-max-mobile:grid-cols-12 gap-4",
           className,
         )}
-        onFocus={(ev) => {
+        onFocus={(focusEvent) => {
           setFocused?.(true);
-          onFocus?.(ev);
+          onFocus?.(focusEvent);
         }}
-        {...props}
+        {...properties}
       />
     );
   },

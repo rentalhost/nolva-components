@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { PrintContainer } from "#/components/Print/PrintContainer/PrintContainer";
 import { PrintPage } from "#/components/Print/PrintPage/PrintPage";

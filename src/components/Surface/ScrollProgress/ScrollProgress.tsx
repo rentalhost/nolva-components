@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { clamp } from "@rentalhost/rheactor-core";
 import { twMerge } from "@rentalhost/rheactor-core";
@@ -10,7 +10,7 @@ import type { CSSProperties, PropsWithChildren } from "react";
 import { listenWindowScroll } from "#/services/EventService";
 import { useReady } from "#/services/hooks/useReady";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * The className of the container.
    */
@@ -38,8 +38,8 @@ export function ScrollProgress({
   children,
   onProgress,
   onCompleted,
-}: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+}: Properties) {
+  const reference = useRef<HTMLDivElement>(null);
 
   const isReady = useReady();
 
@@ -51,7 +51,7 @@ export function ScrollProgress({
     }
 
     return listenWindowScroll(() => {
-      const rect = ref.current?.getBoundingClientRect();
+      const rect = reference.current?.getBoundingClientRect();
 
       if (rect !== undefined) {
         const rectTop = rect.top + window.scrollY;
@@ -88,7 +88,7 @@ export function ScrollProgress({
         {createPortal(scrollProgress, document.body)}
 
         <div
-          ref={ref}
+          ref={reference}
           data-completed={progress === 1 || undefined}
           data-component="ScrollProgress"
           className={className}

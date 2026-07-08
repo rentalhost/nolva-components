@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import type { ComponentProps } from "react";
 
 import { ResourceContext } from "#/components/Generic/Resource/ResourceProvider";
 
-interface Props extends Omit<ComponentProps<"div">, "id"> {
+interface Properties extends Omit<ComponentProps<"div">, "id"> {
   /**
    * The type of the resource.
    *
@@ -22,11 +22,11 @@ interface Props extends Omit<ComponentProps<"div">, "id"> {
   id: number;
 }
 
-export function Resource({ type = "media", id, className, children, ...props }: Props) {
+export function Resource({ type = "media", id, className, children, ...properties }: Properties) {
   const { domain } = useContext(ResourceContext);
 
   return (
-    <div data-component="Resource" className={twMerge("relative", className)} {...props}>
+    <div data-component="Resource" className={twMerge("relative", className)} {...properties}>
       {children}
 
       {domain !== undefined && (

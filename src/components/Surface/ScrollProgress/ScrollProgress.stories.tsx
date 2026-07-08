@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { ScrollProgress } from "#/components/Surface/ScrollProgress/ScrollProgress";
 
@@ -8,12 +8,12 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const ExampleInside: StoryObj<typeof ScrollProgress> = {
-  render(args) {
+  render(parameters) {
     return (
       <>
         <div className="h-[75vh]" />
 
-        <ScrollProgress {...args} />
+        <ScrollProgress {...parameters} />
 
         <div className="h-[75vh]" />
       </>
@@ -26,12 +26,12 @@ export const ExampleInside: StoryObj<typeof ScrollProgress> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const ExampleMiddle: StoryObj<typeof ScrollProgress> = {
-  render(args) {
+  render(parameters) {
     return (
       <>
         <div className="h-screen" />
 
-        <ScrollProgress {...args} />
+        <ScrollProgress {...parameters} />
 
         <div className="h-screen" />
       </>
@@ -44,12 +44,12 @@ export const ExampleMiddle: StoryObj<typeof ScrollProgress> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const ExampleOutside: StoryObj<typeof ScrollProgress> = {
-  render(args) {
+  render(parameters) {
     return (
       <>
         <div className="h-[125vh]" />
 
-        <ScrollProgress {...args} />
+        <ScrollProgress {...parameters} />
 
         <div className="h-[125vh]" />
       </>

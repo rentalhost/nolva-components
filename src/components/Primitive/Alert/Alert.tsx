@@ -12,7 +12,7 @@ import {
 import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { PropsWithChildren } from "react";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * Title of the alert.
    */
@@ -32,7 +32,7 @@ class AlertVariant {
   ) {}
 }
 
-const variants = new Map<Props["variant"], AlertVariant>([
+const variants = new Map<Properties["variant"], AlertVariant>([
   [
     "advice",
     new AlertVariant(
@@ -91,7 +91,7 @@ const variants = new Map<Props["variant"], AlertVariant>([
   ],
 ]);
 
-export function Alert({ title, variant, children }: Props) {
+export function Alert({ title, variant, children }: Properties) {
   const { icon, bodyClassName, titleClassName } = variants.get(variant)!;
 
   return (

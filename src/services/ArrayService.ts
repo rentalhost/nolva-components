@@ -2,10 +2,10 @@ import { range } from "@rentalhost/rheactor-core";
 
 export function circularRange(start: number, end: number, from: number, spread: number): number[] {
   const size = end - start + 1;
-  const idx = (((from - start) % size) + size) % size;
-  const first = (idx + 1) % size;
+  const index = (((from - start) % size) + size) % size;
+  const first = (index + 1) % size;
 
-  return Array.from({ length: spread }, (_, i) => start + ((first + i) % size));
+  return Array.from({ length: spread }, (_, index) => start + ((first + index) % size));
 }
 
 export function paginate(current: number, total: number, visibleCount?: number): number[] {

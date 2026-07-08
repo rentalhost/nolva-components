@@ -1,4 +1,4 @@
-﻿import { range } from "@rentalhost/rheactor-core";
+import { range } from "@rentalhost/rheactor-core";
 import { faLeftLong } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { Meta, StoryObj } from "@storybook/react";
@@ -148,9 +148,9 @@ export const ArrowsIconExample: StoryObj<typeof Slider> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const ArrowsPlacementExample: StoryObj<typeof Slider> = {
-  render: (args) => (
+  render: (parameters) => (
     <Container>
-      <Slider {...args} />
+      <Slider {...parameters} />
     </Container>
   ),
   args: {

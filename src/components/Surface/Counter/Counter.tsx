@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { formatNumber } from "@rentalhost/rheactor-core";
 import { useEffect, useMemo, useState } from "react";
@@ -9,7 +9,7 @@ import type { CSSProperties } from "react";
 import { animate } from "#/services/AnimateService";
 import { useInViewport } from "#/services/hooks/useInViewport";
 
-interface Props {
+interface Properties {
   /**
    * Initial value.
    *
@@ -70,7 +70,7 @@ export function Counter({
   duration = 1000,
   easing,
   className,
-}: Props) {
+}: Properties) {
   const { ref, visible, disconnect } = useInViewport(0.25);
 
   const [progress, setProgress] = useState(0);
@@ -82,10 +82,12 @@ export function Counter({
   );
 
   useEffect(() => {
-    if (visible) {
-      disconnect();
-      animate(duration, setProgress, easing);
+    if (!visible) {
+      return;
     }
+
+    disconnect();
+    animate(duration, setProgress, easing);
   }, [disconnect, duration, easing, visible]);
 
   return (

@@ -2,7 +2,7 @@ import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * Determines the horizontal padding of the container.
    *
@@ -28,7 +28,7 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Container({ paddingX = 4, fluid = false, className, children }: Props) {
+export function Container({ paddingX = 4, fluid = false, className, children }: Properties) {
   return (
     <div
       data-component="Container"

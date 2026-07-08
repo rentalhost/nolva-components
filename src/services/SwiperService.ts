@@ -1,5 +1,3 @@
-import type { SwiperOptions } from "swiper/types";
-
 const allBreakpoints = {
   xs: 0,
   sm: 640,
@@ -10,6 +8,7 @@ const allBreakpoints = {
 } as const;
 
 type BreakpointName = keyof typeof allBreakpoints;
+
 export type Breakpoints = Partial<Record<BreakpointName, number>>;
 
 function fillBreakpoints(rawBreakpoints: Breakpoints | number) {
@@ -47,7 +46,7 @@ export function normalizeBreakpoints(
         {
           slidesPerView: stretch ? Math.min(itemsCount, itemsBreakpoint) : itemsBreakpoint,
           spaceBetween: gapBreakpoints[breakpointName as BreakpointName] * 4,
-        } as SwiperOptions,
+        },
       ];
     }),
   );

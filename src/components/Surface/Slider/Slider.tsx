@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
@@ -18,7 +18,7 @@ import { listenWindowEvent } from "#/services/EventService";
 import { useReady } from "#/services/hooks/useReady";
 import { normalizeBreakpoints } from "#/services/SwiperService";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * Autoplay duration in milliseconds.
    *
@@ -193,11 +193,11 @@ export function Slider({
   paginationLimit,
   children: baseChildren = [],
   onNavigate,
-}: Props) {
+}: Properties) {
   const isReady = useReady();
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<HTMLDivElement>(null);
+  const containerReference = useRef<HTMLDivElement>(null);
+  const arrowReference = useRef<HTMLDivElement>(null);
 
   const [index, setIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(Number.MAX_SAFE_INTEGER);
@@ -244,7 +244,7 @@ export function Slider({
     [children.length, paginationCompressed, visibleCount],
   );
 
-  const paginationEnabled = useMemo(
+  const isPaginationEnabled = useMemo(
     () => (paginationCompressed ? paginationTotal > 1 : isOverflow),
     [isOverflow, paginationCompressed, paginationTotal],
   );
@@ -259,9 +259,9 @@ export function Slider({
     () =>
       isReady
         ? listenWindowEvent("resize", () => {
-            if (containerRef.current !== null && arrowRef.current !== null) {
+            if (containerReference.current !== null && arrowReference.current !== null) {
               setHasArrowSpace(
-                containerRef.current.offsetWidth + 3 * arrowRef.current.offsetWidth <=
+                containerReference.current.offsetWidth + 3 * arrowReference.current.offsetWidth <=
                   document.body.offsetWidth,
               );
             }
@@ -273,9 +273,9 @@ export function Slider({
   return (
     isReady && (
       <div data-component="Slider" className={twMerge("relative", className)}>
-        <div ref={containerRef} className="relative flex">
+        <div ref={containerReference} className="relative flex">
           <SliderArrow
-            ref={arrowRef}
+            ref={arrowReference}
             icon={arrowsIcon}
             className={arrowsClassName}
             placement={arrowPlacementFinal}
@@ -335,7 +335,7 @@ export function Slider({
           />
         </div>
 
-        {paginationEnabled && (
+        {isPaginationEnabled && (
           <div
             className={twMerge(
               "z-10",

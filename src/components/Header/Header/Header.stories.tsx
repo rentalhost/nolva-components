@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -56,10 +56,10 @@ function HeaderContainerFixture() {
   );
 }
 
-function defaultRender(args: Parameters<NonNullable<StoryObj<typeof Header>["render"]>>[0]) {
+function defaultRender(parameters: Parameters<NonNullable<StoryObj<typeof Header>["render"]>>[0]) {
   return (
     <>
-      <Header {...args} />
+      <Header {...parameters} />
 
       <div className="h-[200vh] bg-blue-100 p-4">
         <div className="h-32 w-32 outline">Example</div>
@@ -124,10 +124,10 @@ export const FixedExample: StoryObj<typeof Header> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const SimplifiedExample: StoryObj<typeof Header> = {
-  render(args) {
+  render(parameters) {
     return (
       <>
-        <Header {...args} />
+        <Header {...parameters} />
 
         <div className="h-screen bg-blue-100 p-4">
           <div className="h-32 w-32 outline">Example</div>

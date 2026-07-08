@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
 import { useEffect, useRef } from "react";
@@ -8,7 +8,7 @@ import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 
 import { useInViewport } from "#/services/hooks/useInViewport";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * Effect to apply.
    *
@@ -75,7 +75,7 @@ interface Props extends PropsWithChildren {
   onAnimate?(this: void): void;
 }
 
-const effects: Record<NonNullable<Props["effect"]>, string> = {
+const effects: Record<NonNullable<Properties["effect"]>, string> = {
   none: "",
   fade: "",
   slideDown: "not-data-animated:*:-translate-y-(--translate-distance)",
@@ -96,28 +96,30 @@ export function Animate({
   className,
   children,
   onAnimate,
-}: Props) {
-  const animateRef = useRef<HTMLDivElement>(null);
+}: Properties) {
+  const animateReference = useRef<HTMLDivElement>(null);
 
   const { ref, visible, disconnect } = useInViewport(threshold, true);
 
   useEffect(() => {
-    ref(animateRef.current?.firstElementChild);
+    ref(animateReference.current?.firstElementChild);
   }, [ref]);
 
   useEffect(() => {
-    if (visible) {
-      onAnimate?.();
+    if (!visible) {
+      return;
+    }
 
-      if (!always) {
-        disconnect();
-      }
+    onAnimate?.();
+
+    if (!always) {
+      disconnect();
     }
   }, [always, disconnect, onAnimate, visible]);
 
   return (
     <div
-      ref={animateRef}
+      ref={animateReference}
       data-component="Animate"
       data-animated={visible || undefined}
       className={twMerge(

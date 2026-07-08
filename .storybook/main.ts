@@ -12,12 +12,7 @@ export default {
     },
   },
   typescript: {
-    reactDocgen: "react-docgen-typescript",
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      shouldExtractValuesFromUnion: true,
-      shouldRemoveUndefinedFromOptional: true,
-    },
+    reactDocgen: "react-docgen",
   },
   staticDirs: ["../public"],
 } satisfies StorybookConfig;

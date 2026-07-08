@@ -1,4 +1,4 @@
-﻿import ExampleSvg from "#assets/storybook.svg";
+import ExampleSvg from "#assets/storybook.svg";
 import ExampleImage from "#assets/storybook.webp";
 import ExampleVideoLocal from "#assets/video-example-1.webm";
 import ExampleVideoLocalPoster from "#assets/video-example-1.webp";

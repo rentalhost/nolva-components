@@ -1,4 +1,4 @@
-﻿/* eslint-disable react/iframe-missing-sandbox */
+/* eslint-disable react/iframe-missing-sandbox */
 "use client";
 
 import { twMerge } from "@rentalhost/rheactor-core";
@@ -10,7 +10,7 @@ import { YoutubePlay } from "#/components/Surface/Media/fixtures/YoutubePlay";
 import { Media } from "#/components/Surface/Media/Media";
 import { getVideoYoutubeThumbnail } from "#/services/VideoService";
 
-interface Props {
+interface Properties {
   /**
    * The source of the image.
    */
@@ -71,7 +71,7 @@ export function MediaVideoYoutube({
   playPosition = "center",
   playOpacity = 1,
   onPlay,
-}: Props) {
+}: Properties) {
   const [play, setPlay] = useState(false);
 
   return (

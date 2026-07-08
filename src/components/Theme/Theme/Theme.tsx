@@ -2,7 +2,7 @@ import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { PropsWithChildren, ReactNode } from "react";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * The variant of the theme.
    */
@@ -82,7 +82,7 @@ function isBuildInVariant(variant: string): variant is Variant {
 /**
  * A utility component to change the color of any element based on a variant as theme.
  */
-export function Theme({ variant, children }: Props) {
+export function Theme({ variant, children }: Properties) {
   return (
     <div
       data-component="Theme"

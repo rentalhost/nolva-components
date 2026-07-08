@@ -1,10 +1,10 @@
-﻿import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rentalhost/rheactor-core";
 
 import type { PropsWithChildren, ReactNode } from "react";
 
 import { Section } from "#/components/Primitive/Section/Section";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * The id of the hero.
    */
@@ -26,7 +26,7 @@ interface Props extends PropsWithChildren {
   children?: ReactNode;
 }
 
-export function Hero({ id, className, backgroundContent, children }: Props) {
+export function Hero({ id, className, backgroundContent, children }: Properties) {
   return (
     <Section marginY={0} id={id} data-component="Hero" className={twMerge("relative", className)}>
       <div role="presentation" className="pointer-events-none absolute inset-0 select-none">

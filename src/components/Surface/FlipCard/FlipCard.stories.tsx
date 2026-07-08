@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { FlipCard } from "#/components/Surface/FlipCard/FlipCard";
 
@@ -8,9 +8,9 @@ export default {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const FlipToRightExample: StoryObj<typeof FlipCard> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="h-32 w-32 bg-slate-200">
-      <FlipCard {...args} />
+      <FlipCard {...parameters} />
     </div>
   ),
   args: {
@@ -21,9 +21,9 @@ export const FlipToRightExample: StoryObj<typeof FlipCard> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const FlipToLeftExample: StoryObj<typeof FlipCard> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="h-32 w-32 bg-slate-200">
-      <FlipCard {...args} />
+      <FlipCard {...parameters} />
     </div>
   ),
   args: {
@@ -41,9 +41,9 @@ export const FlipToLeftExample: StoryObj<typeof FlipCard> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const AxisVerticalExample: StoryObj<typeof FlipCard> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="h-32 w-32 bg-slate-200">
-      <FlipCard {...args} />
+      <FlipCard {...parameters} />
     </div>
   ),
   args: {
@@ -62,9 +62,9 @@ export const AxisVerticalExample: StoryObj<typeof FlipCard> = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const HeightControllerBackExample: StoryObj<typeof FlipCard> = {
-  render: (args) => (
+  render: (parameters) => (
     <div className="w-32 bg-slate-200">
-      <FlipCard {...args} />
+      <FlipCard {...parameters} />
     </div>
   ),
   args: {

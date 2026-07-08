@@ -1,6 +1,6 @@
 import type { PropsWithChildren, ReactNode } from "react";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * The content of the container.
    */
@@ -12,7 +12,7 @@ interface Props extends PropsWithChildren {
  *
  * It should be used as the outermost component when printing.
  */
-export function PrintContainer({ children }: Props) {
+export function PrintContainer({ children }: Properties) {
   return (
     <div
       data-component="PrintContainer"

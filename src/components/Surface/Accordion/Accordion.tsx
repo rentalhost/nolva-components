@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import type { PropsWithChildren, ReactNode } from "react";
 
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
   /**
    * The class name of the accordion.
    */
@@ -64,7 +64,7 @@ export function Accordion({
   opened = false,
   bodyClassName,
   children,
-}: Props) {
+}: Properties) {
   const [stateOpened, setStateOpened] = useState(opened);
 
   return (

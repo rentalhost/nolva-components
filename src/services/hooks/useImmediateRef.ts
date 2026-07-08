@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 
 export function useImmediateRef<T>(value: T) {
-  const ref = useRef(value);
+  const reference = useRef(value);
 
   useEffect(() => {
-    ref.current = value;
+    reference.current = value;
   }, [value]);
 
-  return ref;
+  return reference;
 }

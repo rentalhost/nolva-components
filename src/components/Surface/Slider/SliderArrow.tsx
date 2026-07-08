@@ -7,7 +7,7 @@ export type ArrowAdvance = "batch" | "sequential";
 
 type ArrowPlacement = "disabled" | "external" | "internal" | "overlay";
 
-interface Props {
+interface Properties {
   ref?: React.RefObject<HTMLDivElement | null>;
   icon: IconType;
   className?: string;
@@ -25,7 +25,7 @@ export function SliderArrow({
   placement,
   isDisabled,
   onClick,
-}: Props) {
+}: Properties) {
   return (
     <div
       ref={ref}

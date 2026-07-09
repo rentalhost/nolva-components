@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * The content of the container.
      */
@@ -10,5 +10,5 @@ interface Props extends PropsWithChildren {
  *
  * It should be used as the outermost component when printing.
  */
-export declare function PrintContainer({ children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function PrintContainer({ children }: Properties): import("react").JSX.Element;
 export {};

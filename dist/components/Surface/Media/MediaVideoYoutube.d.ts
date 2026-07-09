@@ -1,4 +1,4 @@
-interface Props {
+interface Properties {
     /**
      * The source of the image.
      */
@@ -40,5 +40,5 @@ interface Props {
      */
     onPlay?(this: void, id: string): void;
 }
-export declare function MediaVideoYoutube({ id, className, iframeClassName, thumbnailClassName, overlayClassName, playClassName, playPosition, playOpacity, onPlay, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function MediaVideoYoutube({ id, className, iframeClassName, thumbnailClassName, overlayClassName, playClassName, playPosition, playOpacity, onPlay, }: Properties): import("react").JSX.Element;
 export {};

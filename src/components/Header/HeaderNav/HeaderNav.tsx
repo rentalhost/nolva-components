@@ -10,7 +10,7 @@ import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { PropsWithChildren, ReactElement, ReactNode } from "react";
 
 import { listenWindowEvent } from "#/services/EventService";
-import { useImmediateRef } from "#/services/hooks/useImmediateRef";
+import { useImmediateReference } from "#/services/hooks/useImmediateReference";
 import { useReady } from "#/services/hooks/useReady";
 import { promisePortal } from "#/services/PortalService";
 
@@ -106,8 +106,8 @@ export function HeaderNav({
     });
   }, [openedModalContent]);
 
-  const closeReference = useImmediateRef(close);
-  const openedReference = useImmediateRef(opened);
+  const closeReference = useImmediateReference(close);
+  const openedReference = useImmediateReference(opened);
 
   useEffect(() => {
     if (!isReady) {

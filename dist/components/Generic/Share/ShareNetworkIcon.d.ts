@@ -1,5 +1,5 @@
 import type { ShareNetwork } from "./ShareNetwork";
-interface Props {
+interface Properties {
     network: ShareNetwork;
     title: string;
     url: string;
@@ -7,5 +7,5 @@ interface Props {
     suppressHydrationWarning?: boolean;
     onClick(this: void): void;
 }
-export declare function ShareNetworkIcon({ network, title, url, className, onClick }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function ShareNetworkIcon({ network, title, url, className, onClick }: Properties): import("react").JSX.Element;
 export {};

@@ -1,5 +1,5 @@
 import type { IconType } from "@rheactor/rheactor-font-awesome";
-interface ShareNetworkUrlProps {
+interface ShareNetworkUrlProperties {
     title: string;
     url: string;
 }
@@ -7,8 +7,8 @@ export declare class ShareNetwork {
     readonly name: string;
     readonly icon: IconType;
     readonly className: string;
-    readonly url: "native" | (({ title, url }: ShareNetworkUrlProps) => string);
-    constructor(name: string, icon: IconType, className: string, url: "native" | (({ title, url }: ShareNetworkUrlProps) => string));
+    readonly url: "native" | (({ title, url }: ShareNetworkUrlProperties) => string);
+    constructor(name: string, icon: IconType, className: string, url: "native" | (({ title, url }: ShareNetworkUrlProperties) => string));
 }
 export declare const networks: {
     x: ShareNetwork;

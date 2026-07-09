@@ -5,11 +5,7 @@ export default {
   addons: ["@storybook/addon-docs"],
   framework: {
     name: "@storybook/nextjs",
-    options: {
-      builder: {
-        useSWC: true,
-      },
-    },
+    options: { builder: { useSWC: true } },
   },
   typescript: {
     reactDocgen: "react-docgen",

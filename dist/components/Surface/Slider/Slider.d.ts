@@ -3,7 +3,7 @@ import type { Breakpoints } from "../../../services/SwiperService";
 import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import { SliderArrow } from "./SliderArrow";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * Autoplay duration in milliseconds.
      *
@@ -137,5 +137,5 @@ interface Props extends PropsWithChildren {
      */
     onNavigate?(this: void): void;
 }
-export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children: baseChildren, onNavigate, }: Props): false | import("react/jsx-runtime").JSX.Element;
+export declare function Slider({ duration, speed, items, gap, infinity, freeFlow, stretch, centered, className, arrowsIcon, arrowsStepMode, arrowsClassName, arrowsPlacement, arrowsPlacementFallback, pagination, paginationClassName, paginationCompressed, paginationLimit, children: baseChildren, onNavigate, }: Properties): false | import("react").JSX.Element;
 export {};

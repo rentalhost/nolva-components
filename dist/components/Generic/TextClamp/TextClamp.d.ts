@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * Number of lines.
      */
@@ -13,5 +13,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function TextClamp({ lines, children, className }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function TextClamp({ lines, children, className }: Properties): import("react").JSX.Element;
 export {};

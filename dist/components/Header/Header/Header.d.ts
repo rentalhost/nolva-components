@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * Defines the header positioning behavior.
      *
@@ -29,5 +29,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Header({ position, stickAfter, className, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Header({ position, stickAfter, className, children }: Properties): import("react").JSX.Element;
 export {};

@@ -1,5 +1,5 @@
 import type { ShareNetworkName } from "./ShareNetwork";
-interface Props {
+interface Properties {
     /**
      * Determines the text of the share header title.
      *
@@ -37,5 +37,5 @@ interface Props {
      */
     onShare?(this: void, network: string, documentUrl: string, documentTitle: string): void;
 }
-export declare function Share({ text, title, url, networks, networkClassName, className, onShare, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Share({ text, title, url, networks, networkClassName, className, onShare, }: Properties): import("react").JSX.Element;
 export {};

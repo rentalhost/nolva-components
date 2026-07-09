@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * Title of the alert.
      */
@@ -9,5 +9,5 @@ interface Props extends PropsWithChildren {
      */
     variant: "advice" | "critical" | "debug" | "error" | "info" | "success" | "warning";
 }
-export declare function Alert({ title, variant, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Alert({ title, variant, children }: Properties): import("react").JSX.Element;
 export {};

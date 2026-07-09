@@ -85,7 +85,7 @@ export {
 
 export { useAnalytics } from "#/services/hooks/useAnalytics";
 
-export { useImmediateRef } from "#/services/hooks/useImmediateRef";
+export { useImmediateReference } from "#/services/hooks/useImmediateReference";
 
 export { useInViewport } from "#/services/hooks/useInViewport";
 

@@ -1,5 +1,5 @@
 import type { Easing } from "../../../services/AnimateService";
-interface Props {
+interface Properties {
     /**
      * Initial value.
      *
@@ -43,5 +43,5 @@ interface Props {
      */
     className?: string;
 }
-export declare function Counter({ from, to, thousandSeparator, decimalSeparator, decimals, duration, easing, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Counter({ from, to, thousandSeparator, decimalSeparator, decimals, duration, easing, className, }: Properties): import("react").JSX.Element;
 export {};

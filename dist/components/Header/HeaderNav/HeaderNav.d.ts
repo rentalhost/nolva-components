@@ -1,6 +1,6 @@
 import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { PropsWithChildren, ReactElement, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * The class name of the nav element.
      */
@@ -41,5 +41,5 @@ interface Props extends PropsWithChildren {
      */
     openedModalContent(this: void, closeHandler: () => void): ReactElement;
 }
-export declare function HeaderNav({ navClassName, listClassName, children, icon, iconClassName, closedIcon, closedIconClassName, openedModalContent, }: Props): false | import("react/jsx-runtime").JSX.Element;
+export declare function HeaderNav({ navClassName, listClassName, children, icon, iconClassName, closedIcon, closedIconClassName, openedModalContent, }: Properties): false | import("react").JSX.Element;
 export {};

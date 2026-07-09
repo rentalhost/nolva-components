@@ -4,13 +4,13 @@ export class Timer {
   public constructor(
     private readonly callback: () => void,
     private readonly delay: number,
-    immediate = true,
+    shouldImmediate = true,
   ) {
-    this.start(immediate);
+    this.start(shouldImmediate);
   }
 
-  public start(immediate = false) {
-    if (immediate) {
+  public start(shouldImmediate = false) {
+    if (shouldImmediate) {
       queueMicrotask(this.callback);
     }
 

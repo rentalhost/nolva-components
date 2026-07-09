@@ -21,13 +21,13 @@ export async function promisePortal<T>(resolver: Resolver<T>) {
 
   document.body.append(element);
 
-  return new Promise<T>((resolve) => {
+  await new Promise<T>((resolve) => {
     void elementPromise.then(resolve);
-  }).finally(() => {
-    requestIdleCallback(() => {
-      elementRoot.unmount();
-      element.remove();
-    });
+  });
+
+  requestIdleCallback(() => {
+    elementRoot.unmount();
+    element.remove();
   });
 }
 

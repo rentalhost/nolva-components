@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * Container id to be used as anchor.
      */
@@ -31,5 +31,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Section({ id, marginY, marginTop, marginBottom, className, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Section({ id, marginY, marginTop, marginBottom, className, children, }: Properties): import("react").JSX.Element;
 export {};

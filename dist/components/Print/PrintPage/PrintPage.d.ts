@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-interface Props {
+interface Properties {
     /**
      * Controls the page size.
      *
@@ -78,5 +78,5 @@ declare const sizes: {
  *
  * It also provides an overflow warning if the content exceeds the page's size.
  */
-export declare function PrintPage({ size, orientation, margin, header, footer, overflowMode, shorten, children, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function PrintPage({ size, orientation, margin, header, footer, overflowMode, shorten, children, className, }: Properties): import("react").JSX.Element;
 export {};

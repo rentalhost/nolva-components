@@ -1,4 +1,4 @@
-interface Props {
+interface Properties {
     /**
      * The name of the event to send.
      */
@@ -8,5 +8,5 @@ interface Props {
      */
     eventParams?: Record<string, unknown>;
 }
-export declare function AnalyticsViewport({ eventName, eventParams }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function AnalyticsViewport({ eventName, eventParams }: Properties): import("react").JSX.Element;
 export {};

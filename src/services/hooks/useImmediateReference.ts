@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export function useImmediateRef<T>(value: T) {
+export function useImmediateReference<T>(value: T) {
   const reference = useRef(value);
 
   useEffect(() => {

@@ -18,7 +18,7 @@ export function useInViewport(
    *
    * Defaults to `false`.
    */
-  considerVisibleAfterLeavingViewport = false,
+  shouldConsiderVisibleAfterLeavingViewport = false,
 ) {
   const [visible, setVisible] = useState(false);
 
@@ -30,8 +30,8 @@ export function useInViewport(
   }, []);
 
   const visibleAfterLeavingViewport = useCallback(
-    (rect: DOMRect) => considerVisibleAfterLeavingViewport && rect.top < 0,
-    [considerVisibleAfterLeavingViewport],
+    (rect: DOMRect) => shouldConsiderVisibleAfterLeavingViewport && rect.top < 0,
+    [shouldConsiderVisibleAfterLeavingViewport],
   );
 
   const reference = useCallback(
@@ -58,7 +58,7 @@ export function useInViewport(
         if (visibleAfterLeavingViewport(rect)) {
           setVisible(true);
         } else {
-          const bottomMargin = typeof threshold === "number" ? 0 : Number.parseFloat(threshold);
+          const bottomMargin = typeof threshold === "number" ? 0 : Number(threshold);
 
           if (rect.top < window.innerHeight - bottomMargin && rect.bottom > 0) {
             setVisible(true);

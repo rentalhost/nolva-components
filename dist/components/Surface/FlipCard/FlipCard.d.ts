@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-interface Props {
+interface Properties {
     /**
      * The container class name.
      */
@@ -34,5 +34,5 @@ interface Props {
      */
     onFlip?(this: void, viewpoint: "back" | "front"): void;
 }
-export declare function FlipCard({ className, flipTo, axis, contentFront, contentBack, heightController, touchIconClassName, onFlip, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function FlipCard({ className, flipTo, axis, contentFront, contentBack, heightController, touchIconClassName, onFlip, }: Properties): import("react").JSX.Element;
 export {};

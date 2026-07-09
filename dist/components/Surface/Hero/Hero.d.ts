@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * The id of the hero.
      */
@@ -17,5 +17,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Hero({ id, className, backgroundContent, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Hero({ id, className, backgroundContent, children }: Properties): import("react").JSX.Element;
 export {};

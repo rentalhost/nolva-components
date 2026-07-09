@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * The variant of the theme.
      */
@@ -15,5 +15,5 @@ export declare const variants: Readonly<Record<Variant, `theme-${string}`>>;
 /**
  * A utility component to change the color of any element based on a variant as theme.
  */
-export declare function Theme({ variant, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Theme({ variant, children }: Properties): import("react").JSX.Element;
 export {};

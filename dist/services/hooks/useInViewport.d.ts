@@ -12,7 +12,7 @@ threshold?: Threshold,
  *
  * Defaults to `false`.
  */
-considerVisibleAfterLeavingViewport?: boolean): {
+shouldConsiderVisibleAfterLeavingViewport?: boolean): {
     readonly ref: (element: Element | null | undefined) => void;
     readonly visible: boolean;
     readonly disconnect: () => void;

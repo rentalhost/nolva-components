@@ -1,6 +1,6 @@
 import type { Threshold } from "../../../services/hooks/useInViewport";
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * Effect to apply.
      *
@@ -50,5 +50,5 @@ interface Props extends PropsWithChildren {
      */
     onAnimate?(this: void): void;
 }
-export declare function Animate({ effect, duration, distance, easing, always, threshold, className, children, onAnimate, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Animate({ effect, duration, distance, easing, always, threshold, className, children, onAnimate, }: Properties): import("react").JSX.Element;
 export {};

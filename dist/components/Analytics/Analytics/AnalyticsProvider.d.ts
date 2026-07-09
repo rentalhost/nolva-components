@@ -1,10 +1,10 @@
 import type { PropsWithChildren } from "react";
-interface ContextProps {
-    sendEvent?(this: void, name: string, params?: Record<string, unknown>): void;
+interface ContextProperties {
+    sendEvent?(this: void, name: string, parameters?: Record<string, unknown>): void;
 }
-export declare const AnalyticsContext: import("react").Context<ContextProps>;
-interface Props extends PropsWithChildren {
+export declare const AnalyticsContext: import("react").Context<ContextProperties>;
+interface Properties extends PropsWithChildren {
     gaId?: string;
 }
-export declare function AnalyticsProvider({ gaId, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function AnalyticsProvider({ gaId, children, }: Properties): import("react").JSX.Element;
 export {};

@@ -2,11 +2,11 @@ export function listenMutationObserver(
   element: Element | null | undefined,
   options: MutationObserverInit,
   callback: MutationCallback,
-  immediate = true,
+  shouldImmediate = true,
 ) {
   const observer = new MutationObserver(callback);
 
-  if (immediate) {
+  if (shouldImmediate) {
     callback([], observer);
   }
 
@@ -25,11 +25,11 @@ export function listenResizeObserver(
   element: Element | null | undefined,
   options: ResizeObserverOptions,
   callback: ResizeObserverCallback,
-  immediate = true,
+  shouldImmediate = true,
 ) {
   const observer = new ResizeObserver(callback);
 
-  if (immediate) {
+  if (shouldImmediate) {
     callback([], observer);
   }
 

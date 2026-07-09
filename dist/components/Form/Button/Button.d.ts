@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 import type { JSX } from "react/jsx-runtime";
-interface Props extends ComponentProps<"button"> {
+interface Properties extends ComponentProps<"button"> {
     /**
      * The type of the button.
      *
@@ -23,5 +23,5 @@ interface Props extends ComponentProps<"button"> {
      */
     asChild?: boolean;
 }
-export declare function Button({ type, disabled, fill, className, asChild, __internalComponentType, children, ...props }: Props): JSX.Element;
+export declare function Button({ type, disabled, fill, className, asChild, __internalComponentType, children, ...properties }: Properties): JSX.Element;
 export {};

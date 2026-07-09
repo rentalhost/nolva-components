@@ -1,4 +1,4 @@
-interface Props {
+interface Properties {
     /**
      * The content class name.
      */
@@ -34,5 +34,5 @@ interface Props {
      */
     className?: string;
 }
-export declare function WhatsappButton({ contentClassName, title, titleClassName, phone, phonePrefix, phoneClassName, iconClassName, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function WhatsappButton({ contentClassName, title, titleClassName, phone, phonePrefix, phoneClassName, iconClassName, className, }: Properties): import("react").JSX.Element;
 export {};

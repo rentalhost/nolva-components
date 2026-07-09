@@ -9,7 +9,7 @@ export function listenEvent(
   element: EventTarget,
   eventName: Arrayable<keyof WindowEventMap>,
   callback: EventListener,
-  immediate = true,
+  shouldImmediate = true,
 ) {
   const eventNames = toArray(eventName);
 
@@ -17,7 +17,7 @@ export function listenEvent(
     element.addEventListener(name, callback);
   }
 
-  if (immediate) {
+  if (shouldImmediate) {
     callback(new Event("immediate"));
   }
 
@@ -41,9 +41,9 @@ export function listenScroll(element: EventTarget, callback: Callback) {
 export function listenWindowEvent(
   eventName: Arrayable<keyof WindowEventMap>,
   callback: EventListener,
-  immediate = true,
+  shouldImmediate = true,
 ) {
-  return listenEvent(window, eventName, callback, immediate);
+  return listenEvent(window, eventName, callback, shouldImmediate);
 }
 
 export function listenWindowScroll(callback: Callback) {

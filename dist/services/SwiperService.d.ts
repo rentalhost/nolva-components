@@ -1,4 +1,3 @@
-import type { SwiperOptions } from "swiper/types";
 declare const allBreakpoints: {
     readonly xs: 0;
     readonly sm: 640;
@@ -9,7 +8,10 @@ declare const allBreakpoints: {
 };
 type BreakpointName = keyof typeof allBreakpoints;
 export type Breakpoints = Partial<Record<BreakpointName, number>>;
-export declare function normalizeBreakpoints(itemsCount: number, items: Breakpoints | number, gap: Breakpoints | number, stretch: boolean): {
-    [k: string]: SwiperOptions;
+export declare function normalizeBreakpoints(itemsCount: number, items: Breakpoints | number, gap: Breakpoints | number, shouldStretch: boolean): {
+    [k: string]: {
+        slidesPerView: number;
+        spaceBetween: number;
+    };
 };
 export {};

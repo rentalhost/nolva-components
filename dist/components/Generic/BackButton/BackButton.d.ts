@@ -1,4 +1,4 @@
-interface Props {
+interface Properties {
     /**
      * The title of the button.
      *
@@ -14,5 +14,5 @@ interface Props {
      */
     className?: string;
 }
-export declare function BackButton({ title, fallbackRoute, className }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function BackButton({ title, fallbackRoute, className }: Properties): import("react").JSX.Element;
 export {};

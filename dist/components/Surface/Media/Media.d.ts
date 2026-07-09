@@ -4,23 +4,23 @@ import { MediaImage } from "./MediaImage";
 import { allowedExtensions as svgAllowedExtensions, MediaSVG } from "./MediaSVG";
 import { allowedExtensions as videoLocalAllowedExtensions, MediaVideoLocal } from "./MediaVideoLocal";
 import { MediaVideoYoutube } from "./MediaVideoYoutube";
-type ImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
+type ImageProperties = Omit<ComponentProps<typeof MediaImage>, "src"> & {
     src: `${string}.${(typeof imageAllowedExtensions)[number]}` | (string & {});
 };
-type StaticImageProps = Omit<ComponentProps<typeof MediaImage>, "src"> & {
+type StaticImageProperties = Omit<ComponentProps<typeof MediaImage>, "src"> & {
     src: {
         src: string;
     };
 };
-type SVGProps = Omit<ComponentProps<typeof MediaSVG>, "src"> & {
+type SVGProperties = Omit<ComponentProps<typeof MediaSVG>, "src"> & {
     src: `${string}.${(typeof svgAllowedExtensions)[number]}` | (string & {});
 };
-type VideoLocalProps = Omit<ComponentProps<typeof MediaVideoLocal>, "src"> & {
+type VideoLocalProperties = Omit<ComponentProps<typeof MediaVideoLocal>, "src"> & {
     src: `${string}.${(typeof videoLocalAllowedExtensions)[number]}` | (string & {});
 };
-type VideoYoutubeProps = Omit<ComponentProps<typeof MediaVideoYoutube>, "id"> & {
+type VideoYoutubeProperties = Omit<ComponentProps<typeof MediaVideoYoutube>, "id"> & {
     src: string;
 };
-type Props = ImageProps | StaticImageProps | SVGProps | VideoLocalProps | VideoYoutubeProps;
-export declare function Media(props: Props): import("react/jsx-runtime").JSX.Element | null;
+type Properties = ImageProperties | StaticImageProperties | SVGProperties | VideoLocalProperties | VideoYoutubeProperties;
+export declare function Media(properties: Properties): import("react").JSX.Element | null;
 export {};

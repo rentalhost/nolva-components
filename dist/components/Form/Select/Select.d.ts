@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-interface Props extends ComponentProps<"select"> {
+interface Properties extends ComponentProps<"select"> {
     /**
      * The placeholder of the select.
      */
@@ -33,5 +33,5 @@ interface SelectOption {
      */
     className?: string;
 }
-export declare function Select({ placeholder, options, className, arrowClassName, ...props }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Select({ placeholder, options, className, arrowClassName, ...properties }: Properties): import("react").JSX.Element;
 export {};

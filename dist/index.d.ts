@@ -39,7 +39,7 @@ export { Theme } from "./components/Theme/Theme/Theme";
 export { HTMLTransformer } from "./services/classes/HTMLTransformer";
 export { listenEvent, listenScroll, listenWindowEvent, listenWindowScroll, } from "./services/EventService";
 export { useAnalytics } from "./services/hooks/useAnalytics";
-export { useImmediateRef } from "./services/hooks/useImmediateRef";
+export { useImmediateReference } from "./services/hooks/useImmediateReference";
 export { useInViewport } from "./services/hooks/useInViewport";
 export { useLocalStorage } from "./services/hooks/useLocalStorage";
 export { useReady } from "./services/hooks/useReady";

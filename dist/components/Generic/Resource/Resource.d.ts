@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-interface Props extends Omit<ComponentProps<"div">, "id"> {
+interface Properties extends Omit<ComponentProps<"div">, "id"> {
     /**
      * The type of the resource.
      *
@@ -11,5 +11,5 @@ interface Props extends Omit<ComponentProps<"div">, "id"> {
      */
     id: number;
 }
-export declare function Resource({ type, id, className, children, ...props }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Resource({ type, id, className, children, ...properties }: Properties): import("react").JSX.Element;
 export {};

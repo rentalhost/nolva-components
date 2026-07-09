@@ -1,5 +1,5 @@
-import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+import type { JSX, PropsWithChildren, ReactNode } from "react";
+interface Properties extends PropsWithChildren {
     /**
      * The duration of mosaic items visibility in ms.
      *
@@ -21,5 +21,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Mosaic({ duration, shuffle, className, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Mosaic({ duration, shuffle, className, children }: Properties): JSX.Element;
 export {};

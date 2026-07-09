@@ -1,1 +1,0 @@
-import{useEffect as e,useRef as r}from"react";export function useImmediateRef(t){let m=r(t);return e(()=>{m.current=t},[t]),m}

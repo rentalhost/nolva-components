@@ -1,5 +1,5 @@
-interface ContextProps {
+interface ContextProperties {
     primaryPlaceholder?: string;
 }
-export declare const LabelContext: import("react").Context<ContextProps>;
+export declare const LabelContext: import("react").Context<ContextProperties>;
 export {};

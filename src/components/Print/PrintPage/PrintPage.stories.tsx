@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-top-level-side-effects */
 import { twMerge } from "@rentalhost/rheactor-core";
 import { renderToStaticMarkup } from "react-dom/server";
 

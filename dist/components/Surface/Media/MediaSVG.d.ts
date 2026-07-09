@@ -1,4 +1,4 @@
-interface Props {
+interface Properties {
     /**
      * The source of the image.
      */
@@ -17,5 +17,5 @@ interface Props {
     className?: string;
 }
 export declare const allowedExtensions: readonly ["svg"];
-export declare function MediaSVG({ src, alt, priority, className }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function MediaSVG({ src, alt, priority, className }: Properties): import("react").JSX.Element;
 export {};

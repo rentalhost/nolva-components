@@ -18,7 +18,7 @@ import { flushSync } from "react-dom";
 import type { CSSProperties, JSX, PropsWithChildren, ReactNode } from "react";
 
 import { Timer } from "#/services/classes/Timer";
-import { useImmediateRef } from "#/services/hooks/useImmediateRef";
+import { useImmediateReference } from "#/services/hooks/useImmediateReference";
 import { listenResizeObserver } from "#/services/MutationService";
 
 interface Properties extends PropsWithChildren {
@@ -62,7 +62,7 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
   const [columns, setColumns] = useState(0);
 
   const [animationState, setAnimationState] = useState(AnimationState.SETUP);
-  const animationStateReference = useImmediateRef(animationState);
+  const animationStateReference = useImmediateReference(animationState);
 
   const allItems = useMemo(() => {
     const childrenItems = Children.toArray(children).filter((child) => isValidElement(child));
@@ -85,8 +85,8 @@ export function Mosaic({ duration = 5000, shuffle = false, className, children }
   );
 
   const refreshItems = useCallback(
-    (markPastItems = false) => {
-      if (markPastItems) {
+    (shouldMarkPastItems = false) => {
+      if (shouldMarkPastItems) {
         for (const item of items) {
           pastItems.current.set(item, ++pastItemsCounter.current);
         }

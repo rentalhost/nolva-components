@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * The className of the container.
      */
@@ -17,5 +17,5 @@ interface Props extends PropsWithChildren {
      */
     onCompleted?(this: void): void;
 }
-export declare function ScrollProgress({ className, progressClassName, children, onProgress, onCompleted, }: Props): false | import("react/jsx-runtime").JSX.Element;
+export declare function ScrollProgress({ className, progressClassName, children, onProgress, onCompleted, }: Properties): false | import("react").JSX.Element;
 export {};

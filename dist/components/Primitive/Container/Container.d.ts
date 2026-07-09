@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * Determines the horizontal padding of the container.
      *
@@ -21,5 +21,5 @@ interface Props extends PropsWithChildren {
      */
     children?: ReactNode;
 }
-export declare function Container({ paddingX, fluid, className, children }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Container({ paddingX, fluid, className, children }: Properties): import("react").JSX.Element;
 export {};

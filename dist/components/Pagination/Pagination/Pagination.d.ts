@@ -1,4 +1,4 @@
-interface Props {
+interface Properties {
     /**
      * The current page.
      */
@@ -54,5 +54,5 @@ interface Props {
      */
     onClick?(this: void, page: number): void;
 }
-export declare function Pagination({ current, total, visibleCount, spread, queryString, className, pageClassName, previousNext, firstLast, forceRender, onClick, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Pagination({ current, total, visibleCount, spread, queryString, className, pageClassName, previousNext, firstLast, forceRender, onClick, }: Properties): import("react").JSX.Element;
 export {};

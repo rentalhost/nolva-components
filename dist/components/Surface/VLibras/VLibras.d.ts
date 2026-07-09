@@ -5,5 +5,5 @@ declare global {
         };
     }
 }
-declare function VLibrasComponent(): import("react/jsx-runtime").JSX.Element;
+declare function VLibrasComponent(): import("react").JSX.Element;
 export { VLibrasComponent as VLibras };

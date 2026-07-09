@@ -1,2 +1,2 @@
 export declare function getVideoYoutubeThumbnail(id: string): string;
-export declare function getVideoThumbnail(src: string): string | null;
+export declare function getVideoThumbnail(source: string): string | null;

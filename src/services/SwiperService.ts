@@ -18,7 +18,7 @@ function fillBreakpoints(rawBreakpoints: Breakpoints | number) {
   let previousBreakpoint = 1;
 
   for (const breakpointName of Object.keys(allBreakpoints)) {
-    if (!(breakpointName in breakpoints)) {
+    if (!Object.hasOwn(breakpoints, breakpointName)) {
       breakpoints[breakpointName as BreakpointName] = previousBreakpoint;
     }
 
@@ -32,7 +32,7 @@ export function normalizeBreakpoints(
   itemsCount: number,
   items: Breakpoints | number,
   gap: Breakpoints | number,
-  stretch: boolean,
+  shouldStretch: boolean,
 ) {
   const itemsBreakpoints = fillBreakpoints(items);
   const gapBreakpoints = fillBreakpoints(gap);
@@ -44,7 +44,7 @@ export function normalizeBreakpoints(
       return [
         breakpointPixels,
         {
-          slidesPerView: stretch ? Math.min(itemsCount, itemsBreakpoint) : itemsBreakpoint,
+          slidesPerView: shouldStretch ? Math.min(itemsCount, itemsBreakpoint) : itemsBreakpoint,
           spaceBetween: gapBreakpoints[breakpointName as BreakpointName] * 4,
         },
       ];

@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactNode } from "react";
-interface Props extends PropsWithChildren {
+interface Properties extends PropsWithChildren {
     /**
      * The class name of the accordion.
      */
@@ -37,5 +37,5 @@ interface Props extends PropsWithChildren {
      */
     bodyClassName?: string;
 }
-export declare function Accordion({ className, headerClassName, title, titleKind: TitleKind, titleClassName, iconClassName, opened, bodyClassName, children, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function Accordion({ className, headerClassName, title, titleKind: TitleKind, titleClassName, iconClassName, opened, bodyClassName, children, }: Properties): import("react").JSX.Element;
 export {};

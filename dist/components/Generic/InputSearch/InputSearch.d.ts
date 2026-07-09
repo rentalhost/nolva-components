@@ -1,5 +1,5 @@
 import type { FormHTMLAttributes, ReactNode } from "react";
-interface Props {
+interface Properties {
     /**
      * The class name that will be appended to the container element.
      */
@@ -43,5 +43,5 @@ interface Props {
      */
     buttonText?: ReactNode;
 }
-export declare function InputSearch({ className, formAction, formMethod, iconClassName, inputName, inputDefaultValue, inputClassName, inputPlaceholder, buttonClassName, buttonText, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function InputSearch({ className, formAction, formMethod, iconClassName, inputName, inputDefaultValue, inputClassName, inputPlaceholder, buttonClassName, buttonText, }: Properties): import("react").JSX.Element;
 export {};

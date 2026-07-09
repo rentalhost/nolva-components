@@ -1,4 +1,4 @@
-interface Props {
+interface Properties {
     /**
      * The source of the image.
      */
@@ -32,5 +32,5 @@ interface Props {
     className?: string;
 }
 export declare const allowedExtensions: readonly ["jpg", "jpeg", "png", "webp", "gif"];
-export declare function MediaImage({ src: srcBase, alt, quality, priority, spot, className, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function MediaImage({ src: sourceBase, alt, quality, priority, spot, className, }: Properties): import("react").JSX.Element;
 export {};

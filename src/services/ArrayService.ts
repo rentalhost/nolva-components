@@ -5,7 +5,7 @@ export function circularRange(start: number, end: number, from: number, spread: 
   const index = (((from - start) % size) + size) % size;
   const first = (index + 1) % size;
 
-  return Array.from({ length: spread }, (_, index) => start + ((first + index) % size));
+  return Array.from({ length: spread }, (_, arrayIndex) => start + ((first + arrayIndex) % size));
 }
 
 export function paginate(current: number, total: number, visibleCount?: number): number[] {

@@ -76,7 +76,7 @@ export const variants = {
 } as Readonly<Record<Variant, `theme-${string}`>>;
 
 function isBuildInVariant(variant: string): variant is Variant {
-  return variant in variants;
+  return Object.hasOwn(variants, variant);
 }
 
 /**

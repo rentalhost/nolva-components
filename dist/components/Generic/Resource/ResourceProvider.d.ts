@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
-interface ContextProps {
+interface ContextProperties {
     domain?: string;
 }
-export declare const ResourceContext: import("react").Context<ContextProps>;
-export declare function ResourceProvider({ children }: PropsWithChildren): import("react/jsx-runtime").JSX.Element;
+export declare const ResourceContext: import("react").Context<ContextProperties>;
+export declare function ResourceProvider({ children }: PropsWithChildren): import("react").JSX.Element;
 export {};

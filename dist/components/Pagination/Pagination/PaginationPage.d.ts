@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-interface Props {
+interface Properties {
     page: number;
     queryString?: string;
     isCurrent?: boolean;
@@ -9,5 +9,5 @@ interface Props {
     children: ReactNode;
     onClick(this: void, page: number): void;
 }
-export declare function PaginationPage({ page, queryString, isCurrent, isSpread, isDisabled, children, className, onClick, }: Props): import("react/jsx-runtime").JSX.Element;
+export declare function PaginationPage({ page, queryString, isCurrent, isSpread, isDisabled, children, className, onClick, }: Properties): import("react").JSX.Element;
 export {};

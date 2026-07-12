@@ -57,7 +57,6 @@ export function Select({
   return (
     <div className="relative">
       <select
-        defaultValue=""
         className={twMerge(inputClassName, "appearance-none pr-11", className)}
         {...properties}
       >

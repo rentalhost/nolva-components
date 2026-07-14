@@ -1,10 +1,12 @@
 import { twMerge } from "@rentalhost/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faChevronDown } from "@rheactor/rheactor-font-awesome/classic-regular";
+import { Fragment } from "react";
 
 import type { ComponentProps } from "react";
 
 import { inputClassName } from "#/components/fixtures";
+import { SelectOption } from "#/components/Form/Select/SelectOption";
 
 interface Properties extends ComponentProps<"select"> {
   /**
@@ -14,8 +16,11 @@ interface Properties extends ComponentProps<"select"> {
 
   /**
    * The options of the select.
+   *
+   * A `null` entry forces an empty separator (`<optgroup>`) between the
+   * surrounding options, even when the adjacent groups are the same.
    */
-  options: SelectOption[];
+  options: Array<OptionItem | null>;
 
   /**
    * The className of the option.
@@ -28,7 +33,7 @@ interface Properties extends ComponentProps<"select"> {
   arrowClassName?: string;
 }
 
-interface SelectOption {
+interface OptionItem {
   /**
    * The title of the option.
    */
@@ -45,6 +50,19 @@ interface SelectOption {
    * The className of the option.
    */
   className?: string;
+
+  /**
+   * The group this option belongs to. Options sharing the same group are
+   * rendered together inside a single `<optgroup>`, respecting the order of
+   * their first appearance. When omitted, the option is rendered at the root
+   * of the `<select>`.
+   */
+  group?: string;
+}
+
+interface OptionBlock {
+  group: string | null;
+  options: OptionItem[];
 }
 
 export function Select({
@@ -54,6 +72,26 @@ export function Select({
   arrowClassName,
   ...properties
 }: Properties) {
+  const blocks: OptionBlock[] = [];
+  let current: OptionBlock | null = null;
+
+  for (const option of options) {
+    if (option === null) {
+      current = null;
+
+      continue;
+    }
+
+    const group = option.group ?? null;
+
+    if (current === null || current.group !== group) {
+      current = { group, options: [] };
+      blocks.push(current);
+    }
+
+    current.options.push(option);
+  }
+
   return (
     <div className="relative">
       <select
@@ -70,16 +108,35 @@ export function Select({
           </>
         )}
 
-        {options.map((option, optionIndex) => (
-          <option
-            // eslint-disable-next-line react/no-array-index-key
-            key={`${optionIndex}.${option.value ?? option.title ?? "-"}`}
-            value={option.value ?? option.title ?? "-"}
-            disabled={option.title === undefined}
-            className={option.className}
-          >
-            {option.title}
-          </option>
+        {blocks.map((block, blockIndex) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Fragment key={blockIndex}>
+            {blockIndex > 0 && <optgroup label="" />}
+
+            {block.group === null
+              ? block.options.map((option, optionIndex) => (
+                  <SelectOption
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`${blockIndex}.${optionIndex}.${option.value ?? option.title ?? "-"}`}
+                    title={option.title}
+                    value={option.value}
+                    className={option.className}
+                  />
+                ))
+              : (
+                <optgroup label={block.group}>
+                  {block.options.map((option, optionIndex) => (
+                    <SelectOption
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`${blockIndex}.${optionIndex}.${option.value ?? option.title ?? "-"}`}
+                      title={option.title}
+                      value={option.value}
+                      className={option.className}
+                    />
+                  ))}
+                </optgroup>
+              )}
+          </Fragment>
         ))}
       </select>
 

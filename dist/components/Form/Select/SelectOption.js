@@ -1,0 +1,1 @@
+import{jsx as e}from"react/jsx-runtime";export function SelectOption({title:t,value:i,...o}){return e("option",{...o,value:i??t??"-",disabled:void 0===t,children:t})}

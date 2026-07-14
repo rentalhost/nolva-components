@@ -23,3 +23,23 @@ export const Example: StoryObj<typeof Select> = {
     ],
   },
 };
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const Grouped: StoryObj<typeof Select> = {
+  args: {
+    placeholder: "Example Placeholder",
+    options: [
+      { title: "Option 1", group: "Group A" },
+      { title: "Option 2", group: "Group A" },
+      null,
+      { title: "Option 3", group: "Group A" },
+      { title: "Option 4", group: "Group B" },
+      { title: "Option 5" },
+      { title: "Option 6" },
+      null,
+      { title: "Option 7" },
+      { title: "Option 8" },
+      { title: "Option 9", group: "Group A" },
+    ],
+  },
+};

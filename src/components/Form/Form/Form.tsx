@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 import { useContext } from "react";
 
 import type { ComponentProps } from "react";

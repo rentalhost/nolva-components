@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { Children, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Autoplay, FreeMode, Keyboard } from "swiper/modules";

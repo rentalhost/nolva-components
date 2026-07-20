@@ -1,4 +1,4 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faChevronDown } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { Fragment } from "react";
@@ -84,6 +84,7 @@ export function Select({
 
     const group = option.group ?? null;
 
+    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
     if (current === null || current.group !== group) {
       current = { group, options: [] };
       blocks.push(current);
@@ -113,8 +114,19 @@ export function Select({
           <Fragment key={blockIndex}>
             {blockIndex > 0 && <optgroup label="" />}
 
-            {block.group === null
-              ? block.options.map((option, optionIndex) => (
+            {block.group === null ? (
+              block.options.map((option, optionIndex) => (
+                <SelectOption
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`${blockIndex}.${optionIndex}.${option.value ?? option.title ?? "-"}`}
+                  title={option.title}
+                  value={option.value}
+                  className={option.className}
+                />
+              ))
+            ) : (
+              <optgroup label={block.group}>
+                {block.options.map((option, optionIndex) => (
                   <SelectOption
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${blockIndex}.${optionIndex}.${option.value ?? option.title ?? "-"}`}
@@ -122,20 +134,9 @@ export function Select({
                     value={option.value}
                     className={option.className}
                   />
-                ))
-              : (
-                <optgroup label={block.group}>
-                  {block.options.map((option, optionIndex) => (
-                    <SelectOption
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={`${blockIndex}.${optionIndex}.${option.value ?? option.title ?? "-"}`}
-                      title={option.title}
-                      value={option.value}
-                      className={option.className}
-                    />
-                  ))}
-                </optgroup>
-              )}
+                ))}
+              </optgroup>
+            )}
           </Fragment>
         ))}
       </select>

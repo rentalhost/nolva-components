@@ -1,4 +1,4 @@
-import { range } from "@rentalhost/rheactor-core";
+import { range } from "@rheactor/rheactor-core";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faShareFromSquare } from "@rheactor/rheactor-font-awesome/classic-regular";
 import { useEffect, useState } from "react";

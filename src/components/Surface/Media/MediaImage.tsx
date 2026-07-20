@@ -1,6 +1,7 @@
 "use client";
 
-import { getNextImageUrl, twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
+import { getNextImageUrl } from "@rheactor/rheactor-core/next";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { ImgProps } from "next/dist/shared/lib/get-img-props";

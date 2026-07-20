@@ -1,7 +1,7 @@
 "use client";
 
-import { clamp } from "@rentalhost/rheactor-core";
-import { twMerge } from "@rentalhost/rheactor-core";
+import { clamp } from "@rheactor/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 

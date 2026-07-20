@@ -1,6 +1,6 @@
-import { toArray } from "@rentalhost/rheactor-core";
+import { toArray } from "@rheactor/rheactor-core";
 
-import type { Arrayable } from "@rentalhost/rheactor-core";
+import type { Arrayable } from "@rheactor/rheactor-core";
 
 type UnloadCallback = () => void;
 type Callback = (event: Event, unload: UnloadCallback) => void;

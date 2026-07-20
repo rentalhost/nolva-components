@@ -1,6 +1,6 @@
 "use client";
 
-import { getExtension } from "@rentalhost/rheactor-core";
+import { getExtension } from "@rheactor/rheactor-core";
 import getVideoId from "get-video-id";
 
 import type { ComponentProps } from "react";

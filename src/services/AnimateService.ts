@@ -1,4 +1,4 @@
-import { clamp } from "@rentalhost/rheactor-core";
+import { clamp } from "@rheactor/rheactor-core";
 
 import { Timer } from "#/services/classes/Timer";
 

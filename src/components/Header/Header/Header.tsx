@@ -1,6 +1,6 @@
 "use client";
 
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 
 import type { CSSProperties, PropsWithChildren, ReactNode } from "react";
 

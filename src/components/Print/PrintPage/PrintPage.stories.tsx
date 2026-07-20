@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-top-level-side-effects */
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import type { Meta, StoryObj } from "@storybook/react";

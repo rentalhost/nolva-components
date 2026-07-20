@@ -16,11 +16,7 @@ interface Properties extends ComponentProps<"option"> {
 
 export function SelectOption({ title, value, ...properties }: Properties) {
   return (
-    <option
-      {...properties}
-      value={value ?? title ?? "-"}
-      disabled={title === undefined}
-    >
+    <option {...properties} value={value ?? title ?? "-"} disabled={title === undefined}>
       {title}
     </option>
   );

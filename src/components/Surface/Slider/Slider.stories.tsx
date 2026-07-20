@@ -1,4 +1,4 @@
-import { range } from "@rentalhost/rheactor-core";
+import { range } from "@rheactor/rheactor-core";
 import { faLeftLong } from "@rheactor/rheactor-font-awesome/classic-regular";
 
 import type { Meta, StoryObj } from "@storybook/react";

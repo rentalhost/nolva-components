@@ -1,6 +1,6 @@
 "use client";
 
-import { formatNumber } from "@rentalhost/rheactor-core";
+import { formatNumber } from "@rheactor/rheactor-core";
 import { useEffect, useMemo, useState } from "react";
 
 import type { Easing } from "#/services/AnimateService";

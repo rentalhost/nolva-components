@@ -1,5 +1,5 @@
-import { getExtension } from "@rentalhost/rheactor-core";
-import { twMerge } from "@rentalhost/rheactor-core";
+import { getExtension } from "@rheactor/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 
 interface Properties {
   /**

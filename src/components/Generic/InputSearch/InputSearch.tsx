@@ -1,4 +1,4 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regular";
 

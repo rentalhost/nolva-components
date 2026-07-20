@@ -1,4 +1,4 @@
-import { twMerge } from "@rentalhost/rheactor-core";
+import { twMerge } from "@rheactor/rheactor-core";
 
 import type { PropsWithChildren, ReactNode } from "react";
 

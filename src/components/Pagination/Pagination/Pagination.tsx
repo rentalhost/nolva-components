@@ -2,8 +2,8 @@
 
 import { clamp, noop } from "@rheactor/rheactor-core";
 import { twMerge } from "@rheactor/rheactor-core";
-import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faAngleLeft, faAnglesLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 import { useMemo } from "react";
 
 import type { ComponentProps } from "react";

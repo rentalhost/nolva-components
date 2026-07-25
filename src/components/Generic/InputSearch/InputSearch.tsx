@@ -1,6 +1,6 @@
 import { twMerge } from "@rheactor/rheactor-core";
-import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regular";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 
 import type { FormHTMLAttributes, ReactNode } from "react";
 

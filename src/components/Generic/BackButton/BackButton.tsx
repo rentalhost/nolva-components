@@ -1,7 +1,7 @@
 "use client";
 
-import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faAngleLeft } from "@rheactor/rheactor-font-awesome/classic-regular";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 

@@ -1,5 +1,4 @@
 import { twMerge } from "@rheactor/rheactor-core";
-import { Icon } from "@rheactor/rheactor-font-awesome";
 import {
   faBomb,
   faBug,
@@ -8,6 +7,7 @@ import {
   faCircleExclamation,
   faCircleXmark,
 } from "@rheactor/rheactor-font-awesome/classic-regular";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 
 import type { IconType } from "@rheactor/rheactor-font-awesome";
 import type { PropsWithChildren } from "react";

@@ -16,7 +16,6 @@ const easings = {
 export type Easing = EasingFunction | keyof typeof easings;
 
 function calculateProgress(current: number, total: number, easing: Easing = "ease-in-out"): number {
-  // eslint-disable-next-line unicorn/no-unsafe-property-key
   const easingFunction = typeof easing === "string" ? easings[easing] : easing;
 
   return easingFunction(clamp(current / total, 0, 1));

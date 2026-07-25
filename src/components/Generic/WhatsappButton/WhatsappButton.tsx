@@ -1,6 +1,6 @@
 import { twMerge } from "@rheactor/rheactor-core";
-import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faWhatsapp } from "@rheactor/rheactor-font-awesome/brands";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 import Link from "next/link";
 
 interface Properties {

@@ -1,5 +1,5 @@
 import { twMerge } from "@rheactor/rheactor-core";
-import { Icon } from "@rheactor/rheactor-font-awesome";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 import Link from "next/link";
 
 import type { ShareNetwork } from "#/components/Generic/Share/ShareNetwork";

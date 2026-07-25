@@ -1,8 +1,8 @@
 "use client";
 
 import { twMerge } from "@rheactor/rheactor-core";
-import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faAngleUp } from "@rheactor/rheactor-font-awesome/classic-regular";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 
 import { useAnalytics } from "#/services/hooks/useAnalytics";
 

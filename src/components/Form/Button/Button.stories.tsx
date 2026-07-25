@@ -1,5 +1,5 @@
-import { Icon } from "@rheactor/rheactor-font-awesome";
 import { faMagnifyingGlass } from "@rheactor/rheactor-font-awesome/classic-regular";
+import { Icon } from "@rheactor/rheactor-font-awesome/react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
